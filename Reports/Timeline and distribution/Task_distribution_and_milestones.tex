@@ -1,0 +1,339 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{placeins}
+
+% =====================================
+% Colors and Styles
+% =====================================
+\definecolor{itiBlue}{RGB}{0,82,147}
+\definecolor{absblack}{RGB}{0,0,0}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{softblue}{RGB}{239,246,252}
+\definecolor{softgreen}{RGB}{239,252,245}
+\definecolor{darkgreen}{RGB}{33,110,57}
+\definecolor{softorange}{RGB}{255,248,235}
+\definecolor{darkorange}{RGB}{173,94,0}
+\hypersetup{
+    linkcolor = absblack,
+    urlcolor = itiBlue,
+    citecolor = itiBlue,
+    colorlinks = true
+}
+
+% =====================================
+% Page Layout
+% =====================================
+\geometry{a4paper, margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=1.0cm,itemsep=1pt,topsep=1pt}
+\setlist[enumerate]{leftmargin=1.0cm,itemsep=1pt,topsep=1pt}
+\setlength{\headheight}{15pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.22}
+\emergencystretch=3em
+\sloppy
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Session 2 RCA Work Plan}
+\lhead{DIGIS GP Team}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{%
+    \vspace{5pt}%
+    \rule{\textwidth}{0.4pt}\\%
+    \vspace{2pt}%
+    \thepage%
+}
+
+\titleformat{\section}{\color{itiBlue}\normalfont\Large\bfseries}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\color{absblack}\normalfont\large\bfseries}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\color{absblack}\normalfont\normalsize\bfseries}{\thesubsubsection}{0.75em}{}
+
+\captionsetup[table]{position=bottom,skip=5pt,font=small,labelfont=bf}
+\captionsetup[figure]{position=bottom,skip=5pt,font=small,labelfont=bf}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}m{#1}}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+\tcbset{
+    colback=softblue,
+    colframe=itiBlue,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=6pt,
+    bottom=6pt
+}
+
+\lstdefinestyle{cmdstyle}{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    rulecolor=\color{lightgray},
+    backgroundcolor=\color{lightgray},
+    xleftmargin=2pt,
+    xrightmargin=2pt,
+    aboveskip=6pt,
+    belowskip=6pt,
+    showstringspaces=false
+}
+\lstset{style=cmdstyle}
+
+\newtcolorbox{infobox}[1]{
+    title=#1,
+    colback=softblue,
+    colframe=itiBlue,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=2pt
+}
+
+\newtcolorbox{successbox}[1]{
+    title=#1,
+    colback=softgreen,
+    colframe=darkgreen,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=2pt
+}
+
+\newtcolorbox{warningbox}[1]{
+    title=#1,
+    colback=softorange,
+    colframe=darkorange,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=2pt
+}
+
+\newcommand{\fname}[1]{\texttt{#1}}
+\newcommand{\colname}[1]{\texttt{#1}}
+\newcommand{\flowarrow}{\ensuremath{\Longrightarrow}}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+	\begin{figure}[H]
+		\centering
+		\IfFileExists{../ITI_Logo.png}{%
+			\includegraphics[width=0.68\linewidth]{../ITI_Logo}%
+		}{%
+			\fbox{\parbox[c][3cm][c]{0.7\linewidth}{\centering\Large ITI Logo\\[0.3cm]\normalsize Place \texttt{ITI\_Logo.png} in the required logo path}}
+		}
+	\end{figure}
+
+    \vspace{1.2cm}
+    \textcolor{absblack}{\rule{1\textwidth}{1.5pt}} \\[0.8cm]
+    {\fontsize{21}{28}\selectfont\bfseries Session 2 RCA Meeting Summary}\\[0.35cm]
+    {\fontsize{16}{18}\selectfont\bfseries Task Distribution and Technical Flow}\\[0.25cm]
+    \textcolor{absblack}{\rule{1\textwidth}{1.5pt}} \\[1.25cm]
+
+    \vspace*{0.4cm}
+    \begin{tabular}{@{}l@{\hspace{1.3cm}}l@{}}
+        \textbf{\fontsize{14}{16}\selectfont Created by:} & \fontsize{16}{18}\selectfont DIGIS GP Team \\ [0.2cm]
+        & \fontsize{12}{14}\selectfont \textcolor{itiBlue}{\href{mailto:osamaeglal143@gmail.com}{osamaeglal143@gmail.com}} \\[0.2cm]
+        & \fontsize{12}{14}\selectfont \textcolor{absblack}{Intake 46} \\[0.8cm]
+        \textbf{\fontsize{14}{16}\selectfont Submitted to:} & \fontsize{16}{18}\selectfont Eng. Ibrahim El Shal \\[0.8cm]
+        \textbf{\fontsize{14}{16}\selectfont Report Date:} & \fontsize{16}{18}\selectfont \today \\
+    \end{tabular}
+    \vfill
+    \textcolor{absblack}{\rule{1\textwidth}{1pt}}
+    \thispagestyle{empty}
+\end{titlepage}
+
+\small
+\setstretch{1.07}
+
+
+\section{Meeting Outcome and Final Scope}
+
+\begin{successbox}{Main Session Decision}
+The first RCA implementation will focus on \textbf{throughput degradation} using the drive test data flow discussed in Session 2. Handover failure RCA will remain as \textbf{future work} after the first stable throughput RCA pipeline is completed.
+\end{successbox}
+
+The main target is to convert drive test measurements into a clear RCA output: detect abnormal KPI behavior, monitor the repeated anomaly patterns, reason about the most probable cause, then represent the final relation between the anomaly and the cause in a compact structure.
+
+\begin{warningbox}{Important Data Separation}
+The \textbf{drive test data} and \textbf{planning data} are completely independent. The site locations are different, so planning data must \textbf{not} be used to validate, prove, or directly correct drive test anomalies. Planning analysis will be handled as a separate workstream and will produce an independent planning output.
+\end{warningbox}
+
+\begin{infobox}{Drive Test RCA Flow from Session 2}
+\centering
+\textbf{Drive Test KPIs} $\rightarrow$ \textbf{Feature Preparation} $\rightarrow$ \textbf{Anomaly Detection using Multiple Models} $\rightarrow$ \textbf{Anomaly Monitoring} $\rightarrow$ \textbf{KPI Reasoning / LLM-Assisted Explanation} $\rightarrow$ \textbf{Cause-Anomaly Mapping} $\rightarrow$ \textbf{Final RCA Output}
+\end{infobox}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{P{2.8cm}Y Y}
+\toprule
+\textbf{Scope Area} & \textbf{Role in This Phase} & \textbf{Expected Output} \\
+\midrule
+Drive test anomaly detection & Detect throughput degradation and abnormal behavior in supporting KPIs using statistical and ML-based methods. & Structured anomaly log with KPI name, severity, affected segment/cell if available, and evidence. \\
+\midrule
+Anomaly monitoring & Track repeated anomaly patterns across route segments, samples, time windows, or cells available in the drive test logs. & Monitored anomaly cases showing persistence, repetition, and priority. \\
+\midrule
+KPI reasoning & Explain the probable cause using KPI behavior, telecom logic, and possible LLM-assisted reasoning. & Cause category, explanation, confidence, and supporting KPI evidence. \\
+\midrule
+Cause-anomaly representation & Connect each drive test anomaly with its most probable cause and present it in a clean RCA structure. & Final RCA table, relation map, or dashboard-ready schema. \\
+\midrule
+Independent planning analysis & Analyze planning data separately because it does not represent the same sites/locations as the drive test data. & Separate planning table/report, not a validation layer for drive test RCA. \\
+\bottomrule
+\end{tabularx}
+\caption{Updated scope with drive test RCA as the main flow and planning as an independent stream.}
+\end{table}
+
+\newpage
+
+\section{Team Distribution and Responsibilities}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{P{2.55cm}P{3.0cm}Y Y}
+\toprule
+\textbf{Member} & \textbf{Main Responsibility} & \textbf{Work Focus} & \textbf{Final Deliverable} \\
+\midrule
+Mohamed Salah & Planning lead & Work mainly on the independent planning data: clean key planning fields, check coordinates, azimuth, PCI, sector relations, and possible planning issues. Planning results will not be used to validate drive test anomalies. & Independent planning evidence table/report. \\
+\midrule
+Ziad Abdullah & Planning support and KPI reasoning assistance & Support Mohamed Salah in the planning part. Also assist Eman in KPI reasoning by helping connect KPI behavior to possible telecom explanations. & Supporting planning notes and KPI-reasoning input. \\
+\midrule
+Osama Eglal & Drive test anomaly detection & Prepare drive test KPI features, focus on throughput degradation, apply multiple anomaly detection methods, and generate structured anomaly records. & Validated anomaly detection module and anomaly log. \\
+\midrule
+Eman & Anomaly monitoring and reasoning lead & Monitor detected drive test anomalies, identify repeated abnormal behavior, build cause categories, and reason about the probable cause using KPI evidence and possible LLM support. & Reasoning output with cause category, explanation, evidence, and confidence. \\
+\midrule
+Mohamed Mogahed & Cause-anomaly mapping and representation & Connect drive test anomaly records with the reasoning output and represent the anomaly-cause relation efficiently. & Final drive test RCA representation as a table, relation map, or dashboard-ready schema. \\
+\bottomrule
+\end{tabularx}
+\caption{Updated responsibility distribution after separating planning from the drive test RCA flow.}
+\end{table}
+
+\begin{infobox}{Drive Test Module Output Flow}
+\centering
+\textbf{Osama: Drive Test Anomaly Log} $\rightarrow$ \textbf{Eman + Ziad: Monitoring and KPI Reasoning} $\rightarrow$ \textbf{Mohamed Mogahed: RCA Mapping and Representation}\\[4pt]
+\small Planning work remains a separate deliverable owned by Mohamed Salah and supported by Ziad.
+\end{infobox}
+
+\begin{infobox}{Structured Output Rule}
+Drive test RCA records should use keys such as \colname{anomaly\_id}, \colname{segment/time/cell}, \colname{kpi\_name}, \colname{severity}, \colname{supporting\_kpis}, \colname{probable\_cause}, \colname{confidence}, and \colname{recommended\_action}. Planning records should remain separate and use planning-specific keys such as \colname{site/cell/sector}, \colname{latitude}, \colname{longitude}, \colname{azimuth}, \colname{PCI}, and \colname{planning\_issue}.
+\end{infobox}
+
+\newpage
+
+\section{Detailed Drive Test Technical Flow}
+
+The drive test flow is the main implementation path for the first RCA version. The output should start from measured KPI behavior and end with a reasoned RCA record.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{P{2.5cm}Y Y}
+\toprule
+\textbf{Stage} & \textbf{Purpose} & \textbf{Output} \\
+\midrule
+D1: KPI preparation & Select the target KPI, mainly throughput, and prepare supporting KPIs such as signal strength, signal quality, interference/quality indicators, retransmission/error indicators, and any available cell or route identifiers. & Clean feature table for drive test analysis. \\
+\midrule
+D2: Multi-model anomaly detection & Apply more than one detection approach so the team is not dependent on a single model. Suitable options include thresholds, statistical deviation, clustering, isolation-based methods, or other ML methods depending on the available columns. & Anomaly log with score, severity, and evidence. \\
+\midrule
+D3: Anomaly monitoring & Group and monitor detected anomalies to identify repeated or persistent degradation instead of treating every abnormal sample as a separate problem. & Monitored anomaly cases with repetition and priority. \\
+\midrule
+D4: KPI reasoning & Interpret the anomaly using KPI patterns. For example, low throughput with weak coverage indicators may suggest coverage limitation, while low throughput with poor quality/interference indicators may suggest interference or radio quality degradation. & Probable cause category with explanation and confidence. \\
+\midrule
+D5: RCA representation & Connect the anomaly, supporting KPIs, reasoning result, and recommended action in one readable structure. & Final drive test RCA record. \\
+\bottomrule
+\end{tabularx}
+\caption{Main drive test RCA flow to be implemented first.}
+\end{table}
+
+\begin{successbox}{Drive Test RCA Priority}
+Throughput degradation is the first priority. The reasoning should focus on explaining why throughput became abnormal using only drive test KPI evidence and domain logic. Planning results are independent and should not be used as proof for drive test RCA.
+\end{successbox}
+
+\section{Milestones and Acceptance Criteria}
+
+The work will be tracked using milestones rather than a fixed timeline. Each milestone should produce a reviewable artifact.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{P{2.45cm}P{2.75cm}Y Y}
+\toprule
+\textbf{Milestone} & \textbf{Owner(s)} & \textbf{Acceptance Criteria} & \textbf{Artifact} \\
+\midrule
+M1: Data understanding & Osama, Mohamed Salah, Ziad & Drive test and planning columns are reviewed separately with no assumed dependency. & Separate column dictionaries. \\
+\midrule
+M2: Drive test anomaly log & Osama & Throughput anomalies are detected using multiple methods and stored with severity and KPI evidence. & Drive test anomaly log. \\
+\midrule
+M3: Monitoring and reasoning & Eman, assisted by Ziad & Repeated anomaly patterns are monitored and major cases receive KPI-based cause reasoning. & Reasoning table with confidence. \\
+\midrule
+M4: RCA representation & Mohamed Mogahed & Drive test anomalies are connected to reasoning outputs in one readable RCA structure. & RCA table, relation map, or dashboard schema. \\
+\midrule
+M5: Independent planning output & Mohamed Salah, assisted by Ziad & Planning data is analyzed independently and is not used to validate drive test results. & Separate planning report. \\
+\bottomrule
+\end{tabularx}
+\caption{Milestones used to track progress and integration quality.}
+\end{table}
+
+\section{Expected Drive Test RCA Output Structure}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{P{3.35cm}Y}
+\toprule
+\textbf{Field} & \textbf{Description} \\
+\midrule
+\colname{anomaly\_id} & Unique ID for the detected throughput abnormality. \\
+\colname{record\_source} & Main RCA output should be drive-test-based; planning records stay separate. \\
+\colname{kpi\_name} & Main affected KPI, mainly throughput in the first phase. \\
+\colname{segment/time/cell} & Affected route segment, time window, or serving cell if available. \\
+\colname{severity} & Anomaly strength from statistical or model-based score. \\
+\colname{supporting\_kpis} & KPI values supporting the anomaly and reasoning decision. \\
+\colname{probable\_cause} & Cause category such as coverage limitation, interference/poor quality, congestion-like behavior, configuration-related behavior, or unknown pending validation. \\
+\colname{reasoning\_summary} & Short explanation of why this cause is likely from the KPI pattern. \\
+\colname{confidence} & Confidence level from the reasoning layer. \\
+\colname{recommended\_action} & Suggested validation or optimization action. \\
+\bottomrule
+\end{tabularx}
+\caption{Minimum recommended structure for the drive test RCA output.}
+\end{table}
+
+\begin{warningbox}{Future Work}
+Handover failure RCA will remain outside the immediate scope. It can be added later using the same drive test structure: event/anomaly detection, monitoring, reasoning, cause mapping, and final RCA representation.
+\end{warningbox}
+
+\end{document}

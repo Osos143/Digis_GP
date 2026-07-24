@@ -1,0 +1,1366 @@
+﻿column_index,column_name,dtype
+1,id,object
+2,timestamp,"datetime64[ns, UTC+02:00]"
+3,imsi,int64
+4,LTE - PrimaryCell - PCell_CQI,float64
+5,LTE - PrimaryCell - PCell_PCI,float64
+6,LTE - PrimaryCell - PCell_BLER,float64
+7,LTE - PrimaryCell - PCell_Band,float64
+8,LTE - PrimaryCell - PCell_CQI_CW0,float64
+9,LTE - PrimaryCell - PCell_CQI_CW1,float64
+10,LTE - PrimaryCell - PCell_MCS_CW0,float64
+11,LTE - PrimaryCell - PCell_MCS_CW1,float64
+12,LTE - PrimaryCell - PCell_LayerNum,float64
+13,LTE - PrimaryCell - PCell_RxAntNum,float64
+14,LTE - PrimaryCell - PCell_TxAntNum,float64
+15,LTE - PrimaryCell - PCell_EARFCN_DL,float64
+16,LTE - PrimaryCell - PCell_EARFCN_UL,float64
+17,LTE - PrimaryCell - PCell_QPSKUsage,float64
+18,LTE - PrimaryCell - PCell_TransMode,object
+19,LTE - PrimaryCell - PCell_16QAMUsage,float64
+20,LTE - PrimaryCell - PCell_64QAMUsage,float64
+21,LTE - PrimaryCell - PCell_Rank1Usage,float64
+22,LTE - PrimaryCell - PCell_Rank2Usage,float64
+23,LTE - PrimaryCell - PCell_Rank3Usage,float64
+24,LTE - PrimaryCell - PCell_Rank4Usage,float64
+25,LTE - PrimaryCell - PCell_Throughput,float64
+26,LTE - PrimaryCell - PCell_256QAMUsage,float64
+27,LTE - PrimaryCell - PCell_SpatialRank,float64
+28,LTE - PrimaryCell - PCell_1024QAMUsage,float64
+29,LTE - PrimaryCell - PCell_BandWidth_DL,float64
+30,LTE - PrimaryCell - PCell_BandWidth_UL,float64
+31,LTE - PrimaryCell - PCell_Modulation_CW0,object
+32,LTE - PrimaryCell - PCell_Modulation_CW1,object
+33,LTE - PrimaryCell - PCell_ResourceBlockNum,float64
+34,LTE - PrimaryCell - PCell_ThroughputStream0,float64
+35,LTE - PrimaryCell - PCell_ThroughputStream1,float64
+36,LTE - PrimaryCell - PCell_ThroughputStreamAll,float64
+37,LTE - SecondaryCell 1 - SCell1_CQI,float64
+38,LTE - SecondaryCell 1 - SCell1_PCI,float64
+39,LTE - SecondaryCell 1 - SCell1_BLER,float64
+40,LTE - SecondaryCell 1 - SCell1_Band,float64
+41,LTE - SecondaryCell 1 - SCell1_CQI_CW0,float64
+42,LTE - SecondaryCell 1 - SCell1_CQI_CW1,float64
+43,LTE - SecondaryCell 1 - SCell1_MCS_CW0,float64
+44,LTE - SecondaryCell 1 - SCell1_MCS_CW1,float64
+45,LTE - SecondaryCell 1 - SCell1_LayerNum,float64
+46,LTE - SecondaryCell 1 - SCell1_RxAntNum,float64
+47,LTE - SecondaryCell 1 - SCell1_TxAntNum,float64
+48,LTE - SecondaryCell 1 - SCell1_EARFCN_DL,float64
+49,LTE - SecondaryCell 1 - SCell1_EARFCN_UL,float64
+50,LTE - SecondaryCell 1 - SCell1_QPSKUsage,float64
+51,LTE - SecondaryCell 1 - SCell1_TransMode,object
+52,LTE - SecondaryCell 1 - SCell1_16QAMUsage,float64
+53,LTE - SecondaryCell 1 - SCell1_64QAMUsage,float64
+54,LTE - SecondaryCell 1 - SCell1_Rank1Usage,float64
+55,LTE - SecondaryCell 1 - SCell1_Rank2Usage,float64
+56,LTE - SecondaryCell 1 - SCell1_Rank3Usage,float64
+57,LTE - SecondaryCell 1 - SCell1_Rank4Usage,float64
+58,LTE - SecondaryCell 1 - SCell1_Throughput,float64
+59,LTE - SecondaryCell 1 - SCell1_256QAMUsage,float64
+60,LTE - SecondaryCell 1 - SCell1_SpatialRank,float64
+61,LTE - SecondaryCell 1 - SCell1_1024QAMUsage,float64
+62,LTE - SecondaryCell 1 - SCell1_BandWidth_DL,float64
+63,LTE - SecondaryCell 1 - SCell1_BandWidth_UL,float64
+64,LTE - SecondaryCell 1 - SCell1_Modulation_CW0,object
+65,LTE - SecondaryCell 1 - SCell1_Modulation_CW1,object
+66,LTE - SecondaryCell 1 - SCell1_ResourceBlockNum,float64
+67,LTE - SecondaryCell 1 - SCell1_ThroughputStream0,float64
+68,LTE - SecondaryCell 1 - SCell1_ThroughputStream1,float64
+69,LTE - SecondaryCell 1 - SCell1_ThroughputStreamAll,float64
+70,LTE - SecondaryCell 2 - SCell2_CQI,float64
+71,LTE - SecondaryCell 2 - SCell2_PCI,float64
+72,LTE - SecondaryCell 2 - SCell2_BLER,float64
+73,LTE - SecondaryCell 2 - SCell2_Band,float64
+74,LTE - SecondaryCell 2 - SCell2_CQI_CW0,float64
+75,LTE - SecondaryCell 2 - SCell2_CQI_CW1,float64
+76,LTE - SecondaryCell 2 - SCell2_MCS_CW0,float64
+77,LTE - SecondaryCell 2 - SCell2_MCS_CW1,float64
+78,LTE - SecondaryCell 2 - SCell2_LayerNum,float64
+79,LTE - SecondaryCell 2 - SCell2_RxAntNum,float64
+80,LTE - SecondaryCell 2 - SCell2_TxAntNum,float64
+81,LTE - SecondaryCell 2 - SCell2_EARFCN_DL,float64
+82,LTE - SecondaryCell 2 - SCell2_QPSKUsage,float64
+83,LTE - SecondaryCell 2 - SCell2_TransMode,object
+84,LTE - SecondaryCell 2 - SCell2_16QAMUsage,float64
+85,LTE - SecondaryCell 2 - SCell2_64QAMUsage,float64
+86,LTE - SecondaryCell 2 - SCell2_Rank1Usage,float64
+87,LTE - SecondaryCell 2 - SCell2_Rank2Usage,float64
+88,LTE - SecondaryCell 2 - SCell2_Rank3Usage,float64
+89,LTE - SecondaryCell 2 - SCell2_Rank4Usage,float64
+90,LTE - SecondaryCell 2 - SCell2_Throughput,float64
+91,LTE - SecondaryCell 2 - SCell2_256QAMUsage,float64
+92,LTE - SecondaryCell 2 - SCell2_SpatialRank,float64
+93,LTE - SecondaryCell 2 - SCell2_1024QAMUsage,float64
+94,LTE - SecondaryCell 2 - SCell2_BandWidth_DL,float64
+95,LTE - SecondaryCell 2 - SCell2_Modulation_CW0,object
+96,LTE - SecondaryCell 2 - SCell2_Modulation_CW1,object
+97,LTE - SecondaryCell 2 - SCell2_ResourceBlockNum,float64
+98,LTE - SecondaryCell 2 - SCell2_ThroughputStream0,float64
+99,LTE - SecondaryCell 2 - SCell2_ThroughputStream1,float64
+100,LTE - SecondaryCell 2 - SCell2_ThroughputStreamAll,float64
+101,LTE - SecondaryCell 1 Radio - SCell1_RSRP,float64
+102,LTE - SecondaryCell 1 Radio - SCell1_RSRQ,float64
+103,LTE - SecondaryCell 1 Radio - SCell1_RSSI,float64
+104,LTE - SecondaryCell 1 Radio - SCell1_SINR,float64
+105,LTE - SecondaryCell 1 Radio - SCell1_Frame_Timing_0,float64
+106,LTE - SecondaryCell 1 Radio - SCell1_Frame_Timing_1,float64
+107,LTE - SecondaryCell 1 Radio - SCell1_eNBTxDifference,float64
+108,LTE - SecondaryCell 2 Radio - SCell2_RSRP,float64
+109,LTE - SecondaryCell 2 Radio - SCell2_RSRQ,float64
+110,LTE - SecondaryCell 2 Radio - SCell2_RSSI,float64
+111,LTE - SecondaryCell 2 Radio - SCell2_SINR,float64
+112,LTE - SecondaryCell 2 Radio - SCell2_Frame_Timing_0,float64
+113,LTE - SecondaryCell 2 Radio - SCell2_Frame_Timing_1,float64
+114,LTE - SecondaryCell 2 Radio - SCell2_eNBTxDifference,float64
+115,LTE - NeighborCells(0) - PCI,float64
+116,LTE - NeighborCells(0) - Band,float64
+117,LTE - NeighborCells(0) - Mod3,float64
+118,LTE - NeighborCells(0) - RSRP,float64
+119,LTE - NeighborCells(0) - RSRQ,float64
+120,LTE - NeighborCells(0) - EARFCN,float64
+121,LTE - NeighborCells(0) - ServType,object
+122,LTE - NeighborCells(1) - PCI,float64
+123,LTE - NeighborCells(1) - Band,float64
+124,LTE - NeighborCells(1) - Mod3,float64
+125,LTE - NeighborCells(1) - RSRP,float64
+126,LTE - NeighborCells(1) - RSRQ,float64
+127,LTE - NeighborCells(1) - EARFCN,float64
+128,LTE - NeighborCells(1) - ServType,object
+129,LTE - Serving - ECI,float64
+130,LTE - Serving - LCI,float64
+131,LTE - Serving - MCC,float64
+132,LTE - Serving - MNC,float64
+133,LTE - Serving - PCI,float64
+134,LTE - Serving - TAC,float64
+135,LTE - Serving - Band,float64
+136,LTE - Serving - EnodeBID,float64
+137,LTE - Serving - EARFCN_DL,float64
+138,LTE - Serving - R15_Support,float64
+139,LTE - Serving - BandWidth_DL,float64
+140,LTE - PrimaryCell Radio - RSRP,float64
+141,LTE - PrimaryCell Radio - PCell_RSSI,float64
+142,LTE - PrimaryCell Radio - PCell_SINR,float64
+143,LTE - PrimaryCell Radio - PCell_RSRQ,float64
+144,Location - Latitude,float64
+145,Location - Longitude,float64
+146,Location - Altitude,float64
+147,Location - Accuracy,float64
+148,Location - Speed,float64
+149,Throughput.HTTP_DL,float64
+150,Throughput.Physical_DL,float64
+151,Throughput.Physical_UL,float64
+152,Throughput.Session HTTP DL,float64
+153,Throughput.Session HTTP UL,float64
+154,LTE.UplinkMeasurements.PUSCH_Throughput,float64
+155,LTE.DownlinkMeasurements.Throughput_DL,float64
+156,NR5G.PrimaryCell_Radio_UL.PCell_RankIndicator_UL,object
+157,NR5G.PrimaryCell_Radio_DL.PCell_RankIndicator_DL,float64
+158,NR5G.UplinkMeasurements.Power_Tx_PUSCH,float64
+159,LTE.LTE_UL_CA_PCell.LTE_Power_Tx_PUSCH_PCell,float64
+160,YouTube.Quality,float64
+161,YouTube.Resolution,float64
+162,YouTube.Buffer Size,float64
+163,YouTube.Freezing Time,float64
+164,YouTube.Session Failure,float64
+165,YouTube.Video Start Time,float64
+166,YouTube.Resolution Change,float64
+167,YouTube.Video Loaded Time,float64
+168,YouTube.Video Ready to Start Time,float64
+169,Browsing.DNS Time,float64
+170,Browsing.Data Size,float64
+171,Browsing.Total Time,float64
+172,Browsing.Access Time,float64
+173,Browsing.Transfer Time,float64
+174,NR5G - Serving - MNC,float64
+175,NR5G - SecondaryCell_1_Radio_DL - SCell_Physical_Throughput_DL,float64
+176,NR5G - SecondaryCell_1_Radio_UL - SCell_Physical_Throughput_UL,float64
+177,NR5G - SecondaryCell_2_Radio_DL - SCell_Physical_Throughput_DL,float64
+178,NR5G - SecondaryCell_3_Radio_DL - SCell_Physical_Throughput_DL,float64
+179,PCAP.rtt,int64
+180,PCAP.dns_time,int64
+181,PCAP.pkt_loss,int64
+182,PCAP.initial_rtt,int64
+183,PCAP.out_of_order,int64
+184,PCAP.duplicate_ack,int64
+185,PCAP.Connection_reset,int64
+186,PCAP.TCP_window_update,int64
+187,PCAP.fast_retransmission,int64
+188,PCAP.spurious_retransmission,int64
+189,Activity.Activity,object
+190,Activity.DAB,float64
+191,Activity.LCI,object
+192,Activity.Band,object
+193,Activity.Error,object
+194,Activity.Size,float64
+195,Activity.TTFB,float64
+196,Activity.Tech,object
+197,Activity.ARFCN,float64
+198,Activity.MSISDN,float64
+199,Activity.Duration,float64
+200,Activity.Public IP,object
+201,Activity.Private IP,object
+202,Activity.Remote IPs,object
+203,Activity.Out of Order,float64
+204,Activity.Source Ports,object
+205,Activity.Remote Address,object
+206,Activity.Duplicated ACK,float64
+207,Activity.Round Trip Time,float64
+208,Activity.Throughput WIFI,float64
+209,Activity.Connection Reset,float64
+210,Activity.TCP Window Update,float64
+211,Activity.DNS Resolution Time,float64
+212,Activity.Fast Retransmission,float64
+213,Activity.TCP Connection Time,float64
+214,Activity.Spurious Retransmission,float64
+215,Activity.Throughput,float64
+216,Activity.Sub Activity,object
+217,Activity.Status,object
+218,Activity.Quality,float64
+219,Activity.Packet Loss Rate,float64
+220,Activity.SINR,float64
+221,Activity.Power,float64
+222,Activity.Start TimeStamp,object
+223,Activity.End TimeStamp,object
+224,Voice_Quality.MOS_Active,float64
+225,Voice_Quality.MOS_Passive,float64
+226,Voice_Quality.Percent_Active,float64
+227,LTE.VoLTE.Latency,float64
+228,NR5G.VoNR.Latency,float64
+229,Extra_KPIs.CSFB RAT,object
+230,Extra_KPIs.Call RAT,object
+231,Extra_KPIs.Attach Delay,float64
+232,Extra_KPIs.CSFB After VoLTE,float64
+233,Extra_KPIs.WE WIFI OTP Time,float64
+234,Extra_KPIs.MO Call Setup Time,float64
+235,Extra_KPIs.MT Call Setup Time,float64
+236,Extra_KPIs.MO CSFB Return Time,float64
+237,Extra_KPIs.MT CSFB Return Time,float64
+238,Extra_KPIs.SIP Registration Delay,float64
+239,Extra_KPIs.MO CSFB Call Setup Time,float64
+240,Extra_KPIs.MT CSFB Call Setup Time,float64
+241,Extra_KPIs.MO VoLTE Call Setup Time,float64
+242,Extra_KPIs.MT VoLTE Call Setup Time,float64
+243,Extra_KPIs.RRC Connection Setup Time,float64
+244,Extra_KPIs.ERRC Connection Setup Time,float64
+245,Extra_KPIs.GSM Handover Interruption Time,float64
+246,Extra_KPIs.LTE Handover Interruption Time,float64
+247,Extra_KPIs.UMTS Handover Interruption Time,float64
+248,Extra_KPIs.MO Call Setup Time Until Connect,float64
+249,LTE.RACH.RACH_Reason,object
+250,LTE.RACH.RACH_Result,object
+251,LTE.RACH.RACH_Latency,float64
+252,LTE.LTE_Data_KPI.Agg_Bandwidth_DL,float64
+253,LTE.LTE_Data_KPI.Agg_Throughput_DL,float64
+254,LTE.LTE_Data_KPI.Agg_Throughput_UL,float64
+255,LTE.LTE_Data_KPI.Agg_RB_DL,float64
+256,LTE.LTE_Data_KPI.Agg_RB_UL,float64
+257,LTE.DedicatedRadioLink.CarrierCount,float64
+258,Events.titles,object
+259,Events.Tech,object
+260,Events.subject,object
+261,Events.category,object
+262,Events.Timestamp,object
+263,Events.description,object
+264,LTE - NeighborCells(2) - PCI,float64
+265,LTE - NeighborCells(2) - Band,float64
+266,LTE - NeighborCells(2) - Mod3,float64
+267,LTE - NeighborCells(2) - RSRP,float64
+268,LTE - NeighborCells(2) - RSRQ,float64
+269,LTE - NeighborCells(2) - EARFCN,float64
+270,LTE - NeighborCells(2) - ServType,object
+271,LTE - NeighborCells(3) - PCI,float64
+272,LTE - NeighborCells(3) - Band,float64
+273,LTE - NeighborCells(3) - Mod3,float64
+274,LTE - NeighborCells(3) - RSRP,float64
+275,LTE - NeighborCells(3) - RSRQ,float64
+276,LTE - NeighborCells(3) - EARFCN,float64
+277,LTE - NeighborCells(3) - ServType,object
+278,LTE - NeighborCells(4) - PCI,float64
+279,LTE - NeighborCells(4) - Band,float64
+280,LTE - NeighborCells(4) - Mod3,float64
+281,LTE - NeighborCells(4) - RSRP,float64
+282,LTE - NeighborCells(4) - RSRQ,float64
+283,LTE - NeighborCells(4) - EARFCN,float64
+284,LTE - NeighborCells(4) - ServType,object
+285,LTE - NeighborCells(5) - PCI,float64
+286,LTE - NeighborCells(5) - Band,float64
+287,LTE - NeighborCells(5) - Mod3,float64
+288,LTE - NeighborCells(5) - RSRP,float64
+289,LTE - NeighborCells(5) - RSRQ,float64
+290,LTE - NeighborCells(5) - EARFCN,float64
+291,LTE - NeighborCells(5) - ServType,object
+292,LTE - NeighborCells(6) - PCI,float64
+293,LTE - NeighborCells(6) - Band,float64
+294,LTE - NeighborCells(6) - Mod3,float64
+295,LTE - NeighborCells(6) - RSRP,float64
+296,LTE - NeighborCells(6) - RSRQ,float64
+297,LTE - NeighborCells(6) - EARFCN,float64
+298,LTE - NeighborCells(6) - ServType,object
+299,LTE - NeighborCells(7) - PCI,float64
+300,LTE - NeighborCells(7) - Band,float64
+301,LTE - NeighborCells(7) - Mod3,float64
+302,LTE - NeighborCells(7) - RSRP,float64
+303,LTE - NeighborCells(7) - RSRQ,float64
+304,LTE - NeighborCells(7) - EARFCN,float64
+305,LTE - NeighborCells(7) - ServType,object
+306,LTE - NeighborCells(8) - PCI,float64
+307,LTE - NeighborCells(8) - Band,float64
+308,LTE - NeighborCells(8) - Mod3,float64
+309,LTE - NeighborCells(8) - RSRP,float64
+310,LTE - NeighborCells(8) - RSRQ,float64
+311,LTE - NeighborCells(8) - EARFCN,float64
+312,LTE - NeighborCells(8) - ServType,object
+313,LTE - NeighborCells(9) - PCI,float64
+314,LTE - NeighborCells(9) - Band,float64
+315,LTE - NeighborCells(9) - Mod3,float64
+316,LTE - NeighborCells(9) - RSRP,float64
+317,LTE - NeighborCells(9) - RSRQ,float64
+318,LTE - NeighborCells(9) - EARFCN,float64
+319,LTE - NeighborCells(9) - ServType,object
+320,LTE - NeighborCells(10) - PCI,float64
+321,LTE - NeighborCells(10) - Band,float64
+322,LTE - NeighborCells(10) - Mod3,float64
+323,LTE - NeighborCells(10) - RSRP,float64
+324,LTE - NeighborCells(10) - RSRQ,float64
+325,LTE - NeighborCells(10) - EARFCN,float64
+326,LTE - NeighborCells(10) - ServType,object
+327,LTE - NeighborCells(11) - PCI,float64
+328,LTE - NeighborCells(11) - Band,float64
+329,LTE - NeighborCells(11) - Mod3,float64
+330,LTE - NeighborCells(11) - RSRP,float64
+331,LTE - NeighborCells(11) - RSRQ,float64
+332,LTE - NeighborCells(11) - EARFCN,float64
+333,LTE - NeighborCells(11) - ServType,object
+334,LTE - NeighborCells(12) - PCI,float64
+335,LTE - NeighborCells(12) - Band,float64
+336,LTE - NeighborCells(12) - Mod3,float64
+337,LTE - NeighborCells(12) - RSRP,float64
+338,LTE - NeighborCells(12) - RSRQ,float64
+339,LTE - NeighborCells(12) - EARFCN,float64
+340,LTE - NeighborCells(12) - ServType,object
+341,LTE - NeighborCells(13) - PCI,float64
+342,LTE - NeighborCells(13) - Band,float64
+343,LTE - NeighborCells(13) - Mod3,float64
+344,LTE - NeighborCells(13) - RSRP,float64
+345,LTE - NeighborCells(13) - RSRQ,float64
+346,LTE - NeighborCells(13) - EARFCN,float64
+347,LTE - NeighborCells(13) - ServType,object
+348,LTE - NeighborCells(14) - PCI,float64
+349,LTE - NeighborCells(14) - Band,float64
+350,LTE - NeighborCells(14) - Mod3,float64
+351,LTE - NeighborCells(14) - RSRP,float64
+352,LTE - NeighborCells(14) - RSRQ,float64
+353,LTE - NeighborCells(14) - EARFCN,float64
+354,LTE - NeighborCells(14) - ServType,object
+355,LTE - NeighborCells(15) - PCI,float64
+356,LTE - NeighborCells(15) - Band,float64
+357,LTE - NeighborCells(15) - Mod3,float64
+358,LTE - NeighborCells(15) - RSRP,float64
+359,LTE - NeighborCells(15) - RSRQ,float64
+360,LTE - NeighborCells(15) - EARFCN,float64
+361,LTE - NeighborCells(15) - ServType,object
+362,LTE - NeighborCells(16) - PCI,float64
+363,LTE - NeighborCells(16) - Band,float64
+364,LTE - NeighborCells(16) - Mod3,float64
+365,LTE - NeighborCells(16) - RSRP,float64
+366,LTE - NeighborCells(16) - RSRQ,float64
+367,LTE - NeighborCells(16) - EARFCN,float64
+368,LTE - NeighborCells(16) - ServType,object
+369,LTE - NeighborCells(17) - PCI,float64
+370,LTE - NeighborCells(17) - Band,float64
+371,LTE - NeighborCells(17) - Mod3,float64
+372,LTE - NeighborCells(17) - RSRP,float64
+373,LTE - NeighborCells(17) - RSRQ,float64
+374,LTE - NeighborCells(17) - EARFCN,float64
+375,LTE - NeighborCells(17) - ServType,object
+376,LTE - NeighborCells(18) - PCI,float64
+377,LTE - NeighborCells(18) - Band,float64
+378,LTE - NeighborCells(18) - Mod3,float64
+379,LTE - NeighborCells(18) - RSRP,float64
+380,LTE - NeighborCells(18) - RSRQ,float64
+381,LTE - NeighborCells(18) - EARFCN,float64
+382,LTE - NeighborCells(18) - ServType,object
+383,LTE - NeighborCells(19) - PCI,float64
+384,LTE - NeighborCells(19) - Band,float64
+385,LTE - NeighborCells(19) - Mod3,float64
+386,LTE - NeighborCells(19) - RSRP,float64
+387,LTE - NeighborCells(19) - RSRQ,float64
+388,LTE - NeighborCells(19) - EARFCN,float64
+389,LTE - NeighborCells(19) - ServType,object
+390,LTE - NeighborCells(20) - PCI,float64
+391,LTE - NeighborCells(20) - Band,float64
+392,LTE - NeighborCells(20) - Mod3,float64
+393,LTE - NeighborCells(20) - RSRP,float64
+394,LTE - NeighborCells(20) - RSRQ,float64
+395,LTE - NeighborCells(20) - EARFCN,float64
+396,LTE - NeighborCells(20) - ServType,object
+397,LTE - NeighborCells(21) - PCI,float64
+398,LTE - NeighborCells(21) - Band,float64
+399,LTE - NeighborCells(21) - Mod3,float64
+400,LTE - NeighborCells(21) - RSRP,float64
+401,LTE - NeighborCells(21) - RSRQ,float64
+402,LTE - NeighborCells(21) - EARFCN,float64
+403,LTE - NeighborCells(21) - ServType,object
+404,LTE - NeighborCells(22) - PCI,float64
+405,LTE - NeighborCells(22) - Band,float64
+406,LTE - NeighborCells(22) - Mod3,float64
+407,LTE - NeighborCells(22) - RSRP,float64
+408,LTE - NeighborCells(22) - RSRQ,float64
+409,LTE - NeighborCells(22) - EARFCN,float64
+410,LTE - NeighborCells(22) - ServType,object
+411,LTE - NeighborCells(23) - PCI,float64
+412,LTE - NeighborCells(23) - Band,float64
+413,LTE - NeighborCells(23) - Mod3,float64
+414,LTE - NeighborCells(23) - RSRP,float64
+415,LTE - NeighborCells(23) - RSRQ,float64
+416,LTE - NeighborCells(23) - EARFCN,float64
+417,LTE - NeighborCells(23) - ServType,object
+418,LTE - NeighborCells(24) - PCI,float64
+419,LTE - NeighborCells(24) - Band,float64
+420,LTE - NeighborCells(24) - Mod3,float64
+421,LTE - NeighborCells(24) - RSRP,float64
+422,LTE - NeighborCells(24) - RSRQ,float64
+423,LTE - NeighborCells(24) - EARFCN,float64
+424,LTE - NeighborCells(24) - ServType,object
+425,LTE - NeighborCells(25) - PCI,float64
+426,LTE - NeighborCells(25) - Band,float64
+427,LTE - NeighborCells(25) - Mod3,float64
+428,LTE - NeighborCells(25) - RSRP,float64
+429,LTE - NeighborCells(25) - RSRQ,float64
+430,LTE - NeighborCells(25) - EARFCN,float64
+431,LTE - NeighborCells(25) - ServType,object
+432,LTE - NeighborCells(26) - PCI,float64
+433,LTE - NeighborCells(26) - Band,float64
+434,LTE - NeighborCells(26) - Mod3,float64
+435,LTE - NeighborCells(26) - RSRP,float64
+436,LTE - NeighborCells(26) - RSRQ,float64
+437,LTE - NeighborCells(26) - EARFCN,float64
+438,LTE - NeighborCells(26) - ServType,object
+439,LTE - NeighborCells(27) - PCI,float64
+440,LTE - NeighborCells(27) - Band,float64
+441,LTE - NeighborCells(27) - Mod3,float64
+442,LTE - NeighborCells(27) - RSRP,float64
+443,LTE - NeighborCells(27) - RSRQ,float64
+444,LTE - NeighborCells(27) - EARFCN,float64
+445,LTE - NeighborCells(27) - ServType,object
+446,LTE - NeighborCells(28) - PCI,float64
+447,LTE - NeighborCells(28) - Band,float64
+448,LTE - NeighborCells(28) - Mod3,float64
+449,LTE - NeighborCells(28) - RSRP,float64
+450,LTE - NeighborCells(28) - RSRQ,float64
+451,LTE - NeighborCells(28) - EARFCN,float64
+452,LTE - NeighborCells(28) - ServType,object
+453,LTE - NeighborCells(29) - PCI,float64
+454,LTE - NeighborCells(29) - Band,float64
+455,LTE - NeighborCells(29) - Mod3,float64
+456,LTE - NeighborCells(29) - RSRP,float64
+457,LTE - NeighborCells(29) - RSRQ,float64
+458,LTE - NeighborCells(29) - EARFCN,float64
+459,LTE - NeighborCells(29) - ServType,object
+460,LTE - NeighborCells(30) - PCI,float64
+461,LTE - NeighborCells(30) - Band,float64
+462,LTE - NeighborCells(30) - Mod3,float64
+463,LTE - NeighborCells(30) - RSRP,float64
+464,LTE - NeighborCells(30) - RSRQ,float64
+465,LTE - NeighborCells(30) - EARFCN,float64
+466,LTE - NeighborCells(30) - ServType,object
+467,LTE - NeighborCells(31) - PCI,float64
+468,LTE - NeighborCells(31) - Band,float64
+469,LTE - NeighborCells(31) - Mod3,float64
+470,LTE - NeighborCells(31) - RSRP,float64
+471,LTE - NeighborCells(31) - RSRQ,float64
+472,LTE - NeighborCells(31) - EARFCN,float64
+473,LTE - NeighborCells(31) - ServType,object
+474,WCDMA - Serving - CI,float64
+475,WCDMA - Serving - LAC,float64
+476,WCDMA - Serving - MCC,float64
+477,WCDMA - Serving - MNC,float64
+478,WCDMA - Serving - RAI,float64
+479,WCDMA - Serving - ServiceType,float64
+480,WCDMA - ServingCell - PSC,float64
+481,WCDMA - ServingCell - UARFCN_DL,float64
+482,WCDMA - ServingCell - UARFCN_UL,float64
+483,WCDMA - ServingCell - URA_Identity,float64
+484,WCDMA - ServingCell - BandIndicator,float64
+485,WCDMA - ServingCell - Active_set_num,float64
+486,WCDMA - UplinkMeasurements - RACHTxPower,float64
+487,WCDMA - UplinkMeasurements - RACHMsgLength,float64
+488,WCDMA - UplinkMeasurements - RACHAICHStatus,object
+489,WCDMA - UplinkMeasurements - RACHAICHTiming,float64
+490,WCDMA - UplinkMeasurements - RACHMaxTxPower,float64
+491,WCDMA - UplinkMeasurements - RACHSubChannel,float64
+492,WCDMA - UplinkMeasurements - RACHPreambleCount,float64
+493,WCDMA - UplinkMeasurements - RACHPreambleOffset,float64
+494,WCDMA - UplinkMeasurements - Uu_UL_Interference,float64
+495,WCDMA - UplinkMeasurements - RACHPreamblesCountMax,float64
+496,WCDMA - DownlinkMeasurements - SIR,float64
+497,WCDMA - DownlinkMeasurements - EcNo,float64
+498,WCDMA - DownlinkMeasurements - RSCP,float64
+499,WCDMA - DownlinkMeasurements - RSSI,float64
+500,WCDMA - DownlinkMeasurements - BLER_DL,float64
+501,WCDMA - DownlinkMeasurements - TxPower,float64
+502,WCDMA - DownlinkMeasurements - TPCStepSize,float64
+503,WCDMA - DownlinkMeasurements - RSCP After RAKE,float64
+504,WCDMA - DownlinkMeasurements - EcNo Before RAKE,float64
+505,WCDMA - DownlinkMeasurements - TxPowerCommandDL,float64
+506,WCDMA - DownlinkMeasurements - TxPowerCommandUL,float64
+507,WCDMA - DownlinkMeasurements - PowerControlAlgorithm,float64
+508,WCDMA - DownlinkMeasurements - RSCP_Strongest_Neighbor_1st,float64
+509,WCDMA - DownlinkMeasurements - RSCP_Strongest_Neighbor_2nd,float64
+510,WCDMA - Serving - LCI,float64
+511,WCDMA - Serving - RNCID,float64
+512,WCDMA - WCDMACellsTable(0) - PSC,float64
+513,WCDMA - WCDMACellsTable(0) - Band,float64
+514,WCDMA - WCDMACellsTable(0) - EcNo,float64
+515,WCDMA - WCDMACellsTable(0) - RSCP,float64
+516,WCDMA - WCDMACellsTable(0) - UARFCN,float64
+517,WCDMA - WCDMACellsTable(0) - Set_Type,object
+518,WCDMA - WCDMACellsTable(0) - RSCP After RAKE,float64
+519,WCDMA - WCDMACellsTable(0) - EcNo Before RAKE,float64
+520,WCDMA - WCDMACellsTable(1) - PSC,float64
+521,WCDMA - WCDMACellsTable(1) - Band,float64
+522,WCDMA - WCDMACellsTable(1) - EcNo,float64
+523,WCDMA - WCDMACellsTable(1) - RSCP,float64
+524,WCDMA - WCDMACellsTable(1) - UARFCN,float64
+525,WCDMA - WCDMACellsTable(1) - Set_Type,object
+526,WCDMA - WCDMACellsTable(1) - RSCP After RAKE,float64
+527,WCDMA - WCDMACellsTable(1) - EcNo Before RAKE,float64
+528,WCDMA - WCDMACellsTable(2) - PSC,float64
+529,WCDMA - WCDMACellsTable(2) - Band,float64
+530,WCDMA - WCDMACellsTable(2) - EcNo,float64
+531,WCDMA - WCDMACellsTable(2) - RSCP,float64
+532,WCDMA - WCDMACellsTable(2) - UARFCN,float64
+533,WCDMA - WCDMACellsTable(2) - Set_Type,object
+534,WCDMA - WCDMACellsTable(2) - RSCP After RAKE,float64
+535,WCDMA - WCDMACellsTable(2) - EcNo Before RAKE,float64
+536,WCDMA - WCDMACellsTable(3) - PSC,float64
+537,WCDMA - WCDMACellsTable(3) - Band,float64
+538,WCDMA - WCDMACellsTable(3) - EcNo,float64
+539,WCDMA - WCDMACellsTable(3) - RSCP,float64
+540,WCDMA - WCDMACellsTable(3) - UARFCN,float64
+541,WCDMA - WCDMACellsTable(3) - Set_Type,object
+542,WCDMA - WCDMACellsTable(3) - RSCP After RAKE,float64
+543,WCDMA - WCDMACellsTable(3) - EcNo Before RAKE,float64
+544,WCDMA - WCDMACellsTable(4) - PSC,float64
+545,WCDMA - WCDMACellsTable(4) - Band,float64
+546,WCDMA - WCDMACellsTable(4) - EcNo,float64
+547,WCDMA - WCDMACellsTable(4) - RSCP,float64
+548,WCDMA - WCDMACellsTable(4) - UARFCN,float64
+549,WCDMA - WCDMACellsTable(4) - Set_Type,object
+550,WCDMA - WCDMACellsTable(4) - RSCP After RAKE,float64
+551,WCDMA - WCDMACellsTable(4) - EcNo Before RAKE,float64
+552,WCDMA - WCDMACellsTable(5) - PSC,float64
+553,WCDMA - WCDMACellsTable(5) - Band,float64
+554,WCDMA - WCDMACellsTable(5) - EcNo,float64
+555,WCDMA - WCDMACellsTable(5) - RSCP,float64
+556,WCDMA - WCDMACellsTable(5) - UARFCN,float64
+557,WCDMA - WCDMACellsTable(5) - Set_Type,object
+558,WCDMA - WCDMACellsTable(5) - RSCP After RAKE,float64
+559,WCDMA - WCDMACellsTable(5) - EcNo Before RAKE,float64
+560,WCDMA - WCDMACellsTable(6) - PSC,float64
+561,WCDMA - WCDMACellsTable(6) - Band,float64
+562,WCDMA - WCDMACellsTable(6) - EcNo,float64
+563,WCDMA - WCDMACellsTable(6) - RSCP,float64
+564,WCDMA - WCDMACellsTable(6) - UARFCN,float64
+565,WCDMA - WCDMACellsTable(6) - Set_Type,object
+566,WCDMA - WCDMACellsTable(6) - RSCP After RAKE,float64
+567,WCDMA - WCDMACellsTable(6) - EcNo Before RAKE,float64
+568,GSM - NeighborCells(0) - C1,float64
+569,GSM - NeighborCells(0) - C2,float64
+570,GSM - NeighborCells(0) - C31,float64
+571,GSM - NeighborCells(0) - C32,float64
+572,GSM - NeighborCells(0) - BSIC,float64
+573,GSM - NeighborCells(0) - Band,float64
+574,GSM - NeighborCells(0) - ARFCN,float64
+575,GSM - NeighborCells(0) - RxLev,float64
+576,GSM - NeighborCells(0) - ServType,object
+577,GSM - NeighborCells(1) - C1,float64
+578,GSM - NeighborCells(1) - C2,float64
+579,GSM - NeighborCells(1) - C31,float64
+580,GSM - NeighborCells(1) - C32,float64
+581,GSM - NeighborCells(1) - BSIC,float64
+582,GSM - NeighborCells(1) - Band,float64
+583,GSM - NeighborCells(1) - ARFCN,float64
+584,GSM - NeighborCells(1) - RxLev,float64
+585,GSM - NeighborCells(1) - ServType,object
+586,GSM - NeighborCells(2) - C1,float64
+587,GSM - NeighborCells(2) - C2,float64
+588,GSM - NeighborCells(2) - C31,float64
+589,GSM - NeighborCells(2) - C32,float64
+590,GSM - NeighborCells(2) - BSIC,float64
+591,GSM - NeighborCells(2) - Band,float64
+592,GSM - NeighborCells(2) - ARFCN,float64
+593,GSM - NeighborCells(2) - RxLev,float64
+594,GSM - NeighborCells(2) - ServType,object
+595,GSM - NeighborCells(3) - C1,float64
+596,GSM - NeighborCells(3) - C2,float64
+597,GSM - NeighborCells(3) - C31,float64
+598,GSM - NeighborCells(3) - C32,float64
+599,GSM - NeighborCells(3) - BSIC,float64
+600,GSM - NeighborCells(3) - Band,float64
+601,GSM - NeighborCells(3) - ARFCN,float64
+602,GSM - NeighborCells(3) - RxLev,float64
+603,GSM - NeighborCells(3) - ServType,object
+604,GSM - NeighborCells(4) - C1,float64
+605,GSM - NeighborCells(4) - C2,float64
+606,GSM - NeighborCells(4) - C31,float64
+607,GSM - NeighborCells(4) - C32,float64
+608,GSM - NeighborCells(4) - BSIC,float64
+609,GSM - NeighborCells(4) - Band,float64
+610,GSM - NeighborCells(4) - ARFCN,float64
+611,GSM - NeighborCells(4) - RxLev,float64
+612,GSM - NeighborCells(4) - ServType,object
+613,GSM - NeighborCells(5) - C1,float64
+614,GSM - NeighborCells(5) - C2,float64
+615,GSM - NeighborCells(5) - C31,float64
+616,GSM - NeighborCells(5) - C32,float64
+617,GSM - NeighborCells(5) - BSIC,float64
+618,GSM - NeighborCells(5) - Band,float64
+619,GSM - NeighborCells(5) - ARFCN,float64
+620,GSM - NeighborCells(5) - RxLev,float64
+621,GSM - NeighborCells(5) - ServType,object
+622,GSM - NeighborCells(6) - C1,float64
+623,GSM - NeighborCells(6) - C2,float64
+624,GSM - NeighborCells(6) - C31,float64
+625,GSM - NeighborCells(6) - C32,float64
+626,GSM - NeighborCells(6) - BSIC,float64
+627,GSM - NeighborCells(6) - Band,float64
+628,GSM - NeighborCells(6) - ARFCN,float64
+629,GSM - NeighborCells(6) - RxLev,float64
+630,GSM - NeighborCells(6) - ServType,object
+631,GSM - NeighborCells(7) - C1,float64
+632,GSM - NeighborCells(7) - C2,float64
+633,GSM - NeighborCells(7) - C31,float64
+634,GSM - NeighborCells(7) - C32,float64
+635,GSM - NeighborCells(7) - BSIC,float64
+636,GSM - NeighborCells(7) - Band,float64
+637,GSM - NeighborCells(7) - ARFCN,float64
+638,GSM - NeighborCells(7) - RxLev,float64
+639,GSM - NeighborCells(7) - ServType,object
+640,GSM - NeighborCells(8) - C1,float64
+641,GSM - NeighborCells(8) - C2,float64
+642,GSM - NeighborCells(8) - C31,float64
+643,GSM - NeighborCells(8) - C32,float64
+644,GSM - NeighborCells(8) - BSIC,float64
+645,GSM - NeighborCells(8) - Band,float64
+646,GSM - NeighborCells(8) - ARFCN,float64
+647,GSM - NeighborCells(8) - RxLev,float64
+648,GSM - NeighborCells(8) - ServType,object
+649,GSM - NeighborCells(9) - C1,float64
+650,GSM - NeighborCells(9) - C2,float64
+651,GSM - NeighborCells(9) - C31,float64
+652,GSM - NeighborCells(9) - C32,float64
+653,GSM - NeighborCells(9) - BSIC,float64
+654,GSM - NeighborCells(9) - Band,float64
+655,GSM - NeighborCells(9) - ARFCN,float64
+656,GSM - NeighborCells(9) - RxLev,float64
+657,GSM - NeighborCells(9) - ServType,object
+658,GSM - ChannelConfigurations - CBQ,float64
+659,GSM - ChannelConfigurations - NMO,float64
+660,GSM - ChannelConfigurations - NECI,float64
+661,GSM - ChannelConfigurations - CCH_ATT,float64
+662,GSM - ChannelConfigurations - CCH_T3168,float64
+663,GSM - ChannelConfigurations - CCH_T3192,float64
+664,GSM - ChannelConfigurations - CCH_T3212,float64
+665,GSM - ChannelConfigurations - TX_INTEGER,float64
+666,GSM - ChannelConfigurations - MAX_RETRANS,float64
+667,GSM - ChannelConfigurations - PENALTY_TIME,float64
+668,GSM - ChannelConfigurations - CCH_CCCH_CONF,float64
+669,GSM - ChannelConfigurations - CCH_BS_PA_MFRMS,float64
+670,GSM - ChannelConfigurations - CELL_BAR_ACCESS,float64
+671,GSM - ChannelConfigurations - REESTABLISHMENT,float64
+672,GSM - ChannelConfigurations - MS_TXPWR_MAX_CCH,float64
+673,GSM - ChannelConfigurations - RXLEV_ACCESS_MIN,float64
+674,GSM - ChannelConfigurations - TEMPORARY_OFFSET,float64
+675,GSM - ChannelConfigurations - CCH_BS_AG_BLKS_RES,float64
+676,GSM - ChannelConfigurations - CELL_RESELECT_OFFSET,float64
+677,GSM - ChannelConfigurations - CELL_RESELECT_HYSTERESIS,float64
+678,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delay_Class,float64
+679,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_SDU_Size,float64
+680,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Residual_BER,float64
+681,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Traffic_Class,float64
+682,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delivery_Order,float64
+683,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Transfer_Delay,float64
+684,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_Bit_Rate_DL,float64
+685,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_Bit_Rate_UL,float64
+686,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Mean_Throughput,float64
+687,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Peak_Throughput,float64
+688,GSM - GPRS_SM_QoS - GPRS_SM_QoS_SDU_Error_Ratio,float64
+689,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Precedence_Class,float64
+690,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Traffic_Priority,float64
+691,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Reliability_Class,float64
+692,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delivery_Erroneous_SDU,float64
+693,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Guaranteed_Bit_Rate_DL,float64
+694,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Guaranteed_Bit_Rate_UL,float64
+695,GSM - DedicatedRadioLink - HSN,float64
+696,GSM - DedicatedRadioLink - TCH,float64
+697,GSM - DedicatedRadioLink - MAIO,float64
+698,GSM - DedicatedRadioLink - Hopping,float64
+699,GSM - DedicatedRadioLink - PageMode,object
+700,GSM - DedicatedRadioLink - ULDTXUsed,float64
+701,GSM - DedicatedRadioLink - Subchannel,float64
+702,GSM - DedicatedRadioLink - ChannelMode,object
+703,GSM - DedicatedRadioLink - ChannelType,object
+704,GSM - DedicatedRadioLink - EstablishCause,object
+705,GSM - DedicatedRadioLink - TimeslotNumber,float64
+706,GSM - DedicatedRadioLink - ServTrainingSeq,float64
+707,GSM - DedicatedRadioLink - CipheringAlgorithm,object
+708,GSM - DedicatedRadioLink - ServHoppingFrequencyList,object
+709,GSM - DedicatedInfo - TA,float64
+710,GSM - DedicatedInfo - BERSub,float64
+711,GSM - DedicatedInfo - FERSub,float64
+712,GSM - DedicatedInfo - BERFull,float64
+713,GSM - DedicatedInfo - FERFull,float64
+714,GSM - DedicatedInfo - RxLevSub,float64
+715,GSM - DedicatedInfo - BERActual,float64
+716,GSM - DedicatedInfo - FERActual,float64
+717,GSM - DedicatedInfo - RxLevFull,float64
+718,GSM - DedicatedInfo - RxQualSub,float64
+719,GSM - DedicatedInfo - RLTCurrent,float64
+720,GSM - DedicatedInfo - RxQualFull,float64
+721,GSM - DedicatedInfo - TxPowerActual,float64
+722,GSM - DedicatedInfo - TxPowerOrdered,float64
+723,GSM - Serving - CI,float64
+724,GSM - Serving - LAC,float64
+725,GSM - Serving - MCC,float64
+726,GSM - Serving - MNC,float64
+727,GSM - Serving - RAC,float64
+728,GSM - Serving - Band,float64
+729,GSM - Serving - PENALTY_TIME,float64
+730,GSM - Serving - RXLEV_ACCESS_MIN,float64
+731,GSM - Serving - CELL_RESELECT_OFFSET,float64
+732,GSM - Serving - CELL_RESELECT_HYSTERESIS,float64
+733,GSM - CellConfigurations - AccessMin,float64
+734,GSM - CellConfigurations - CellBarred,float64
+735,GSM - CellConfigurations - PenaltyTime,float64
+736,GSM - CellConfigurations - IRAT_QSearch_I,float64
+737,GSM - CellConfigurations - IRAT_FDD_QOffset,float64
+738,GSM - CellConfigurations - ServPriorityClass,float64
+739,GSM - CellConfigurations - CellReselectionOffset,float64
+740,GSM - CellConfigurations - CellReselectHysteresis,float64
+741,GSM - CellConfigurations - NewEstablishmentCauseIndicator,object
+742,GSM - GPRS_Serving_Cell - GPRS_SM_NSAPI,float64
+743,GSM - GPRS_Serving_Cell - GPRS_SM_LLC_SAPI,float64
+744,GSM - GPRS_Serving_Cell - GPRS_SM_Access_Point_Name,float64
+745,GSM - GPRS_Serving_Cell - GPRS_SM_PDP_End_User_IP_Address,float64
+746,GSM - GPRS_Dedicated_Mode - GPRS_SM_Cause,float64
+747,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TFI_DL,float64
+748,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TFI_UL,float64
+749,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_C_Value,float64
+750,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_8PSK_CV_BEP,float64
+751,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_GMSK_CV_BEP,float64
+752,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Timeslot_DL,float64
+753,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Timeslot_UL,float64
+754,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_8PSK_Mean_BEP,float64
+755,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_GMSK_Mean_BEP,float64
+756,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Radio_Priority,object
+757,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_CodingScheme_DL,float64
+758,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_CodingScheme_UL,object
+759,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Peak_Throughput,float64
+760,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TBF_Request_Cause,float64
+761,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TimingAdvanceIndex,float64
+762,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_EDGE_DL_Window_Size,float64
+763,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_EDGE_UL_Window_Size,float64
+764,GSM - ServingCells - C1,float64
+765,GSM - ServingCells - C2,float64
+766,GSM - ServingCells - C2A,float64
+767,GSM - ServingCells - C31,float64
+768,GSM - ServingCells - C32,float64
+769,GSM - ServingCells - BSIC,float64
+770,GSM - ServingCells - Band,float64
+771,GSM - ServingCells - ARFCN,float64
+772,GSM - ServingCells - PBCCH,float64
+773,GSM - ServingCells - RxLev,float64
+774,GSM - ServingCells - ServType,object
+775,GSM - ServingCells - RxQualSub,float64
+776,GSM - ServingCells - TCH_Power,float64
+777,GSM - ServingCells - RxQualFull,float64
+778,GSM - GPRS_Data_Throughput - GPRS_LLC_BLER_DL,float64
+779,GSM - GPRS_Data_Throughput - GPRS_LLC_ReTx_Rate_UL,float64
+780,GSM - GPRS_Data_Throughput - GPRS_RLC_ReTx_Rate_UL,float64
+781,GSM - GPRS_Data_Throughput - GPRS_LLC_Throughput_DL,float64
+782,GSM - GPRS_Data_Throughput - GPRS_LLC_Throughput_UL,float64
+783,GSM - GPRS_Data_Throughput - GPRS_RLC_Throughput_DL,float64
+784,GSM - GPRS_Data_Throughput - GPRS_RLC_Throughput_UL,float64
+785,GSM - ServingCells - C2I,float64
+786,GSM - NeighborCells(10) - C1,float64
+787,GSM - NeighborCells(10) - C2,float64
+788,GSM - NeighborCells(10) - C31,float64
+789,GSM - NeighborCells(10) - C32,float64
+790,GSM - NeighborCells(10) - BSIC,float64
+791,GSM - NeighborCells(10) - Band,float64
+792,GSM - NeighborCells(10) - ARFCN,float64
+793,GSM - NeighborCells(10) - RxLev,float64
+794,GSM - NeighborCells(10) - ServType,object
+795,GSM - DedicatedChannels(0) - C2I,float64
+796,GSM - DedicatedChannels(0) - Band,float64
+797,GSM - DedicatedChannels(0) - ARFCN,float64
+798,GSM - DedicatedChannels(0) - RxLev,float64
+799,GSM - DedicatedChannels(0) - Timeslot,float64
+800,GSM - DedicatedChannels(1) - C2I,float64
+801,GSM - DedicatedChannels(1) - Band,float64
+802,GSM - DedicatedChannels(1) - ARFCN,float64
+803,GSM - DedicatedChannels(1) - RxLev,float64
+804,GSM - DedicatedChannels(1) - Timeslot,float64
+805,GSM - DedicatedInfo - Ping Pong HO,float64
+806,GSM - DedicatedChannels(2) - C2I,float64
+807,GSM - DedicatedChannels(2) - Band,float64
+808,GSM - DedicatedChannels(2) - ARFCN,float64
+809,GSM - DedicatedChannels(2) - RxLev,float64
+810,GSM - DedicatedChannels(2) - Timeslot,float64
+811,GSM - DedicatedChannels(3) - C2I,float64
+812,GSM - DedicatedChannels(3) - Band,float64
+813,GSM - DedicatedChannels(3) - ARFCN,float64
+814,GSM - DedicatedChannels(3) - RxLev,float64
+815,GSM - DedicatedChannels(3) - Timeslot,float64
+816,GSM - NeighborCells(11) - C1,float64
+817,GSM - NeighborCells(11) - C2,float64
+818,GSM - NeighborCells(11) - C31,float64
+819,GSM - NeighborCells(11) - C32,float64
+820,GSM - NeighborCells(11) - BSIC,float64
+821,GSM - NeighborCells(11) - Band,float64
+822,GSM - NeighborCells(11) - ARFCN,float64
+823,GSM - NeighborCells(11) - RxLev,float64
+824,GSM - NeighborCells(11) - ServType,object
+825,GSM - DedicatedChannels(4) - C2I,float64
+826,GSM - DedicatedChannels(4) - Band,float64
+827,GSM - DedicatedChannels(4) - ARFCN,float64
+828,GSM - DedicatedChannels(4) - RxLev,float64
+829,GSM - DedicatedChannels(4) - Timeslot,float64
+830,WCDMA - WCDMACellsTable(7) - PSC,float64
+831,WCDMA - WCDMACellsTable(7) - Band,float64
+832,WCDMA - WCDMACellsTable(7) - EcNo,float64
+833,WCDMA - WCDMACellsTable(7) - RSCP,float64
+834,WCDMA - WCDMACellsTable(7) - UARFCN,float64
+835,WCDMA - WCDMACellsTable(7) - Set_Type,object
+836,WCDMA - WCDMACellsTable(7) - RSCP After RAKE,float64
+837,WCDMA - WCDMACellsTable(7) - EcNo Before RAKE,float64
+838,WCDMA - WCDMACellsTable(8) - PSC,float64
+839,WCDMA - WCDMACellsTable(8) - Band,float64
+840,WCDMA - WCDMACellsTable(8) - EcNo,float64
+841,WCDMA - WCDMACellsTable(8) - RSCP,float64
+842,WCDMA - WCDMACellsTable(8) - UARFCN,float64
+843,WCDMA - WCDMACellsTable(8) - Set_Type,object
+844,WCDMA - WCDMACellsTable(8) - RSCP After RAKE,float64
+845,WCDMA - WCDMACellsTable(8) - EcNo Before RAKE,float64
+846,WCDMA - WCDMACellsTable(9) - PSC,float64
+847,WCDMA - WCDMACellsTable(9) - Band,float64
+848,WCDMA - WCDMACellsTable(9) - EcNo,float64
+849,WCDMA - WCDMACellsTable(9) - RSCP,float64
+850,WCDMA - WCDMACellsTable(9) - UARFCN,float64
+851,WCDMA - WCDMACellsTable(9) - Set_Type,object
+852,WCDMA - WCDMACellsTable(9) - RSCP After RAKE,float64
+853,WCDMA - WCDMACellsTable(9) - EcNo Before RAKE,float64
+854,WCDMA - WCDMACellsTable(10) - PSC,float64
+855,WCDMA - WCDMACellsTable(10) - Band,float64
+856,WCDMA - WCDMACellsTable(10) - EcNo,float64
+857,WCDMA - WCDMACellsTable(10) - RSCP,float64
+858,WCDMA - WCDMACellsTable(10) - UARFCN,float64
+859,WCDMA - WCDMACellsTable(10) - Set_Type,object
+860,WCDMA - WCDMACellsTable(10) - RSCP After RAKE,float64
+861,WCDMA - WCDMACellsTable(10) - EcNo Before RAKE,float64
+862,WCDMA - WCDMACellsTable(11) - PSC,float64
+863,WCDMA - WCDMACellsTable(11) - Band,float64
+864,WCDMA - WCDMACellsTable(11) - EcNo,float64
+865,WCDMA - WCDMACellsTable(11) - RSCP,float64
+866,WCDMA - WCDMACellsTable(11) - UARFCN,float64
+867,WCDMA - WCDMACellsTable(11) - Set_Type,object
+868,WCDMA - WCDMACellsTable(11) - RSCP After RAKE,float64
+869,WCDMA - WCDMACellsTable(11) - EcNo Before RAKE,float64
+870,WCDMA - WCDMACellsTable(12) - PSC,float64
+871,WCDMA - WCDMACellsTable(12) - Band,float64
+872,WCDMA - WCDMACellsTable(12) - EcNo,float64
+873,WCDMA - WCDMACellsTable(12) - RSCP,float64
+874,WCDMA - WCDMACellsTable(12) - UARFCN,float64
+875,WCDMA - WCDMACellsTable(12) - Set_Type,object
+876,WCDMA - WCDMACellsTable(12) - RSCP After RAKE,float64
+877,WCDMA - WCDMACellsTable(12) - EcNo Before RAKE,float64
+878,WCDMA - WCDMACellsTable(13) - PSC,float64
+879,WCDMA - WCDMACellsTable(13) - Band,float64
+880,WCDMA - WCDMACellsTable(13) - EcNo,float64
+881,WCDMA - WCDMACellsTable(13) - RSCP,float64
+882,WCDMA - WCDMACellsTable(13) - UARFCN,float64
+883,WCDMA - WCDMACellsTable(13) - Set_Type,object
+884,WCDMA - WCDMACellsTable(13) - RSCP After RAKE,float64
+885,WCDMA - WCDMACellsTable(13) - EcNo Before RAKE,float64
+886,WCDMA - WCDMACellsTable(14) - PSC,float64
+887,WCDMA - WCDMACellsTable(14) - Band,float64
+888,WCDMA - WCDMACellsTable(14) - EcNo,float64
+889,WCDMA - WCDMACellsTable(14) - RSCP,float64
+890,WCDMA - WCDMACellsTable(14) - UARFCN,float64
+891,WCDMA - WCDMACellsTable(14) - Set_Type,object
+892,WCDMA - WCDMACellsTable(14) - RSCP After RAKE,float64
+893,WCDMA - WCDMACellsTable(14) - EcNo Before RAKE,float64
+894,WCDMA - WCDMACellsTable(15) - PSC,float64
+895,WCDMA - WCDMACellsTable(15) - Band,float64
+896,WCDMA - WCDMACellsTable(15) - EcNo,float64
+897,WCDMA - WCDMACellsTable(15) - RSCP,float64
+898,WCDMA - WCDMACellsTable(15) - UARFCN,float64
+899,WCDMA - WCDMACellsTable(15) - Set_Type,object
+900,WCDMA - WCDMACellsTable(15) - RSCP After RAKE,float64
+901,WCDMA - WCDMACellsTable(15) - EcNo Before RAKE,float64
+902,NR5G - PrimaryCell - PCell_PCI,float64
+903,NR5G - PrimaryCell - PCell_SCS,object
+904,NR5G - PrimaryCell - PCell_Band,float64
+905,NR5G - PrimaryCell - PCell_Band_UL,float64
+906,NR5G - PrimaryCell - PCell_GSCN_SSB,float64
+907,NR5G - PrimaryCell - PCell_ARFCN_SSB,float64
+908,NR5G - PrimaryCell - PCell_GSCN_SSB_UL,float64
+909,NR5G - PrimaryCell - PCell_ARFCN_PointA,float64
+910,NR5G - PrimaryCell - PCell_ARFCN_SSB_UL,float64
+911,NR5G - PrimaryCell - PCell_Bandwidth_DL,float64
+912,NR5G - PrimaryCell - PCell_Bandwidth_UL,float64
+913,NR5G - PrimaryCell - PCell_GSCN_Central,float64
+914,NR5G - PrimaryCell - PCell_SSB_Beam_Num,float64
+915,NR5G - PrimaryCell - PCell_SSBeam_Index,float64
+916,NR5G - PrimaryCell - PCell_ARFCN_Central,float64
+917,NR5G - PrimaryCell - PCell_Frequency_SSB,float64
+918,NR5G - PrimaryCell - PCell_ServCellIndex,float64
+919,NR5G - PrimaryCell - PCell_ARFCN_PointA_UL,float64
+920,NR5G - PrimaryCell - PCell_GSCN_Central_UL,float64
+921,NR5G - PrimaryCell - PCell_ARFCN_Central_UL,float64
+922,NR5G - PrimaryCell - PCell_Frequency_SSB_UL,float64
+923,NR5G - PrimaryCell - PCell_Frequency_Central,float64
+924,NR5G - PrimaryCell - PCell_ServingCellGroup_ID,float64
+925,NR5G - PrimaryCell - PCell_Frequency_Central_UL,float64
+926,NR5G - Serving(0) - PCI,float64
+927,NR5G - Serving(0) - Band,object
+928,NR5G - Serving(0) - Mod4,float64
+929,NR5G - Serving(0) - RSRP,float64
+930,NR5G - Serving(0) - RSRQ,float64
+931,NR5G - Serving(0) - SINR,float64
+932,NR5G - Serving(0) - NR_ARFCN,float64
+933,NR5G - Serving(0) - BeamIndex,float64
+934,NR5G - Serving(0) - ServingType,object
+935,NR5G - Data_Performance - Agg_RB_DL,float64
+936,NR5G - Data_Performance - APP_Throughput_DL,float64
+937,NR5G - Data_Performance - APP_Throughput_UL,float64
+938,NR5G - Data_Performance - MAC_Throughput_DL,float64
+939,NR5G - Data_Performance - MAC_Throughput_UL,float64
+940,NR5G - Data_Performance - RLC_Throughput_DL,float64
+941,NR5G - Data_Performance - RLC_Throughput_UL,float64
+942,NR5G - Data_Performance - PDCP_Throughput_DL,float64
+943,NR5G - Data_Performance - PDCP_Throughput_UL,float64
+944,NR5G - Data_Performance - SDAP_Throughput_DL,float64
+945,NR5G - Data_Performance - SDAP_Throughput_UL,float64
+946,NR5G - Data_Performance - Total_Bandwidth_DL,float64
+947,NR5G - Data_Performance - DC_APP_Throughput_DL,float64
+948,NR5G - Data_Performance - DC_APP_Throughput_UL,float64
+949,NR5G - Data_Performance - DC_MAC_Throughput_DL,float64
+950,NR5G - Data_Performance - DC_MAC_Throughput_UL,float64
+951,NR5G - Data_Performance - DC_RLC_Throughput_DL,float64
+952,NR5G - Data_Performance - DC_RLC_Throughput_UL,float64
+953,NR5G - Data_Performance - DC_PDCP_Throughput_DL,float64
+954,NR5G - Data_Performance - DC_PDCP_Throughput_UL,float64
+955,NR5G - Data_Performance - Total_Bandwidth_DL_DC,object
+956,NR5G - Data_Performance - Physical_Throughput_DL,float64
+957,NR5G - Data_Performance - Physical_Throughput_UL,float64
+958,NR5G - Data_Performance - Physical_Throughput_SUL,float64
+959,NR5G - Data_Performance - DC_Physical_Throughput_DL,float64
+960,NR5G - Data_Performance - DC_Physical_Throughput_UL,float64
+961,NR5G - Data_Performance - DC_PDCP_Throughput_DL_Without_4GOnly,float64
+962,NR5G - Data_Performance - DC_PDCP_Throughput_UL_Without_4GOnly,float64
+963,NR5G - UplinkMeasurements - MCS_UL,float64
+964,NR5G - UplinkMeasurements - MAC_BLER_UL,float64
+965,NR5G - UplinkMeasurements - RLC_BLER_UL,float64
+966,NR5G - UplinkMeasurements - Power_Tx_SRS,float64
+967,NR5G - UplinkMeasurements - Modulation_UL,object
+968,NR5G - UplinkMeasurements - RB_Num_Max_DL,float64
+969,NR5G - UplinkMeasurements - Power_Headroom,float64
+970,NR5G - UplinkMeasurements - Power_Tx_PRACH,float64
+971,NR5G - UplinkMeasurements - Power_Tx_PUCCH,float64
+972,NR5G - UplinkMeasurements - Power_Tx_PUSCH,float64
+973,NR5G - UplinkMeasurements - TB_Size_Max_DL,float64
+974,NR5G - UplinkMeasurements - RB_Num_Total_DL,float64
+975,NR5G - UplinkMeasurements - ModUsage_QPSK_UL,float64
+976,NR5G - UplinkMeasurements - TB_Size_Total_DL,float64
+977,NR5G - UplinkMeasurements - ModUsage_16QAM_UL,float64
+978,NR5G - UplinkMeasurements - ModUsage_64QAM_UL,float64
+979,NR5G - UplinkMeasurements - RB_Num_Average_DL,float64
+980,NR5G - UplinkMeasurements - ModUsage_256QAM_UL,float64
+981,NR5G - UplinkMeasurements - Scheduled_Count_UL,float64
+982,NR5G - UplinkMeasurements - TB_Size_Average_DL,float64
+983,NR5G - UplinkMeasurements - PDCCH_DCI_Format_UL,object
+984,NR5G - UplinkMeasurements - CCE_Usage_Level_1_UL,float64
+985,NR5G - UplinkMeasurements - CCE_Usage_Level_2_UL,float64
+986,NR5G - UplinkMeasurements - CCE_Usage_Level_4_UL,float64
+987,NR5G - UplinkMeasurements - CCE_Usage_Level_8_UL,float64
+988,NR5G - UplinkMeasurements - CCE_Usage_Level_16_UL,float64
+989,NR5G - UplinkMeasurements - PUCCH_Format0_Usage_UL,float64
+990,NR5G - UplinkMeasurements - PUCCH_Format1_Usage_UL,float64
+991,NR5G - UplinkMeasurements - PUCCH_Format2_Usage_UL,float64
+992,NR5G - UplinkMeasurements - PUCCH_Format3_Usage_UL,float64
+993,NR5G - UplinkMeasurements - PUCCH_Format4_Usage_UL,float64
+994,NR5G - DownlinkMeasurements - CQI_DL,float64
+995,NR5G - DownlinkMeasurements - MCS_DL,float64
+996,NR5G - DownlinkMeasurements - RBG_Size,float64
+997,NR5G - DownlinkMeasurements - MAC_BLER_DL,float64
+998,NR5G - DownlinkMeasurements - Modulation_DL,object
+999,NR5G - DownlinkMeasurements - RB_Num_Total_DL,float64
+1000,NR5G - DownlinkMeasurements - ModUsage_QPSK_DL,float64
+1001,NR5G - DownlinkMeasurements - TB_Size_Total_DL,float64
+1002,NR5G - DownlinkMeasurements - ModUsage_16QAM_DL,float64
+1003,NR5G - DownlinkMeasurements - ModUsage_64QAM_DL,float64
+1004,NR5G - DownlinkMeasurements - RB_Num_Average_DL,float64
+1005,NR5G - DownlinkMeasurements - ModUsage_256QAM_DL,float64
+1006,NR5G - DownlinkMeasurements - TB_Size_Average_DL,float64
+1007,NR5G - DownlinkMeasurements - ModUsage_1024QAM_DL,float64
+1008,NR5G - DownlinkMeasurements - PDCCH_DCI_Format_DL,object
+1009,NR5G - DownlinkMeasurements - CCE_Usage_Level_1_DL,float64
+1010,NR5G - DownlinkMeasurements - CCE_Usage_Level_2_DL,float64
+1011,NR5G - DownlinkMeasurements - CCE_Usage_Level_4_DL,float64
+1012,NR5G - DownlinkMeasurements - CCE_Usage_Level_8_DL,float64
+1013,NR5G - DownlinkMeasurements - CCE_Usage_Level_16_DL,float64
+1014,NR5G - PrimaryCell_Radio_DL - PCell_CQI_DL,float64
+1015,NR5G - PrimaryCell_Radio_DL - PCell_MCS_DL,float64
+1016,NR5G - PrimaryCell_Radio_DL - PCell_SS_RSRP,float64
+1017,NR5G - PrimaryCell_Radio_DL - PCell_SS_RSRQ,float64
+1018,NR5G - PrimaryCell_Radio_DL - PCell_SS_SINR,float64
+1019,NR5G - PrimaryCell_Radio_DL - PCell_CSI_RSRP,float64
+1020,NR5G - PrimaryCell_Radio_DL - PCell_CSI_RSRQ,float64
+1021,NR5G - PrimaryCell_Radio_DL - PCell_CSI_SINR,float64
+1022,NR5G - PrimaryCell_Radio_DL - PCell_RBG_Size,float64
+1023,NR5G - PrimaryCell_Radio_DL - PCell_PDSCH_SINR,float64
+1024,NR5G - PrimaryCell_Radio_DL - PCell_MAC_BLER_DL,float64
+1025,NR5G - PrimaryCell_Radio_DL - PCell_Pathloss_DL,float64
+1026,NR5G - PrimaryCell_Radio_DL - PCell_Carrier_RSSI,float64
+1027,NR5G - PrimaryCell_Radio_DL - PCell_Modulation_DL,object
+1028,NR5G - PrimaryCell_Radio_DL - PCell_Num_CSI_Ports,float64
+1029,NR5G - PrimaryCell_Radio_DL - PCell_Num_Layers_DL,float64
+1030,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Max_DL,float64
+1031,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_RSRP,float64
+1032,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_RSRQ,float64
+1033,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_SINR,float64
+1034,NR5G - PrimaryCell_Radio_DL - PCell_Num_Antenna_Rx,object
+1035,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Max_DL,float64
+1036,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Total_DL,float64
+1037,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_QPSK_DL,float64
+1038,NR5G - PrimaryCell_Radio_DL - PCell_RankIndicator_DL,float64
+1039,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Total_DL,float64
+1040,NR5G - PrimaryCell_Radio_DL - PCell_MAC_Throughput_DL,float64
+1041,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_16QAM_DL,float64
+1042,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_64QAM_DL,float64
+1043,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Average_DL,float64
+1044,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_256QAM_DL,float64
+1045,NR5G - PrimaryCell_Radio_DL - PCell_Scheduled_Count_DL,float64
+1046,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Average_DL,float64
+1047,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_1024QAM_DL,float64
+1048,NR5G - PrimaryCell_Radio_DL - PCell_Physical_Throughput_DL,float64
+1049,NR5G - PrimaryCell_Radio_UL - PCell_MCS_UL,float64
+1050,NR5G - PrimaryCell_Radio_UL - PCell_TxMode,object
+1051,NR5G - PrimaryCell_Radio_UL - PCell_MAC_BLER_UL,float64
+1052,NR5G - PrimaryCell_Radio_UL - PCell_Modulation_UL,object
+1053,NR5G - PrimaryCell_Radio_UL - PCell_Num_Layers_UL,float64
+1054,NR5G - PrimaryCell_Radio_UL - PCell_Power_Tx_PUSCH,float64
+1055,NR5G - PrimaryCell_Radio_UL - PCell_Hopping_Flag_UL,float64
+1056,NR5G - PrimaryCell_Radio_UL - PCell_RB_Num_Total_UL,float64
+1057,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_QPSK_UL,float64
+1058,NR5G - PrimaryCell_Radio_UL - PCell_RankIndicator_UL,object
+1059,NR5G - PrimaryCell_Radio_UL - PCell_TB_Size_Total_UL,float64
+1060,NR5G - PrimaryCell_Radio_UL - PCell_MAC_Throughput_UL,float64
+1061,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_16QAM_UL,float64
+1062,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_64QAM_UL,float64
+1063,NR5G - PrimaryCell_Radio_UL - PCell_RB_Num_Average_UL,float64
+1064,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_256QAM_UL,float64
+1065,NR5G - PrimaryCell_Radio_UL - PCell_Scheduled_Count_UL,float64
+1066,NR5G - PrimaryCell_Radio_UL - PCell_TB_Size_Average_UL,float64
+1067,NR5G - PrimaryCell_Radio_UL - PCell_PDCCH_DCI_Format_UL,object
+1068,NR5G - PrimaryCell_Radio_UL - PCell_Physical_Throughput_UL,float64
+1069,NR5G - NeighborCells(0) - PCI,float64
+1070,NR5G - NeighborCells(0) - Band,object
+1071,NR5G - NeighborCells(0) - Mod4,float64
+1072,NR5G - NeighborCells(0) - RSRP,float64
+1073,NR5G - NeighborCells(0) - RSRQ,float64
+1074,NR5G - NeighborCells(0) - SINR,float64
+1075,NR5G - NeighborCells(0) - NR_ARFCN,float64
+1076,NR5G - NeighborCells(0) - BeamIndex,float64
+1077,NR5G - NeighborCells(0) - ServingType,object
+1078,NR5G - NeighborCells(1) - PCI,float64
+1079,NR5G - NeighborCells(1) - Band,object
+1080,NR5G - NeighborCells(1) - Mod4,float64
+1081,NR5G - NeighborCells(1) - RSRP,float64
+1082,NR5G - NeighborCells(1) - RSRQ,float64
+1083,NR5G - NeighborCells(1) - SINR,float64
+1084,NR5G - NeighborCells(1) - NR_ARFCN,float64
+1085,NR5G - NeighborCells(1) - BeamIndex,float64
+1086,NR5G - NeighborCells(1) - ServingType,object
+1087,NR5G - NeighborCells(2) - PCI,float64
+1088,NR5G - NeighborCells(2) - Band,object
+1089,NR5G - NeighborCells(2) - Mod4,float64
+1090,NR5G - NeighborCells(2) - RSRP,float64
+1091,NR5G - NeighborCells(2) - RSRQ,float64
+1092,NR5G - NeighborCells(2) - SINR,float64
+1093,NR5G - NeighborCells(2) - NR_ARFCN,float64
+1094,NR5G - NeighborCells(2) - BeamIndex,float64
+1095,NR5G - NeighborCells(2) - ServingType,object
+1096,NR5G - NeighborCells(3) - PCI,float64
+1097,NR5G - NeighborCells(3) - Band,object
+1098,NR5G - NeighborCells(3) - Mod4,float64
+1099,NR5G - NeighborCells(3) - RSRP,float64
+1100,NR5G - NeighborCells(3) - RSRQ,float64
+1101,NR5G - NeighborCells(3) - SINR,float64
+1102,NR5G - NeighborCells(3) - NR_ARFCN,float64
+1103,NR5G - NeighborCells(3) - BeamIndex,float64
+1104,NR5G - NeighborCells(3) - ServingType,object
+1105,NR5G - NeighborCells(4) - PCI,float64
+1106,NR5G - NeighborCells(4) - Band,object
+1107,NR5G - NeighborCells(4) - Mod4,float64
+1108,NR5G - NeighborCells(4) - RSRP,float64
+1109,NR5G - NeighborCells(4) - RSRQ,float64
+1110,NR5G - NeighborCells(4) - SINR,float64
+1111,NR5G - NeighborCells(4) - NR_ARFCN,float64
+1112,NR5G - NeighborCells(4) - BeamIndex,float64
+1113,NR5G - NeighborCells(4) - ServingType,object
+1114,NR5G - NeighborCells(5) - PCI,float64
+1115,NR5G - NeighborCells(5) - Band,object
+1116,NR5G - NeighborCells(5) - Mod4,float64
+1117,NR5G - NeighborCells(5) - RSRP,float64
+1118,NR5G - NeighborCells(5) - RSRQ,float64
+1119,NR5G - NeighborCells(5) - SINR,float64
+1120,NR5G - NeighborCells(5) - NR_ARFCN,float64
+1121,NR5G - NeighborCells(5) - BeamIndex,float64
+1122,NR5G - NeighborCells(5) - ServingType,object
+1123,NR5G - NeighborCells(6) - PCI,float64
+1124,NR5G - NeighborCells(6) - Band,object
+1125,NR5G - NeighborCells(6) - Mod4,float64
+1126,NR5G - NeighborCells(6) - RSRP,float64
+1127,NR5G - NeighborCells(6) - RSRQ,float64
+1128,NR5G - NeighborCells(6) - SINR,float64
+1129,NR5G - NeighborCells(6) - NR_ARFCN,float64
+1130,NR5G - NeighborCells(6) - BeamIndex,float64
+1131,NR5G - NeighborCells(6) - ServingType,object
+1132,NR5G - NeighborCells(7) - PCI,float64
+1133,NR5G - NeighborCells(7) - Band,object
+1134,NR5G - NeighborCells(7) - Mod4,float64
+1135,NR5G - NeighborCells(7) - RSRP,float64
+1136,NR5G - NeighborCells(7) - RSRQ,float64
+1137,NR5G - NeighborCells(7) - SINR,float64
+1138,NR5G - NeighborCells(7) - NR_ARFCN,float64
+1139,NR5G - NeighborCells(7) - BeamIndex,float64
+1140,NR5G - NeighborCells(7) - ServingType,object
+1141,NR5G - NeighborCells(8) - PCI,float64
+1142,NR5G - NeighborCells(8) - Band,object
+1143,NR5G - NeighborCells(8) - Mod4,float64
+1144,NR5G - NeighborCells(8) - RSRP,float64
+1145,NR5G - NeighborCells(8) - RSRQ,float64
+1146,NR5G - NeighborCells(8) - SINR,float64
+1147,NR5G - NeighborCells(8) - NR_ARFCN,float64
+1148,NR5G - NeighborCells(8) - BeamIndex,float64
+1149,NR5G - NeighborCells(8) - ServingType,object
+1150,NR5G - NeighborCells(9) - PCI,float64
+1151,NR5G - NeighborCells(9) - Band,object
+1152,NR5G - NeighborCells(9) - Mod4,float64
+1153,NR5G - NeighborCells(9) - RSRP,float64
+1154,NR5G - NeighborCells(9) - RSRQ,float64
+1155,NR5G - NeighborCells(9) - SINR,float64
+1156,NR5G - NeighborCells(9) - NR_ARFCN,float64
+1157,NR5G - NeighborCells(9) - BeamIndex,float64
+1158,NR5G - NeighborCells(9) - ServingType,object
+1159,NR5G - NeighborCells(10) - PCI,float64
+1160,NR5G - NeighborCells(10) - Band,object
+1161,NR5G - NeighborCells(10) - Mod4,float64
+1162,NR5G - NeighborCells(10) - RSRP,float64
+1163,NR5G - NeighborCells(10) - RSRQ,float64
+1164,NR5G - NeighborCells(10) - SINR,float64
+1165,NR5G - NeighborCells(10) - NR_ARFCN,float64
+1166,NR5G - NeighborCells(10) - BeamIndex,float64
+1167,NR5G - NeighborCells(10) - ServingType,object
+1168,WCDMA - WCDMACellsTable(16) - PSC,float64
+1169,WCDMA - WCDMACellsTable(16) - Band,float64
+1170,WCDMA - WCDMACellsTable(16) - EcNo,float64
+1171,WCDMA - WCDMACellsTable(16) - RSCP,float64
+1172,WCDMA - WCDMACellsTable(16) - UARFCN,float64
+1173,WCDMA - WCDMACellsTable(16) - Set_Type,object
+1174,WCDMA - WCDMACellsTable(16) - RSCP After RAKE,float64
+1175,WCDMA - WCDMACellsTable(16) - EcNo Before RAKE,float64
+1176,WCDMA - WCDMACellsTable(17) - PSC,float64
+1177,WCDMA - WCDMACellsTable(17) - Band,float64
+1178,WCDMA - WCDMACellsTable(17) - EcNo,float64
+1179,WCDMA - WCDMACellsTable(17) - RSCP,float64
+1180,WCDMA - WCDMACellsTable(17) - UARFCN,float64
+1181,WCDMA - WCDMACellsTable(17) - Set_Type,object
+1182,WCDMA - WCDMACellsTable(17) - RSCP After RAKE,float64
+1183,WCDMA - WCDMACellsTable(17) - EcNo Before RAKE,float64
+1184,WCDMA - WCDMACellsTable(18) - PSC,float64
+1185,WCDMA - WCDMACellsTable(18) - Band,float64
+1186,WCDMA - WCDMACellsTable(18) - EcNo,float64
+1187,WCDMA - WCDMACellsTable(18) - RSCP,float64
+1188,WCDMA - WCDMACellsTable(18) - UARFCN,float64
+1189,WCDMA - WCDMACellsTable(18) - Set_Type,object
+1190,WCDMA - WCDMACellsTable(18) - RSCP After RAKE,float64
+1191,WCDMA - WCDMACellsTable(18) - EcNo Before RAKE,float64
+1192,WCDMA - WCDMACellsTable(19) - PSC,float64
+1193,WCDMA - WCDMACellsTable(19) - Band,float64
+1194,WCDMA - WCDMACellsTable(19) - EcNo,float64
+1195,WCDMA - WCDMACellsTable(19) - RSCP,float64
+1196,WCDMA - WCDMACellsTable(19) - UARFCN,float64
+1197,WCDMA - WCDMACellsTable(19) - Set_Type,object
+1198,WCDMA - WCDMACellsTable(19) - RSCP After RAKE,float64
+1199,WCDMA - WCDMACellsTable(19) - EcNo Before RAKE,float64
+1200,WCDMA - WCDMACellsTable(20) - PSC,float64
+1201,WCDMA - WCDMACellsTable(20) - Band,float64
+1202,WCDMA - WCDMACellsTable(20) - EcNo,float64
+1203,WCDMA - WCDMACellsTable(20) - RSCP,float64
+1204,WCDMA - WCDMACellsTable(20) - UARFCN,float64
+1205,WCDMA - WCDMACellsTable(20) - Set_Type,object
+1206,WCDMA - WCDMACellsTable(20) - RSCP After RAKE,float64
+1207,WCDMA - WCDMACellsTable(20) - EcNo Before RAKE,float64
+1208,WCDMA - WCDMACellsTable(21) - PSC,float64
+1209,WCDMA - WCDMACellsTable(21) - Band,float64
+1210,WCDMA - WCDMACellsTable(21) - EcNo,float64
+1211,WCDMA - WCDMACellsTable(21) - RSCP,float64
+1212,WCDMA - WCDMACellsTable(21) - UARFCN,float64
+1213,WCDMA - WCDMACellsTable(21) - Set_Type,object
+1214,WCDMA - WCDMACellsTable(21) - RSCP After RAKE,float64
+1215,WCDMA - WCDMACellsTable(21) - EcNo Before RAKE,float64
+1216,WCDMA - WCDMACellsTable(22) - PSC,float64
+1217,WCDMA - WCDMACellsTable(22) - Band,float64
+1218,WCDMA - WCDMACellsTable(22) - EcNo,float64
+1219,WCDMA - WCDMACellsTable(22) - RSCP,float64
+1220,WCDMA - WCDMACellsTable(22) - UARFCN,float64
+1221,WCDMA - WCDMACellsTable(22) - Set_Type,object
+1222,WCDMA - WCDMACellsTable(22) - RSCP After RAKE,float64
+1223,WCDMA - WCDMACellsTable(22) - EcNo Before RAKE,float64
+1224,LTE - NeighborCells(32) - PCI,float64
+1225,LTE - NeighborCells(32) - Band,float64
+1226,LTE - NeighborCells(32) - Mod3,float64
+1227,LTE - NeighborCells(32) - RSRP,float64
+1228,LTE - NeighborCells(32) - RSRQ,float64
+1229,LTE - NeighborCells(32) - EARFCN,float64
+1230,LTE - NeighborCells(32) - ServType,object
+1231,NR5G - NeighborCells(11) - PCI,float64
+1232,NR5G - NeighborCells(11) - Band,object
+1233,NR5G - NeighborCells(11) - Mod4,float64
+1234,NR5G - NeighborCells(11) - RSRP,float64
+1235,NR5G - NeighborCells(11) - RSRQ,float64
+1236,NR5G - NeighborCells(11) - SINR,float64
+1237,NR5G - NeighborCells(11) - NR_ARFCN,float64
+1238,NR5G - NeighborCells(11) - BeamIndex,float64
+1239,NR5G - NeighborCells(11) - ServingType,object
+1240,NR5G - NeighborCells(12) - PCI,float64
+1241,NR5G - NeighborCells(12) - Band,object
+1242,NR5G - NeighborCells(12) - Mod4,float64
+1243,NR5G - NeighborCells(12) - RSRP,float64
+1244,NR5G - NeighborCells(12) - RSRQ,float64
+1245,NR5G - NeighborCells(12) - SINR,float64
+1246,NR5G - NeighborCells(12) - NR_ARFCN,float64
+1247,NR5G - NeighborCells(12) - BeamIndex,float64
+1248,NR5G - NeighborCells(12) - ServingType,object
+1249,LTE - NeighborCells(33) - PCI,float64
+1250,LTE - NeighborCells(33) - Band,float64
+1251,LTE - NeighborCells(33) - Mod3,float64
+1252,LTE - NeighborCells(33) - RSRP,float64
+1253,LTE - NeighborCells(33) - RSRQ,float64
+1254,LTE - NeighborCells(33) - EARFCN,float64
+1255,LTE - NeighborCells(33) - ServType,object
+1256,LTE - NeighborCells(34) - PCI,float64
+1257,LTE - NeighborCells(34) - Band,float64
+1258,LTE - NeighborCells(34) - Mod3,float64
+1259,LTE - NeighborCells(34) - RSRP,float64
+1260,LTE - NeighborCells(34) - RSRQ,float64
+1261,LTE - NeighborCells(34) - EARFCN,float64
+1262,LTE - NeighborCells(34) - ServType,object
+1263,LTE - NeighborCells(35) - PCI,float64
+1264,LTE - NeighborCells(35) - Band,float64
+1265,LTE - NeighborCells(35) - Mod3,float64
+1266,LTE - NeighborCells(35) - RSRP,float64
+1267,LTE - NeighborCells(35) - RSRQ,float64
+1268,LTE - NeighborCells(35) - EARFCN,float64
+1269,LTE - NeighborCells(35) - ServType,object
+1270,LTE - NeighborCells(36) - PCI,float64
+1271,LTE - NeighborCells(36) - Band,float64
+1272,LTE - NeighborCells(36) - Mod3,float64
+1273,LTE - NeighborCells(36) - RSRP,float64
+1274,LTE - NeighborCells(36) - RSRQ,float64
+1275,LTE - NeighborCells(36) - EARFCN,float64
+1276,LTE - NeighborCells(36) - ServType,object
+1277,LTE - NeighborCells(37) - PCI,float64
+1278,LTE - NeighborCells(37) - Band,float64
+1279,LTE - NeighborCells(37) - Mod3,float64
+1280,LTE - NeighborCells(37) - RSRP,float64
+1281,LTE - NeighborCells(37) - RSRQ,float64
+1282,LTE - NeighborCells(37) - EARFCN,float64
+1283,LTE - NeighborCells(37) - ServType,object
+1284,LTE - NeighborCells(38) - PCI,float64
+1285,LTE - NeighborCells(38) - Band,float64
+1286,LTE - NeighborCells(38) - Mod3,float64
+1287,LTE - NeighborCells(38) - RSRP,float64
+1288,LTE - NeighborCells(38) - RSRQ,float64
+1289,LTE - NeighborCells(38) - EARFCN,float64
+1290,LTE - NeighborCells(38) - ServType,object
+1291,LTE - NeighborCells(39) - PCI,float64
+1292,LTE - NeighborCells(39) - Band,float64
+1293,LTE - NeighborCells(39) - Mod3,float64
+1294,LTE - NeighborCells(39) - RSRP,float64
+1295,LTE - NeighborCells(39) - RSRQ,float64
+1296,LTE - NeighborCells(39) - EARFCN,float64
+1297,LTE - NeighborCells(39) - ServType,object
+1298,LTE - NeighborCells(40) - PCI,float64
+1299,LTE - NeighborCells(40) - Band,float64
+1300,LTE - NeighborCells(40) - Mod3,float64
+1301,LTE - NeighborCells(40) - RSRP,float64
+1302,LTE - NeighborCells(40) - RSRQ,float64
+1303,LTE - NeighborCells(40) - EARFCN,float64
+1304,LTE - NeighborCells(40) - ServType,object
+1305,LTE - NeighborCells(41) - PCI,float64
+1306,LTE - NeighborCells(41) - Band,float64
+1307,LTE - NeighborCells(41) - Mod3,float64
+1308,LTE - NeighborCells(41) - RSRP,float64
+1309,LTE - NeighborCells(41) - RSRQ,float64
+1310,LTE - NeighborCells(41) - EARFCN,float64
+1311,LTE - NeighborCells(41) - ServType,object
+1312,SpeedTest.id,float64
+1313,SpeedTest.date,float64
+1314,SpeedTest.path,object
+1315,SpeedTest.ploss,float64
+1316,SpeedTest.jitter,float64
+1317,SpeedTest.upload,float64
+1318,SpeedTest.latency,float64
+1319,SpeedTest.distance,float64
+1320,SpeedTest.download,float64
+1321,SpeedTest.isp_name,object
+1322,SpeedTest.share_url,object
+1323,SpeedTest.server_name,object
+1324,SpeedTest.sponsor_url,float64
+1325,SpeedTest.hasSecondary,object
+1326,SpeedTest.idle_latency,float64
+1327,SpeedTest.sponsor_name,object
+1328,SpeedTest.upload_latency,float64
+1329,SpeedTest.connection_icon,object
+1330,SpeedTest.connection_mode,object
+1331,SpeedTest.download_latency,float64
+1332,SpeedTest.additional_servers,object
+1333,NR5G - NeighborCells(13) - PCI,float64
+1334,NR5G - NeighborCells(13) - Band,object
+1335,NR5G - NeighborCells(13) - Mod4,float64
+1336,NR5G - NeighborCells(13) - RSRP,float64
+1337,NR5G - NeighborCells(13) - RSRQ,float64
+1338,NR5G - NeighborCells(13) - SINR,float64
+1339,NR5G - NeighborCells(13) - NR_ARFCN,float64
+1340,NR5G - NeighborCells(13) - BeamIndex,float64
+1341,NR5G - NeighborCells(13) - ServingType,object
+1342,WCDMA - WCDMACellsTable(23) - PSC,float64
+1343,WCDMA - WCDMACellsTable(23) - Band,float64
+1344,WCDMA - WCDMACellsTable(23) - EcNo,float64
+1345,WCDMA - WCDMACellsTable(23) - RSCP,float64
+1346,WCDMA - WCDMACellsTable(23) - UARFCN,float64
+1347,WCDMA - WCDMACellsTable(23) - Set_Type,object
+1348,WCDMA - WCDMACellsTable(23) - RSCP After RAKE,float64
+1349,WCDMA - WCDMACellsTable(23) - EcNo Before RAKE,float64
+1350,GSM - NeighborCells(12) - C1,float64
+1351,GSM - NeighborCells(12) - C2,float64
+1352,GSM - NeighborCells(12) - C31,float64
+1353,GSM - NeighborCells(12) - C32,float64
+1354,GSM - NeighborCells(12) - BSIC,float64
+1355,GSM - NeighborCells(12) - Band,float64
+1356,GSM - NeighborCells(12) - ARFCN,float64
+1357,GSM - NeighborCells(12) - RxLev,float64
+1358,GSM - NeighborCells(12) - ServType,object
+1359,LTE - NeighborCells(42) - PCI,float64
+1360,LTE - NeighborCells(42) - Band,float64
+1361,LTE - NeighborCells(42) - Mod3,float64
+1362,LTE - NeighborCells(42) - RSRP,float64
+1363,LTE - NeighborCells(42) - RSRQ,float64
+1364,LTE - NeighborCells(42) - EARFCN,float64
+1365,LTE - NeighborCells(42) - ServType,object

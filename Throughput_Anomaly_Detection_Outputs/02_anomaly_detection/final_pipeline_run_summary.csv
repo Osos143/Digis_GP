@@ -1,0 +1,2 @@
+﻿lte_dl_rows,sessions,broad_statistical_candidates,statistical_rca_handoff_rows,ml_lstm_final_anomaly_rows,fused_final_row_handoff,fused_final_episodes,operational_rca_incidents,consensus_rows,statistical_only_retained_rows,ml_only_retained_rows,q75_oof_coverage,q75_oof_pinball_log,q75_resource_oof_coverage,lstm_oof_available_pct
+32238,271,8098,6217,302,3449,1514,1370,295,3148,6,0.7653080215894287,0.20214038847640609,0.760965320429307,83.30231403933247

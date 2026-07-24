@@ -1,0 +1,25 @@
+5G Drive Test + PCI/RSI Planning EDA Summary
+============================================================
+Drive-test path: Raw_Data\Network_Drive_Test.pkl
+Drive-test shape: (64949, 1365)
+Drive-test memory: 983.28 MB
+Planning path: Raw_Data\NR5G_PCI_RSI_Planning.xlsx
+Planning shape: (2554, 14)
+
+Detected drive-test key columns:
+- Time: timestamp
+- Latitude: Location - Latitude
+- Longitude: Location - Longitude
+- PCI: LTE - NeighborCells(0) - PCI
+- RSI: None
+
+Detected planning key columns:
+- Site sector: site_sector_ID
+- Site: siteID
+- Sector: sectorID
+- Azimuth: Azimuth
+- Latitude: Latitude
+- Longitude: Longitude
+- PCI: PCI
+- RSI: RSI
+- Mod4: Mod4

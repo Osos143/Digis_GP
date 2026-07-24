@@ -1,0 +1,15 @@
+﻿ml_anomaly_type,ml_anomaly_severity,rows,median_score,median_confidence
+ml_hgb_past_only_temporal_underperformance,Low,1,42.11,61.77
+ml_hgb_past_only_temporal_underperformance,Medium,5,64.14,94.57
+ml_lstm_q50_temporal_underperformance,High,1,73.15,68.62
+ml_lstm_q50_temporal_underperformance,Medium,1,68.17,97.91
+ml_quantile_p75_capability_underperformance,Critical,1,91.31,100.0
+ml_quantile_p75_capability_underperformance,High,6,73.525,84.34
+ml_quantile_p75_capability_underperformance,Low,4,44.355000000000004,50.0
+ml_quantile_p75_capability_underperformance,Medium,18,56.25,59.45
+ml_quantile_p75_resource_underperformance,Critical,9,90.63,100.0
+ml_quantile_p75_resource_underperformance,High,121,79.02,98.71
+ml_quantile_p75_resource_underperformance,Low,7,44.26,53.52
+ml_quantile_p75_resource_underperformance,Medium,108,61.115,73.87
+ml_severe_quantile_p75_resource_underperformance,Critical,7,91.01,100.0
+ml_severe_quantile_p75_resource_underperformance,High,13,86.88,100.0

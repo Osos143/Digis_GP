@@ -1,0 +1,16 @@
+﻿Events.subject,event_count
+nan,85474
+Unknown,8437
+Start,3281
+End,2636
+Failed (Timeout),1105
+Failed,694
+Success,316
+MT Available,274
+Restart,31
+Failed (Error in Session),23
+Fiji-Nadi-LTE-DL-D,21
+Fiji-Nadi-MO-D,7
+Received,1
+Nawaka-MO,1
+Nawaka-LTE-DL,1
