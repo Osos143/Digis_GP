@@ -1,0 +1,13 @@
+{
+  "run_timestamp_utc": "2026-07-27T23:38:52.869134+00:00",
+  "stage": "pre_anomaly_feature_engineering",
+  "clean_generated_outputs_before_run": true,
+  "notebook_file": "10. LTE_Throughput_PreAnomaly_Final_Optimized.ipynb",
+  "notebook_sha256": "26318fa606e5736288b9d3925c644b8c74f8be8551fd7b3cf65c2c211c8d9739",
+  "input_file": "Raw_Data\\Network_Drive_Test.pkl",
+  "input_sha256": "57c34f4b4d33f86216fc75c92af95ef4b64f99e4aa1aacbde28065040076c07b",
+  "output_rows": 32238,
+  "output_columns": 353,
+  "sessions": 271,
+  "generated_file_count_after_notebook_01": 48
+}

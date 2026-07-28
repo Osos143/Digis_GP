@@ -14,3 +14,10 @@ resource_kpis.*,Resource evidence,RB demand and throughput efficiency
 ca_context.*,CA evidence,Carrier aggregation and SCell context
 statistical_evidence.*,Detector evidence,P10/IQR/MAD/temporal/P75/RB-efficiency/radio evidence
 production_ml_evidence.*,ML evidence,Selected production HGB/Q75 evidence; LSTM and Isolation Forest excluded
+peak_row_priority_0_100,Ranking,Maximum one-second row priority; supporting context only
+episode_adjusted_priority_0_100,Ranking,Maximum strict-episode priority
+incident_final_priority_0_100,Ranking,Canonical priority used consistently for final ranking and handoff
+persistence_score_0_100,Persistence,"Incident persistence from longest run, anomalous time, and recurrence"
+approximate_location.location_reliability,Map,Reliability of the anomaly-observation centroid
+approximate_location.location_uncertainty_radius_m,Map,P90 anomaly-observation spread
+approximate_location.location_is_tower_coordinate,Map,Always false unless an external planning-site database is joined

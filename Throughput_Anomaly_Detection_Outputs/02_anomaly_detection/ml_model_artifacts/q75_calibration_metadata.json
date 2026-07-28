@@ -1,5 +1,0 @@
-{
-  "capability_q75_median_outer_fold_correction_log": 0.04197991315832095,
-  "resource_q75_median_outer_fold_correction_log": 0.017997770412496283,
-  "note": "Historical OOF predictions used fold-specific corrections. These medians are deployment starting values and must be recalibrated on new campaigns."
-}
