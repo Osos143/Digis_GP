@@ -1,0 +1,25 @@
+﻿json_field,section,meaning
+incident_id,Identity,Operational incident identifier
+session_id/start_time/end_time/duration_seconds,Identity,When the anomaly occurred
+serving_cell_key/PCI/ECI/EARFCN/band,Cell,Serving cell identity for RCA
+approximate_location.*,Map,Median anomaly-observation coordinate and P90 observation spread; not tower location
+detection_case,Detection,Primary presentation case; not a final root cause
+planning_relevance.*,Planning,Coverage/planning review flag for radio-limited incidents
+impact_score_0_100/detection_confidence_0_100/persistence_score_0_100/severity,Ranking,Incident-level ranking evidence
+requires_human_review,Governance,True for balanced supervised ML-only anomalies
+throughput.*,Impact,"Actual, expected, comparison-source, gap, and local-drop evidence"
+cell_performance_context.*,Cell ranking,Cell/PCI badness ranks and compact KPI context
+radio_kpis.*,Radio evidence,RSRP/RSRQ/SINR/CQI/MCS/BLER
+resource_kpis.*,Resource evidence,RB demand and throughput efficiency
+ca_context.*,CA evidence,Carrier aggregation and SCell context
+statistical_evidence.*,Detector evidence,P10/IQR/MAD/temporal/P75/RB-efficiency/radio evidence
+production_ml_evidence.*,ML evidence,Selected production HGB/Q75 evidence; LSTM and Isolation Forest excluded
+dominant_statistical_type,Detection,Dominant statistical type used for traceability; may differ from the primary presentation case
+dominant_ml_type,Detection,Dominant production-ML type or normal
+peak_row_priority_0_100,Ranking,Maximum one-second row priority; supporting context only
+episode_adjusted_priority_0_100,Ranking,Maximum strict-episode priority
+incident_final_priority_0_100,Ranking,Canonical priority used consistently for final ranking and handoff
+persistence_score_0_100,Persistence,"Incident persistence from longest run, anomalous time, and recurrence"
+approximate_location.location_reliability,Map,Reliability of the anomaly-observation centroid
+approximate_location.location_uncertainty_radius_m,Map,P90 anomaly-observation spread
+approximate_location.location_is_tower_coordinate,Map,Always false unless an external planning-site database is joined

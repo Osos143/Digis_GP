@@ -1,0 +1,10 @@
+﻿check,passed,details
+full_json_parses,True,JSON parsed successfully
+full_json_record_count_matches_csv,True,"json=1382, csv=1382"
+full_json_record_count_matches_incidents,True,"json=1382, incidents=1382"
+full_json_incident_ids_unique,True,"unique=1382, rows=1382"
+full_csv_incident_ids_unique,True,"unique=1382, rows=1382"
+json_csv_incident_id_sets_match,True,"json_ids=1382, csv_ids=1382"
+canonical_priority_matches_json_csv,True,max_abs_difference=0.0
+required_nested_sections_present,True,missing=[]
+shortlist_count_matches_config,True,shortlist=15

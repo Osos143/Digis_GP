@@ -1,0 +1,10 @@
+﻿file,purpose
+rca_anomaly_incidents_full_compact.json,Primary full RCA incident payload
+rca_anomaly_incidents_shortlist_diverse.json,Diverse presentation and review shortlist
+rca_handoff_integrity_validation.csv,Machine-readable JSON/CSV/incident consistency checks
+rca_radio_limited_planning_incidents.csv,Planning-focused radio-limited incident queue
+worst_performing_cells_confirmed.csv,Confirmed cell ranking with HIGH/MEDIUM reliability
+worst_performing_cells_watchlist_low_reliability.csv,Low-reliability cell watchlist
+02_eci_location_maps/anomalous_eci_approx_locations.geojson,Dashboard-ready observation centroids with uncertainty
+01_top_anomaly_case_plots/,Representative RCA case plots with incident and peak-row priorities
+rca_json_schema_dictionary.csv,Compact JSON field dictionary

@@ -1,0 +1,50 @@
+{
+  "overall_pass": true,
+  "checks": [
+    {
+      "check": "full_json_parses",
+      "passed": true,
+      "details": "JSON parsed successfully"
+    },
+    {
+      "check": "full_json_record_count_matches_csv",
+      "passed": true,
+      "details": "json=1382, csv=1382"
+    },
+    {
+      "check": "full_json_record_count_matches_incidents",
+      "passed": true,
+      "details": "json=1382, incidents=1382"
+    },
+    {
+      "check": "full_json_incident_ids_unique",
+      "passed": true,
+      "details": "unique=1382, rows=1382"
+    },
+    {
+      "check": "full_csv_incident_ids_unique",
+      "passed": true,
+      "details": "unique=1382, rows=1382"
+    },
+    {
+      "check": "json_csv_incident_id_sets_match",
+      "passed": true,
+      "details": "json_ids=1382, csv_ids=1382"
+    },
+    {
+      "check": "canonical_priority_matches_json_csv",
+      "passed": true,
+      "details": "max_abs_difference=0.0"
+    },
+    {
+      "check": "required_nested_sections_present",
+      "passed": true,
+      "details": "missing=[]"
+    },
+    {
+      "check": "shortlist_count_matches_config",
+      "passed": true,
+      "details": "shortlist=15"
+    }
+  ]
+}

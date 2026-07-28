@@ -1,0 +1,20 @@
+{
+  "run_timestamp_utc": "2026-07-28T09:47:46.320771+00:00",
+  "pipeline_version": "final_handoff_ready_v1",
+  "statistical_rows": 32238,
+  "final_fused_handoff_rows": 3574,
+  "final_episode_count": 1429,
+  "operational_incident_count": 1382,
+  "compact_rca_incident_count": 1382,
+  "diverse_shortlist_count": 15,
+  "input_feature_table": "Throughput_Anomaly_Detection_Outputs\\01_preprocessing_cleaning\\lte_dl_feature_table_clean_pre_anomaly.parquet",
+  "input_feature_table_sha256": "0010b559111b2c20f4de907677184f2df12b09f1eb1f861dc70bd86a34e086f9",
+  "notebook_sha256": {},
+  "canonical_incident_priority_field": "incident_final_priority_0_100",
+  "rca_handoff_integrity_pass": true,
+  "top20_required_files_all_present": true,
+  "full_compact_json_sha256": "de44e80de13e44d197398b227d938017a66183a51e7c20d6d7a276292ae9d6a5",
+  "full_compact_csv_sha256": "70dc022d43df1df3389e1172f830b458192da663c32c073688baf076eb5a478f",
+  "generated_file_count": 242,
+  "output_freshness_policy": "Notebook 10 removes the generated output tree before a production run."
+}

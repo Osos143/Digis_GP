@@ -1,0 +1,5 @@
+﻿artifact,role,rows_fit,feature_view
+hgb_strict_causal_temporal_q50.joblib,PRODUCTION,31768,temporal_lag
+hgb_resource_q50.joblib,PRODUCTION,31768,resource
+gb_resource_q75_calibrated_base.joblib,PRODUCTION,31768,resource
+isolation_forest_context_only.joblib,CONTEXT_VALIDATION_ONLY,32238,residual_space
