@@ -1,6 +1,7 @@
 {
-  "run_timestamp_utc": "2026-07-27T23:38:52.869134+00:00",
+  "run_timestamp_utc": "2026-07-28T08:59:33.484964+00:00",
   "stage": "pre_anomaly_feature_engineering",
+  "pipeline_version": "final_handoff_ready_v1",
   "clean_generated_outputs_before_run": true,
   "notebook_file": "10. LTE_Throughput_PreAnomaly_Final_Optimized.ipynb",
   "notebook_sha256": "26318fa606e5736288b9d3925c644b8c74f8be8551fd7b3cf65c2c211c8d9739",
