@@ -13,8 +13,13 @@ RCA HANDOFF — START HERE
 6. 02_eci_location_maps/
    Approximate anomaly-observation centroids with uncertainty. These are not confirmed tower coordinates.
 7. 01_top_anomaly_case_plots/
-   Pre-anomaly history, shaded episode, expected references, central predictors,
-   canonical incident priority, and peak one-second row priority.
+   Static validation plots plus interactive_html/ Plotly incident views containing
+   separate opportunity and central-prediction panels, serving RSRP/RSRQ/SINR,
+   CQI/MCS/BLER, mobility, RACH, MIMO and load context. Episode shading and the
+   dashed selected peak-row line are identified in the legend.
+8. rca_required_kpi_source_dictionary.csv and rca_required_kpi_coverage_summary.csv
+   Explain which requested KPI fields are observed, derived, proxied, exported,
+   or omitted because they are null for the complete dataset.
 
 LSTM-Q50 and Isolation Forest are validation/context methods and are excluded from the compact RCA decision payload.
 RB-efficiency remains available in statistical_evidence.rb_efficiency and dominant_statistical_type; no separate RCA dashboard view is generated.

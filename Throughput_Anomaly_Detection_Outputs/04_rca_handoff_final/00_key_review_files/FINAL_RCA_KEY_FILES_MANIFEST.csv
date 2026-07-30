@@ -6,5 +6,8 @@ rca_radio_limited_planning_incidents.csv,Planning-focused radio-limited incident
 worst_performing_cells_confirmed.csv,Confirmed cell ranking with HIGH/MEDIUM reliability
 worst_performing_cells_watchlist_low_reliability.csv,Low-reliability cell watchlist
 02_eci_location_maps/anomalous_eci_approx_locations.geojson,Dashboard-ready observation centroids with uncertainty
-01_top_anomaly_case_plots/,Representative RCA case plots with incident and peak-row priorities
+01_top_anomaly_case_plots/,Representative static RCA case plots with incident and peak-row priorities
+01_top_anomaly_case_plots/interactive_html/,"Interactive Plotly incident plots with throughput, models, radio, mobility, RACH and MIMO context"
+rca_required_kpi_source_dictionary.csv,Source/derivation dictionary for all RCA-requested KPI fields
+rca_required_kpi_coverage_summary.csv,Non-null coverage and availability status for all requested KPI fields
 rca_json_schema_dictionary.csv,Compact JSON field dictionary

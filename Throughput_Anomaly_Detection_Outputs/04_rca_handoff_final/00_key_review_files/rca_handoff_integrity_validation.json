@@ -42,6 +42,11 @@
       "details": "missing=[]"
     },
     {
+      "check": "all_exported_rca_kpi_keys_present",
+      "passed": true,
+      "details": "missing=[]"
+    },
+    {
       "check": "shortlist_count_matches_config",
       "passed": true,
       "details": "shortlist=15"

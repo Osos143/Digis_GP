@@ -82,6 +82,23 @@
       "scell1_mcs_median": 23.0,
       "scell1_bler_median_pct": 34.285713
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 96.0,
+      "mimo_throughput_gain_pct": 96.0,
+      "serving_minus_best_neighbor_rsrp": 12.529790000000006,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 7.0,
+      "ue_speed_kmh": 34.739998,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 5.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 75.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -190,6 +207,23 @@
       "scell1_cqi_median": 15.0,
       "scell1_mcs_median": 27.0,
       "scell1_bler_median_pct": 0.0
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 95.0,
+      "mimo_throughput_gain_pct": 95.0,
+      "serving_minus_best_neighbor_rsrp": 14.439375500000011,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 60.5,
+      "ue_speed_kmh": 8.504627704620361,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 20.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": true,
@@ -300,6 +334,23 @@
       "scell1_mcs_median": 23.0,
       "scell1_bler_median_pct": 12.790698
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 95.83333360416665,
+      "mimo_throughput_gain_pct": 95.83333360416664,
+      "serving_minus_best_neighbor_rsrp": 2.892949999999999,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 2.0,
+      "ho_dwell_time_s": 2.0,
+      "ue_speed_kmh": 9.7560005,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 5.0,
+      "rach_access_delay_ms": 5.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 52.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -408,6 +459,23 @@
       "scell1_cqi_median": 12.0,
       "scell1_mcs_median": 27.0,
       "scell1_bler_median_pct": 8.084164
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 100.0,
+      "mimo_throughput_gain_pct": 100.0,
+      "serving_minus_best_neighbor_rsrp": -9.772565,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 0.0,
+      "ue_speed_kmh": 2.655512809753418,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 11.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 94.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": false,
@@ -518,6 +586,23 @@
       "scell1_mcs_median": 13.0,
       "scell1_bler_median_pct": 8.510638
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 88.82352911176473,
+      "mimo_throughput_gain_pct": 88.82352911176471,
+      "serving_minus_best_neighbor_rsrp": 6.876964999999998,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 2.0,
+      "ho_dwell_time_s": 4.0,
+      "ue_speed_kmh": 11.782543182373049,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 10.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 75.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -626,6 +711,23 @@
       "scell1_cqi_median": 14.5,
       "scell1_mcs_median": 25.5,
       "scell1_bler_median_pct": 5.93425185
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 99.61538460307693,
+      "mimo_throughput_gain_pct": 99.61538460307692,
+      "serving_minus_best_neighbor_rsrp": 7.0199619999999925,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 66.5,
+      "ue_speed_kmh": 1.8338580098377875e-14,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": null,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 79.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": false,
@@ -736,6 +838,23 @@
       "scell1_mcs_median": 26.0,
       "scell1_bler_median_pct": 15.384615
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 95.0,
+      "mimo_throughput_gain_pct": 95.0,
+      "serving_minus_best_neighbor_rsrp": 9.922815999999997,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 56.0,
+      "ue_speed_kmh": 3.990217924118042,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 72.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": true,
       "session_p10": true,
@@ -844,6 +963,23 @@
       "scell1_cqi_median": null,
       "scell1_mcs_median": 12.0,
       "scell1_bler_median_pct": 0.0
+    },
+    "rca_required_kpis": {
+      "lte_rank": null,
+      "mimo_layer_utilization_pct": null,
+      "mimo_throughput_gain_pct": null,
+      "serving_minus_best_neighbor_rsrp": 5.131249999999994,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 2.0,
+      "ho_dwell_time_s": 0.0,
+      "ue_speed_kmh": 19.331999,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 5.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 72.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": false,
@@ -954,6 +1090,23 @@
       "scell1_mcs_median": 19.0,
       "scell1_bler_median_pct": 4.1666665
     },
+    "rca_required_kpis": {
+      "lte_rank": 1.0,
+      "mimo_layer_utilization_pct": 25.714286285714316,
+      "mimo_throughput_gain_pct": 25.714286285714326,
+      "serving_minus_best_neighbor_rsrp": 10.11120000000001,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 22.0,
+      "ue_speed_kmh": 12.110092163085938,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": 3.0,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 74.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -1062,6 +1215,23 @@
       "scell1_cqi_median": 15.0,
       "scell1_mcs_median": 23.0,
       "scell1_bler_median_pct": 5.9375801
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 83.33333433333331,
+      "mimo_throughput_gain_pct": 83.33333433333333,
+      "serving_minus_best_neighbor_rsrp": 20.596466000000007,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 27.0,
+      "ue_speed_kmh": 8.65987777709961,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": null,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 26.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": true,
@@ -1172,6 +1342,23 @@
       "scell1_mcs_median": 24.0,
       "scell1_bler_median_pct": 6.0913706
     },
+    "rca_required_kpis": {
+      "lte_rank": 1.0,
+      "mimo_layer_utilization_pct": 55.0,
+      "mimo_throughput_gain_pct": 55.00000000000001,
+      "serving_minus_best_neighbor_rsrp": 16.560051,
+      "near_handover_mobility_flag": false,
+      "handover_mobility_count_pm5s": 0.0,
+      "ho_dwell_time_s": 40.0,
+      "ue_speed_kmh": 22.896,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 0.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": null,
+      "cell_prb_utilization_pct": 15.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": true,
       "session_p10": true,
@@ -1280,6 +1467,23 @@
       "scell1_cqi_median": 14.0,
       "scell1_mcs_median": 24.0,
       "scell1_bler_median_pct": 3.2
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 2.5,
+      "mimo_throughput_gain_pct": 2.499999999999991,
+      "serving_minus_best_neighbor_rsrp": 0.9196400000000011,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 4.0,
+      "ho_dwell_time_s": 1.0,
+      "ue_speed_kmh": 41.616,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 10.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 65.0,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": false,
@@ -1390,6 +1594,23 @@
       "scell1_mcs_median": 25.0,
       "scell1_bler_median_pct": 7.894737
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 93.92857093928572,
+      "mimo_throughput_gain_pct": 93.9285709392857,
+      "serving_minus_best_neighbor_rsrp": -0.2199549999999988,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 2.0,
+      "ho_dwell_time_s": 1.0,
+      "ue_speed_kmh": 5.269598007202148,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 11.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 94.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -1499,6 +1720,23 @@
       "scell1_mcs_median": 18.0,
       "scell1_bler_median_pct": 4.0590405
     },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 64.04762,
+      "mimo_throughput_gain_pct": 64.04762,
+      "serving_minus_best_neighbor_rsrp": 2.6026860000000056,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 4.0,
+      "ho_dwell_time_s": 0.0,
+      "ue_speed_kmh": 12.320135116577148,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 10.0,
+      "rach_access_delay_ms": 4.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 84.5,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
+    },
     "statistical_evidence": {
       "global_p10": false,
       "session_p10": false,
@@ -1607,6 +1845,23 @@
       "scell1_cqi_median": 6.5,
       "scell1_mcs_median": 10.5,
       "scell1_bler_median_pct": 11.4501475
+    },
+    "rca_required_kpis": {
+      "lte_rank": 2.0,
+      "mimo_layer_utilization_pct": 89.5,
+      "mimo_throughput_gain_pct": 89.5,
+      "serving_minus_best_neighbor_rsrp": -13.599742999999997,
+      "near_handover_mobility_flag": true,
+      "handover_mobility_count_pm5s": 4.0,
+      "ho_dwell_time_s": 18.0,
+      "ue_speed_kmh": 30.331685028076173,
+      "near_rach_failure_flag": false,
+      "rach_attempt_count": 10.0,
+      "rach_access_delay_ms": 5.0,
+      "rach_failure_rate_pct": 0.0,
+      "cell_prb_utilization_pct": 135.66666666666669,
+      "eighbor_cell_availability": 100.0,
+      "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
       "global_p10": false,
