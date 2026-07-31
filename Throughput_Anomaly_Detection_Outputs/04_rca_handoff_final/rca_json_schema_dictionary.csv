@@ -11,7 +11,7 @@ throughput.*,Impact,"Actual, expected, comparison-source, gap, and local-drop ev
 cell_performance_context.*,Cell ranking,Cell/PCI badness ranks and compact KPI context
 radio_kpis.*,Radio evidence,RSRP/RSRQ/SINR/CQI/MCS/BLER
 resource_kpis.*,Resource evidence,RB demand and throughput efficiency
-rca_required_kpis.*,RCA requested KPIs,"Observed/derived RCA mobility, RACH, MIMO, neighbor and load fields; dataset-wide all-null network counters are omitted"
+rca_required_kpis.*,RCA requested KPIs,"Observed/derived mobility, RACH reason/rate, MIMO, neighbor and load fields; only canonical neighbor_cell_availability is exported and dataset-wide all-null counters are omitted"
 ca_context.*,CA evidence,Carrier aggregation and SCell context
 statistical_evidence.*,Detector evidence,P10/IQR/MAD/temporal/P75/RB-efficiency/radio evidence
 production_ml_evidence.*,ML evidence,Selected production HGB/Q75 evidence; LSTM and Isolation Forest excluded
@@ -23,12 +23,12 @@ rca_required_kpis.near_handover_mobility_flag,RCA requested KPI,True when any in
 rca_required_kpis.handover_mobility_count_pm5s,RCA requested KPI,Maximum mobility-event count in the symmetric ±5-second context window
 rca_required_kpis.ho_dwell_time_s,RCA requested KPI,Incident median serving-cell dwell elapsed at anomaly samples
 rca_required_kpis.ue_speed_kmh,RCA requested KPI,Incident median UE speed in km/h
-rca_required_kpis.near_rach_failure_flag,RCA requested KPI,True when any incident row is near a RACH failure
-rca_required_kpis.rach_attempt_count,RCA requested KPI,Maximum incident-row RACH attempt count; window source is not summed to avoid overlap double counting
+rca_required_kpis.near_rach_failure_flag,RCA requested KPI,True when any incident row is within the configured RACH-failure context window
+rca_required_kpis.rach_attempt_count,RCA requested KPI,Maximum incident-row RACH attempt count; overlapping context windows are not summed
 rca_required_kpis.rach_access_delay_ms,RCA requested KPI,Incident median RACH access latency
-rca_required_kpis.rach_failure_rate_pct,RCA requested KPI,Incident median local RACH failure rate
+rca_required_kpis.rach_failure_rate_pct,RCA requested KPI,Incident median RACH event-window failure rate; not derived from rach_result text
+rca_required_kpis.rach_reason,RCA requested KPI,Distinct non-null RACH reasons observed inside the operational incident
 rca_required_kpis.cell_prb_utilization_pct,RCA requested KPI,UE-side resource-load proxy; values above 100 indicate aggregation/capacity-estimate mismatch and are not a true cell PM counter
-rca_required_kpis.eighbor_cell_availability,RCA requested KPI,Backward-compatible alias for the requested field spelling
 rca_required_kpis.neighbor_cell_availability,RCA requested KPI,Percentage of incident rows with at least one measured LTE neighbor
 dominant_statistical_type,Detection,Dominant statistical type used for traceability; may differ from the primary presentation case
 dominant_ml_type,Detection,Dominant production-ML type or normal

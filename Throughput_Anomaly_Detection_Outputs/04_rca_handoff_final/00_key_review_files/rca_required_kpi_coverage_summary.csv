@@ -10,11 +10,11 @@ ue_speed_kmh,1382,1382,100.0,observed,speed,True,
 near_rach_failure_flag,1382,1382,100.0,derived_event_context,near_rach_failure_flag,True,
 rach_attempt_count,1382,1382,100.0,derived_window_count,rach_attempt_count_pm10s,True,
 rach_access_delay_ms,1016,1382,73.51664254703329,observed,rach_latency,True,
-rach_failure_rate_pct,867,1382,62.73516642547033,derived,100*rach_failure_count_pm10s/rach_attempt_count_pm10s,True,
+rach_failure_rate_pct,867,1382,62.73516642547033,derived_event_window_rate,100*rach_failure_count_pm10s/rach_attempt_count_pm10s,True,
+rach_reason,1382,1382,100.0,observed_categorical,rach_reason,True,
 cell_prb_utilization_pct,1382,1382,100.0,proxy,UE-observed rb_utilization_pct (not clipped at 100),True,
 active_user_count,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
 cell_traffic_volume_mb,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
-eighbor_cell_availability,1382,1382,100.0,alias,neighbor_cell_availability,True,
 neighbor_cell_availability,1382,1382,100.0,derived,neighbor_count > 0,True,
 neighbor_cell_traffic_delta,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
 cross_cell_ue_overlap,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset

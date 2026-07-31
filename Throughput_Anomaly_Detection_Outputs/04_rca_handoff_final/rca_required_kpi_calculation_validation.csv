@@ -15,3 +15,5 @@ active_user_count_omitted_when_all_null,True,Field excluded from compact JSON/CS
 cell_traffic_volume_mb_omitted_when_all_null,True,Field excluded from compact JSON/CSV because it is null for the complete dataset
 cross_cell_ue_overlap_omitted_when_all_null,True,Field excluded from compact JSON/CSV because it is null for the complete dataset
 neighbor_cell_traffic_delta_omitted_when_all_null,True,Field excluded from compact JSON/CSV because it is null for the complete dataset
+single_canonical_neighbor_availability_key,True,Only canonical neighbor_cell_availability is exported
+rach_reason_available_for_json_contract,True,non_null_rows=21813

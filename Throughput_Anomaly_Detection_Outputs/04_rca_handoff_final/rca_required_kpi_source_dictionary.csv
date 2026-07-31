@@ -7,14 +7,14 @@ rca_required_kpis.near_handover_mobility_flag,near_handover_mobility_flag,derive
 rca_required_kpis.handover_mobility_count_pm5s,handover_mobility_count_pm5s,derived_event_context,handover_mobility_count_pm5s,Maximum mobility-event count in the symmetric ±5-second context window,True,
 rca_required_kpis.ho_dwell_time_s,ho_dwell_time_s,derived,seconds since current serving_cell_key serving segment began,Incident median serving-cell dwell elapsed at anomaly samples,True,
 rca_required_kpis.ue_speed_kmh,ue_speed_kmh,observed,speed,Incident median UE speed in km/h,True,
-rca_required_kpis.near_rach_failure_flag,near_rach_failure_flag,derived_event_context,near_rach_failure_flag,True when any incident row is near a RACH failure,True,
-rca_required_kpis.rach_attempt_count,rach_attempt_count,derived_window_count,rach_attempt_count_pm10s,Maximum incident-row RACH attempt count; window source is not summed to avoid overlap double counting,True,
+rca_required_kpis.near_rach_failure_flag,near_rach_failure_flag,derived_event_context,near_rach_failure_flag,True when any incident row is within the configured RACH-failure context window,True,
+rca_required_kpis.rach_attempt_count,rach_attempt_count,derived_window_count,rach_attempt_count_pm10s,Maximum incident-row RACH attempt count; overlapping context windows are not summed,True,
 rca_required_kpis.rach_access_delay_ms,rach_access_delay_ms,observed,rach_latency,Incident median RACH access latency,True,
-rca_required_kpis.rach_failure_rate_pct,rach_failure_rate_pct,derived,100*rach_failure_count_pm10s/rach_attempt_count_pm10s,Incident median local RACH failure rate,True,
+rca_required_kpis.rach_failure_rate_pct,rach_failure_rate_pct,derived_event_window_rate,100*rach_failure_count_pm10s/rach_attempt_count_pm10s,Incident median RACH event-window failure rate; not derived from rach_result text,True,
+rca_required_kpis.rach_reason,rach_reason,observed_categorical,rach_reason,Distinct non-null RACH reasons observed inside the operational incident,True,
 rca_required_kpis.cell_prb_utilization_pct,cell_prb_utilization_pct,proxy,UE-observed rb_utilization_pct (not clipped at 100),UE-side resource-load proxy; values above 100 indicate aggregation/capacity-estimate mismatch and are not a true cell PM counter,True,
 rca_required_kpis.active_user_count,active_user_count,unavailable,,Incident median network-side active-user count,False,Omitted because the KPI is null for the complete dataset
 rca_required_kpis.cell_traffic_volume_mb,cell_traffic_volume_mb,unavailable,,Incident median/available cell traffic-volume counter,False,Omitted because the KPI is null for the complete dataset
 rca_required_kpis.neighbor_cell_traffic_delta,neighbor_cell_traffic_delta,unavailable,,Incident median serving-versus-neighbor traffic delta,False,Omitted because the KPI is null for the complete dataset
 rca_required_kpis.cross_cell_ue_overlap,cross_cell_ue_overlap,unavailable,,Incident median cross-cell UE overlap,False,Omitted because the KPI is null for the complete dataset
 rca_required_kpis.neighbor_cell_availability,neighbor_cell_availability,derived,neighbor_count > 0,Percentage of incident rows with at least one measured LTE neighbor,True,
-rca_required_kpis.eighbor_cell_availability,eighbor_cell_availability,alias,neighbor_cell_availability,Backward-compatible alias for the requested field spelling,True,

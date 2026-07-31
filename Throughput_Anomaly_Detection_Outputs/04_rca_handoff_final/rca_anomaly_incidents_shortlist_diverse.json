@@ -95,8 +95,10 @@
       "rach_attempt_count": 5.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 75.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -221,8 +223,10 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": null,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 20.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -347,8 +351,10 @@
       "rach_attempt_count": 5.0,
       "rach_access_delay_ms": 5.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 52.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -473,8 +479,10 @@
       "rach_attempt_count": 11.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Radio link Failure"
+      ],
       "cell_prb_utilization_pct": 94.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -599,8 +607,10 @@
       "rach_attempt_count": 10.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 75.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -725,8 +735,8 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": null,
       "rach_failure_rate_pct": null,
+      "rach_reason": [],
       "cell_prb_utilization_pct": 79.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -851,8 +861,10 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": null,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 72.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -977,8 +989,10 @@
       "rach_attempt_count": 5.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 72.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1103,8 +1117,10 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": 3.0,
       "rach_failure_rate_pct": null,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 74.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1229,8 +1245,8 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": null,
       "rach_failure_rate_pct": null,
+      "rach_reason": [],
       "cell_prb_utilization_pct": 26.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1355,8 +1371,10 @@
       "rach_attempt_count": 0.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": null,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 15.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1481,8 +1499,10 @@
       "rach_attempt_count": 10.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 65.0,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1607,8 +1627,10 @@
       "rach_attempt_count": 11.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 94.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1733,8 +1755,10 @@
       "rach_attempt_count": 10.0,
       "rach_access_delay_ms": 4.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 84.5,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
@@ -1859,8 +1883,10 @@
       "rach_attempt_count": 10.0,
       "rach_access_delay_ms": 5.0,
       "rach_failure_rate_pct": 0.0,
+      "rach_reason": [
+        "Handover"
+      ],
       "cell_prb_utilization_pct": 135.66666666666669,
-      "eighbor_cell_availability": 100.0,
       "neighbor_cell_availability": 100.0
     },
     "statistical_evidence": {
