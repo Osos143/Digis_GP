@@ -1,0 +1,854 @@
+{
+  "knowledge_base": "LTE DL Throughput Degradation -- KPI Detection Rules",
+  "version": "9.0",
+  "linked_files": [
+    "causes.json",
+    "solutions.json"
+  ],
+  "engine_note": "This version is genuinely machine-executable, not documentation. classify_incidents.py loads this file and evaluates gate_conditions/supporting_evidence directly -- no thresholds are hardcoded in Python anymore. Condition trees use {'field','op','value'} leaves combined via {'all':[...]}, {'any':[...]}, {'not': ...}. 'not_computable': true always evaluates False. Fields referenced here are the flat feature names computed once per incident (see FEATURE_FIELDS in classify_incidents.py) -- not raw incidents-file paths, since several (own_radio_normal, mimo_pattern, not_mobility, etc.) are derived combinations needed by more than one rule.",
+  "id_scheme": "Each rule's id matches the same id (or parent_id, for a subcategory's gate) in causes.json and solutions.json.",
+  "kpi_threshold_reference": {
+    "rsrp_dbm": {
+      "poor": "< -110",
+      "fair": "[-110, -100)",
+      "good": "[-100, -90)",
+      "excellent": ">= -90"
+    },
+    "sinr_db": {
+      "poor": "< 0",
+      "fair": "[0, 10)",
+      "good": "[10, 15)",
+      "excellent": ">= 15"
+    },
+    "rsrq_db": {
+      "poor": "< -20",
+      "fair": "[-20, -15)",
+      "good": "[-15, -10)",
+      "excellent": ">= -10"
+    },
+    "cqi_0_15": {
+      "poor_qpsk": "1-6",
+      "fair_16qam": "7-9",
+      "good_64_256qam": "10-15"
+    },
+    "mcs_0_28": {
+      "poor": "0-9",
+      "fair": "10-16",
+      "good": "17-28+"
+    },
+    "bler_pct": {
+      "high": "> 10"
+    },
+    "prb_rb_utilization_pct": {
+      "congested": ">= 80"
+    },
+    "cell_edge_rsrp_dbm": {
+      "threshold": "< -100"
+    },
+    "ping_pong_dwell_time_s": {
+      "threshold": "< 5"
+    },
+    "handover_a3_gap_db": {
+      "threshold": "< -6"
+    },
+    "high_speed_kmh": {
+      "threshold": ">= 50"
+    },
+    "outage_near_zero_throughput_mbps": {
+      "threshold": "< 0.05 (absolute floor, not a percentile)"
+    },
+    "universal_demand_precondition_mbps": {
+      "threshold": "expected_tp > 0.1 -- checked before every category"
+    }
+  },
+  "evaluation_instructions": [
+    "Evaluate rules in priority order ascending (already sorted below).",
+    "Universal precondition (demand_confirmed_broad) is checked once, outside this rule list, before any rule is evaluated.",
+    "For a plain rule: evaluate gate_conditions with gate_logic (ALL/ANY). If satisfied, the rule fires with parent_id as the result.",
+    "For a rule with 'alternatives' (Mobility's C08 only): first confirm the outer gate_conditions, then evaluate each entry in 'alternatives' IN ORDER; the first one whose own condition is true becomes the result id (not the parent_id) -- these are peer patterns, not parent+evidence.",
+    "Once a rule/alternative fires, independently evaluate every 'supporting_evidence' entry and attach the ids of every one that is also true.",
+    "Stop at the first rule (in priority order) that fires. If nothing fires through C13, check C14 then C15."
+  ],
+  "rules": [
+    {
+      "parent_id": "C01",
+      "priority": 1,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "demand_confirmed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "rb_usage",
+          "op": ">=",
+          "value": 40
+        },
+        {
+          "field": "underperform_80pct",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "cqi",
+          "op": ">=",
+          "value": 7
+        },
+        {
+          "field": "mcs",
+          "op": ">=",
+          "value": 10
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C01_a",
+          "detection_conditions": {
+            "field": "cell_prb_util",
+            "op": ">=",
+            "value": 80
+          }
+        },
+        {
+          "id": "C01_b",
+          "detection_conditions": {
+            "field": "rank",
+            "op": "==",
+            "value": 1
+          }
+        },
+        {
+          "id": "C01_c",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no active_user_count field; no universal fixed threshold either"
+          }
+        },
+        {
+          "id": "C01_d",
+          "detection_conditions": {
+            "field": "carrier_count",
+            "op": "==",
+            "value": 1
+          }
+        },
+        {
+          "id": "C01_e",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no lte_bandwidth_dl field in this incidents file"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C02",
+      "priority": 1,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "demand_confirmed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "rb_usage",
+          "op": "<",
+          "value": 40
+        },
+        {
+          "field": "tp_per_rb",
+          "op": ">",
+          "value": 0.05
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C02_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no buffer status report field"
+          }
+        },
+        {
+          "id": "C02_b",
+          "detection_conditions": {
+            "field": "mcs",
+            "op": "<",
+            "value": 10
+          }
+        },
+        {
+          "id": "C02_c",
+          "detection_conditions": {
+            "field": "sinr",
+            "op": "<",
+            "value": 0
+          }
+        },
+        {
+          "id": "C02_d",
+          "detection_conditions": {
+            "field": "bler",
+            "op": ">",
+            "value": 10
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C03",
+      "priority": 2,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "rsrp",
+          "op": "<",
+          "value": -110
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C03_a",
+          "detection_conditions": {
+            "field": "rsrp",
+            "op": "<",
+            "value": -110
+          }
+        },
+        {
+          "id": "C03_b",
+          "detection_conditions": {
+            "field": "rsrq",
+            "op": "<",
+            "value": -20
+          }
+        },
+        {
+          "id": "C03_c",
+          "detection_conditions": {
+            "field": "rsrp",
+            "op": "<",
+            "value": -100
+          }
+        },
+        {
+          "id": "C03_d",
+          "detection_conditions": {
+            "field": "mcs",
+            "op": "<",
+            "value": 10
+          }
+        },
+        {
+          "id": "C03_e",
+          "detection_conditions": {
+            "field": "bler",
+            "op": ">",
+            "value": 10
+          }
+        },
+        {
+          "id": "C03_f",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "needs repeated passes at this location, not available per-incident"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C04",
+      "priority": 2,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "rsrp",
+          "op": ">=",
+          "value": -110
+        },
+        {
+          "field": "sinr",
+          "op": "<",
+          "value": 0
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C04_a",
+          "detection_conditions": {
+            "field": "sinr",
+            "op": "<",
+            "value": 0
+          }
+        },
+        {
+          "id": "C04_b",
+          "detection_conditions": {
+            "field": "cqi",
+            "op": "<=",
+            "value": 6
+          }
+        },
+        {
+          "id": "C04_c",
+          "detection_conditions": {
+            "field": "rsrq",
+            "op": "<",
+            "value": -20
+          }
+        },
+        {
+          "id": "C04_d",
+          "detection_conditions": {
+            "field": "bler",
+            "op": ">",
+            "value": 10
+          }
+        },
+        {
+          "id": "C04_e",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires uplink/downlink noise-floor measurement"
+          }
+        },
+        {
+          "id": "C04_f",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no interference-source classification exists"
+          }
+        },
+        {
+          "id": "C04_g",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires cell coverage-boundary/azimuth configuration"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C05",
+      "priority": 3,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "rlf_present",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "own_radio_normal",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "not_mobility",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C05_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires OSS redirection/cause-code log"
+          }
+        },
+        {
+          "id": "C05_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires eNodeB power-amplifier alarm telemetry"
+          }
+        },
+        {
+          "id": "C05_c",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires eNodeB DL power-configuration data"
+          }
+        },
+        {
+          "id": "C05_d",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires RRC release cause-code log"
+          }
+        },
+        {
+          "id": "C05_e",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires eNodeB Neighbor Relation Table"
+          }
+        },
+        {
+          "id": "C05_f",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires eNodeB Neighbor Relation Table"
+          }
+        },
+        {
+          "id": "C05_g",
+          "detection_conditions": {
+            "field": "cell_prb_util",
+            "op": "<",
+            "value": 80
+          }
+        },
+        {
+          "id": "C05_h",
+          "detection_conditions": {
+            "all": [
+              {
+                "field": "cqi",
+                "op": ">=",
+                "value": 7
+              },
+              {
+                "field": "mcs",
+                "op": ">=",
+                "value": 10
+              }
+            ]
+          }
+        },
+        {
+          "id": "C05_i",
+          "detection_conditions": {
+            "field": "bler",
+            "op": "<=",
+            "value": 10
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C06",
+      "priority": 3,
+      "gate_logic": "ANY",
+      "gate_conditions": [
+        {
+          "all": [
+            {
+              "field": "not_mobility",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "not_mimo",
+              "op": "==",
+              "value": true
+            },
+            {
+              "any": [
+                {
+                  "field": "near_zero_tp",
+                  "op": "==",
+                  "value": true
+                },
+                {
+                  "field": "session_collapse",
+                  "op": "==",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "all": [
+            {
+              "field": "not_mobility",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "not_mimo",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "own_radio_normal",
+              "op": "==",
+              "value": true
+            },
+            {
+              "any": [
+                {
+                  "field": "cell_prb_util_spike",
+                  "op": "==",
+                  "value": true
+                },
+                {
+                  "field": "neighbor_avail_drop",
+                  "op": "==",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C06_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires OSS energy-saving/sleep-mode flag"
+          }
+        },
+        {
+          "id": "C06_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires BBU/RRU/backhaul hardware alarm data"
+          }
+        },
+        {
+          "id": "C06_c",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires MME/paging-channel counters"
+          }
+        },
+        {
+          "id": "C06_d",
+          "detection_conditions": {
+            "field": "cell_prb_util_spike",
+            "op": "==",
+            "value": true
+          }
+        },
+        {
+          "id": "C06_e",
+          "detection_conditions": {
+            "field": "neighbor_avail_drop",
+            "op": "==",
+            "value": true
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C08",
+      "priority": 4,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "near_ho",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "alternatives": [
+        {
+          "id": "C08_a",
+          "gate_conditions": [
+            {
+              "field": "ho_count_pm5s",
+              "op": ">=",
+              "value": 10.0
+            },
+            {
+              "field": "ho_dwell",
+              "op": "<",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "id": "C08_c",
+          "gate_conditions": [
+            {
+              "field": "gap_rsrp",
+              "op": "<",
+              "value": -6
+            }
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C08_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "recurrence across >=5 episodes at the same site needs cross-incident aggregation, not done in this per-incident pass"
+          }
+        },
+        {
+          "id": "C08_d",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires target-cell admission/rejection event log"
+          }
+        },
+        {
+          "id": "C08_e",
+          "detection_conditions": {
+            "field": "ue_speed",
+            "op": ">=",
+            "value": 50
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C09",
+      "priority": 4,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "near_rach_fail",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C09_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires eNodeB uplink RSSI/noise-rise measurement"
+          }
+        },
+        {
+          "id": "C09_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires RACH transmit-power logging"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C10",
+      "priority": 5,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "sinr",
+          "op": ">=",
+          "value": 15
+        },
+        {
+          "field": "rank",
+          "op": "==",
+          "value": 1
+        }
+      ],
+      "sub_tag_conditions": {
+        "with_good_rsrp": {
+          "field": "rsrp",
+          "op": ">=",
+          "value": -100
+        }
+      },
+      "supporting_evidence": [
+        {
+          "id": "C10_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires configured Transmission Mode from RRC signaling"
+          }
+        },
+        {
+          "id": "C10_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires antenna-system VSWR/feeder alarm"
+          }
+        },
+        {
+          "id": "C10_c",
+          "detection_conditions": {
+            "field": "rank",
+            "op": "==",
+            "value": 1
+          }
+        },
+        {
+          "id": "C10_d",
+          "detection_conditions": {
+            "field": "cell_bad_rank",
+            "op": "==",
+            "value": true
+          }
+        },
+        {
+          "id": "C10_e",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires per-band CA layer configuration detail"
+          }
+        },
+        {
+          "id": "C10_f",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires per-band CA layer configuration detail"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C11",
+      "priority": 6,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "ca_active",
+          "op": "==",
+          "value": true
+        },
+        {
+          "any": [
+            {
+              "field": "scell_rsrp",
+              "op": "<",
+              "value": -110
+            },
+            {
+              "field": "scell_sinr",
+              "op": "<",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C11_a",
+          "detection_conditions": {
+            "field": "scell_sinr",
+            "op": "<",
+            "value": 0
+          }
+        },
+        {
+          "id": "C11_b",
+          "detection_conditions": {
+            "field": "scell_rsrp",
+            "op": "<",
+            "value": -110
+          }
+        },
+        {
+          "id": "C11_c",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no interference-source classification exists"
+          }
+        },
+        {
+          "id": "C11_d",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no scell1_rb_count field"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C12",
+      "priority": 6,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "carrier_count",
+          "op": "==",
+          "value": 1
+        },
+        {
+          "field": "episode_max_carrier_count",
+          "op": ">=",
+          "value": 2
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C12_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no within-episode timeline in this per-incident aggregate"
+          }
+        },
+        {
+          "id": "C12_b",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "no within-episode timeline in this per-incident aggregate"
+          }
+        },
+        {
+          "id": "C12_c",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires SCell release MAC CE or RRC connection-drop event log"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C13",
+      "priority": 6,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "ca_active",
+          "op": "==",
+          "value": false
+        },
+        {
+          "field": "carrier_count",
+          "op": "==",
+          "value": 1
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "id": "C13_a",
+          "detection_conditions": {
+            "not_computable": true,
+            "reason": "requires SCell activation MAC CE event log"
+          }
+        }
+      ]
+    },
+    {
+      "parent_id": "C14",
+      "priority": 7,
+      "gate_logic": "ANY",
+      "gate_conditions": [
+        {
+          "field": "bler",
+          "op": ">",
+          "value": 10
+        },
+        {
+          "field": "cqi",
+          "op": "<=",
+          "value": 6
+        }
+      ]
+    },
+    {
+      "parent_id": "C15",
+      "priority": 7,
+      "gate_logic": "ANY",
+      "gate_conditions": [
+        {
+          "field": "fallback",
+          "op": "==",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,625 @@
+{
+  "knowledge_base": "LTE DL Throughput Degradation -- Causes",
+  "version": "8.0",
+  "linked_files": {
+    "kpi_rules": "kpi_rules.json -- join on id (or parent_id) for detection conditions",
+    "solutions": "solutions.json -- join on id for recommended fix and standards reference"
+  },
+  "reasoning_flow": {
+    "description": "How to determine the root cause(s) for one specific anomaly, in order.",
+    "steps": [
+      "1. Priority 1 (Resource Limitation): Cell Congestion (C01), then Poor Spectral Efficiency (C02).",
+      "2. Priority 2 (Coverage & Radio Quality): Weak Serving Cell (C03), then Interference (C04).",
+      "3. Priority 3 (Outage / eNodeB Fault): Serving Cell / eNodeB Fault (C05, requires a declared RLF -- not yet reachable without rach_reason), then Outage / Unattributed (C06, a throughput-collapse proxy that does NOT distinguish serving-cell vs neighbor-cell fault).",
+      "4. Priority 4 (Mobility): Handover Problem (C08), then Access Problem (C09).",
+      "5. If any subcategory in steps 1-4 matched, the anomaly's root cause is that subcategory's id, plus every supporting-evidence id that also matched. Stop.",
+      "6. If nothing matched in 1-4: Priority 5 MIMO (C10), then Priority 6 Carrier Aggregation: Weak Secondary Cell (C11), SCell Release & Deactivation (C12), CA Inactive/Disable (C13). Stop at first match.",
+      "7. If nothing matched through C13, assign C14 (Radio-limited) if it holds, else C15 (Inconclusive) -- the definitive last-resort reason."
+    ]
+  },
+  "evaluation_mode_definitions": {
+    "MATCH_ALL_KPI_CONDITIONS": "The subcategory's own gate requires every one of its defining conditions to hold at once.",
+    "MATCH_ANY_KPI_CONDITION": "The subcategory holds several independent alternative explanations; any one is sufficient.",
+    "note": "Regardless of mode, supporting-evidence ids are always evaluated independently once the gate has fired, and collected as supporting_evidence. They never gate the parent themselves."
+  },
+  "output_display_rule": {
+    "category_field": "For every cause, 'category' in the output is this cause's broad taxonomy category (e.g. 'Resource Limitation', 'Coverage & Radio Quality') -- with one deliberate exception: for C04 (Interference), 'category' is instead set to the fuller descriptive label 'Radio Link Failure (Interference)', so category and cause_name aren't near-duplicates for that one entry.",
+    "cause_name_field": "The subcategory's clean short name (e.g. 'Weak Serving Cell', 'Interference', 'Cell Congestion'), not the more technical internal headline name."
+  },
+  "priority_categories": [
+    {
+      "category": "Resource Limitation",
+      "priority": 1,
+      "subcategories": [
+        {
+          "subcategory": "Cell Congestion",
+          "parent_id": "C01",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C01",
+              "name": "PRB Allocation / Capacity-Limited",
+              "kpi_computable": true,
+              "reason_template": "This anomaly is capacity-limited: the UE had confirmed download demand, was using {rb_utilization_pct}% of available RB capacity across {carrier_count} carrier(s), falling {throughput_gap_p75} Mbps below expected throughput -- with link quality still healthy (CQI {lte_cqi}, MCS {lte_mcs}), confirming the shortfall is a resource ceiling, not a radio problem."
+            },
+            {
+              "id": "C01_a",
+              "name": "High Load",
+              "kpi_computable": true,
+              "reason_template": "Cell PRB utilization ({cell_prb_utilization_pct}%) exceeded the congestion threshold."
+            },
+            {
+              "id": "C01_b",
+              "name": "Low Rank",
+              "kpi_computable": true,
+              "cross_check_note": "Also the defining signature of C10 (MIMO Rank Fallback). If this is the dominant supporting evidence with only borderline utilization, check C10 before treating this purely as capacity congestion.",
+              "reason_template": "Average Rank Indicator ({avg_rank}) restricted throughput under high resource allocation."
+            },
+            {
+              "id": "C01_c",
+              "name": "High Active Users",
+              "kpi_computable": false,
+              "note": "No active_user_count field exists in any dataset used so far, and there is no universal fixed threshold either -- published congestion studies show the connected-user count at which a cell hits 80% PRB utilization varies nearly 2x cell-to-cell. Would need a per-cell relative baseline, not a fixed number.",
+              "reason_template": "High concurrent active user count ({active_user_count}) competing for PRBs."
+            },
+            {
+              "id": "C01_d",
+              "name": "No CA",
+              "kpi_computable": true,
+              "cross_check_note": "Also the defining signature of C13 (CA Inactive/Disable). If this is the dominant supporting evidence with only borderline utilization, check C13 before treating this purely as capacity congestion.",
+              "reason_template": "Carrier Aggregation unavailable/unconfigured to distribute resource load."
+            },
+            {
+              "id": "C01_e",
+              "name": "Low BW",
+              "kpi_computable": true,
+              "reason_template": "Low operational channel bandwidth ({dl_bandwidth_mhz} MHz) bottlenecking overall capacity."
+            }
+          ]
+        },
+        {
+          "subcategory": "Poor Spectral Efficiency",
+          "parent_id": "C02",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C02",
+              "name": "Scheduler Under-Grant",
+              "kpi_computable": true,
+              "reason_template": "Confirmed demand with only {rb_utilization_pct}% RB utilization despite healthy throughput-per-RB -- the link is fine, the scheduler withheld RBs it could have granted."
+            },
+            {
+              "id": "C02_a",
+              "name": "Low Traffic / Demand / Low Buffering Status",
+              "kpi_computable": true,
+              "reason_template": "Buffer status reports indicate low user payload demand, resulting in under-scheduling."
+            },
+            {
+              "id": "C02_b",
+              "name": "Low MCS",
+              "kpi_computable": true,
+              "reason_template": "Modulation and Coding Scheme ({dl_mcs}) under-allocated relative to link capability."
+            },
+            {
+              "id": "C02_c",
+              "name": "Low SINR",
+              "kpi_computable": true,
+              "reason_template": "Low SINR ({lte_sinr} dB) driving conservative link adaptation."
+            },
+            {
+              "id": "C02_d",
+              "name": "High BLER",
+              "kpi_computable": true,
+              "reason_template": "High Block Error Rate ({lte_bler}%) forcing scheduler down-grants."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Coverage & Radio Quality",
+      "priority": 2,
+      "subcategories": [
+        {
+          "subcategory": "Weak Serving Cell",
+          "parent_id": "C03",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C03",
+              "name": "Weak Serving Cell",
+              "kpi_computable": true,
+              "reason_template": "Serving RSRP was {lte_rsrp} dBm, in the Poor coverage band -- weak signal alone is sufficient to explain the degradation; RSRQ, MCS, and BLER below are consequences of it, not independent gates."
+            },
+            {
+              "id": "C03_a",
+              "name": "Low RSRP",
+              "kpi_computable": true,
+              "reason_template": "RSRP measured {lte_rsrp} dBm."
+            },
+            {
+              "id": "C03_b",
+              "name": "Low RSRQ",
+              "kpi_computable": true,
+              "reason_template": "RSRQ measured {lte_rsrq} dB, also degraded (expected under weak coverage, not a separate interference signature)."
+            },
+            {
+              "id": "C03_c",
+              "name": "Cell-Edge Sample",
+              "kpi_computable": true,
+              "reason_template": "This sample's own RSRP ({lte_rsrp} dBm) falls in the cell-edge band, consistent with the Poor-coverage classification above."
+            },
+            {
+              "id": "C03_d",
+              "name": "Low MCS",
+              "kpi_computable": true,
+              "reason_template": "Scheduled MCS was {lte_mcs}, consistent with the weak link."
+            },
+            {
+              "id": "C03_e",
+              "name": "High BLER",
+              "kpi_computable": true,
+              "reason_template": "BLER was {lte_bler}%, consistent with the weak link."
+            },
+            {
+              "id": "C03_f",
+              "name": "Weak Serving Cell (Direct Coverage Hole)",
+              "kpi_computable": true,
+              "reason_template": "Direct physical coverage hole causing severe signal loss (RSRP far below threshold across repeated passes at this location)."
+            }
+          ]
+        },
+        {
+          "subcategory": "Interference",
+          "parent_id": "C04",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C04",
+              "name": "Radio Link Failure (Interference)",
+              "kpi_computable": true,
+              "reason_template": "Serving RSRP was {lte_rsrp} dBm (acceptable), but SINR was {lte_sinr} dB (degraded) -- a signature of another signal competing on the same resource rather than weak coverage, corroborated by CQI {lte_cqi} and RSRQ {lte_rsrq}."
+            },
+            {
+              "id": "C04_a",
+              "name": "Low SINR",
+              "kpi_computable": true,
+              "reason_template": "SINR measured {lte_sinr} dB, in the Poor band, despite adequate RSRP."
+            },
+            {
+              "id": "C04_b",
+              "name": "Low CQI",
+              "kpi_computable": true,
+              "reason_template": "CQI measured {lte_cqi}, degraded despite adequate signal power -- checked ahead of RSRQ."
+            },
+            {
+              "id": "C04_c",
+              "name": "Poor RSRQ",
+              "kpi_computable": true,
+              "reason_template": "RSRQ measured {lte_rsrq} dB, below the acceptable-quality band despite adequate RSRP."
+            },
+            {
+              "id": "C04_d",
+              "name": "High BLER",
+              "kpi_computable": true,
+              "reason_template": "BLER was {lte_bler}%, degraded despite adequate signal power."
+            },
+            {
+              "id": "C04_e",
+              "name": "High Noise",
+              "kpi_computable": false,
+              "note": "Requires an uplink/downlink noise-floor measurement (e.g. RSSI decomposition); this field is not yet present in the incidents file.",
+              "reason_template": "Elevated noise floor degrading overall link budget."
+            },
+            {
+              "id": "C04_f",
+              "name": "Co-/Adjacent-Channel Interference",
+              "kpi_computable": false,
+              "note": "No interference-source classification or spectrum-analysis data exists in any dataset used so far -- there is no actual detection condition behind this, it's a plausible cause without evidence to confirm it.",
+              "reason_template": "Co-channel or adjacent-channel interference degrading signal quality despite adequate RSRP."
+            },
+            {
+              "id": "C04_g",
+              "name": "Coverage Overshoot / Cross Coverage",
+              "kpi_computable": false,
+              "note": "Requires cross-referencing this cell's configured coverage boundary/antenna azimuth against where the sample was taken -- not derivable from KPI values alone.",
+              "reason_template": "Serving cell overshooting its intended coverage boundary, creating uncoordinated overlap and interference at this location."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Outage / eNodeB Fault",
+      "priority": 3,
+      "subcategories": [
+        {
+          "subcategory": "Serving Cell / eNodeB Fault",
+          "parent_id": "C05",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C05",
+              "name": "Cell / Hardware Outage",
+              "kpi_computable": true,
+              "reason_template": "A Radio Link Failure was declared while this UE's own radio conditions (RSRP {lte_rsrp} dBm, SINR {lte_sinr} dB) were normal -- not explained by coverage or interference, pointing at the serving cell/eNodeB itself."
+            },
+            {
+              "id": "C05_a",
+              "name": "Passive Redirection",
+              "kpi_computable": false,
+              "note": "Requires an OSS redirection/cause-code log, not present in any dataset used so far.",
+              "reason_template": "Redirection triggered by eNodeB degradation or active fault."
+            },
+            {
+              "id": "C05_b",
+              "name": "Power Control Failure / Limitation",
+              "kpi_computable": false,
+              "note": "Requires eNodeB power-amplifier/alarm telemetry, not present in any dataset used so far.",
+              "reason_template": "eNB power amplifier limitation or dynamic power control error."
+            },
+            {
+              "id": "C05_c",
+              "name": "Power Ratio DL Offset Error",
+              "kpi_computable": false,
+              "note": "Requires eNodeB downlink power-configuration data, not present in any dataset used so far.",
+              "reason_template": "Downlink power allocation offset misconfiguration."
+            },
+            {
+              "id": "C05_d",
+              "name": "System High Traffic Release",
+              "kpi_computable": false,
+              "note": "Requires an RRC release cause-code log, not present in any dataset used so far.",
+              "reason_template": "eNB forced RRC connection release due to extreme system overload."
+            },
+            {
+              "id": "C05_e",
+              "name": "Neighbor Relation Issues",
+              "kpi_computable": false,
+              "note": "Requires the eNodeB's configured Neighbor Relation Table, not present in any dataset used so far.",
+              "reason_template": "Missing or corrupted neighbor definitions causing drop."
+            },
+            {
+              "id": "C05_f",
+              "name": "Neighbor List Incomplete",
+              "kpi_computable": false,
+              "note": "Requires the eNodeB's configured Neighbor Relation Table, not present in any dataset used so far.",
+              "reason_template": "Target cell omitted from eNodeB NRT (Neighbor Relation Table)."
+            },
+            {
+              "id": "C05_g",
+              "name": "Normal RB Utilization",
+              "kpi_computable": true,
+              "reason_template": "Cell PRB utilization was {cell_prb_utilization_pct}%, ruling out congestion as an alternative explanation for the collapse."
+            },
+            {
+              "id": "C05_h",
+              "name": "Normal CQI/MCS",
+              "kpi_computable": true,
+              "reason_template": "CQI {lte_cqi} and MCS {lte_mcs} were both in the healthy range, ruling out a link-adaptation limitation."
+            },
+            {
+              "id": "C05_i",
+              "name": "Normal BLER",
+              "kpi_computable": true,
+              "reason_template": "BLER was {lte_bler}%, within the normal target band, ruling out a radio-quality explanation."
+            }
+          ]
+        },
+        {
+          "subcategory": "Outage",
+          "parent_id": "C06",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C06",
+              "name": "Outage",
+              "kpi_computable": true,
+              "reason_template": "A throughput/session collapse occurred while this UE's own radio conditions (RSRP {lte_rsrp} dBm, SINR {lte_sinr} dB) remained normal -- pointing to a network-side service disruption rather than a radio-quality issue."
+            },
+            {
+              "id": "C06_a",
+              "name": "Active Energy-Saving / Sleep Mode",
+              "kpi_computable": false,
+              "note": "Requires an OSS energy-saving/sleep-mode state flag, not present in any dataset used so far.",
+              "reason_template": "Energy-saving feature forcing cell or carrier into sleep mode."
+            },
+            {
+              "id": "C06_b",
+              "name": "Hardware Failure",
+              "kpi_computable": false,
+              "note": "Requires BBU/RRU/backhaul hardware alarm data, not present in any dataset used so far.",
+              "reason_template": "BBU, RRU, or backhaul transmission hardware failure."
+            },
+            {
+              "id": "C06_c",
+              "name": "Paging Failure",
+              "kpi_computable": false,
+              "note": "Requires MME/paging-channel counters, not present in any dataset used so far.",
+              "reason_template": "Paging channel congestion or MME paging payload drop."
+            },
+            {
+              "id": "C06_d",
+              "name": "Serving Cell RB Utilization Increase",
+              "kpi_computable": true,
+              "reason_template": "This serving cell's RB utilization rose to {cell_prb_utilization_pct}%, above its own recent baseline, in the same window -- consistent with absorbing redirected load, though this alone can't confirm the load came from a failed neighbor rather than normal traffic growth."
+            },
+            {
+              "id": "C06_e",
+              "name": "Neighbor Cell Availability Drop",
+              "kpi_computable": true,
+              "reason_template": "Neighbor cell availability score dropped to {neighbor_cell_availability}% -- suggestive of a neighbor-side issue, but not independently confirmed without real neighbor-cell traffic/alarm data."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Mobility",
+      "priority": 4,
+      "subcategories": [
+        {
+          "subcategory": "Handover Problem",
+          "parent_id": "C08",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C08",
+              "name": "Handover Problem",
+              "kpi_computable": true,
+              "reason_template": "This anomaly sits in a handover-adjacent window with a mobility-pattern signature, rather than a static radio or capacity issue."
+            },
+            {
+              "id": "C08_a",
+              "name": "Ping-Pong Handover",
+              "kpi_computable": true,
+              "reason_template": "{handover_count} handovers within a 5-second window with a dwell time below the ping-pong threshold -- rapid cell toggling, checked first as the most distinct and unambiguous pattern."
+            },
+            {
+              "id": "C08_b",
+              "name": "Wrong Neighbor Relation",
+              "kpi_computable": true,
+              "reason_template": "This eNodeB has shown the 'stayed on the weaker cell during handover' pattern across multiple separate episodes -- a persistent site-level pattern, checked before a one-off Late Handover so a recurring problem gets the more specific, actionable label."
+            },
+            {
+              "id": "C08_c",
+              "name": "Late Handover",
+              "kpi_computable": true,
+              "reason_template": "Handover trigger delayed, forcing communication on weak serving signal -- a one-off occurrence at this site, not yet a confirmed recurring pattern."
+            },
+            {
+              "id": "C08_d",
+              "name": "Unprepared Target Cell",
+              "kpi_computable": false,
+              "note": "Requires a target-cell admission/rejection event log, not present in any dataset used so far.",
+              "reason_template": "Handover attempt to unprepared or rejected target cell."
+            },
+            {
+              "id": "C08_e",
+              "name": "High Speed",
+              "kpi_computable": true,
+              "reason_template": "UE speed ({ue_speed_kmh} km/h) exceeds the mobility parameter optimization window -- a contextual tag that can accompany whichever pattern above fired, since fast mobility makes all of them more likely."
+            }
+          ]
+        },
+        {
+          "subcategory": "Access Problem",
+          "parent_id": "C09",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C09",
+              "name": "RACH Issues",
+              "kpi_computable": true,
+              "reason_template": "Random Access Channel preamble failure or high contention."
+            },
+            {
+              "id": "C09_a",
+              "name": "Uplink Interference",
+              "kpi_computable": false,
+              "note": "Requires an uplink RSSI/noise-rise measurement at the eNodeB, not present in UE-side data.",
+              "reason_template": "High UL RSSI/noise rise preventing eNodeB preamble detection."
+            },
+            {
+              "id": "C09_b",
+              "name": "High RACH Transmission Power",
+              "kpi_computable": false,
+              "note": "Requires RACH transmit-power logging, not present in any dataset used so far.",
+              "reason_template": "UE hitting maximum RACH transmit power without receiving RAR."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "MIMO",
+      "priority": 5,
+      "subcategories": [
+        {
+          "subcategory": "MIMO Rank Fallback",
+          "parent_id": "C10",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C10",
+              "name": "Rank Fallback / Poor Spatial Multiplexing",
+              "kpi_computable": true,
+              "reason_template": "SINR was {lte_sinr} dB (Excellent band) but Rank Indicator dropped to 1 -- Rank-1 is expected only under poor SINR, so this points to antenna correlation or a MIMO-path issue.",
+              "sub_tags": [
+                "with_good_rsrp"
+              ]
+            },
+            {
+              "id": "C10_a",
+              "name": "Non-Matching Rank and Transmission Mode",
+              "kpi_computable": false,
+              "note": "Requires the UE's configured Transmission Mode from RRC signaling, not present in any dataset used so far.",
+              "reason_template": "Configured Transmission Mode conflicts with reported Rank Indicator."
+            },
+            {
+              "id": "C10_b",
+              "name": "Antenna Fault / Open Path",
+              "kpi_computable": false,
+              "note": "Requires an antenna-system alarm (VSWR/feeder), not present in any dataset used so far.",
+              "reason_template": "VSWR alarm, feeder cable fault, or physical antenna branch failure."
+            },
+            {
+              "id": "C10_c",
+              "name": "Low Rank Detection / Adaptability",
+              "kpi_computable": true,
+              "reason_template": "Link adaptation algorithm restrictively holding low rank."
+            },
+            {
+              "id": "C10_d",
+              "name": "Low DL Throughput Cell",
+              "kpi_computable": true,
+              "reason_template": "Cell-wide MIMO performance degradation across all connected UEs."
+            },
+            {
+              "id": "C10_e",
+              "name": "Inter-Band CA MIMO Limit",
+              "kpi_computable": false,
+              "note": "Requires per-band CA layer configuration detail beyond the aggregate KPIs present in any dataset used so far.",
+              "reason_template": "MIMO spatial multiplexing limited on active inter-band CA layers."
+            },
+            {
+              "id": "C10_f",
+              "name": "Intra-Band CA MIMO Limit",
+              "kpi_computable": false,
+              "note": "Requires per-band CA layer configuration detail beyond the aggregate KPIs present in any dataset used so far.",
+              "reason_template": "MIMO spatial multiplexing limited on active intra-band CA layers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Carrier Aggregation",
+      "priority": 6,
+      "subcategories": [
+        {
+          "subcategory": "Weak Secondary Cell",
+          "parent_id": "C11",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
+          "causes_list": [
+            {
+              "id": "C11",
+              "name": "Weak Secondary Cell",
+              "kpi_computable": true,
+              "reason_template": "Carrier Aggregation was active but underperforming: SCell RSRP was {scell_rsrp} dBm / SINR {scell_sinr} dB -- the fault traces to the secondary carrier's own radio quality, not CA configuration."
+            },
+            {
+              "id": "C11_a",
+              "name": "Low SCell SINR",
+              "kpi_computable": true,
+              "reason_template": "SCell channel quality ({scell_sinr} dB) insufficient to sustain CA."
+            },
+            {
+              "id": "C11_b",
+              "name": "Low SCell RSRP",
+              "kpi_computable": true,
+              "reason_template": "SCell coverage ({scell_rsrp} dBm) below secondary carrier addition threshold."
+            },
+            {
+              "id": "C11_c",
+              "name": "Interference SCell",
+              "kpi_computable": false,
+              "note": "Requires interference-source classification, not present in any dataset used so far.",
+              "reason_template": "High interference specific to secondary component carrier."
+            },
+            {
+              "id": "C11_d",
+              "name": "Low / Zero SCell Allocated RBs",
+              "kpi_computable": true,
+              "reason_template": "SCell was allocated only {scell_rb_count} RBs despite CA being active."
+            }
+          ]
+        },
+        {
+          "subcategory": "SCell Release & Deactivation",
+          "parent_id": "C12",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C12",
+              "name": "SCell Release / CA Inactive Mid-Episode",
+              "kpi_computable": true,
+              "reason_template": "Secondary carrier deactivated mid-session, forcing single-carrier fallback."
+            },
+            {
+              "id": "C12_a",
+              "name": "High SCell BLER",
+              "kpi_computable": true,
+              "reason_template": "High SCell BLER ({scell_bler}%) before deactivation, a plausible trigger for the release."
+            },
+            {
+              "id": "C12_b",
+              "name": "Low SCell CQI",
+              "kpi_computable": true,
+              "reason_template": "SCell CQI ({scell_cqi}) was also degraded before deactivation, corroborating a radio-quality-driven release rather than a scheduling artifact."
+            },
+            {
+              "id": "C12_c",
+              "name": "Abnormal SCell Release Event / Connection Drop",
+              "kpi_computable": false,
+              "note": "Requires SCell release MAC Control Element or RRC connection-drop event logs, not present in any dataset used so far.",
+              "reason_template": "Abnormal secondary carrier release or connection interruption disrupting SCell stability."
+            }
+          ]
+        },
+        {
+          "subcategory": "CA Inactive / Disable",
+          "parent_id": "C13",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C13",
+              "name": "CA Inactive / Disable",
+              "kpi_computable": true,
+              "reason_template": "Carrier Aggregation was never active for this UE/session (carrier_count == 1 throughout) -- no aggregated bandwidth was available, and no SCell radio evidence exists since there was no SCell to measure."
+            },
+            {
+              "id": "C13_a",
+              "name": "SCell Activation Attempt Failed",
+              "kpi_computable": false,
+              "note": "Requires SCell activation MAC Control Element event logs, not present in any dataset used so far.",
+              "reason_template": "SCell activation MAC CE command timed out or failed, leaving CA inactive."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Fallback / Inconclusive",
+      "priority": 7,
+      "subcategories": [
+        {
+          "subcategory": "Radio Limited",
+          "parent_id": "C14",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C14",
+              "name": "Radio-Limited (Link Adaptation)",
+              "kpi_computable": true,
+              "reason_template": "Sub-optimal link adaptation performance with degraded BLER ({lte_bler}%) or low CQI ({lte_cqi})."
+            }
+          ]
+        },
+        {
+          "subcategory": "Inconclusive",
+          "parent_id": "C15",
+          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "causes_list": [
+            {
+              "id": "C15",
+              "name": "No Confirmed Demand / Inconclusive",
+              "kpi_computable": true,
+              "reason_template": "This sample had no confirmed active download demand at the time it was flagged, or matched no condition anywhere in the tree above -- the radio was idle, not faulty. This is the definitive last-resort reason and should never be counted as a network root cause."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

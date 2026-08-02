@@ -1,1 +1,10 @@
 /Raw_Data/ 
+# Secrets
+.env
+.env.*
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
