@@ -1,5 +1,5 @@
 {
-  "run_timestamp_utc": "2026-07-31T11:43:38.362191+00:00",
+  "run_timestamp_utc": "2026-08-04T16:13:39.048264+00:00",
   "pipeline_version": "final_handoff_ready_v1_rach_reason_canonical_neighbor",
   "statistical_rows": 32238,
   "final_fused_handoff_rows": 3574,
@@ -28,6 +28,6 @@
   "top20_required_files_all_present": true,
   "full_compact_json_sha256": "185f0b6fea75f7b465481cc7861ffcd363c6c5f565adcfb4a849caab3e1b9e60",
   "full_compact_csv_sha256": "1e6138b8fbd6d6ff36ada0c898e90ef13bc471828f0e3c163d04cec6c1617638",
-  "generated_file_count": 260,
+  "generated_file_count": 338,
   "output_freshness_policy": "Notebook 10 removes the generated output tree before a production run."
 }
