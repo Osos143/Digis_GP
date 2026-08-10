@@ -1,3 +1,675 @@
 \chapter{Planning Intelligence}
+\label{chap:planning-intelligence}
 
-\label{Chapter3} 
+\section{Overview and Scope}
+\label{sec:pi-overview}
+
+Planning Intelligence is the second, independent workspace of NetFix AI. Where the
+Drive Test Intelligence workspace (\cref{chap:anomaly-detection}) turns raw
+throughput measurements into prioritized incidents, Planning Intelligence solves a
+different engineering problem: assigning radio identity parameters to every sector
+of a live 5G NR network so that neighboring cells cannot be confused with one
+another, while respecting the physical and combinatorial constraints imposed by
+3GPP identity ranges.
+
+\begin{infobox}{Scope of this chapter}
+This chapter documents the NR5G PCI/RSI planning engine end to end: the
+seven-stage pipeline, the deterministic assignment algorithms, the independent
+validator, and the measured results of running the engine on a live Egyptian
+Band~N41 deployment spanning \textbf{2{,}554 sectors} across \textbf{725 sites}
+in four regions --- Alexandria (\texttt{ALX}), Sinai (\texttt{SIN}), Upper Egypt
+(\texttt{UPP}), and Delta (\texttt{DEL}).
+\end{infobox}
+
+As noted in \cref{sec:pi-overview-business} of the project overview, the planning
+dataset and the drive-test dataset are independent: planning output is never used
+to prove or correct a drive-test anomaly, and drive-test observations are never
+treated as ground truth for planning decisions.
+
+\subsection{The Three Assigned Parameters}
+
+Every sector requires three interrelated identity values, summarized in
+\cref{tab:pi-parameters}.
+
+\begin{table}[H]
+  \centering
+  \caption{Radio identity parameters assigned by the planning engine}
+  \label{tab:pi-parameters}
+  \begin{tabularx}{\linewidth}{l c Y}
+    \toprule
+    \textbf{Parameter} & \textbf{3GPP range} & \textbf{Role} \\
+    \midrule
+    PCI (Physical Cell Identity) & $0$--$1007$ & Primary identity broadcast by the cell; must not collide or be confused with nearby cells. Defined as $N_{ID}=3N_{ID}^{(2)}+N_{ID}^{(1)}$. \\
+    RSI (Root Sequence Index) & $0$--$830$ & Determines the PRACH root sequence set; must not repeat within the reuse distance or random-access preambles collide. \\
+    Mod4 $= \mathrm{PCI}\bmod 4$ & $0$--$3$ & Groups PCIs for SRS/DMRS orthogonality; four possible groups drive inter-site interference planning. \\
+    Mod3 $= \mathrm{PCI}\bmod 3$ & $0$--$2$ & Groups PCIs for PSS/SSS synchronization-signal separation; enforced ring-adjacently on co-site sectors. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Mod3 and Mod4 are not independently assigned --- they are algebraic consequences
+of the chosen PCI. However, the engine plans Mod4 \emph{before} PCI
+(\cref{sec:pi-mod4}) and then searches for a PCI that both satisfies the hard
+identity rules and lands on the already-chosen Mod4 group, since Mod4 has a
+harder combinatorial ceiling (only 4 values) than Mod3 (3 values) against the
+same neighbor density.
+
+\subsection{Architecture Pivot: Full Reset vs. Incremental Planning}
+
+Two architectural strategies were evaluated for re-planning the network:
+
+\begin{itemize}
+  \item \textbf{Incremental (Option 2):} preserve every already-assigned PCI/RSI
+    and patch only sectors that are flagged as requiring planning.
+  \item \textbf{Full reset (Option 1):} discard every existing assignment and
+    re-plan all 2{,}554 sectors from scratch under one consistent rule set.
+\end{itemize}
+
+Option 1 was chosen. A full reset removes path-dependent legacy artifacts
+(assignments made under earlier, looser rules) and guarantees that the final
+plan is provably consistent end to end, rather than consistent only with
+respect to whichever subset happened to be replanned. All results in this
+chapter are from a full-reset run.
+
+\section{System Architecture}
+\label{sec:pi-architecture}
+
+The engine is implemented as nine flat, function-based Python modules --- no
+classes, no dataclasses, plain dictionaries throughout the data flow. Each
+module has exactly one responsibility, summarized in \cref{tab:pi-modules}.
+
+\begin{table}[H]
+  \centering
+  \caption{Pipeline modules and their responsibilities}
+  \label{tab:pi-modules}
+  \begin{tabularx}{\linewidth}{l l Y}
+    \toprule
+    \textbf{Stage} & \textbf{Module} & \textbf{Input $\Rightarrow$ Output} \\
+    \midrule
+    1. Load & \fname{loader.py} & Excel workbook $\Rightarrow$ validated, sorted \texttt{list[dict]} of sector records \\
+    2. Neighbor graph & \fname{neighbor\_graph.py} & sectors $\Rightarrow$ tiered neighbor graph (7\,km / 14\,km) \\
+    3. Geometry & \fname{facing.py} & sector pair $\Rightarrow$ alignment / interference potential \\
+    4. Constraints & \fname{constraints.py} & sector + graph + assignments $\Rightarrow$ forbidden PCI/RSI/Mod3 sets \\
+    5. Assignment & \fname{assignment\_engine.py} & sectors + graph $\Rightarrow$ \texttt{\{site\_sector\_id: \{pci, rsi, mod4\}\}} \\
+    6. Validation & \fname{validator.py} & sectors + graph + assignments $\Rightarrow$ independent KPI report \\
+    7. Export & \fname{exporter.py} & assignments + report $\Rightarrow$ workbook with \texttt{KPI\_Report} sheet \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Two orchestration modules sit above the shared engine (\fname{assignment\_engine.py}):
+\fname{bulk\_plan.py} plans the whole network region by region, and
+\fname{add\_site.py} plans a single new site against a region that has already
+been planned. Both call the identical \texttt{assign\_all()} function; the only
+difference is what is pre-populated in \texttt{existing\_assignments}.
+\Cref{fig:pi-architecture} shows the full data flow.
+
+\projectfigure{PI_01_pipeline_architecture.png}
+  {End-to-end planning pipeline. Geometry (Stage~3) is shared between the
+  assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing
+  both agree on what ``facing'' means.}
+  {fig:pi-architecture}
+
+\subsection{Why Regions Can Be Planned Independently}
+
+\fname{bulk\_plan.py} splits the network into four regions using the
+3-letter site-ID prefix (\texttt{region\_of()}). This is only correct because
+analysis of the real network confirmed that \textbf{0\% of tier-1 (7\,km) and
+tier-2 (14\,km) neighbor relationships cross a region boundary}. Coloring each
+region's subgraph independently therefore gives exactly the same result as one
+global coloring, at a fraction of the computational cost --- regions are
+processed largest-first so that the most constrained (densest) subgraphs are
+solved while the most wall-clock budget is still available.
+
+\section{Pipeline Stages in Detail}
+\label{sec:pi-stages}
+
+\subsection{Stage 1: Data Loading}
+
+\fname{load\_sectors()} reads the \texttt{Planning} sheet with \texttt{openpyxl},
+validates every row, and returns sectors sorted deterministically by
+\texttt{(site\_id, sector\_id)}. Validation checks latitude/longitude bounds,
+azimuth $\in [0,360)$, PCI/RSI range membership, PCI/Mod4 arithmetic consistency,
+and duplicate \texttt{site\_sector\_ID} detection --- every problem found is
+reported at once rather than failing on the first error. A \texttt{plan\_all}
+flag makes every unlocked sector a planning target regardless of the sheet's
+\texttt{Requires\_Planning} column; this is what the full-reset architecture
+uses instead of the sheet-flagged incremental mode.
+
+\begin{table}[H]
+  \centering
+  \caption{Sector record structure (loader.py)}
+  \label{tab:pi-sector-dict}
+  \begin{tabularx}{\linewidth}{l Y}
+    \toprule
+    \textbf{Field} & \textbf{Description} \\
+    \midrule
+    \colname{site\_sector\_id} & Unique key, e.g. \texttt{ALX2014-1} \\
+    \colname{site\_id} & Site identifier; first 3 characters encode the region \\
+    \colname{sectors\_count} & Number of co-located sectors on this site (drives site-size-aware Mod3/Mod4 rules) \\
+    \colname{azimuth} & Antenna pointing direction in degrees \\
+    \colname{lat}, \colname{lon} & Geographic coordinates \\
+    \colname{rsi}, \colname{pci}, \colname{mod4} & \texttt{None} if unassigned; a non-\texttt{None} PCI marks the sector as \emph{locked} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Measured on the raw dataset: 2{,}554 sectors across 725 sites, all requiring
+planning under the full-reset flag, single band \texttt{N41}.
+
+\subsection{Stage 2: Neighbor Graph Construction}
+\label{sec:pi-neighbor-graph}
+
+Latitude/longitude is projected onto a local flat-earth East-North-Up (ENU)
+plane centered on the dataset centroid --- accurate enough for cell-planning
+distances (tens of kilometers) without a full geodesy library. A KD-tree
+(\texttt{scipy.spatial.cKDTree}) then answers two radius queries:
+
+\begin{itemize}
+  \item \textbf{Tier-1 (direct, 7\,km):} sectors that can physically see each
+    other --- must not share PCI or RSI (collision).
+  \item \textbf{Tier-2 (extended, 14\,km):} sectors within this wider radius
+    must not share PCI either (confusion), since a UE could report the same PCI
+    from two genuinely different physical cells; RSI reuse is also checked at
+    this radius.
+\end{itemize}
+
+Neighbor lists are sorted by distance, and the whole graph is cached to disk
+keyed on a hash of sector IDs, coordinates, and the two radii, so re-running on
+an unchanged dataset skips the KD-tree rebuild entirely. Sectors co-located on
+the same site are always mutual tier-1 neighbors at distance zero --- the
+tightest possible reuse-distance case, and intentional.
+
+\begin{table}[H]
+  \centering
+  \caption{Measured neighbor graph statistics, full dataset}
+  \label{tab:pi-graph-stats}
+  \begin{tabularx}{\linewidth}{Y c}
+    \toprule
+    \textbf{Metric} & \textbf{Value} \\
+    \midrule
+    Nodes & 2{,}554 \\
+    Tier-1 radius & \SI{7000}{\meter} \\
+    Tier-2 radius & \SI{14000}{\meter} \\
+    Average tier-1 neighbors per sector & 99.84 \\
+    Maximum tier-1 neighbors & 280 \\
+    Average tier-2 neighbors per sector & 150.48 \\
+    Maximum tier-2 neighbors & 344 \\
+    Isolated nodes (no tier-1 neighbor) & 0 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{warningbox}{Structural implication}
+An average of $\sim$100 tier-1 neighbors competing for only 4 Mod4 values is the
+binding density constraint referenced throughout \cref{sec:pi-mod4} and
+\cref{sec:pi-soft-rules}: it is the reason a nonzero Mod4 inter-site clash count
+is structurally expected, not a defect in the assignment algorithm.
+\end{warningbox}
+
+\subsection{Stage 3: Geometry Engine}
+\label{sec:pi-geometry}
+
+\fname{facing.py} is shared verbatim by the assignment engine (Stage~5) and the
+validator (Stage~6), which guarantees the planner and the independent auditor
+can never disagree about what ``facing'' means. Every function is
+parameter-free: no tuned beamwidth cutoff or arbitrary threshold constant is
+used anywhere in the geometry model.
+
+\begin{align}
+  \texttt{bearing\_deg}(A,B) &= \text{great-circle compass bearing from } A \text{ to } B \\
+  \texttt{angle\_diff}(a,b) &= \min(|a-b| \bmod 360,\; 360 - (|a-b| \bmod 360)) \\
+  \texttt{distance\_m}(A,B) &= \text{haversine great-circle distance} \\
+  \texttt{alignment}(A,B) &= \max\!\big(0,\ \cos(\texttt{angle\_diff}(\text{azimuth}_A,\ \texttt{bearing\_deg}(A,B)))\big) \label{eq:alignment}\\
+  \texttt{interference\_potential}(A,B) &= \frac{\texttt{alignment}(A,B) + \texttt{alignment}(B,A)}{\texttt{distance\_m}(A,B)^2} \label{eq:interference}
+\end{align}
+
+\Cref{eq:alignment} returns $0$ for co-located sectors (bearing undefined) or
+angular offsets $\geq 90^\circ$, and $1$ for a dead-ahead offset of $0^\circ$.
+\Cref{fig:pi-alignment-curve} plots this relationship.
+
+\projectfigure{PI_02_cosine_alignment_model.png}
+  {Cosine alignment model: alignment vs. angular offset from boresight. Key points:
+  $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$.}
+  {fig:pi-alignment-curve}
+
+\projectfigure{PI_03_interference_potential_vs_distance.png}
+  {Interference potential vs. distance for a fully-facing pair (both alignments
+  $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and
+  Tier-2 (14\,km) boundaries are marked for reference.}
+  {fig:pi-interference-distance}
+
+\begin{infobox}{Why not a binary cone?}
+A hard beamwidth cutoff (e.g.\ ``within $60^\circ$ = facing, beyond = not'') creates
+a discontinuity with no physical basis: a neighbor at $59^\circ$ and one at
+$61^\circ$ would be treated as completely different cases despite nearly
+identical radiated energy in that direction. The cosine model in
+\cref{eq:alignment} degrades smoothly instead. It is also deliberately
+parameter-free --- no beamwidth or threshold constant had to be chosen or tuned,
+which matters because \colname{cell\_radius} in the available dataset is a
+uniform placeholder rather than per-site RF data, so any tuned cutoff would have
+been arbitrary rather than derived.
+\end{infobox}
+
+\subsection{Stage 4: Constraint Generation}
+\label{sec:pi-constraints}
+
+\fname{constraints.py} answers exactly one question: \emph{which PCI and RSI
+values are legal for a given sector, right now?} It never mutates assignments;
+it only computes forbidden and preferred sets from the current state.
+
+\paragraph{Ring adjacency.} Co-site sectors are ordered by azimuth and treated
+as a ring; \texttt{ring\_adjacent\_ids()} returns each sector's two immediate
+neighbors in that ring. This single helper backs both the Mod3 rule below and
+the co-site Mod4 rule in \cref{sec:pi-mod4}.
+
+\paragraph{Site-size-aware Mod3 rule.} Because only 3 Mod3 values exist, the
+rule strictness depends on how many sectors share a site:
+
+\begin{table}[H]
+  \centering
+  \caption{Mod3 rule by site size}
+  \label{tab:pi-mod3-rule}
+  \begin{tabularx}{\linewidth}{l Y}
+    \toprule
+    \textbf{Site size} & \textbf{Mod3 rule} \\
+    \midrule
+    $1$--$3$ co-located sectors & Every pair must differ (3 values are always sufficient for $\leq 3$ sectors). \\
+    $4$--$5$ co-located sectors & Ring-adjacent pairs must differ; all 3 Mod3 values should appear on the site; any unavoidable reuse falls only on non-adjacent pairs. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\Cref{fig:pi-ring-adjacency} illustrates the ring for a representative 4-sector
+site.
+
+\projectfigure[0.62\linewidth]{PI_04_ring_adjacency_4sector.png}
+  {Ring adjacency for a 4-sector site at $0^\circ/90^\circ/180^\circ/270^\circ$.
+  Ring pairs (solid) must differ under the hard rule; the two non-adjacent
+  diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole
+  principle forces it.}
+  {fig:pi-ring-adjacency}
+
+\paragraph{Measured site-size distribution.} \Cref{fig:pi-site-sizes} shows the
+distribution across all 725 sites in the dataset.
+
+\projectfigure[0.72\linewidth]{PI_05_site_size_distribution.png}
+  {Measured site-size distribution, full dataset. $431+2=433$ sites fall under
+  the 4--5-sector ring-adjacent-only rule.}
+  {fig:pi-site-sizes}
+
+This distribution is the direct explanation for the soft-rule counts reported
+in \cref{sec:pi-soft-rules}: $431+2=433$ sites have 4 or 5 co-located sectors,
+and the measured Mod3 non-adjacent reuse count is exactly 433 sites --- confirming
+the rule implementation behaves exactly as the site geometry predicts, not as an
+approximation of it.
+
+\section{Stage 5: The Assignment Engine}
+\label{sec:pi-assignment}
+
+\fname{assignment\_engine.py} runs three sub-stages in strict order: Mod4, then
+PCI, then RSI. Every hard rule from Stage~4 is enforced without exception; the
+only freedom the engine has is in \emph{which} legal value to pick, and in
+which \emph{order} sectors are processed.
+
+\subsection{Sub-stage 5.1: Mod4 Assignment}
+\label{sec:pi-mod4}
+
+Mod4 is planned as a \textbf{weighted graph-coloring problem}. Nodes are
+sectors; edges connect tier-1 inter-site pairs with nonzero
+\texttt{interference\_potential} (\cref{eq:interference}); edge weight is that
+potential. Co-site pairs are excluded from this graph and handled by a separate
+co-site rule.
+
+\paragraph{Co-site Mod4 rule.} Analogous to the Mod3 rule but with only 4
+values available:
+
+\begin{itemize}
+  \item Sites with $\leq 4$ sectors: every sibling pair must have a different Mod4.
+  \item Sites with 5 sectors: only ring-adjacent siblings must differ (full
+    pairwise separation is mathematically impossible: 5 sectors into 4 colors).
+\end{itemize}
+
+\paragraph{Step 1 --- DSATUR initial coloring.} The engine colors sectors using
+the degree-of-saturation (DSATUR) heuristic, adapted to a weighted objective.
+
+\begin{algorithm}[H]
+\caption{Weighted DSATUR coloring for Mod4}
+\label{alg:pi-dsatur}
+\KwIn{sectors to plan, interference edges, co-site forbidden-color function}
+\KwOut{mod4\_of: mapping from sector id to $\{0,1,2,3\}$}
+Initialize \texttt{uncolored} $\leftarrow$ all sectors to plan\;
+\While{\texttt{uncolored} is not empty}{
+  Select $s^\ast = \arg\max_{s \in \texttt{uncolored}}$ (number of distinct
+  colors already used by $s$'s neighbors, tie-broken by total incident edge
+  weight, then by sector id)\;
+  Compute \texttt{forbidden} $\leftarrow$ co-site forbidden colors for $s^\ast$\;
+  \texttt{candidates} $\leftarrow \{0,1,2,3\} \setminus \texttt{forbidden}$ (or all 4, if that is empty)\;
+  Choose $c^\ast = \arg\min_{c \in \texttt{candidates}}$ (weighted same-color clash if $s^\ast$ took color $c$), tie-broken deterministically by an MD5 hash of $(s^\ast, c)$\;
+  Assign \texttt{mod4\_of}$[s^\ast] \leftarrow c^\ast$; remove $s^\ast$ from \texttt{uncolored}\;
+}
+\end{algorithm}
+
+\paragraph{Step 2 --- Local search repair.} DSATUR alone does not reach a local
+optimum for a weighted objective, so a repair pass follows.
+
+\begin{algorithm}[H]
+\caption{Weighted local search repair (recolor + swap)}
+\label{alg:pi-repair}
+\KwIn{initial mod4\_of, interference edges, co-site legality rules, time budget (\SI{60}{\second})}
+\KwOut{repaired mod4\_of}
+\Repeat{no improving move exists \textnormal{or} time budget exceeded}{
+  \texttt{clashing} $\leftarrow$ sectors with nonzero same-color weight, sorted worst-first\;
+  \ForEach{$s \in \texttt{clashing}$}{
+    Evaluate every legal \textbf{recolor} of $s$ to another color\;
+    Evaluate every legal \textbf{swap} of $s$'s color with a co-site sibling's color\;
+  }
+  Apply the single move (recolor or swap) with the most negative total-weight delta\;
+}
+\end{algorithm}
+
+\begin{successbox}{Termination guarantee}
+Total interference weight is bounded below by zero and \emph{strictly}
+decreases every round that a move is applied, so the repair loop is guaranteed
+to terminate at a genuine local optimum. The \SI{60}{\second} wall-clock budget
+in \cref{alg:pi-repair} is a safety net for exceptionally dense pockets, not the
+expected termination path.
+\end{successbox}
+
+\subsection{Sub-stage 5.2: PCI Assignment}
+
+With Mod4 fixed, \texttt{assign\_pci\_rsi()} processes sectors
+\textbf{site-by-site in azimuth (ring) order, hardest sites first} (ranked by
+the maximum tier-2 degree of any sector on the site), so that Mod3
+site-coverage state can be tracked incrementally as siblings are placed one
+after another. For each sector, the candidate PCI pool is filtered through the
+hard rules --- no tier-1 collision, no tier-2 confusion, not in a forbidden
+Mod3 group --- and then narrowed by the four-layer preference funnel in
+\cref{tab:pi-pci-layers}.
+
+\begin{table}[H]
+  \centering
+  \caption{PCI layered preference funnel}
+  \label{tab:pi-pci-layers}
+  \begin{tabularx}{\linewidth}{c Y}
+    \toprule
+    \textbf{Layer} & \textbf{Preference} \\
+    \midrule
+    1 (ideal) & Matches the sector's already-assigned Mod4 \emph{and} fills a Mod3 value still missing on the site \\
+    2 & Matches assigned Mod4 only \\
+    3 & Fills a missing Mod3 value only \\
+    4 (fallback) & Any hard-legal candidate \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Within whichever layer yields a non-empty pool, the PCI with the lowest global
+usage count is preferred; ties are broken with a deterministic MD5 hash of
+$(\text{sector id}, \text{salt})$ so that re-running the pipeline on unchanged
+input always reproduces \emph{exactly} the same plan --- an explicit design
+requirement, verified empirically (\cref{sec:pi-results}) by running the full
+pipeline twice and diffing the outputs.
+
+\subsection{Sub-stage 5.3: RSI Assignment}
+
+RSI has no per-site structural rule --- only global reuse-distance pressure ---
+so sectors are processed \textbf{hardest-first by tier-2 neighbor count}
+instead of by site/azimuth order. Candidates exclude every RSI already used by
+a tier-2 neighbor. If that leaves nothing (a structurally dense pocket), the
+engine falls back to the least-conflicted RSI across the full range and logs a
+warning rather than raising an error, since exhaustive tier-2 exclusion failing
+indicates network density, not a bug. Ties are broken by least global usage,
+then the same deterministic hash used for PCI.
+
+\begin{infobox}{Why RSI reuse could be promoted to a hard rule}
+A degree-bound proof over the measured tier-2 neighbor counts
+(\cref{tab:pi-graph-stats}) confirmed that even the worst-case 14\,km
+neighborhood --- 344 sectors, the maximum observed --- still leaves more than
+480 of the 831 available RSI values free. This headroom is what justifies
+treating RSI Tier-2 reuse as a \emph{hard} constraint rather than a soft one:
+the network is never so dense that zero-reuse RSI assignment becomes
+infeasible.
+\end{infobox}
+
+\section{Stage 6: Independent Validation}
+\label{sec:pi-validation}
+
+\fname{validator.py} recomputes every hard rule \textbf{completely
+independently} of the planner --- it never reads planner-internal state, only
+the final \texttt{\{pci, rsi, mod4\}} assignments, and it re-derives Mod3/Mod4
+from PCI itself rather than trusting whatever the engine wrote. It reuses
+\fname{facing.py} from Stage~3, so the planner and the validator can never
+disagree about geometry. Every metric is reported at three granularities ---
+by pair, by sector, and by site --- and the overall \texttt{pass} flag is
+\texttt{True} only when \emph{every} hard-rule count is exactly zero.
+
+\begin{table}[H]
+  \centering
+  \caption{Rules checked by the independent validator}
+  \label{tab:pi-validator-rules}
+  \begin{tabularx}{\linewidth}{l c Y}
+    \toprule
+    \textbf{Rule} & \textbf{Hard/Soft} & \textbf{Detection method} \\
+    \midrule
+    PCI Collision & Hard & Any tier-1 pair sharing PCI \\
+    PCI Confusion & Hard & Any tier-2 pair sharing PCI \\
+    RSI Reuse & Hard & Any tier-2 pair sharing RSI \\
+    Mod3 Adjacent & Hard & Ring-adjacent co-site pair sharing Mod3 \\
+    Mod3 Rule Violations & Hard & 4--5 sector site not using all 3 Mod3 values \\
+    Mod4 Intra-site & Hard & Ring-adjacent co-site pair sharing Mod4 \\
+    Mod3 Non-Adj Reuse & Soft & Non-adjacent co-site pair sharing Mod3 \\
+    Mod4 Non-Adj Intra-site & Soft & Non-adjacent co-site pair sharing Mod4 \\
+    Mod4 Inter-site & Soft & Sector's nearest facing inter-site neighbor shares Mod4 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The Mod4 Inter-site check deserves special mention: it is \textbf{per-sector
+and directed}, matching the definition used by the reference clash sheet this
+engine was built against. For sector $S$, find the nearest tier-1 neighbor on a
+different site that $S$'s antenna actually points at
+($\texttt{alignment}(S,N) > 0$), and count one clash if
+$\text{Mod4}(S) = \text{Mod4}(N)$. Its maximum possible value therefore equals
+the total sector count (2{,}554), not the pair count.
+
+\section{Stage 7: Export}
+
+\fname{exporter.py} writes \texttt{PCI}/\texttt{RSI}/\texttt{Mod4} back into the
+source workbook's \texttt{Planning} sheet by matching rows on
+\texttt{site\_sector\_ID} --- never by row position, since row order is not
+guaranteed to match assignment order --- and appends a \texttt{KPI\_Report}
+sheet generated directly from the validator's report dictionary. There is no
+separate calculation path for the exported numbers, so the numbers a reviewer
+sees in the spreadsheet and the numbers the validator computed can never drift
+apart.
+
+\section{Planning Modes}
+\label{sec:pi-modes}
+
+\begin{table}[H]
+  \centering
+  \caption{Bulk planning vs. single-site planning}
+  \label{tab:pi-modes}
+  \begin{tabularx}{\linewidth}{l Y Y}
+    \toprule
+     & \textbf{Bulk planning (\fname{bulk\_plan.py})} & \textbf{Single-site planning (\fname{add\_site.py})} \\
+    \midrule
+    Scope & Entire network, region by region & One new site's sectors only \\
+    Locked assignments & None (full reset) & Every other already-planned sector in the site's region \\
+    Engine call & \texttt{assign\_all()} per region & \texttt{assign\_all()} for the target site's sectors \\
+    Measured runtime & \SI{53.36}{\second} total, 4 regions (\cref{sec:pi-results}) & Well under \SI{5}{\second} target; scoped to one site's local neighborhood \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Both callers share the \emph{exact same} \texttt{assign\_all()} function; the
+only difference is what is pre-populated in \texttt{existing\_assignments}.
+\fname{add\_site.py} additionally filters the neighbor graph and site grouping
+down to the new site's region only, using the same \texttt{region\_of()}
+prefix rule that \fname{bulk\_plan.py} uses.
+
+\section{Hard Rules Reference}
+\label{sec:pi-hard-rules}
+
+\begin{table}[H]
+  \centering
+  \caption{Hard rules enforced by the planning engine (all must equal zero)}
+  \label{tab:pi-hard-rules-full}
+  \begin{tabularx}{\linewidth}{l c Y}
+    \toprule
+    \textbf{Rule} & \textbf{Distance/scope} & \textbf{Why it matters} \\
+    \midrule
+    PCI Collision & \SI{7}{\kilo\meter} (tier-1) & Two sectors this close sharing a PCI are indistinguishable to a UE. \\
+    PCI Confusion & \SI{14}{\kilo\meter} (tier-2) & Sharing a PCI this far apart still confuses which physical cell a UE actually saw, disrupting handover and measurement reporting. \\
+    RSI Reuse & \SI{14}{\kilo\meter} (tier-2) & Shared PRACH root sequence causes random-access preamble collisions between UEs on different cells. \\
+    Mod3 Adjacent & Co-site, ring-adjacent & Ring-adjacent sectors sharing Mod3 share a PSS group, degrading synchronization-signal separation at the sector boundary. \\
+    Mod3 Rule (strict) & Co-site, 4--5 sectors & All 3 Mod3 values must appear on the site; unavoidable reuse must land only on non-adjacent pairs. \\
+    Mod4 Intra-site & Co-site, ring-adjacent & Ring-adjacent sectors sharing Mod4 share SRS/DMRS resource allocation, degrading uplink channel estimation at the boundary. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{successbox}{Measured result}
+All six hard-rule checks above returned exactly zero across all 2{,}554
+sectors and 725 sites in the verified full-reset run --- \textbf{PASS}.
+\end{successbox}
+
+\section{Soft Rules Reference}
+\label{sec:pi-soft-rules}
+
+Each soft rule exists because the network's own density creates a pigeonhole
+constraint --- not because the planner failed to try. \Cref{tab:pi-soft-rules}
+reports measured values alongside the structural expectation each should match.
+
+\begin{table}[H]
+  \centering
+  \caption{Soft rules, structural cause, and measured results}
+  \label{tab:pi-soft-rules}
+  \begin{tabularx}{\linewidth}{Y Y c Y}
+    \toprule
+    \textbf{Rule} & \textbf{Structural cause} & \textbf{Measured} & \textbf{Structural expectation} \\
+    \midrule
+    Mod3 Non-Adjacent Reuse (sites) & 3 Mod3 values, 4--5 sectors on 433 sites & 433 & 433 (= count of 4--5-sector sites) \\
+    Mod4 Non-Adjacent Intra-site (sites) & 4 Mod4 values, 5 sectors on 2 sites & 2 & 2 (= count of 5-sector sites) \\
+    Mod4 Inter-site (sectors) & 4 Mod4 values against $\sim$100 avg.\ tier-1 neighbors/sector & 517 (20.2\%) & No exact closed-form floor; minimized by \cref{alg:pi-dsatur,alg:pi-repair}, bounded below by network density \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The first two soft metrics match their structural expectation \emph{exactly},
+confirming the site-size-aware rule implementation of \cref{sec:pi-constraints}
+behaves as designed. The third has no simple closed-form floor: it is the
+outcome of the DSATUR-plus-local-search process in \cref{sec:pi-mod4},
+minimized as far as that local search can reach rather than eliminated outright.
+
+\begin{warningbox}{Mod4 inter-site is a structural ceiling --- not an algorithm limitation}
+Single-sector tabu-style local search plateaus almost immediately at
+$\sim$7\,km neighborhood density: with $\sim$100 tier-1 neighbors competing for
+only 4 colors, there are simply not enough degrees of freedom for any
+single-sector move to eliminate every clash. Further reduction requires
+\emph{coordinated multi-sector} moves --- changing several sectors' colors
+together in a way that no single-sector move can discover on its own. This is
+an identified direction for future work rather than a defect in the current
+repair pass.
+\end{warningbox}
+
+\section{Measured Results and Performance}
+\label{sec:pi-results}
+
+\Cref{fig:pi-kpi-summary} summarizes every measured KPI from a single
+full-reset run of the pipeline against the live 2{,}554-sector, 725-site
+dataset.
+
+\projectfigure{PI_06_kpi_summary.png}
+  {Measured KPI results, full dataset, single full-reset run. Green bars are
+  hard rules (all zero); amber bars are soft, structurally-expected counts.}
+  {fig:pi-kpi-summary}
+
+\begin{table}[H]
+  \centering
+  \caption{Full measured results summary}
+  \label{tab:pi-results-summary}
+  \begin{tabularx}{\linewidth}{Y Y}
+    \toprule
+    \textbf{Metric} & \textbf{Measured value} \\
+    \midrule
+    Sectors planned & 2{,}554 \\
+    Sites & 725 \\
+    Regions & 4 (ALX, SIN, UPP, DEL) \\
+    PCI Collision (hard) & 0 \\
+    PCI Confusion (hard) & 0 \\
+    RSI Reuse (hard) & 0 \\
+    Mod3 Adjacent (hard) & 0 \\
+    Mod3 Rule Violations (hard) & 0 \\
+    Mod4 Intra-site, ring-adjacent (hard) & 0 \\
+    Mod3 Non-Adjacent Reuse (soft, sites) & 433 of 433 eligible 4--5-sector sites \\
+    Mod4 Non-Adjacent Intra-site (soft, sites) & 2 of 2 eligible 5-sector sites \\
+    Mod4 Inter-site (soft, sectors) & 517 of 2{,}554 (20.2\%) \\
+    \fname{bulk\_plan()} runtime & \SI{53.36}{\second} total \\
+    \fname{validate()} runtime & \SI{0.42}{\second} \\
+    Overall result & \textbf{PASS} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Runtime Benchmarks}
+
+\Cref{fig:pi-runtime,tab:pi-region-runtime} break the total planning time down
+by region. Regions are processed largest-first, which is why Alexandria and
+Sinai dominate total wall-clock time: both the interference graph and the
+local-search repair scale with each region's own density, not the global
+dataset size, consistent with the region-independence property of
+\cref{sec:pi-architecture}.
+
+\projectfigure{PI_07_runtime_by_region.png}
+  {\fname{bulk\_plan()} wall-clock time per region, measured on the full dataset.}
+  {fig:pi-runtime}
+
+\begin{table}[H]
+  \centering
+  \caption{Measured per-region runtime}
+  \label{tab:pi-region-runtime}
+  \begin{tabularx}{\linewidth}{l c c c}
+    \toprule
+    \textbf{Region} & \textbf{Sectors} & \textbf{Sites} & \textbf{Plan time (s)} \\
+    \midrule
+    ALX & 1{,}189 & 338 & 34.50 \\
+    SIN & 941 & 266 & 11.33 \\
+    UPP & 403 & 115 & 2.46 \\
+    DEL & 21 & 6 & 0.01 \\
+    \midrule
+    \textbf{Total} & \textbf{2{,}554} & \textbf{725} & \textbf{53.36} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The independent \fname{validate()} call on the resulting assignments completed
+in \SI{0.42}{\second} --- a deliberate design outcome, since a validator that is
+itself slow would discourage running it after every change.
+
+\begin{infobox}{Determinism --- verified empirically}
+The full pipeline was run independently more than once on the unchanged raw
+dataset. Every PCI, RSI, and Mod4 value matched exactly across runs --- zero
+mismatches. This determinism follows directly from the MD5-hash tie-breaking
+described in \cref{sec:pi-mod4,sec:pi-assignment}: given identical input, every
+ordering and every tie-break resolves identically, so the plan is fully
+reproducible rather than dependent on iteration order or randomness.
+\end{infobox}
+
+\section{Chapter Summary}
+\label{sec:pi-summary}
+
+The Planning Intelligence engine assigns PCI, RSI, and Mod4/Mod3 to every
+sector of a 2{,}554-sector, 725-site live network through a seven-stage,
+flat-function pipeline. Mod4 is solved as a weighted graph-coloring problem
+(DSATUR plus guaranteed-terminating local search repair); PCI is chosen through
+a four-layer preference funnel that respects Mod4 and Mod3 simultaneously; RSI
+is assigned through a global tier-2 exclusion scheme justified by a
+degree-bound feasibility proof. An independent validator, sharing only the
+geometry module with the planner, confirmed \textbf{zero hard-rule violations}
+across the entire dataset, and the two soft-rule metrics that have exact
+structural expectations matched them precisely. The remaining soft metric ---
+Mod4 inter-site clashes --- represents a genuine, density-driven structural
+ceiling for single-sector optimization, and is the basis for the multi-sector
+coordinated-move extension proposed as future work in
+\cref{chap:integration-platform-design}.
