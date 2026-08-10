@@ -1,0 +1,26 @@
+﻿column,dtype,name_hint,parse_success_pct,sample_min,sample_max
+timestamp,"datetime64[ns, UTC+02:00]",True,100.0,2025-08-25 02:13:29+02:00,2025-08-29 00:36:44+02:00
+Activity.Start TimeStamp,object,True,100.0,2025-08-25 02:13:41.754000+02:00,2025-08-29 00:34:47.709000+02:00
+Activity.End TimeStamp,object,True,100.0,2025-08-25 02:15:24.901000+02:00,2025-08-29 00:36:44.778000+02:00
+Events.Timestamp,object,True,36.29,2025-08-25 02:13:41.953000+02:00,2025-08-29 00:36:36.174000+02:00
+Activity.DNS Resolution Time,float64,True,1.41,2174-01-01 00:00:00,2200-01-01 00:00:00
+PCAP.dns_time,int64,True,0.0,,
+PCAP.TCP_window_update,int64,True,0.0,,
+Activity.TCP Window Update,float64,True,0.0,,
+Extra_KPIs.MO Call Setup Time,float64,True,0.0,,
+Extra_KPIs.MO CSFB Return Time,float64,True,0.0,,
+Extra_KPIs.MO CSFB Call Setup Time,float64,True,0.0,,
+Extra_KPIs.RRC Connection Setup Time,float64,True,0.0,,
+Extra_KPIs.ERRC Connection Setup Time,float64,True,0.0,,
+Extra_KPIs.GSM Handover Interruption Time,float64,True,0.0,,
+Extra_KPIs.LTE Handover Interruption Time,float64,True,0.0,,
+Extra_KPIs.UMTS Handover Interruption Time,float64,True,0.0,,
+Extra_KPIs.MO Call Setup Time Until Connect,float64,True,0.0,,
+GSM - ChannelConfigurations - PENALTY_TIME,float64,True,0.0,,
+GSM - DedicatedRadioLink - TimeslotNumber,float64,True,0.0,,
+GSM - Serving - PENALTY_TIME,float64,True,0.0,,
+GSM - CellConfigurations - PenaltyTime,float64,True,0.0,,
+GSM - DedicatedChannels(0) - Timeslot,float64,True,0.0,,
+GSM - DedicatedChannels(1) - Timeslot,float64,True,0.0,,
+GSM - DedicatedChannels(2) - Timeslot,float64,True,0.0,,
+GSM - DedicatedChannels(3) - Timeslot,float64,True,0.0,,

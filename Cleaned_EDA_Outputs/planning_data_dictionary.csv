@@ -1,0 +1,15 @@
+﻿dataset,column,family,dtype,full_non_null_count,full_missing_count,full_missing_pct,sample_unique_count,sample_unique_pct,sample_non_null_examples,sample_min,sample_max,sample_mean,sample_std,sample_top_values
+planning,Unnamed: 15,Unnamed:,object,1,2553,99.961,1,100.0,['P'],,,,,{'P': 1}
+planning,Mod4,Mod4,float64,2449,105,4.111,4,0.163,"['3.0', '2.0', '0.0', '1.0', '3.0']",0.0,3.0,1.499795835034708,1.123182973063338,
+planning,PCI,PCI,float64,2449,105,4.111,1002,40.915,"['439.0', '294.0', '484.0', '577.0', '367.0']",0.0,1007.0,519.7423438138015,294.6109004899146,
+planning,RSI,RSI,float64,2449,105,4.111,219,8.942,"['410.0', '310.0', '465.0', '480.0', '175.0']",0.0,830.0,312.8097182523479,247.56319861295592,
+planning,Azimuth,Azimuth,int64,2554,0,0.0,72,2.819,"['45', '165', '235', '90', '165']",0,355,169.75528582615505,105.89336449005854,
+planning,Cell Radius,Cell,int64,2554,0,0.0,1,0.039,"['7000', '7000', '7000', '7000', '7000']",7000,7000,7000.0,0.0,
+planning,Freq Band,Freq,object,2554,0,0.0,1,0.039,"['N41', 'N41', 'N41', 'N41', 'N41']",,,,,{'N41': 2554}
+planning,Latitude,Latitude,float64,2554,0,0.0,723,28.309,"['31.235092', '31.235092', '31.235092', '31.35701', '31.35701']",23.995,31.35701,29.45466703263117,1.8458777097131405,
+planning,Longitude,Longitude,float64,2554,0,0.0,725,28.387,"['29.956882', '29.956882', '29.956882', '27.22446', '27.22446']",27.22446,34.5169,31.031592136389975,2.0882718395065316,
+planning,Requires_Planning,Requires_Planning,bool,2554,0,0.0,2,0.078,"['True', 'True', 'True', 'True', 'True']",False,True,0.04111198120595145,0.1985880851535978,
+planning,sectorID,sectorID,int64,2554,0,0.0,10,0.392,"['91', '92', '93', '91', '92']",90,194,92.58613938919342,4.980634229335729,
+planning,sectors_count,sectors_count,int64,2554,0,0.0,5,0.196,"['3', '3', '3', '4', '4']",1,5,3.64291307752545,0.5668532883302984,
+planning,siteID,siteID,object,2554,0,0.0,725,28.387,"['ALX3282', 'ALX3282', 'ALX3282', 'ALX3744', 'ALX3744']",,,,,"{'UPP2142': 5, 'UPP0163': 5, 'UPP5912': 4, 'ALX6249': 4, 'ALX6297': 4}"
+planning,site_sector_ID,site_sector_ID,object,2554,0,0.0,2554,100.0,"['ALX3282-1', 'ALX3282-2', 'ALX3282-3', 'ALX3744-1', 'ALX3744-2']",,,,,"{'ALX3282-1': 1, 'SIN4311-1': 1, 'SIN4308-1': 1, 'SIN4308-2': 1, 'SIN4308-3': 1}"

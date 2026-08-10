@@ -1,0 +1,4 @@
+﻿fixed_threshold_mbps,flagged_rows,flagged_pct_analysis,overlap_with_any_adaptive_low_tail_rows,adaptive_low_tail_recall_pct,interpretation
+8.0,4610,14.299894534400398,3224,100.0,Diagnostic sensitivity only; does not auto-retune the production threshold.
+10.0,5549,17.212606241081954,3224,100.0,Diagnostic sensitivity only; does not auto-retune the production threshold.
+12.0,6503,20.17184688876481,3224,100.0,Diagnostic sensitivity only; does not auto-retune the production threshold.

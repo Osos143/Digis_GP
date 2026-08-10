@@ -1,0 +1,34 @@
+\contentsline {chapter}{Project Overview and Business Objective}{i}{chapter*.1}%
+\contentsline {chapter}{\numberline {1.}Drive Test Throughput Anomaly Detection and Prioritization}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Chapter Scope and Role within NetFix AI}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Data Scope and Modeling Population}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Session boundaries and leakage control}{3}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Statistical Detection Layer}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Low-level throughput family}{3}{subsection.1.3.1}%
+\contentsline {subsubsection}{Fixed engineering threshold}{3}{subsubsection*.4}%
+\contentsline {subsubsection}{Global and session-relative P10}{4}{subsubsection*.5}%
+\contentsline {subsubsection}{Log-IQR lower fence}{4}{subsubsection*.6}%
+\contentsline {subsubsection}{Robust MAD / modified-Z detector}{4}{subsubsection*.7}%
+\contentsline {subsection}{\numberline {1.3.2}Temporal-change family}{5}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Expected-underperformance family}{5}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}RB-efficiency family}{6}{subsection.1.3.4}%
+\contentsline {section}{\numberline {1.4}Standalone Statistical Severity Score}{6}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Strongest-trigger floor}{6}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Continuous magnitude}{7}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Independent-family and context bonuses}{7}{subsection.1.4.3}%
+\contentsline {section}{\numberline {1.5}Session-Safe Machine-Learning Evidence}{8}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Group-aware out-of-fold prediction}{8}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Per-model anomaly evidence}{9}{subsection.1.5.2}%
+\contentsline {section}{\numberline {1.6}Row-Level Statistical--ML Fusion}{10}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Evidence confidence}{10}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Mechanism-aware impact and priority}{10}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Episode Construction and Persistence}{11}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Operational Incident Consolidation}{12}{section.1.8}%
+\contentsline {section}{\numberline {1.9}End-to-End Reduction and Final Handoff}{14}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Representative Detected Degradation}{14}{section.1.10}%
+\contentsline {section}{\numberline {1.11}Serving-Cell Prioritization Derived from Detected Behavior}{15}{section.1.11}%
+\contentsline {section}{\numberline {1.12}Validation, Governance, and Limitations}{17}{section.1.12}%
+\contentsline {section}{\numberline {1.13}Chapter Summary}{17}{section.1.13}%
+\contentsline {chapter}{\numberline {2.}Root Cause Analysis}{19}{chapter.2}%
+\contentsline {chapter}{\numberline {3.}Planning Intelligence}{21}{chapter.3}%
+\contentsline {chapter}{\numberline {4.}Integration and Platform}{23}{chapter.4}%

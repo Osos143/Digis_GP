@@ -1,0 +1,33 @@
+{
+  "run_timestamp_utc": "2026-08-04T16:13:39.048264+00:00",
+  "pipeline_version": "final_handoff_ready_v1_rach_reason_canonical_neighbor",
+  "statistical_rows": 32238,
+  "final_fused_handoff_rows": 3574,
+  "final_episode_count": 1429,
+  "operational_incident_count": 1382,
+  "compact_rca_incident_count": 1382,
+  "diverse_shortlist_count": 15,
+  "input_feature_table": "Throughput_Anomaly_Detection_Outputs\\01_preprocessing_cleaning\\lte_dl_feature_table_clean_pre_anomaly.parquet",
+  "input_feature_table_sha256": "0010b559111b2c20f4de907677184f2df12b09f1eb1f861dc70bd86a34e086f9",
+  "notebook_sha256": {},
+  "canonical_incident_priority_field": "incident_final_priority_0_100",
+  "ml_artifact_execution_mode": "reuse_if_available",
+  "ml_oof_results_reused": true,
+  "ml_models_retrained_this_run": false,
+  "persistent_model_artifact_directory": "D:\\ITI 9 Months\\Graduation Project\\LTE_Throughput_Model_Artifacts",
+  "interactive_plotly_incident_files": 15,
+  "rca_requested_kpi_count": 19,
+  "rca_exported_kpi_count": 15,
+  "rca_omitted_all_null_kpis": [
+    "active_user_count",
+    "cell_traffic_volume_mb",
+    "cross_cell_ue_overlap",
+    "neighbor_cell_traffic_delta"
+  ],
+  "rca_handoff_integrity_pass": true,
+  "top20_required_files_all_present": true,
+  "full_compact_json_sha256": "185f0b6fea75f7b465481cc7861ffcd363c6c5f565adcfb4a849caab3e1b9e60",
+  "full_compact_csv_sha256": "1e6138b8fbd6d6ff36ada0c898e90ef13bc471828f0e3c163d04cec6c1617638",
+  "generated_file_count": 338,
+  "output_freshness_policy": "Notebook 10 removes the generated output tree before a production run."
+}

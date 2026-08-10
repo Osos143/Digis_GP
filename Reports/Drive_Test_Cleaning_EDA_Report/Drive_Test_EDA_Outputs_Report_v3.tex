@@ -1,0 +1,836 @@
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{placeins}
+
+% =====================================
+% Colors and Styles
+% =====================================
+\definecolor{itiBlue}{RGB}{0,82,147}
+\definecolor{absblack}{RGB}{0,0,0}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{softblue}{RGB}{239,246,252}
+\definecolor{softgreen}{RGB}{239,252,245}
+\definecolor{darkgreen}{RGB}{33,110,57}
+\hypersetup{
+    linkcolor = absblack,
+    urlcolor = itiBlue,
+    citecolor = itiBlue,
+    colorlinks = true
+}
+
+% =====================================
+% Page Layout
+% =====================================
+\geometry{a4paper, margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=1.2cm,itemsep=1pt,topsep=1pt}
+\setlist[enumerate]{leftmargin=1.2cm,itemsep=1pt,topsep=1pt}
+\setlength{\headheight}{15pt}
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.32}
+\emergencystretch=3em
+\sloppy
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Drive Test EDA Output Report}
+\lhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{%
+    \vspace{5pt}%
+    \rule{\textwidth}{0.4pt}\\%
+    \vspace{2pt}%
+    \thepage%
+}
+
+\titleformat{\section}{\color{itiBlue}\normalfont\Large\bfseries}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\color{absblack}\normalfont\large\bfseries}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\color{absblack}\normalfont\normalsize\bfseries}{\thesubsubsection}{0.75em}{}
+
+\captionsetup[table]{position=bottom,skip=6pt,font=small,labelfont=bf}
+\captionsetup[figure]{position=bottom,skip=6pt,font=small,labelfont=bf}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}m{#1}}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+\tcbset{
+    colback=softblue,
+    colframe=itiBlue,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=6pt,
+    bottom=6pt
+}
+
+\lstdefinestyle{cmdstyle}{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    rulecolor=\color{lightgray},
+    backgroundcolor=\color{lightgray},
+    xleftmargin=2pt,
+    xrightmargin=2pt,
+    aboveskip=6pt,
+    belowskip=6pt,
+    showstringspaces=false
+}
+\lstset{style=cmdstyle}
+
+\newtcolorbox{infobox}[1]{
+    title=#1,
+    colback=softblue,
+    colframe=itiBlue,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=2pt
+}
+
+\newtcolorbox{successbox}[1]{
+    title=#1,
+    colback=softgreen,
+    colframe=darkgreen,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=2pt
+}
+
+\newcommand{\fname}[1]{\texttt{#1}}
+\newcommand{\colname}[1]{\texttt{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \begin{figure}[H]
+        \centering
+        \IfFileExists{../ITI_Logo.png}{%
+            \includegraphics[width=0.68\linewidth]{../ITI_Logo}%
+        }{%
+            \fbox{\parbox[c][3cm][c]{0.7\linewidth}{\centering\Large ITI Logo\\[0.3cm]\normalsize Place \texttt{ITI\_Logo.png} in the \texttt{Images} folder}}
+        }
+    \end{figure}
+    
+    \vspace{1cm}
+    \textcolor{absblack}{\rule{1\textwidth}{1.5pt}} \\[0.8cm]
+    {\fontsize{21}{28}\selectfont\bfseries Drive Test EDA Cleaning Outputs Report}\\[0.35cm]
+    {\fontsize{16}{18}\selectfont\bfseries LTE/WCDMA QoE, Events, Anomaly Detection, and RCA Direction}\\[0.25cm]
+    {\fontsize{13}{16}\selectfont\bfseries Analysis of Cleaned Output Tables and Recommended Data Improvements}
+    \textcolor{absblack}{\rule{1\textwidth}{1.5pt}} \\[1.3cm]
+    \vspace*{0.5cm}
+    \begin{tabular}{@{}l@{\hspace{1.3cm}}l@{}}
+        \textbf{\fontsize{14}{16}\selectfont Created by:} & \fontsize{16}{18}\selectfont DIGIS GP Team \\ [0.2cm]
+        & \fontsize{12}{14}\selectfont \textcolor{itiBlue}{\href{mailto:osamaeglal143@gmail.com}{osamaeglal143@gmail.com}} \\[0.2cm]
+        & \fontsize{12}{14}\selectfont \textcolor{absblack}{Intake 46} \\[0.8cm]
+        \textbf{\fontsize{14}{16}\selectfont Submitted to:} & \fontsize{16}{18}\selectfont Eng. Ibrahim El Shal \\[0.8cm]
+        \textbf{\fontsize{14}{16}\selectfont Date:} & \fontsize{16}{18}\selectfont \today \\
+    \end{tabular}
+    \vfill
+    \textcolor{absblack}{\rule{1\textwidth}{1pt}}
+    \thispagestyle{empty}
+\end{titlepage}
+
+\small
+\setstretch{1.09}
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+This report documents the cleaned EDA outputs generated from the drive-test dataset. The cleaning strategy used a 70\% missing-value threshold while protecting important time, location, activity, and event fields. The current evidence shows that the usable measurements are mainly LTE, WCDMA, activity, event, and GPS fields. Therefore, the strongest project direction is \textbf{LTE/WCDMA Drive-Test QoE Anomaly Detection and Root Cause Analysis}.
+
+\begin{infobox}{Main conclusion}
+The report outputs support LTE throughput modeling, LTE carrier aggregation optimization, event-window RCA, MO call/CSFB analysis, WCDMA quality analysis, and route-based anomaly mapping. Direct 5G NR PCI/RSI planning validation should not be the main project direction unless a matching Fiji/Nadi NR planning file and usable NR measurements are obtained.
+\end{infobox}
+
+
+\subsection{Files Covered}
+\begin{landscape}
+\begin{center}
+% normal table text
+\begin{tabularx}{\linewidth}{P{5.8cm}C{1.5cm}C{1.0cm}C{1.6cm}Y}
+\toprule
+\textbf{File} & \textbf{Rows} & \textbf{Cols} & \textbf{Size} & \textbf{Role} \\
+\midrule
+{\ttfamily drive\_\allowbreak{}test\_\allowbreak{}data\_\allowbreak{}dictionary.\allowbreak{}csv} & 1,365 & 15 & 204.3 KB & Raw schema and missingness profile for the original drive-test file. \\
+{\ttfamily drive\_\allowbreak{}test\_\allowbreak{}datetime\_\allowbreak{}candidates.\allowbreak{}csv} & 25 & 6 & 1.6 KB & Detected timestamp-like columns and parse validation. \\
+{\ttfamily detected\_\allowbreak{}key\_\allowbreak{}columns.\allowbreak{}csv} & 17 & 2 & 0.6 KB & Auto-selected canonical telecom KPI columns. \\
+{\ttfamily cleaned\_\allowbreak{}data\_\allowbreak{}dictionary.\allowbreak{}csv} & 182 & 15 & 39.8 KB & Schema profile of the cleaned base dataset. \\
+{\ttfamily removed\_\allowbreak{}columns\_\allowbreak{}report.\allowbreak{}csv} & 1,183 & 17 & 182.2 KB & Audit trail of dropped columns and removal reasons. \\
+{\ttfamily activity\_\allowbreak{}table.\allowbreak{}csv} & 465 & 16 & 138.5 KB & One row per call or HTTP download activity. \\
+{\ttfamily events\_\allowbreak{}long.\allowbreak{}csv} & 102,302 & 12 & 36.5 MB & One row per unpacked event from the original packed event fields. \\
+{\ttfamily event\_\allowbreak{}summary\_\allowbreak{}Events\_\allowbreak{}titles.\allowbreak{}csv} & 117 & 2 & 2.8 KB & Frequency summary of event titles. \\
+{\ttfamily drive\_\allowbreak{}nearest\_\allowbreak{}planning\_\allowbreak{}sample.\allowbreak{}csv} & 20,000 & 22 & 4.8 MB & Geographic check between drive route and planning file. \\
+{\ttfamily lte\_\allowbreak{}summary\_\allowbreak{}by\_\allowbreak{}pci.\allowbreak{}csv} & 190 & 9 & 26.5 KB & LTE serving PCI performance summary. \\
+{\ttfamily session\_\allowbreak{}summary.\allowbreak{}csv} & 546 & 28 & 182.1 KB & One row per drive-test session/id. \\
+{\ttfamily wcdma\_\allowbreak{}summary\_\allowbreak{}by\_\allowbreak{}psc.\allowbreak{}csv} & 168 & 6 & 12.0 KB & WCDMA serving PSC performance summary. \\
+{\ttfamily drive\_\allowbreak{}clean\_\allowbreak{}base.\allowbreak{}parquet} & 64,949 & 212 & 18.7 MB & Cleaned row-level dataset stored in Parquet for fast analytics and ML. \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{Output files analyzed in this report. Table columns use wrapped text to avoid overflow.}
+\end{center}
+\end{landscape}
+
+\section{Recommended Project Direction}
+
+The outputs suggest two clean project branches. The first branch is an LTE download-performance branch using LTE KPIs, throughput, CA status, events, and location. The second branch is a WCDMA/MO-call branch using WCDMA RSCP/EcNo, CSFB/call RAT, call activity status, setup timing, and event windows.
+
+\begin{successbox}{Recommended project title}
+\textbf{Drive-Test QoE Anomaly Detection and Root Cause Analysis for LTE/WCDMA Mobility Networks}
+\end{successbox}
+
+Recommended modules:
+\begin{itemize}
+    \item \textbf{LTE throughput prediction:} predict expected downlink throughput from radio, scheduling, CA, and resource features.
+    \item \textbf{Throughput anomaly detection:} flag samples, sessions, or PCIs where real throughput is much lower than expected.
+    \item \textbf{Carrier aggregation optimization:} evaluate whether CA activation, carrier count, and SCell quality improve throughput.
+    \item \textbf{Event-window RCA:} inspect KPI behavior before and after RACH, handover, CA, and WCDMA active-set events.
+    \item \textbf{MO call and CSFB RCA:} explain call success/failure using WCDMA quality, call setup timing, events, and session-level context.
+    \item \textbf{Route dashboard:} map RSRP, SINR, throughput, PCI/PSC, event density, and bad sessions.
+\end{itemize}
+
+
+\section{Raw Schema and Cleaning Control Outputs}
+
+\subsection{drive\_test\_data\_dictionary.csv}
+This file is the schema profile of the original drive-test file before cleaning. It is important because it proves which fields are empty, sparse, constant, numeric, categorical, or useful for telecom analysis.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily column} & Original raw column name. \\
+{\ttfamily dtype} & Detected pandas data type. \\
+{\ttfamily full\_\allowbreak{}non\_\allowbreak{}null\_\allowbreak{}count} & Number of populated rows in the full dataset. \\
+{\ttfamily full\_\allowbreak{}missing\_\allowbreak{}pct} & Missing percentage used by the 70\% cleaning rule. \\
+{\ttfamily sample\_\allowbreak{}unique\_\allowbreak{}count} & Approximate cardinality, useful for detecting constant/repeated fields. \\
+{\ttfamily sample\_\allowbreak{}non\_\allowbreak{}null\_\allowbreak{}examples} & Example values that help interpret unknown vendor columns. \\
+{\ttfamily sample\_\allowbreak{}min /\allowbreak{} sample\_\allowbreak{}max /\allowbreak{} sample\_\allowbreak{}mean /\allowbreak{} sample\_\allowbreak{}std} & Numeric profiling fields for radio KPIs and counters. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in drive\_test\_data\_dictionary.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This file controls the whole cleaning process. It helps identify which columns should be removed, protected, or extracted into separate tables. It also helps detect project opportunities such as LTE KPIs, WCDMA KPIs, event fields, activity fields, and location fields.
+
+\textbf{Cleaning improvement.} Keep using this table as the audit source before every notebook rebuild. Add a column called \texttt{cleaning\_action} later, with values such as keep, drop, protect, restore, or convert-to-long-table.
+
+
+\subsection{drive\_test\_datetime\_candidates.csv}
+This file lists timestamp-like columns and validates whether they can be parsed into datetime values. It is essential because the project needs a reliable time axis for route progression, event alignment, and before/after analysis.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily column} & Candidate timestamp column. \\
+{\ttfamily dtype} & Original loaded type. \\
+{\ttfamily name\_\allowbreak{}hint} & Whether the column name suggests time/date information. \\
+{\ttfamily parse\_\allowbreak{}success\_\allowbreak{}pct} & Percentage of sample values parsed successfully. \\
+{\ttfamily sample\_\allowbreak{}min} & Earliest detected timestamp. \\
+{\ttfamily sample\_\allowbreak{}max} & Latest detected timestamp. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in drive\_test\_datetime\_candidates.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} The main row-level clock is \texttt{timestamp}. Activity start/end timestamps define activity windows, while event timestamps define network or script event timing. This enables event-window RCA, sample-gap checks, and session-duration validation.
+
+\textbf{Cleaning improvement.} Keep parsed versions of the main timestamps and use \texttt{timestamp} for row-level sorting. Do not treat ID-derived session/log times as moving sample clocks; they are metadata for the whole session/log.
+
+
+\subsection{detected\_key\_columns.csv}
+This file records the notebook's detected key telecom columns. It is useful as a compact reference for canonical KPI selection.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily meaning} & Human-readable KPI meaning such as LTE RSRP, LTE SINR, LTE DL throughput, WCDMA RSCP, or location. \\
+{\ttfamily column} & Actual dataframe column selected for that meaning. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in detected\_key\_columns.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This file helps standardize analysis by avoiding repeated manual column selection. It also reveals whether important target variables survived cleaning.
+
+\textbf{Cleaning improvement.} Later, use it to create renamed canonical columns such as \texttt{lte\_rsrp}, \texttt{lte\_sinr}, \texttt{lte\_dl\_throughput}, \texttt{wcdma\_rscp}, and \texttt{wcdma\_ecno}. This makes ML code simpler and less vendor-specific.
+
+
+\subsection{cleaned\_data\_dictionary.csv}
+This file describes the cleaned dataset after applying the 70\% missingness threshold and protected-column logic. It shows which columns remain and what families they belong to.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+LTE & 114 columns \\
+WCDMA & 42 columns \\
+Activity & 10 columns \\
+Events & 6 columns \\
+Location & 5 columns \\
+Extra\_KPIs & 2 columns \\
+id & 1 columns \\
+imsi & 1 columns \\
+timestamp & 1 columns \\
+\bottomrule
+\end{tabularx}
+\caption{Cleaned data family distribution.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily column} & Column name in the cleaned base dataset. \\
+{\ttfamily family} & Column group such as LTE, WCDMA, Activity, Events, Location, Extra\_KPIs, or metadata. \\
+{\ttfamily full\_\allowbreak{}missing\_\allowbreak{}pct} & Remaining missing percentage after cleaning. \\
+{\ttfamily sample\_\allowbreak{}top\_\allowbreak{}values} & Top repeated values for categorical columns. \\
+{\ttfamily sample\_\allowbreak{}min /\allowbreak{} sample\_\allowbreak{}max /\allowbreak{} sample\_\allowbreak{}mean /\allowbreak{} sample\_\allowbreak{}std} & Numeric profiling fields for KPI columns. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in cleaned\_data\_dictionary.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} The cleaned dictionary shows that the useful data is mainly LTE, WCDMA, Activity, Events, Location, and Extra KPI fields. It also confirms that usable NR5G sample-level measurements did not survive/exist in this dataset.
+
+\textbf{Cleaning improvement.} Use this table to create specialized output tables: LTE samples, WCDMA samples, event timeline, activity table, session summary, and route/location table. Avoid using one huge mixed table directly for all ML tasks.
+
+
+\subsection{removed\_columns\_report.csv}
+This file is the audit trail of columns removed by the cleaning rules. It is important because sparse telecom fields are not always useless; some are sparse because they occur only during events, handovers, calls, or HTTP tests.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+>70\% missing & 634 columns \\
+100\% missing & 518 columns \\
+constant / single unique value & 31 columns \\
+\bottomrule
+\end{tabularx}
+\caption{Removed-column reasons.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily column} & Removed column name. \\
+{\ttfamily family} & Column family inferred from the name. \\
+{\ttfamily full\_\allowbreak{}non\_\allowbreak{}null\_\allowbreak{}count} & Number of rows still containing useful values. \\
+{\ttfamily full\_\allowbreak{}missing\_\allowbreak{}pct} & Reason the column may have been dropped by threshold. \\
+{\ttfamily is\_\allowbreak{}protected} & Whether the column was protected from removal. \\
+{\ttfamily remove\_\allowbreak{}reason} & Decision reason such as 100\% missing, more than 70\% missing, or constant/single unique value. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in removed\_columns\_report.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This file lets us recover meaningful sparse columns later. The most important candidates are HTTP throughput, handover interruption time, call setup timing, CSFB timing, and activity application details.
+
+\textbf{Cleaning improvement.} Do not blindly restore all removed columns. Instead, restore selected sparse KPIs into an enriched table and convert neighbor/active-set groups into long tables.
+
+
+\section{Activity and Event Outputs}
+
+\subsection{activity\_table.csv}
+The activity table is an activity-level table, not a row-level sample table. Each row represents a detected call or HTTP/HTTPS download activity.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+MO Call & 274 activities \\
+HTTP/HTTPS Download & 191 activities \\
+Status: Success & 253 activities \\
+Status: Failed & 212 activities \\
+\bottomrule
+\end{tabularx}
+\caption{Activity distribution.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily id} & Session/log identifier linking the activity to row-level samples. \\
+{\ttfamily timestamp} & Sample timestamp associated with the activity record. \\
+{\ttfamily id\_\allowbreak{}route\_\allowbreak{}test\_\allowbreak{}label} & Parsed route and test label, e.g., Fiji-Nadi-MO-D. \\
+{\ttfamily id\_\allowbreak{}test\_\allowbreak{}type} & Parsed test type, such as MO-D or DL-D. \\
+{\ttfamily Activity.\allowbreak{}Activity} & Activity type, such as MO Call or HTTP/HTTPS Download. \\
+{\ttfamily Activity.\allowbreak{}Duration} & Activity duration, originally in milliseconds. \\
+{\ttfamily Activity.\allowbreak{}Status} & Success or Failed activity result. \\
+{\ttfamily Activity.\allowbreak{}Tech} & Technology observed for the activity. \\
+{\ttfamily Activity.\allowbreak{}Power /\allowbreak{} Activity.\allowbreak{}Quality /\allowbreak{} Activity.\allowbreak{}SINR} & Activity-level radio context. \\
+{\ttfamily Activity.\allowbreak{}Throughput} & Activity-level throughput or call-related numeric result. \\
+{\ttfamily Activity.\allowbreak{}Start TimeStamp\_\allowbreak{}parsed /\allowbreak{} Activity.\allowbreak{}End TimeStamp\_\allowbreak{}parsed} & Parsed activity window boundaries. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in activity\_table.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This table is excellent for activity-level QoE labels. MO Call rows can support call success/failure classification. HTTP download rows can support throughput regression or application-layer anomaly detection.
+
+\textbf{Cleaning improvement.} Keep activity columns protected, but model activities separately from row-level samples. Convert duration to seconds and avoid mixing MO call and HTTP download targets in one model.
+
+
+\subsection{events\_long.csv}
+This file is one of the most important outputs. The raw event fields originally stored multiple events inside one cell using packed strings. The long event table converts that structure into a clean format where one row equals one event.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Network & 93,873 events \\
+Script & 5,930 events \\
+Logs & 2,468 events \\
+Device & 31 events \\
+\bottomrule
+\end{tabularx}
+\caption{Event category distribution.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+LTE & 76,771 events \\
+WCDMA & 24,895 events \\
+GSM & 636 events \\
+\bottomrule
+\end{tabularx}
+\caption{Event technology distribution.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily source\_\allowbreak{}index} & Original row index in the cleaned row-level dataset where the event was found. \\
+{\ttfamily event\_\allowbreak{}order\_\allowbreak{}in\_\allowbreak{}sample} & Order of the event inside the original packed sample row. \\
+{\ttfamily id} & Session/log identifier used for joining events with sessions and samples. \\
+{\ttfamily sample\_\allowbreak{}timestamp} & Timestamp of the sample row that carried the event. \\
+{\ttfamily Events.\allowbreak{}Timestamp} & Original event timestamp before parsing. \\
+{\ttfamily Events.\allowbreak{}category} & High-level event category such as Network, Script, Logs, or Device. \\
+{\ttfamily Events.\allowbreak{}Tech} & Technology associated with the event, such as LTE, WCDMA, or GSM. \\
+{\ttfamily Events.\allowbreak{}titles} & Event name; the key field for RCA, e.g., Event A3, LTE CA Init, LTE RACH Failure. \\
+{\ttfamily Events.\allowbreak{}description} & Detailed raw event description; useful later for selected advanced parsing. \\
+{\ttfamily Events.\allowbreak{}subject} & Extra status/context such as Start, End, Success, Failed, or Timeout. \\
+{\ttfamily event\_\allowbreak{}timestamp} & Parsed event timestamp used for sorting and event-window analysis. \\
+{\ttfamily event\_\allowbreak{}delay\_\allowbreak{}from\_\allowbreak{}sample\_\allowbreak{}seconds} & Difference between event time and sample time; validates event/sample alignment. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in events\_long.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} The event table connects KPI degradation to actual network procedures. It enables RACH failure RCA, handover analysis, CA effectiveness analysis, WCDMA active-set analysis, call/download event alignment, and event-density anomaly detection.
+
+\textbf{Cleaning improvement.} Keep events in long format. Add derived columns such as \texttt{event\_family}, \texttt{event\_severity}, \texttt{is\_failure\_event}, and counts over rolling windows such as RACH failures in the last 30 seconds.
+
+
+\subsection{event\_summary\_Events\_titles.csv}
+This file is the frequency ranking of event titles. It helps identify which event families deserve attention first.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.92\textwidth}{P{6.5cm}C{2.5cm}}
+\toprule
+\textbf{Event title} & \textbf{Count} \\
+\midrule
+{\ttfamily Event A3} & 5,758 \\
+{\ttfamily Event A1} & 4,980 \\
+{\ttfamily LTE CA Init} & 4,365 \\
+{\ttfamily LTE CA Complete} & 4,363 \\
+{\ttfamily UMTS AS Update Attempt} & 4,187 \\
+{\ttfamily UMTS AS Update Complete} & 4,187 \\
+{\ttfamily LTE RACH Msg1} & 4,168 \\
+{\ttfamily Event A6} & 3,734 \\
+\bottomrule
+\end{tabularx}
+\caption{Top event titles by frequency.}
+\end{table}
+
+
+\textbf{Importance and use.} Frequent titles such as Event A3, Event A1, LTE CA Init/Complete, UMTS AS Update, LTE RACH Msg1, Event A6, and RACH Failure should be grouped into mobility, CA, access, WCDMA, and activity families.
+
+\textbf{Cleaning improvement.} Use this table to build the event taxonomy. Rare events should not be deleted automatically because failure events can be rare but important.
+
+
+\section{Planning Validation Output}
+
+\subsection{drive\_nearest\_planning\_sample.csv}
+This file attempts to match sampled drive-test points to the nearest planned sector/site. It is useful mainly as a validation check, and it shows that the current planning file is geographically mismatched with the Fiji/Nadi drive route.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Median nearest planned distance & 16,056.2 km \\
+Minimum nearest planned distance & 16,049.6 km \\
+Rows inside planned radius & 0 \\
+Unique nearest planned sectors & 1 \\
+\bottomrule
+\end{tabularx}
+\caption{Planning-geography validation statistics.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily Location -\allowbreak{} Latitude /\allowbreak{} Location -\allowbreak{} Longitude} & Drive-test GPS point. \\
+{\ttfamily LTE -\allowbreak{} Serving -\allowbreak{} PCI} & Observed LTE serving PCI, useful for LTE context but not NR planning validation. \\
+{\ttfamily nearest\_\allowbreak{}plan\_\allowbreak{}distance\_\allowbreak{}km} & Distance from drive point to nearest planned sector/site. \\
+{\ttfamily azimuth\_\allowbreak{}error\_\allowbreak{}deg} & Angular difference between planned azimuth and bearing to the drive point. \\
+{\ttfamily inside\_\allowbreak{}planned\_\allowbreak{}radius} & Whether the drive point falls inside planned cell radius. \\
+{\ttfamily plan\_\allowbreak{}site\_\allowbreak{}sector\_\allowbreak{}ID /\allowbreak{} plan\_\allowbreak{}siteID /\allowbreak{} plan\_\allowbreak{}sectorID} & Nearest planning record identifiers. \\
+{\ttfamily plan\_\allowbreak{}Freq Band /\allowbreak{} plan\_\allowbreak{}RSI /\allowbreak{} plan\_\allowbreak{}PCI /\allowbreak{} plan\_\allowbreak{}Mod4} & NR planning attributes from the planning file. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in drive\_nearest\_planning\_sample.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} The file proves that the NR planning file should not be used as the main validation source for this route. The nearest planned site is thousands of kilometers away from the drive route, so PCI/RSI comparison would be invalid.
+
+\textbf{Cleaning improvement.} Keep this output as a planning mismatch report. Add an automatic rule: if median nearest-site distance is greater than 20 km, skip planning comparison and warn that the planning file does not match the drive-test geography.
+
+
+\section{Technology Performance Summaries}
+
+\subsection{lte\_summary\_by\_pci.csv}
+This file groups LTE samples by serving PCI. It summarizes how each observed PCI behaved in terms of coverage, quality, and throughput.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Unique LTE serving PCIs & 190 \\
+Total summarized LTE samples & 37,588 \\
+Highest-exposure PCI & 469 \\
+Best mean DL throughput PCI (rows >= 100) & 155 \\
+\bottomrule
+\end{tabularx}
+\caption{LTE PCI summary highlights.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily LTE -\allowbreak{} Serving -\allowbreak{} PCI} & Observed LTE serving Physical Cell ID. \\
+{\ttfamily rows} & Number of samples served by that PCI. \\
+{\ttfamily first\_\allowbreak{}seen /\allowbreak{} last\_\allowbreak{}seen} & Time window in which the PCI appeared. \\
+{\ttfamily mean\_\allowbreak{}rsrp /\allowbreak{} p10\_\allowbreak{}rsrp} & Average and weak-edge LTE coverage strength. \\
+{\ttfamily mean\_\allowbreak{}sinr /\allowbreak{} p10\_\allowbreak{}sinr} & Average and weak-edge LTE quality/interference. \\
+{\ttfamily mean\_\allowbreak{}dl\_\allowbreak{}tp} & Average downlink throughput while served by the PCI. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in lte\_summary\_by\_pci.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This is a core optimization table. It can rank high-impact poor PCIs, suspicious low-throughput PCIs, and benchmark high-throughput PCIs.
+
+\textbf{Cleaning improvement.} PCI alone may mix reused cells. Improve this table later by grouping by PCI + EARFCN + band + route/location cluster. Add percentiles, poor coverage ratio, poor SINR ratio, low throughput ratio, and event counts per PCI.
+
+
+\subsection{wcdma\_summary\_by\_psc.csv}
+This file groups WCDMA samples by serving PSC. PSC is the WCDMA Primary Scrambling Code and is useful for identifying serving WCDMA behavior along the route.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Unique WCDMA serving PSCs & 168 \\
+Total summarized WCDMA samples & 25,448 \\
+Highest-exposure PSC & 305 \\
+Strongest mean RSCP PSC (rows >= 100) & 213 \\
+\bottomrule
+\end{tabularx}
+\caption{WCDMA PSC summary highlights.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily WCDMA -\allowbreak{} ServingCell -\allowbreak{} PSC} & Observed serving WCDMA Primary Scrambling Code. \\
+{\ttfamily rows} & Number of samples served by that PSC. \\
+{\ttfamily mean\_\allowbreak{}rscp /\allowbreak{} p10\_\allowbreak{}rscp} & Average and weak-edge WCDMA coverage strength. \\
+{\ttfamily mean\_\allowbreak{}ecno /\allowbreak{} p10\_\allowbreak{}ecno} & Average and weak-edge WCDMA quality/interference. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in wcdma\_summary\_by\_psc.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This table is central for the MO call/CSFB branch because MO sessions are WCDMA-heavy. It helps rank weak PSCs, quality-limited PSCs, and healthy benchmark PSCs.
+
+\textbf{Cleaning improvement.} Improve later by grouping by PSC + UARFCN + route/location cluster. Also create \texttt{wcdma\_cells\_long.csv} for active-set and neighbor-cell analysis.
+
+
+\section{Session-Level Output}
+
+\subsection{session\_summary.csv}
+This table compresses the row-level data into one row per session or unique ID. It is the best control table for splitting the project into LTE download and MO-call branches.
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{0.94\textwidth}{P{5.2cm}Y}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Fiji-Nadi-MO-D & 32,048 samples \\
+Fiji-Nadi-LTE-DL-D & 31,570 samples \\
+Nawaka-LTE-DL & 789 samples \\
+Nawaka-MO & 542 samples \\
+\bottomrule
+\end{tabularx}
+\caption{Rows by route/test label.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Parameter / Column} & \textbf{Meaning} \\
+\midrule
+{\ttfamily id} & Unique session/log/activity identifier. \\
+{\ttfamily rows} & Number of row-level samples in the session. \\
+{\ttfamily time\_\allowbreak{}start /\allowbreak{} time\_\allowbreak{}end /\allowbreak{} duration\_\allowbreak{}seconds} & Session time coverage and duration. \\
+{\ttfamily valid\_\allowbreak{}location\_\allowbreak{}rows} & Number of samples with valid GPS. \\
+{\ttfamily lte\_\allowbreak{}rows /\allowbreak{} wcdma\_\allowbreak{}rows /\allowbreak{} nr5g\_\allowbreak{}rows} & Technology availability inside the session. \\
+{\ttfamily event\_\allowbreak{}rows} & Samples with one or more events. \\
+{\ttfamily route\_\allowbreak{}label /\allowbreak{} location\_\allowbreak{}label /\allowbreak{} test\_\allowbreak{}type} & Parsed metadata from the ID string. \\
+{\ttfamily mean\_\allowbreak{}lte\_\allowbreak{}rsrp /\allowbreak{} p10\_\allowbreak{}lte\_\allowbreak{}rsrp} & Session-level LTE coverage summary. \\
+{\ttfamily mean\_\allowbreak{}lte\_\allowbreak{}sinr /\allowbreak{} p10\_\allowbreak{}lte\_\allowbreak{}sinr} & Session-level LTE quality summary. \\
+{\ttfamily mean\_\allowbreak{}lte\_\allowbreak{}dl\_\allowbreak{}throughput} & Session-level LTE throughput summary. \\
+{\ttfamily mean\_\allowbreak{}wcdma\_\allowbreak{}rscp /\allowbreak{} mean\_\allowbreak{}wcdma\_\allowbreak{}ecno} & Session-level WCDMA coverage and quality. \\
+{\ttfamily lte\_\allowbreak{}pct /\allowbreak{} wcdma\_\allowbreak{}pct /\allowbreak{} nr5g\_\allowbreak{}pct /\allowbreak{} event\_\allowbreak{}pct} & Technology/event share inside the session. \\
+{\ttfamily min\_\allowbreak{}lat /\allowbreak{} max\_\allowbreak{}lat /\allowbreak{} min\_\allowbreak{}lon /\allowbreak{} max\_\allowbreak{}lon} & Approximate session bounding box. \\
+\bottomrule
+\end{tabularx}
+\caption{Important fields in session\_summary.csv.}
+\end{table}
+
+
+\textbf{Importance and use.} This table is ideal for session-level anomaly detection, quality scoring, route comparison, and high-level RCA. It proves that LTE-DL sessions and MO sessions should be modeled separately.
+
+\textbf{Cleaning improvement.} Add session-level event counts such as RACH failures, handover attempts, CA events, WCDMA updates, and script failures. Also add flags for short sessions and sessions with poor radio quality.
+
+
+\section{Cleaned Row-Level Dataset}
+
+\subsection{drive\_clean\_base.parquet}
+The Parquet file is the cleaned row-level dataset. Parquet is a compressed columnar analytics format, which is better than Excel for wide ML/EDA datasets because it preserves data types, loads faster, and stores large tables efficiently.
+
+\begin{infobox}{Why Parquet instead of Excel?}
+Excel is useful for small reports and manual review, but Parquet is better for the cleaned analytical dataset. It is compact, type-safe, fast to load, and suitable for ML pipelines. Excel may become slow, lose data types, or mishandle long identifiers and timezone-aware timestamps.
+\end{infobox}
+
+This file should be treated as the clean base source for specialized tables rather than the final ML table itself. Recommended derived tables include LTE samples, WCDMA samples, activities, events, locations, sessions, LTE neighbors, and WCDMA cells.
+
+
+\section{How These Outputs Improve the Cleaned Data}
+
+\begin{table}[H]
+\centering
+% normal table text
+\begin{tabularx}{\textwidth}{P{0.38\textwidth}Y}
+\toprule
+\textbf{Improvement} & \textbf{Reason} \\
+\midrule
+Use canonical KPI names & Rename important vendor columns to stable names such as \texttt{lte\_rsrp}, \texttt{lte\_sinr}, \texttt{lte\_dl\_throughput}, \texttt{wcdma\_rscp}, and \texttt{wcdma\_ecno}. \\
+Split by test type & LTE-DL and MO/CSFB sessions represent different problems and should not be mixed in one target model. \\
+Keep sparse event/activity KPIs & Sparse does not always mean useless; many event and activity fields are sparse by design. \\
+Use long event format & \texttt{events\_long.csv} is better than packed event strings for RCA and ML features. \\
+Create LTE neighbor long table & Wide neighbor columns should be reshaped into one row per neighbor per sample. \\
+Create WCDMA cells long table & WCDMA active-set/neighbor fields should be reshaped into one row per cell per sample. \\
+Skip invalid planning comparison & The current planning file is geographically mismatched, so it should not drive model conclusions. \\
+\bottomrule
+\end{tabularx}
+\caption{Recommended improvements to the cleaned data pipeline.}
+\end{table}
+
+
+\section{Recommended Removed Columns to Bring Back Later}
+
+The following columns were removed mostly because they are sparse. They should not all be restored blindly into the main table, but selected ones should be protected in an enriched version of the dataset.
+
+\begin{longtable}{P{2.2cm}P{5.2cm}P{7.1cm}}
+\toprule
+\textbf{Priority} & \textbf{Column or Group} & \textbf{Reason to restore} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Priority} & \textbf{Column or Group} & \textbf{Reason to restore} \\
+\midrule
+\endhead
+High & {\ttfamily Throughput.\allowbreak{}HTTP\_\allowbreak{}DL} & Application-layer HTTP downlink throughput. Restore for radio-vs-application throughput anomaly detection. \\
+High & {\ttfamily Throughput.\allowbreak{}Physical\_\allowbreak{}DL} & Physical/application-related DL throughput. Useful with HTTP\_DL for throughput RCA. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}UMTS Handover Interruption Time} & Sparse but very meaningful for WCDMA mobility and CSFB/call RCA. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}LTE Handover Interruption Time} & Important for LTE handover interruption and mobility optimization. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}ERRC Connection Setup Time} & LTE access/setup timing; useful for accessibility and call/download setup RCA. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}RRC Connection Setup Time} & General RRC setup timing; useful for access delay analysis. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}MO Call Setup Time} & Useful target/feature for call setup delay and failed call RCA. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}MO Call Setup Time Until Connect} & More direct call connection timing metric. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}MO CSFB Call Setup Time} & Very important for CSFB voice-call analysis. \\
+High & {\ttfamily Extra\_\allowbreak{}KPIs.\allowbreak{}Attach Delay} & Useful for accessibility/session setup analysis. \\
+Medium & {\ttfamily Activity.\allowbreak{}Error} & Explains failed activities; should be used in activity-level RCA. \\
+Medium & {\ttfamily Activity.\allowbreak{}TTFB} & Time to first byte; useful for HTTP/application-layer RCA. \\
+Medium & {\ttfamily Activity.\allowbreak{}DNS Resolution Time} & Application setup delay; useful for separating radio issues from app/server issues. \\
+Medium & {\ttfamily Activity.\allowbreak{}Remote Address /\allowbreak{} Activity.\allowbreak{}Remote IPs} & Debugging context for HTTP server endpoint issues; not recommended as raw ML features. \\
+Medium & {\ttfamily Activity.\allowbreak{}Size} & Activity payload size; important for throughput normalization. \\
+Medium & {\ttfamily Activity.\allowbreak{}ARFCN /\allowbreak{} Activity.\allowbreak{}Band /\allowbreak{} Activity.\allowbreak{}LCI} & Activity-level radio context that helps connect activities to frequency/band/cell conditions. \\
+Special table & {\ttfamily LTE NeighborCells(4+) groups} & Do not restore as many wide columns; convert to lte\_neighbors\_long.csv. \\
+Special table & {\ttfamily WCDMA WCDMACellsTable(2+) groups} & Do not restore as many wide columns; convert to wcdma\_cells\_long.csv. \\
+Optional & {\ttfamily LTE SecondaryCell 2 groups} & Restore only if the project includes 3-carrier CA analysis; otherwise keep out of the base table. \\
+\bottomrule
+\caption{Recommended sparse columns/groups to restore or reshape later.}
+\end{longtable}
+
+Recommended output structure after restoring selected information:
+\begin{itemize}
+    \item \texttt{drive\_clean\_base.parquet}: current clean row-level source.
+    \item \texttt{drive\_clean\_enriched.parquet}: clean base plus selected sparse KPIs restored.
+    \item \texttt{lte\_neighbors\_long.csv}: LTE neighbor cells reshaped from wide to long format.
+    \item \texttt{wcdma\_cells\_long.csv}: WCDMA active-set/neighbor cells reshaped from wide to long format.
+    \item \texttt{events\_long.csv}: event timeline used as the main RCA/event feature table.
+\end{itemize}
+
+
+\section{Final Recommendation}
+
+The project should proceed as an LTE/WCDMA QoE anomaly detection and RCA project. The cleanest roadmap is:
+\begin{enumerate}
+    \item Use \texttt{session\_summary.csv} to split sessions into LTE-DL and MO/CSFB branches.
+    \item Use \texttt{drive\_clean\_base.parquet} as the row-level source.
+    \item Use \texttt{events\_long.csv} for event-window RCA and event-derived ML features.
+    \item Use \texttt{lte\_summary\_by\_pci.csv} and \texttt{wcdma\_summary\_by\_psc.csv} to prioritize bad PCIs/PSCs.
+    \item Restore only the selected sparse KPIs needed for application-throughput, handover, call setup, and CSFB analysis.
+    \item Exclude the current NR planning comparison from the main story until the correct planning file and usable NR measurements are available.
+\end{enumerate}
+
+\end{document}

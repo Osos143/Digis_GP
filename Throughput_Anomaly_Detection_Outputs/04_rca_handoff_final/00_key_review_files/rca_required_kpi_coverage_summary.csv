@@ -1,0 +1,20 @@
+﻿kpi,non_null_incidents,total_incidents,coverage_pct,availability_status,source_or_formula,exported_to_rca_handoff,omission_reason
+lte_rank,1336,1382,96.67149059334298,observed,lte_rank,True,
+mimo_layer_utilization_pct,1336,1382,96.67149059334298,derived,"100*(Rank2+Rank3+Rank4)/total rank usage from R1:LTE - PrimaryCell - PCell_Rank1Usage, R2:LTE - PrimaryCell - PCell_Rank2Usage, R3:LTE - PrimaryCell - PCell_Rank3Usage, R4:LTE - PrimaryCell - PCell_Rank4Usage",True,
+mimo_throughput_gain_pct,1336,1382,96.67149059334298,derived_estimate,100*(usage-weighted effective spatial layers - 1),True,
+serving_minus_best_neighbor_rsrp,1373,1382,99.34876989869754,observed_or_derived,serving_minus_best_neighbor_rsrp,True,
+near_handover_mobility_flag,1382,1382,100.0,derived_event_context,near_handover_mobility_flag,True,
+handover_mobility_count_pm5s,1382,1382,100.0,derived_event_context,handover_mobility_count_pm5s,True,
+ho_dwell_time_s,1382,1382,100.0,derived,seconds since current serving_cell_key serving segment began,True,
+ue_speed_kmh,1382,1382,100.0,observed,speed,True,
+near_rach_failure_flag,1382,1382,100.0,derived_event_context,near_rach_failure_flag,True,
+rach_attempt_count,1382,1382,100.0,derived_window_count,rach_attempt_count_pm10s,True,
+rach_access_delay_ms,1016,1382,73.51664254703329,observed,rach_latency,True,
+rach_failure_rate_pct,867,1382,62.73516642547033,derived_event_window_rate,100*rach_failure_count_pm10s/rach_attempt_count_pm10s,True,
+rach_reason,1382,1382,100.0,observed_categorical,rach_reason,True,
+cell_prb_utilization_pct,1382,1382,100.0,proxy,UE-observed rb_utilization_pct (not clipped at 100),True,
+active_user_count,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
+cell_traffic_volume_mb,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
+neighbor_cell_availability,1382,1382,100.0,derived,neighbor_count > 0,True,
+neighbor_cell_traffic_delta,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
+cross_cell_ue_overlap,0,1382,,unavailable,,False,Omitted because the KPI is null for the complete dataset
