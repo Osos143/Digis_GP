@@ -1,0 +1,13 @@
+\chapter*{Project Overview and Business Objective}
+\addcontentsline{toc}{chapter}{Project Overview and Business Objective}
+\markboth{Project Overview and Business Objective}{Project Overview and Business Objective}
+
+NetFix AI is an AI-powered telecom engineering platform designed for mobile-network optimization and planning teams. The project addresses a practical operational problem: engineers often work with very large drive-test and planning datasets through fragmented spreadsheets, scripts, plots, and specialist tools. The result is slow investigation, repeated manual validation, inconsistent prioritization, and difficulty turning raw measurements into clear engineering actions.
+
+The platform contains two \textbf{independent} engineering workspaces. \textbf{Drive Test Intelligence} detects and prioritizes throughput degradation, groups repeated abnormal observations into engineer-facing incidents, and prepares structured evidence for root-cause analysis. \textbf{Planning Intelligence} independently supports network-plan visualization, site and sector workflows, conflict detection, and deterministic validation. The two datasets may represent different sites and locations; therefore, planning output is not used to prove or correct a drive-test anomaly, and drive-test observations are not used as ground truth for the planning workflow.
+
+\begin{infobox}{Business objective}
+The product objective is to reduce the time between ``raw telecom data'' and an auditable engineering decision. NetFix AI is positioned as B2B engineering software for operator optimization teams, RF planning teams, telecom vendors, managed-service providers, and engineering consultancies. Its value is not to replace the engineer, but to automate repetitive analysis, surface the highest-priority problems, preserve evidence, and make validation and reporting reproducible.
+\end{infobox}
+
+The thesis documents the technical mechanisms behind this objective. The following chapter presents the drive-test throughput anomaly-detection pipeline, including statistical detection, session-safe machine learning, multi-level evidence fusion, episode construction, incident consolidation, and engineering prioritization.

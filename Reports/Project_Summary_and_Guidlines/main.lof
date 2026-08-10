@@ -1,0 +1,11 @@
+\addvspace {10pt}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces LTE-DL throughput distribution before anomaly detection. The long upper tail motivates robust lower-tail statistics and conditional expected-throughput references rather than one global Gaussian threshold.}}{3}{figure.caption.3}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Distribution of final fused row-level priority. The row score represents the seriousness and evidence strength of an exact one-second observation before temporal aggregation.}}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Priority distribution of strict final episodes. Episode scoring broadens the question from ``how bad was this second?'' to ``how severe, persistent, and well-supported was the complete anomaly period?''}}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Operational RCA incident-priority distribution. The incident score is intentionally more conservative than the peak row score because it represents the complete engineer-facing problem after persistence, recurrence, and evidence consistency are considered.}}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Final anomaly-detection and RCA-handoff funnel for the most recent run. Statistical and ML paths are not additive counts at every intermediate stage; they converge at row-level fusion before episode and incident aggregation.}}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Representative high-priority fused episode. The shaded region marks the selected anomaly period; the upper panel emphasizes opportunity references and the lower panel shows central/temporal predictive context.}}{15}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Worst-performing LTE serving cells ranked by the multi-KPI percentile badness score. Ranking reliability must be interpreted together with the score.}}{16}{figure.caption.15}%
+\addvspace {10pt}
+\addvspace {10pt}
+\addvspace {10pt}
