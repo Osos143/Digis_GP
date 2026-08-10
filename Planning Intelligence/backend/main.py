@@ -618,6 +618,16 @@ def _replan_site_editor_options(base_path: str, target_site: str, draft_assignme
     return options
 
 
+def _preserve_existing_site_rsi(assignments: dict, old_assignments: dict) -> dict:
+    preserved = {}
+    for sid, assignment in assignments.items():
+        current = dict(assignment)
+        if sid in old_assignments:
+            current["rsi"] = old_assignments[sid].get("rsi")
+        preserved[sid] = current
+    return preserved
+
+
 # --------------------------------------------------------------------------
 # Add Site: re-plan an existing site  (core/add_site_ops.py, verbatim logic)
 # --------------------------------------------------------------------------
@@ -633,6 +643,7 @@ def api_replan_site_preview(req: ExistingReplanPreviewRequest):
         raise HTTPException(404, f"site '{req.target_site}' not found")
 
     new_assignments = add_site(base_path, assignments, req.target_site)
+    new_assignments = _preserve_existing_site_rsi(new_assignments, old)
 
     new_ids = set(new_assignments.keys())
     neighbors = []
@@ -662,9 +673,15 @@ def api_replan_site_commit(req: ExistingReplanCommitRequest):
 
     base_path = resolve_workbook(req.workbook)
     sectors = load_sectors(base_path)
+    old = {
+        s["site_sector_id"]: {"pci": s["pci"], "rsi": s["rsi"], "mod4": s["mod4"]}
+        for s in sectors
+        if s["site_id"] == req.target_site
+    }
+    preserved_target = _preserve_existing_site_rsi(req.assignments, old)
     full_assignments = {
         s["site_sector_id"]: (
-            req.assignments[s["site_sector_id"]] if s["site_sector_id"] in req.assignments
+            preserved_target[s["site_sector_id"]] if s["site_sector_id"] in preserved_target
             else {"pci": s["pci"], "rsi": s["rsi"], "mod4": s["mod4"]}
         )
         for s in sectors
@@ -673,7 +690,7 @@ def api_replan_site_commit(req: ExistingReplanCommitRequest):
     report = validate(sectors, graph, full_assignments)
 
     out_path = os.path.join(LIVE_DIR, "NR5G_PCI_RSI_Planning_live.xlsx")
-    export_results(base_path, out_path, req.assignments, report)
+    export_results(base_path, out_path, preserved_target, report)
     cache.invalidate(out_path)
     workbook_id = register_live_workbook(out_path, "Live (after re-plan)")
     return {"workbook": workbook_id, "report": report}

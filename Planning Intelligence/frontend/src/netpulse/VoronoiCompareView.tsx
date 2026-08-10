@@ -23,7 +23,7 @@ import { MapContainer, TileLayer, Polygon as LeafletPolygon, CircleMarker, Toolt
 import 'leaflet/dist/leaflet.css';
 import { UploadCloud, FileSpreadsheet, GitBranch, AlertTriangle, LayoutGrid, Map as MapIcon, Tag } from 'lucide-react';
 import { api, type RawSectorRow } from './api';
-import { Card, PageHeader, PrimaryButton, LoadingBlock, ErrorBlock } from './ui';
+import { Card, PrimaryButton, LoadingBlock, ErrorBlock, FeatureCard, AccentHeader } from './ui';
 import { haversineKm } from './colors';
 import { wedgePolygon, safeHalfAngle, bboxOf } from './geo';
 import { project, boundedVoronoi, centroid, cellAdjacencies, type Pt } from './voronoi';
@@ -413,13 +413,8 @@ export function VoronoiCompareView({ workbook, navigate }: { workbook: string; n
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader title="Voronoi Compare" subtitle="Upload an older plan and see a clear before/after coverage comparison for any site cluster." />
-
-      <Card className="p-6 space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm shrink-0">1</div>
-          <div className="font-semibold text-sm">Upload the old workbook</div>
-        </div>
+      <FeatureCard className="p-6 space-y-4">
+        <AccentHeader title="Upload the old workbook" subtitle="Load a previous raw or final workbook to compare it against the current active workbook." />
         <div
           onClick={() => fileRef.current?.click()}
           onDragOver={(e) => e.preventDefault()}
@@ -440,13 +435,10 @@ export function VoronoiCompareView({ workbook, navigate }: { workbook: string; n
           {uploading ? 'Uploading...' : 'Load old workbook'}
         </PrimaryButton>
         {oldLabel && <div className="text-sm text-[var(--color-success)]">Loaded: {oldLabel}</div>}
-      </Card>
+      </FeatureCard>
 
-      <Card className="p-6 space-y-3">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm shrink-0">2</div>
-          <div className="font-semibold text-sm">Pick a site to compare</div>
-        </div>
+      <FeatureCard className="p-6 space-y-3">
+        <AccentHeader title="Pick a site to compare" subtitle="Choose a site cluster, then switch between diagram and real map views with the same before/after context." />
         <div className="flex flex-wrap gap-4 items-end">
           <div>
             <label className="text-xs text-gray-500 mb-1 block">Site</label>
@@ -492,10 +484,10 @@ export function VoronoiCompareView({ workbook, navigate }: { workbook: string; n
             <span className="text-[11px] text-gray-400">Tip: increase wedge size until clashing (same-color) wedges visibly overlap.</span>
           </div>
         )}
-      </Card>
+      </FeatureCard>
 
       {targetSite && frame && (
-        <Card className="p-6 space-y-4">
+        <FeatureCard className="p-6 space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <h3 className="font-semibold flex items-center gap-2"><GitBranch className="w-4 h-4 text-primary" /> {cluster.join(', ')}</h3>
             {verdict && (
@@ -542,7 +534,7 @@ export function VoronoiCompareView({ workbook, navigate }: { workbook: string; n
             <span className="flex items-center gap-1.5"><span className="w-4 h-1 bg-white border border-gray-300 inline-block rounded" /> Site boundary</span>
             <span className="flex items-center gap-1.5"><span className="w-4 h-1 bg-[#FF1E1E] inline-block rounded" /> Mod4 clash</span>
           </div>
-        </Card>
+        </FeatureCard>
       )}
     </div>
   );

@@ -82,6 +82,25 @@ function ClickCatcher({ onPick }: { onPick: (lat: number, lon: number) => void }
   return null;
 }
 
+function RefreshOnActive({ active, sites }: { active: boolean; sites: Site[] }) {
+  const map = useMap();
+  const signature = useMemo(() => sites.map((s) => s.s).sort().join('|'), [sites]);
+
+  useEffect(() => {
+    if (!active) return;
+    const timer = window.setTimeout(() => {
+      map.invalidateSize();
+      if (!sites.length) return;
+      const box = bboxOf(sites.map((s) => [s.y, s.x] as [number, number]));
+      if (!box) return;
+      map.fitBounds(box.bounds, { padding: [40, 40], maxZoom: 13 });
+    }, 60);
+    return () => window.clearTimeout(timer);
+  }, [active, map, signature, sites]);
+
+  return null;
+}
+
 export function MapView({
   sites, layerMode, height = 520,
   onSelectSite, onSelectSector, highlightSite,
@@ -91,6 +110,7 @@ export function MapView({
   wedgeRadius = 180,
   siteColorMode = 'default',
   showSectorIds = true,
+  active = true,
 }: {
   sites: Site[];
   layerMode: LayerMode;
@@ -111,6 +131,7 @@ export function MapView({
   wedgeRadius?: number;
   siteColorMode?: 'default' | 'clash-status';
   showSectorIds?: boolean;
+  active?: boolean;
 }) {
   const initialCenter: [number, number] = sites.length ? [sites[0].y, sites[0].x] : pickPosition || [27.5, 30.6];
 
@@ -118,6 +139,7 @@ export function MapView({
     <div className="rounded-lg overflow-hidden border border-[var(--color-border)]" style={{ height }}>
       <MapContainer center={initialCenter} zoom={sites.length ? 11 : 6} scrollWheelZoom style={{ height: '100%', width: '100%' }}>
         <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} maxZoom={19} />
+        <RefreshOnActive active={active} sites={sites} />
         {fitToSites && !pickable && <FitToSites sites={sites} />}
         {focusSite && <FlyTo target={focusSite} />}
         {pickable && onPick && <ClickCatcher onPick={onPick} />}

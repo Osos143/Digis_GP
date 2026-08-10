@@ -13,6 +13,38 @@ export const Card = ({ className = '', children }: { className?: string; childre
   </div>
 );
 
+export const AccentHeader = ({
+  title,
+  subtitle,
+  actions,
+}: {
+  title: string;
+  subtitle?: string;
+  actions?: ReactNode;
+}) => (
+  <div className="relative overflow-hidden rounded-2xl border border-primary/15 bg-white/85 px-4 py-3 shadow-sm">
+    <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-primary/10" />
+    <div className="absolute -left-8 -bottom-8 h-20 w-20 rotate-12 rounded-2xl bg-secondary/15" />
+    <div className="relative flex items-start justify-between gap-3 flex-wrap">
+      <div className="flex items-start gap-3">
+        <div className="w-2 self-stretch rounded-full bg-gradient-to-b from-primary to-secondary shrink-0" />
+        <div>
+          <div className="text-base font-bold text-slate-800">{title}</div>
+          {subtitle && <div className="text-xs text-slate-600 mt-1">{subtitle}</div>}
+        </div>
+      </div>
+      {actions}
+    </div>
+  </div>
+);
+
+export const FeatureCard = ({ className = '', children }: { className?: string; children: ReactNode }) => (
+  <Card className={`relative overflow-hidden border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_42%,#ffffff_100%)] shadow-[0_24px_65px_-28px_rgba(15,23,42,0.5)] ${className}`}>
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(21,101,192,0.16),_transparent_45%),radial-gradient(circle_at_bottom_right,_rgba(0,172,193,0.12),_transparent_40%)]" />
+    <div className="relative">{children}</div>
+  </Card>
+);
+
 export const PageHeader = ({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: ReactNode }) => (
   <div className="flex items-center justify-between">
     <div>

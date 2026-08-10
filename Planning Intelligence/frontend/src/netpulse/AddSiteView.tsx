@@ -7,13 +7,40 @@
 import { useEffect, useState } from 'react';
 import { PlusCircle, RefreshCw } from 'lucide-react';
 import { api, type ExistingReplanPreview, type NetworkData, type PlanAssignment, type Site } from './api';
-import { Card, PageHeader, PrimaryButton, LoadingBlock, ErrorBlock } from './ui';
+import { Card, PrimaryButton, LoadingBlock, ErrorBlock } from './ui';
 import { MapView } from './MapView';
 import { Legend } from './Legend';
 import { haversineKm, MOD4_COLORS } from './colors';
 
 const REGION_NAMES: Record<string, string> = { ALX: 'Alexandria', SIN: 'Sinai', UPP: 'Upper Egypt', DEL: 'Delta' };
 const MOD3_COLORS: Record<number, string> = { 0: '#00ACC1', 1: '#1565C0', 2: '#FACC15' };
+
+function SectionShell({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.06)] overflow-hidden">
+      <div className="relative border-b border-slate-200 bg-gradient-to-r from-primary/5 via-white to-secondary/10 px-5 py-4">
+        <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-primary/10 blur-2xl" />
+        <div className="absolute -left-6 -bottom-8 h-20 w-20 rounded-3xl bg-secondary/15 blur-2xl" />
+        <div className="relative flex items-start gap-3">
+          <div className="w-2 self-stretch rounded-full bg-gradient-to-b from-primary to-secondary shrink-0" />
+          <div>
+            <div className="text-sm font-semibold text-slate-900">{title}</div>
+            <div className="text-xs text-slate-600 mt-1">{subtitle}</div>
+          </div>
+        </div>
+      </div>
+      <div className="p-5 space-y-4">{children}</div>
+    </div>
+  );
+}
 
 function AssignmentTable({ assignments }: { assignments: Record<string, PlanAssignment> }) {
   return (
@@ -106,13 +133,20 @@ function EditableAssignmentTable({
                   </select>
                   <div className="mt-1 text-[11px] text-gray-500">Filtered by Mod4 {assignment.mod4} and Mod3 {mod3Choices[sid] ?? (assignment.pci % 3)}</div>
                 </td>
-                <td className="px-3 py-2 font-mono text-xs">{assignment.rsi}</td>
+                <td className="px-3 py-2">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/10 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-secondary)]">
+                    <span className="h-2 w-2 rounded-full bg-secondary" /> RSI {assignment.rsi}
+                  </div>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <p className="text-[11px] text-gray-400">Choose Mod4 and Mod3 first. The PCI dropdown then shows only values that remain valid for that combination under the current draft.</p>
+      <div className="flex flex-wrap items-center gap-2 text-[11px]">
+        <span className="rounded-full border border-secondary/20 bg-secondary/10 px-2.5 py-1 font-semibold text-[var(--color-secondary)]">RSI is preserved from the active workbook</span>
+        <span className="text-gray-400">Choose Mod4 and Mod3 first. The PCI dropdown then shows only values that remain valid for that combination under the current draft.</span>
+      </div>
     </div>
   );
 }
@@ -133,7 +167,7 @@ function NeighborTable({ neighbors }: { neighbors: { sector: string; neighbor: s
   );
 }
 
-export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWorkbook: (w: string) => void }) {
+export function AddSiteView({ workbook, setWorkbook, isActive = true }: { workbook: string; setWorkbook: (w: string) => void; isActive?: boolean }) {
   const [data, setData] = useState<NetworkData | null>(null);
   const [mode, setMode] = useState<'existing' | 'new'>('existing');
   const [error, setError] = useState<string | null>(null);
@@ -315,25 +349,38 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader title="Add Site" subtitle="Plan a site against the real neighbor graph (7km / 14km, same as bulk planning) without touching anything else committed." />
+      {committed && <div className="rounded-2xl border border-green-200 bg-gradient-to-r from-green-50 to-white text-[var(--color-success)] p-4 text-sm shadow-sm">{committed}</div>}
 
-      {committed && <div className="bg-green-50 border border-green-200 text-[var(--color-success)] rounded p-3 text-sm">{committed}</div>}
-
-      <div className="flex gap-2">
-        <button onClick={() => setMode('existing')} className={`flex items-center gap-2 px-4 py-2 rounded text-sm font-medium border ${mode === 'existing' ? 'bg-primary text-white border-primary' : 'bg-white border-[var(--color-border)]'}`}>
+      <div className="inline-flex gap-2 rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-1.5 shadow-sm">
+        <button onClick={() => setMode('existing')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${mode === 'existing' ? 'bg-gradient-to-r from-primary to-secondary text-white border-primary shadow' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'}`}>
           <RefreshCw className="w-4 h-4" /> Re-plan an existing site
         </button>
-        <button onClick={() => setMode('new')} className={`flex items-center gap-2 px-4 py-2 rounded text-sm font-medium border ${mode === 'new' ? 'bg-primary text-white border-primary' : 'bg-white border-[var(--color-border)]'}`}>
+        <button onClick={() => setMode('new')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${mode === 'new' ? 'bg-gradient-to-r from-secondary to-primary text-white border-secondary shadow' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'}`}>
           <PlusCircle className="w-4 h-4" /> Add a brand-new site
         </button>
       </div>
 
       {mode === 'existing' ? (
-        <Card className="p-5 space-y-4">
+        <SectionShell
+          title="Re-plan Existing Site"
+          subtitle="Adjust PCI and Mod4 for one live site while preserving its current RSI from the active workbook."
+        >
+          <div className="rounded-2xl border border-primary/15 bg-gradient-to-r from-primary/5 to-white p-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-sm font-semibold text-slate-800">Existing-site safe edit mode</div>
+              <div className="text-xs text-slate-600 mt-1">Preview a local replan, inspect neighbors, and commit only after reviewing the live map and clash context.</div>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] flex-wrap">
+              <span className="rounded-full border border-secondary/20 bg-secondary/10 px-2.5 py-1 font-semibold text-[var(--color-secondary)]">RSI locked</span>
+              <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 font-semibold text-primary">PCI editable</span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 font-semibold text-slate-700">Mod4 editable</span>
+            </div>
+          </div>
+
           <div className="flex gap-3 items-end">
             <div className="flex-1 max-w-xs">
               <label className="text-xs text-gray-500 mb-1 block">Site to re-plan</label>
-              <select value={target} onChange={(e) => setTarget(e.target.value)} className="w-full border border-[var(--color-border)] rounded px-3 py-2 text-sm bg-white">
+              <select value={target} onChange={(e) => setTarget(e.target.value)} className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white shadow-sm">
                 <option value="">Select a site...</option>
                 {data.sites.map((s) => <option key={s.s} value={s.s}>{s.s} &middot; {REGION_NAMES[s.g]} &middot; {s.n} sector(s)</option>)}
               </select>
@@ -344,10 +391,13 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
           {existingPreview && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div><div className="text-sm font-semibold mb-2">Current (before)</div><AssignmentTable assignments={existingPreview.old} /></div>
-                <div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><div className="text-sm font-semibold mb-2">Current (before)</div><AssignmentTable assignments={existingPreview.old} /></div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                   <div className="mb-2 flex items-center justify-between gap-3">
-                    <div className="text-sm font-semibold">New plan (after)</div>
+                    <div>
+                      <div className="text-sm font-semibold">New plan (after)</div>
+                      <div className="text-[11px] text-slate-500 mt-0.5">RSI stays identical to the current workbook for every sector on this site.</div>
+                    </div>
                     <button
                       type="button"
                       onClick={() => void refreshExistingOptions(existingDraft, existingMod3Choices)}
@@ -367,23 +417,31 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
                   />
                 </div>
               </div>
-              <div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                 <div className="text-sm font-semibold mb-2">Tier-1 neighbors this plan was checked against</div>
                 <NeighborTable neighbors={existingPreview.neighbors} />
               </div>
-              <div className="space-y-3">
-                <MapView sites={mapSites} layerMode="Mod4" height={420} highlightSite={target} />
+              <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <MapView sites={mapSites} layerMode="Mod4" height={420} highlightSite={target} active={isActive} />
                 <Legend layerMode="Mod4" />
               </div>
               <PrimaryButton onClick={commitExisting} disabled={committing}>{committing ? 'Committing...' : 'Commit'}</PrimaryButton>
             </>
           )}
-        </Card>
+        </SectionShell>
       ) : (
-        <Card className="p-5 space-y-4">
+        <SectionShell
+          title="Add Brand-New Site"
+          subtitle="Place a new site on the live map, fine-tune its geometry, preview the generated plan, and commit after review."
+        >
+          <div className="rounded-2xl border border-secondary/20 bg-gradient-to-r from-secondary/10 to-white p-4">
+            <div className="text-sm font-semibold text-slate-800">Map-first planning flow</div>
+            <div className="text-xs text-slate-600 mt-1">Choose a region from the site ID prefix, drop the site on the real map, and review the proposed PCI / Mod4 / RSI plan before commit.</div>
+          </div>
+
           <div>
             <label className="text-xs text-gray-500 mb-1 block">New site ID</label>
-            <input value={siteId} onChange={(e) => setSiteId(e.target.value.toUpperCase())} placeholder="e.g. ALX9999" className="w-full max-w-xs border border-[var(--color-border)] rounded px-3 py-2 text-sm" />
+            <input value={siteId} onChange={(e) => setSiteId(e.target.value.toUpperCase())} placeholder="e.g. ALX9999" className="w-full max-w-xs border border-slate-200 rounded-xl px-3 py-2 text-sm shadow-sm" />
             <p className="text-[11px] text-gray-400 mt-1">
               {newRegionValid ? `Recognised region: ${newRegion} \u00b7 ${REGION_NAMES[newRegion]} - map centred below.` : 'Start with a known region prefix (ALX/SIN/UPP/DEL) to auto-centre the map.'}
             </p>
@@ -396,6 +454,7 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
                 sites={pickerSites}
                 layerMode="Mod4"
                 height={420}
+                active={isActive}
                 pickable
                 pickPosition={[lat, lon]}
                 onPick={(la, lo) => { setLat(la); setLon(lo); }}
@@ -410,11 +469,11 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Latitude (fine-tune)</label>
-              <input type="number" step="0.000001" value={lat} onChange={(e) => setLat(Number(e.target.value))} className="w-full border border-[var(--color-border)] rounded px-3 py-2 text-sm font-mono" />
+              <input type="number" step="0.000001" value={lat} onChange={(e) => setLat(Number(e.target.value))} className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-mono shadow-sm" />
             </div>
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Longitude (fine-tune)</label>
-              <input type="number" step="0.000001" value={lon} onChange={(e) => setLon(Number(e.target.value))} className="w-full border border-[var(--color-border)] rounded px-3 py-2 text-sm font-mono" />
+              <input type="number" step="0.000001" value={lon} onChange={(e) => setLon(Number(e.target.value))} className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-mono shadow-sm" />
             </div>
           </div>
 
@@ -425,7 +484,7 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
               {azimuths.map((az, i) => (
                 <div key={i}>
                   <label className="text-[10px] text-gray-400 block">Sector {i + 1} azimuth</label>
-                  <input type="number" min={0} max={359} value={az} onChange={(e) => setAzimuths((cur) => cur.map((v, j) => j === i ? Number(e.target.value) : v))} className="w-24 border border-[var(--color-border)] rounded px-2 py-1 text-sm" />
+                  <input type="number" min={0} max={359} value={az} onChange={(e) => setAzimuths((cur) => cur.map((v, j) => j === i ? Number(e.target.value) : v))} className="w-24 border border-slate-200 rounded-xl px-2 py-1 text-sm shadow-sm" />
                 </div>
               ))}
             </div>
@@ -439,19 +498,19 @@ export function AddSiteView({ workbook, setWorkbook }: { workbook: string; setWo
 
           {newPreview && (
             <>
-              <div><div className="text-sm font-semibold mb-2">Proposed plan</div><AssignmentTable assignments={newPreview.assignments} /></div>
-              <div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><div className="text-sm font-semibold mb-2">Proposed plan</div><AssignmentTable assignments={newPreview.assignments} /></div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                 <div className="text-sm font-semibold mb-2">Tier-1 neighbors this plan was checked against</div>
                 <NeighborTable neighbors={newPreview.neighbors} />
               </div>
-              <div className="space-y-3">
-                <MapView sites={mapSites} layerMode="Mod4" height={420} highlightSite={siteId} />
+              <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <MapView sites={mapSites} layerMode="Mod4" height={420} highlightSite={siteId} active={isActive} />
                 <Legend layerMode="Mod4" />
               </div>
               <PrimaryButton onClick={commitNew} disabled={committing}>{committing ? 'Committing...' : 'Commit'}</PrimaryButton>
             </>
           )}
-        </Card>
+        </SectionShell>
       )}
     </div>
   );

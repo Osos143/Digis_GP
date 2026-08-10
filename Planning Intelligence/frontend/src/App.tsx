@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
   BarChart3, UploadCloud, Map as MapIcon, ShieldAlert, 
-  Settings, History, Search, Bell, User, HelpCircle, 
+  Settings, History, Search, User,
   Menu, X, CheckCircle, AlertTriangle, AlertCircle, Play, 
   Activity, Zap, FileText, Bot, Download, Filter, ChevronRight, Share2, Upload, File, Send, Mic, MapPin, Layers, Crosshair,
   Eye, EyeOff, Mail, Lock, Shield, Network, Server, Globe,
@@ -83,6 +83,20 @@ const SidebarItem = ({ icon: Icon, label, active, onClick }: { icon: any, label:
     </button>
   );
 };
+
+const OctoSidebarIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+    <circle cx="12" cy="9" r="4.5" fill="currentColor" opacity="0.95" />
+    <circle cx="10.5" cy="8.5" r="0.7" fill="#111827" />
+    <circle cx="13.5" cy="8.5" r="0.7" fill="#111827" />
+    <path d="M5.5 13.5C4.7 14.1 4.2 15.1 4.2 16.2C4.2 17.5 5 18.6 6.1 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M8 14.2C7.2 14.9 6.8 15.8 6.8 16.8C6.8 17.9 7.3 18.8 8.3 19.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M10.8 14.5V19.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M13.2 14.5V19.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M16 14.2C16.8 14.9 17.2 15.8 17.2 16.8C17.2 17.9 16.7 18.8 15.7 19.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M18.5 13.5C19.3 14.1 19.8 15.1 19.8 16.2C19.8 17.5 19 18.6 17.9 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
 
 // --- Mock Data ---
 
@@ -1250,6 +1264,8 @@ import { AlertOctagon } from 'lucide-react';
 
 const NETPULSE_TABS = ['np-upload', 'np-planning', 'np-clashes', 'np-assignments', 'np-addsite', 'np-assistant', 'np-voronoi'] as const;
 type NetPulseTab = typeof NETPULSE_TABS[number];
+const CLASSIC_TABS = ['dashboard', 'upload', 'config', 'results', 'anomaly', 'map', 'statistics', 'reports', 'ai', 'history', 'settings'] as const;
+type ClassicTab = typeof CLASSIC_TABS[number];
 
 export default function App() {
   const [currentView, setCurrentView] = useState<string>(() => localStorage.getItem('netpulse-current-view') || 'login');
@@ -1273,9 +1289,8 @@ export default function App() {
     return () => window.removeEventListener(WORKBOOK_MISSING_EVENT, onWorkbookMissing);
   }, []);
 
-  const renderView = () => {
-    switch (currentView) {
-      case 'login': return null; // Handled by early return below
+  const renderClassicTab = (tab: ClassicTab) => {
+    switch (tab) {
       case 'dashboard': return <DashboardView navigate={setCurrentView} />;
       case 'upload': return <UploadView navigate={setCurrentView} />;
       case 'config': return <ConfigView navigate={setCurrentView} />;
@@ -1287,7 +1302,6 @@ export default function App() {
       case 'ai': return <AIAssistantView />;
       case 'history': return <HistoryView />;
       case 'settings': return <SettingsView />;
-      default: return <DashboardView navigate={setCurrentView} />;
     }
   };
 
@@ -1297,15 +1311,15 @@ export default function App() {
         return <UploadPlanView workbook={npWorkbook} setWorkbook={setNpWorkbook} />;
       case 'np-planning':
         return npWorkbook
-          ? <PlanningView workbook={npWorkbook} setWorkbook={setNpWorkbook} />
+          ? <PlanningView workbook={npWorkbook} setWorkbook={setNpWorkbook} isActive={currentView === 'np-planning'} />
           : <NoWorkbookPrompt navigate={setCurrentView} />;
       case 'np-clashes':
-        return npWorkbook ? <ClashesView workbook={npWorkbook} /> : <NoWorkbookPrompt navigate={setCurrentView} />;
+        return npWorkbook ? <ClashesView workbook={npWorkbook} isActive={currentView === 'np-clashes'} /> : <NoWorkbookPrompt navigate={setCurrentView} />;
       case 'np-assignments':
         return npWorkbook ? <AssignmentsView workbook={npWorkbook} /> : <NoWorkbookPrompt navigate={setCurrentView} />;
       case 'np-addsite':
         return npWorkbook
-          ? <AddSiteView workbook={npWorkbook} setWorkbook={setNpWorkbook} />
+          ? <AddSiteView workbook={npWorkbook} setWorkbook={setNpWorkbook} isActive={currentView === 'np-addsite'} />
           : <NoWorkbookPrompt navigate={setCurrentView} />;
       case 'np-assistant':
         return npWorkbook ? <AssistantView workbook={npWorkbook} /> : <NoWorkbookPrompt navigate={setCurrentView} />;
@@ -1317,18 +1331,33 @@ export default function App() {
   };
 
   const renderNetPulseContent = () => {
-    if (!npWorkbook) {
-      return currentView === 'np-upload'
-        ? renderNetPulseTab('np-upload')
-        : <NoWorkbookPrompt navigate={setCurrentView} />;
-    }
+    return (
+      <>
+        {NETPULSE_TABS.map((tab) => (
+          <div key={tab === 'np-upload' ? tab : `${tab}:${npWorkbook || 'none'}`} className={cn(currentView === tab ? 'block h-full' : 'hidden')}>
+            {tab === 'np-upload'
+              ? renderNetPulseTab('np-upload')
+              : npWorkbook
+                ? renderNetPulseTab(tab)
+                : <NoWorkbookPrompt navigate={setCurrentView} />}
+          </div>
+        ))}
+      </>
+    );
+  };
+
+  const renderClassicContent = () => {
+    const activeClassic = CLASSIC_TABS.includes(currentView as ClassicTab)
+      ? (currentView as ClassicTab)
+      : 'dashboard';
 
     return (
       <>
-        <div className={cn(currentView === 'np-assistant' ? 'block h-full' : 'hidden')}>
-          <AssistantView workbook={npWorkbook} />
-        </div>
-        {currentView !== 'np-assistant' && renderNetPulseTab(currentView as NetPulseTab)}
+        {CLASSIC_TABS.map((tab) => (
+          <div key={tab} className={cn(activeClassic === tab ? 'block h-full' : 'hidden')}>
+            {renderClassicTab(tab)}
+          </div>
+        ))}
       </>
     );
   };
@@ -1355,7 +1384,7 @@ export default function App() {
               <SidebarItem icon={Zap} label="Clashes" active={currentView === 'np-clashes'} onClick={() => setCurrentView('np-clashes')} />
               <SidebarItem icon={ListChecks} label="Assignments" active={currentView === 'np-assignments'} onClick={() => setCurrentView('np-assignments')} />
               <SidebarItem icon={PlusCircle} label="Add Site" active={currentView === 'np-addsite'} onClick={() => setCurrentView('np-addsite')} />
-              <SidebarItem icon={Bot} label="AI Agent" active={currentView === 'np-assistant'} onClick={() => setCurrentView('np-assistant')} />
+              <SidebarItem icon={OctoSidebarIcon} label="OCTO" active={currentView === 'np-assistant'} onClick={() => setCurrentView('np-assistant')} />
               <SidebarItem icon={History} label="Voronoi Compare" active={currentView === 'np-voronoi'} onClick={() => setCurrentView('np-voronoi')} />
               
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-6 px-3">System</div>
@@ -1409,32 +1438,9 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 bg-[#F4F6F8]">
-        {/* Topbar */}
-        <header className="h-16 bg-white border-b border-[var(--color-border)] flex items-center justify-between px-6 shrink-0 z-10 shadow-sm">
-          <div className="flex-1 max-w-xl">
-            <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-2.5 text-gray-400" />
-              <input 
-                type="text" 
-                placeholder="Search cell ID, dataset, or report..." 
-                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition-all"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-4 ml-4">
-            <button className="text-gray-400 hover:text-gray-600 relative">
-              <Bell className="w-5 h-5" />
-              <span className="absolute 1 top-0 right-0 w-2 h-2 bg-[var(--color-critical)] rounded-full border border-white"></span>
-            </button>
-            <button className="text-gray-400 hover:text-gray-600">
-              <HelpCircle className="w-5 h-5" />
-            </button>
-          </div>
-        </header>
-
         {/* View Content */}
         <div className="flex-1 overflow-auto p-6 relative">
-          {isNetPulse ? renderNetPulseContent() : renderView()}
+          {isNetPulse ? renderNetPulseContent() : renderClassicContent()}
         </div>
       </main>
     </div>

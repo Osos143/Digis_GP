@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="octoGradient" x1="64" y1="48" x2="192" y2="196" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="glow" x="0" y="0" width="256" height="256" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feBlend in="SourceGraphic" in2="blur" mode="normal"/>
+    </filter>
+  </defs>
+  <circle cx="128" cy="98" r="54" fill="url(#octoGradient)" filter="url(#glow)"/>
+  <circle cx="108" cy="90" r="7" fill="#0F172A"/>
+  <circle cx="148" cy="90" r="7" fill="#0F172A"/>
+  <path d="M115 113C123 121 133 121 141 113" stroke="#0F172A" stroke-width="6" stroke-linecap="round"/>
+  <path d="M63 139C43 147 29 166 29 188C29 201 35 212 48 221" stroke="#06B6D4" stroke-width="12" stroke-linecap="round"/>
+  <path d="M91 148C72 158 61 173 61 191C61 203 67 214 79 223" stroke="#22C55E" stroke-width="12" stroke-linecap="round"/>
+  <path d="M118 153V224" stroke="#38BDF8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M138 153V224" stroke="#2DD4BF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M165 148C184 158 195 173 195 191C195 203 189 214 177 223" stroke="#22C55E" stroke-width="12" stroke-linecap="round"/>
+  <path d="M193 139C213 147 227 166 227 188C227 201 221 212 208 221" stroke="#06B6D4" stroke-width="12" stroke-linecap="round"/>
+</svg>

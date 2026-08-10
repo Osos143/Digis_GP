@@ -1,4 +1,4 @@
-// src/netpulse/AssistantView.tsx - the "AI Agent" tab.
+// src/netpulse/AssistantView.tsx - the OCTO tab.
 //
 // Ollama-only tool-calling agent (see backend/agent.py). The model reads
 // your text, picks zero or more tools, backend/agent.py's TOOL_IMPLS
@@ -9,7 +9,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Bot, Send, Wrench, ChevronDown, ChevronUp, Cpu, Sparkles, Database, Radar, Search, MapPin, BarChart3, Ruler, Compass, BookOpen, Zap } from 'lucide-react';
 import { api, type ToolCall } from './api';
-import { Card, PageHeader } from './ui';
+import { Card, FeatureCard, AccentHeader } from './ui';
+import octoMark from '../imports/octo-mark.svg';
 
 type ChatMsg = { role: 'user' | 'assistant'; text: string; toolCalls?: ToolCall[] };
 
@@ -40,6 +41,12 @@ const TOOL_META: Record<string, { icon: any; category: string; color: string }> 
   clash_type_info: { icon: BookOpen, category: 'Reference', color: '#B45309' },
 };
 const CATEGORY_ORDER = ['Lookup', 'Analysis', 'Geometry', 'Reference'];
+
+function OctoMark({ className = 'w-20 h-20' }: { className?: string }) {
+  return (
+    <img src={octoMark} alt="OCTO" className={className} />
+  );
+}
 
 function Markdown({ text }: { text: string }) {
   const lines = text.split('\n');
@@ -166,24 +173,51 @@ export function AssistantView({ workbook }: { workbook: string }) {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader title="AI Agent" subtitle="Ask about a sector, a region, worst-clashing sites, or overall stats - it calls real tools against your data, never guesses." />
-
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-4">
-        <Card className="p-5 flex flex-col h-[640px]">
-          <div className="flex items-center justify-between mb-3 pb-3 border-b border-[var(--color-border)]">
-            <div className="flex items-center gap-2 text-sm font-semibold"><Bot className="w-4 h-4 text-primary" /> Network Pulse Agent</div>
-            <div className="flex items-center gap-1.5 text-xs text-gray-500 shrink-0">
-              <Cpu className="w-3.5 h-3.5 text-gray-400" />
-              {agentModel ? <span className="font-mono">{agentModel}</span> : <span className="text-gray-400">checking model...</span>}
+        <FeatureCard className="p-5 flex flex-col h-[640px]">
+          <div className="rounded-3xl border border-primary/15 bg-white/85 p-4 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4">
+              <div className="flex items-center gap-4">
+                <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-white to-primary/5 p-3 shadow-sm shrink-0">
+                  <OctoMark className="w-20 h-20" />
+                </div>
+                <div className="space-y-2">
+                  <div className="inline-flex items-center rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                    OCTO Console
+                  </div>
+                  <div className="text-lg font-bold text-slate-800">AI Network Tool Orchestrator</div>
+                  <div className="text-xs leading-relaxed text-slate-600 max-w-sm">Orchestrated Cellular Telecom Operations for live workbook analysis, clash reasoning, validation, and network answers.</div>
+                </div>
+              </div>
+
+              <div className="space-y-2 md:text-right">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">One Agent. Many Tools. One Answer.</div>
+                <div className="flex md:justify-end">
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-gray-500 shadow-sm">
+                    <Cpu className="w-3.5 h-3.5 text-gray-400" />
+                    {agentModel ? <span className="font-mono">{agentModel}</span> : <span className="text-gray-400">checking model...</span>}
+                  </div>
+                </div>
+                <div className="flex gap-2 md:justify-end flex-wrap">
+                  <span className="rounded-full border border-secondary/20 bg-secondary/10 px-2.5 py-1 text-[10px] font-semibold text-[var(--color-secondary)]">Live tools</span>
+                  <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">Workbook-grounded</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="flex items-center justify-between mb-3 mt-4 pb-3 border-b border-[var(--color-border)]">
+            <div className="flex items-center gap-2 text-sm font-semibold"><Bot className="w-4 h-4 text-primary" /> OCTO Conversation</div>
+            <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold text-slate-600 shadow-sm">Workbook-grounded replies</div>
           </div>
 
           <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-3 pr-1">
             {messages.length === 0 && !sending && (
               <div className="h-full flex flex-col items-center justify-center text-center gap-2 text-gray-400">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-primary" />
+                <div className="w-20 h-20 rounded-3xl border border-primary/15 bg-white/80 flex items-center justify-center shadow-sm">
+                  <OctoMark className="w-14 h-14" />
                 </div>
+                <div className="text-sm font-semibold text-slate-700">OCTO is ready</div>
                 <p className="text-xs max-w-xs">Try "why does ALX3282-1 clash?" or "how bad is Sinai?" or "distance between ALX3282 and ALX3290"</p>
               </div>
             )}
@@ -192,10 +226,10 @@ export function AssistantView({ workbook }: { workbook: string }) {
                 {m.role === 'assistant' ? (
                   <div className="max-w-[85%] bg-white border border-[var(--color-border)] rounded-xl rounded-tl-sm shadow-sm overflow-hidden">
                     <div className="flex items-center gap-2 px-3 pt-2.5 pb-1">
-                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
-                        <Bot className="w-3 h-3 text-white" />
+                      <div className="w-6 h-6 rounded-full border border-primary/15 bg-white flex items-center justify-center shrink-0 shadow-sm overflow-hidden">
+                        <OctoMark className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Agent</span>
+                      <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">OCTO</span>
                     </div>
                     <div className="px-3 pb-3 text-sm text-[var(--color-text)]">
                       <Markdown text={m.text} />
@@ -218,26 +252,22 @@ export function AssistantView({ workbook }: { workbook: string }) {
             <input
               value={input} onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') send(); }}
-              placeholder='Ask the agent anything about this network...'
+              placeholder='Ask OCTO anything about this network...'
               className="flex-1 border border-[var(--color-border)] rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
             />
             <button onClick={send} disabled={sending || !input.trim()} className="bg-primary text-white w-10 h-10 rounded-full disabled:opacity-50 flex items-center justify-center shrink-0 hover:opacity-90 transition-opacity">
               <Send className="w-4 h-4" />
             </button>
           </div>
-        </Card>
+        </FeatureCard>
 
-        <Card className="p-0 h-fit overflow-hidden">
-          <div className="bg-gradient-to-br from-[#0F172A] to-[#1E293B] px-4 py-3.5">
-            <div className="flex items-center gap-2 text-white">
-              <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                <Wrench className="w-3.5 h-3.5" />
-              </div>
-              <div>
-                <div className="text-sm font-semibold leading-tight">Agent Toolkit</div>
-                <div className="text-[10px] text-slate-400">{tools.length} live tools &middot; always grounded in real data</div>
-              </div>
-            </div>
+        <FeatureCard className="p-0 h-fit overflow-hidden">
+          <div className="p-3">
+            <AccentHeader
+              title="OCTO Toolset"
+              subtitle={`${tools.length} live tools · many capabilities, one orchestrator`}
+              actions={<div className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-primary" /><span className="h-2.5 w-2.5 rounded-full bg-secondary" /><span className="h-2.5 w-2.5 rounded-full bg-slate-400" /></div>}
+            />
           </div>
 
           <div className="p-3 max-h-[560px] overflow-y-auto space-y-4">
@@ -269,7 +299,7 @@ export function AssistantView({ workbook }: { workbook: string }) {
               );
             })}
           </div>
-        </Card>
+        </FeatureCard>
       </div>
     </div>
   );

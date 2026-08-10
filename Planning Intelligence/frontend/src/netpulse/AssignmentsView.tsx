@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Download, Search } from 'lucide-react';
 import { api, type SectorRow } from './api';
-import { Card, PageHeader, SecondaryButton, LoadingBlock, ErrorBlock } from './ui';
+import { FeatureCard, AccentHeader, SecondaryButton, LoadingBlock, ErrorBlock } from './ui';
 import { CLASH_TYPE_ORDER, CLASH_TYPE_LABELS, sectorHasType } from './colors';
 
 export function AssignmentsView({ workbook }: { workbook: string }) {
@@ -103,14 +103,20 @@ export function AssignmentsView({ workbook }: { workbook: string }) {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader
-        title="Assignments"
-        subtitle="Every sector's PCI / Mod4 / RSI, filterable and sortable."
-        actions={<SecondaryButton onClick={downloadCsv}><Download className="w-4 h-4" /> Download CSV</SecondaryButton>}
-      />
+      <FeatureCard className="p-5">
+        <AccentHeader
+          title="Assignments Explorer"
+          subtitle="Filter, search, and export the current workbook's live PCI / Mod4 / RSI assignments."
+          actions={<SecondaryButton onClick={downloadCsv}><Download className="w-4 h-4" /> Download CSV</SecondaryButton>}
+        />
 
-      <Card className="p-5">
-        <div className="flex flex-wrap gap-3 mb-4">
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="rounded-full bg-white/90 border border-primary/15 px-2.5 py-1 text-[10px] font-semibold text-primary">Workbook-scoped data</span>
+          <span className="rounded-full bg-white/90 border border-secondary/20 px-2.5 py-1 text-[10px] font-semibold text-[var(--color-secondary)]">Live sector assignments</span>
+          <span className="rounded-full bg-white/90 border border-slate-200 px-2.5 py-1 text-[10px] font-semibold text-slate-700">{filtered.length.toLocaleString()} visible rows</span>
+        </div>
+
+        <div className="flex flex-wrap gap-3 my-4 rounded-2xl border border-white/80 bg-white/75 p-3 shadow-sm backdrop-blur">
           <div className="relative flex-1 min-w-[220px] max-w-sm">
             <Search className="w-4 h-4 absolute left-3 top-2.5 text-gray-400" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="ALX3282 or ALX3282-1"
@@ -138,7 +144,7 @@ export function AssignmentsView({ workbook }: { workbook: string }) {
 
         <p className="text-xs text-gray-500 mb-2">{filtered.length.toLocaleString()} of {rows.length.toLocaleString()} sectors</p>
 
-        <div className="overflow-auto max-h-[560px] border border-[var(--color-border)] rounded">
+        <div className="overflow-auto max-h-[560px] border border-slate-200 rounded-2xl bg-white shadow-sm">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 sticky top-0">
               <tr className="text-left text-xs text-gray-500 uppercase tracking-wide">
@@ -173,7 +179,7 @@ export function AssignmentsView({ workbook }: { workbook: string }) {
         {rowLimit !== 'all' && sorted.length > Number(rowLimit) && (
           <p className="text-xs text-gray-400 mt-2">Showing first {Number(rowLimit).toLocaleString()} of {sorted.length.toLocaleString()} - choose Show all sectors or narrow filters.</p>
         )}
-      </Card>
+      </FeatureCard>
     </div>
   );
 }

@@ -8,7 +8,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Ruler, Info, ChevronDown, ChevronUp, AlertOctagon, Shield, Radio, Network as NetworkIcon, Layers, CheckCircle, Search, XCircle } from 'lucide-react';
 import { api, type NetworkData, type Site, type Sector, type ClashDefinition } from './api';
-import { Card, PageHeader, LoadingBlock, ErrorBlock } from './ui';
+import { Card, LoadingBlock, ErrorBlock, FeatureCard, AccentHeader } from './ui';
 import { MapView } from './MapView';
 import { Legend } from './Legend';
 import { statusLabel, haversineKm, CLASH_TYPE_COLORS, CLASH_TYPE_LABELS, CLASH_TYPE_ORDER, sectorHasType, type LayerMode } from './colors';
@@ -216,7 +216,7 @@ function SectorExplainer({ workbook }: { workbook: string }) {
   );
 }
 
-export function ClashesView({ workbook }: { workbook: string }) {
+export function ClashesView({ workbook, isActive = true }: { workbook: string; isActive?: boolean }) {
   const [data, setData] = useState<NetworkData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [region, setRegion] = useState('');
@@ -310,10 +310,10 @@ export function ClashesView({ workbook }: { workbook: string }) {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader title="Clashes" subtitle="Click any sector to see why it clashes." />
+      <FeatureCard className="p-5">
+        <AccentHeader title="Clash map and inspector" subtitle="Filter visible clash types, switch color modes, and inspect any sector against the active workbook." />
 
-      <Card className="p-5">
-        <div className="flex flex-wrap gap-3 items-center mb-4">
+        <div className="flex flex-wrap gap-3 items-center my-4 rounded-2xl border border-white/80 bg-white/75 p-3 shadow-sm backdrop-blur">
           <select value={region} onChange={(e) => setRegion(e.target.value)} className="text-sm border border-[var(--color-border)] rounded px-3 py-2 bg-white">
             <option value="">All regions</option>
             {Object.entries(REGION_NAMES).map(([code, name]) => <option key={code} value={code}>{code} &middot; {name}</option>)}
@@ -339,7 +339,7 @@ export function ClashesView({ workbook }: { workbook: string }) {
             })}
           </div>
 
-          <div className="flex gap-1.5 ml-auto items-center">
+          <div className="flex gap-1.5 ml-auto items-center flex-wrap">
             <label className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-3 py-1.5">
               <span className="text-xs text-gray-500">Wedge radius</span>
               <input
@@ -375,6 +375,7 @@ export function ClashesView({ workbook }: { workbook: string }) {
               sites={filtered}
               layerMode={layerMode}
               height={520}
+              active={isActive}
               onSelectSector={onSelectSector}
               onSelectSite={setCenter}
               highlightSite={center?.s}
@@ -382,11 +383,13 @@ export function ClashesView({ workbook }: { workbook: string }) {
               wedgeRadius={wedgeRadius}
               showSectorIds={false}
             />
-            <Legend layerMode={layerMode} />
+            <div className="rounded-2xl border border-white/80 bg-white/80 p-3 shadow-sm">
+              <Legend layerMode={layerMode} />
+            </div>
           </div>
 
           <div>
-            <div className="flex gap-1 mb-3 bg-gray-100 rounded-full p-1">
+            <div className="flex gap-1 mb-3 bg-white/80 border border-white/80 shadow-sm rounded-full p-1">
               {TAB_META.map((t) => {
                 const Icon = t.icon;
                 return (
@@ -402,7 +405,7 @@ export function ClashesView({ workbook }: { workbook: string }) {
             </div>
 
             {rightTab === 'measure' && (
-              <div className="border border-[var(--color-border)] rounded-lg p-4 bg-gradient-to-br from-white to-gray-50">
+              <div className="border border-slate-200 rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 shadow-sm">
                 {!center ? (
                   <p className="text-xs text-gray-500">Click any site or sector wedge on the map to measure its neighbors.</p>
                 ) : (
@@ -449,14 +452,14 @@ export function ClashesView({ workbook }: { workbook: string }) {
             )}
 
             {rightTab === 'explain' && (
-              <div className="border border-[var(--color-border)] rounded-lg p-4 bg-gradient-to-br from-white to-gray-50">
+              <div className="border border-slate-200 rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 shadow-sm">
                 <SectorExplainer workbook={workbook} />
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-4 border border-[var(--color-border)] rounded-lg p-4 bg-gradient-to-br from-white to-gray-50">
+        <div className="mt-4 border border-slate-200 rounded-2xl p-4 bg-gradient-to-br from-white to-slate-50 shadow-sm">
           <div className="flex items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
               <Info className="w-4 h-4 text-primary" /> Clash Inspector
@@ -515,7 +518,7 @@ export function ClashesView({ workbook }: { workbook: string }) {
             </div>
           )}
         </div>
-      </Card>
+      </FeatureCard>
     </div>
   );
 }

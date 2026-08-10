@@ -9,14 +9,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Radio, MapPin, Search, ShieldAlert, Target, Sparkles, TrendingUp } from 'lucide-react';
 import { api, type NetworkData, type Site } from './api';
-import { Card, PageHeader, LoadingBlock, ErrorBlock } from './ui';
+import { Card, LoadingBlock, ErrorBlock, FeatureCard, AccentHeader } from './ui';
 import { MapView } from './MapView';
 import { Legend } from './Legend';
 import type { LayerMode } from './colors';
 
 const REGION_NAMES: Record<string, string> = { ALX: 'Alexandria', SIN: 'Sinai', UPP: 'Upper Egypt', DEL: 'Delta' };
 
-export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: string) => void }) {
+export function PlanningView({ workbook, isActive = true }: { workbook: string; setWorkbook: (w: string) => void; isActive?: boolean }) {
   const [data, setData] = useState<NetworkData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [layerMode, setLayerMode] = useState<LayerMode>('Regions');
@@ -166,26 +166,18 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      <PageHeader title="Planning" subtitle="A compact KPI view of the selected workbook." />
-
-      <Card className="relative overflow-hidden border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_42%,#ffffff_100%)] p-5 shadow-[0_24px_65px_-28px_rgba(15,23,42,0.5)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_45%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.12),_transparent_40%)]" />
+      <FeatureCard className="p-5">
         <div className="relative space-y-5">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm backdrop-blur">
-            <div className="flex items-center gap-2">
-              <div className="rounded-2xl border border-primary/20 bg-primary/10 p-2 shadow-sm">
-                <TrendingUp className="w-4 h-4 text-primary" />
+          <AccentHeader
+            title="Reference KPI metrics"
+            subtitle="A polished, executive-friendly snapshot of the current workbook health."
+            actions={
+              <div className="flex flex-wrap gap-2">
+                <div className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary shadow-sm">{summary?.status || (validation?.pass ? 'PASS' : 'FAIL')}</div>
+                <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm">{hardIssues} hard issues</div>
               </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Reference KPI metrics</div>
-                <div className="text-sm text-slate-600 mt-1">A polished, executive-friendly snapshot of the current workbook health.</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <div className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary shadow-sm">{summary?.status || (validation?.pass ? 'PASS' : 'FAIL')}</div>
-              <div className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm">{hardIssues} hard issues</div>
-            </div>
-          </div>
+            }
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
             {kpiHighlights.map((metric) => {
@@ -209,28 +201,22 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
             })}
           </div>
         </div>
-      </Card>
+      </FeatureCard>
 
-      <Card className="relative overflow-hidden border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_42%,#ffffff_100%)] p-5 shadow-[0_24px_65px_-28px_rgba(15,23,42,0.5)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_45%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.12),_transparent_40%)]" />
+      <FeatureCard className="p-5">
         <div className="relative space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm backdrop-blur">
-            <div className="flex items-center gap-2">
-              <div className="rounded-2xl border border-primary/20 bg-primary/10 p-2 shadow-sm">
-                <Target className="w-4 h-4 text-primary" />
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-slate-800">Detailed KPI breakdown</div>
-                <div className="text-xs text-slate-500">Concise rule-level view of hard and soft impacts.</div>
-              </div>
-            </div>
-            <button
-              onClick={() => setShowRuleSummary(true)}
-              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm transition hover:border-primary/30 hover:text-primary"
-            >
-              Rule summary
-            </button>
-          </div>
+          <AccentHeader
+            title="Detailed KPI breakdown"
+            subtitle="Concise rule-level view of hard and soft impacts."
+            actions={
+              <button
+                onClick={() => setShowRuleSummary(true)}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm transition hover:border-primary/30 hover:text-primary"
+              >
+                Rule summary
+              </button>
+            }
+          />
 
           <div className="grid gap-4 lg:grid-cols-2">
             {detailedSections.map((section) => {
@@ -265,7 +251,7 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
             })}
           </div>
         </div>
-      </Card>
+      </FeatureCard>
 
       {showRuleSummary && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
@@ -301,10 +287,9 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
         </div>
       )}
 
-      <Card className="p-5 space-y-4">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <h3 className="font-semibold flex items-center gap-2"><Radio className="w-4 h-4 text-primary" /> Network map</h3>
-          <div className="flex items-center gap-2 flex-wrap">
+      <FeatureCard className="p-5 space-y-4">
+        <AccentHeader title="Network map" subtitle="Filter the active workbook and inspect the network by region, site, and assignment layer." />
+        <div className="flex items-center gap-2 flex-wrap rounded-2xl border border-white/80 bg-white/75 p-3 shadow-sm backdrop-blur">
             <select value={siteFilter} onChange={(e) => setSiteFilter(e.target.value)} className="text-xs border border-[var(--color-border)] rounded px-2 py-1.5 bg-white min-w-[140px]">
               <option value="">All sites</option>
               {siteOptions.map((site) => <option key={site} value={site}>{site}</option>)}
@@ -331,21 +316,17 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
                 {m}
               </button>
             ))}
-          </div>
         </div>
         <div className="space-y-3">
-          <MapView sites={filteredSites} layerMode={layerMode} height={480} focusSite={mapFocus} />
-          <div className="rounded border border-[var(--color-border)] bg-slate-50 p-3">
+          <MapView sites={filteredSites} layerMode={layerMode} height={480} focusSite={mapFocus} active={isActive} />
+          <div className="rounded-2xl border border-white/80 bg-white/80 p-3 shadow-sm">
             <Legend layerMode={layerMode} />
           </div>
         </div>
-      </Card>
+      </FeatureCard>
 
-      <Card className="p-5 space-y-4">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <h3 className="font-semibold flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Region breakdown</h3>
-          <div className="text-xs text-gray-500">Sites and sectors by region</div>
-        </div>
+      <FeatureCard className="p-5 space-y-4">
+        <AccentHeader title="Region breakdown" subtitle="Sites and sectors by region across the current workbook." />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {regionEntries.map(([code, r]) => (
             <div key={code} className="border border-[var(--color-border)] rounded-2xl bg-white p-4 shadow-sm">
@@ -363,15 +344,10 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
             </div>
           ))}
         </div>
-      </Card>
+      </FeatureCard>
 
-      <Card className="p-5 space-y-4">
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div>
-            <h3 className="font-semibold flex items-center gap-2"><Target className="w-4 h-4 text-primary" /> Regional structure</h3>
-            <div className="mt-1 text-sm text-gray-600">A focused view of how many sites have how many sectors.</div>
-          </div>
-        </div>
+      <FeatureCard className="p-5 space-y-4">
+        <AccentHeader title="Regional structure" subtitle="A focused view of how many sites have how many sectors." />
         <div className="grid gap-3 xl:grid-cols-2">
           {regionEntries.map(([code, r]) => {
             const details = regionDetails[code] || { distribution: [] };
@@ -408,7 +384,7 @@ export function PlanningView({ workbook }: { workbook: string; setWorkbook: (w: 
             );
           })}
         </div>
-      </Card>
+      </FeatureCard>
     </div>
   );
 }
