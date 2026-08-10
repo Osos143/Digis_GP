@@ -1,0 +1,134 @@
+services:
+  mongo:
+    build:
+      context: ./docker/mongo
+      provenance: false
+      sbom: false
+    container_name: ran-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"          # optional: lets you connect from the host with a Mongo client
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: ran-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  services:
+    build:
+      context: .
+      dockerfile: docker/services/Dockerfile
+      provenance: false
+      sbom: false
+    container_name: ran-services
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      RAN_CLEAN_INPUT_FILE: /data/raw/Network_Drive_Test.pkl
+      RAN_CLEAN_OUTPUT_DIR: /data/outputs
+      RAN_ANOMALY_OUTPUT_DIR: /data/outputs
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_DB: ran_telco
+    volumes:
+      - ./Raw_Data:/data/raw:ro          # put Network_Drive_Test.pkl here on the host
+      - ./outputs:/data/outputs          # cleaning + anomaly outputs land here on the host
+    command: ["sleep", "infinity"]
+
+  ollama:
+    image: ollama/ollama:latest
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+              # capabilities: [gpu]
+    container_name: ran-ollama
+    restart: unless-stopped
+    volumes:
+      - /usr/share/ollama/.ollama:/root/.ollama
+      - ollama-data:/root/.ollama-cache
+    ports:
+      - "11435:11434"
+    entrypoint: ["/bin/sh", "-c", "ollama serve"]
+
+  netfix-backend:
+    build:
+      context: .
+      dockerfile: docker/netfix-backend/Dockerfile
+      provenance: false
+      sbom: false
+    container_name: ran-netfix-backend
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      PYTHONUNBUFFERED: "1"
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_DB: ran_telco
+      REDIS_URL: redis://redis:6379/0
+      RCA_DEMO_DIR: /opt/ran-telco/RCA_Demo
+      NETFIX_DATA_DIR: /data/netfix
+      NETFIX_OUTPUT_DIR: /data/outputs
+      RAN_CLEAN_OUTPUT_DIR: /data/outputs
+      RAN_ANOMALY_OUTPUT_DIR: /data/outputs
+      RAN_CLEAN_INPUT_FILE: /data/raw/Network_Drive_Test.pkl
+      REASONS_FILE: /data/reasons/throughput_degradation_reasoning_graph.json
+      RCA_EXPLANATION_URL: http://ran-rca-explain:8010/explain
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      LLM_MODEL: ${LLM_MODEL:-llama3.1}
+      CHAT_MODEL: ${CHAT_MODEL:-llama3.1}
+      REASONING_MODEL: ${REASONING_MODEL:-deepseek-r1:8b}
+      OLLAMA_BASE_URL: http://ran-ollama:11434
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      SKIP_LLM: ${SKIP_LLM:-}
+    ports:
+      - "8000:8000"   # FastAPI: http://localhost:8000/docs
+    volumes:
+      - ./Raw_Data:/data/raw
+      - ./Reasons_Data:/data/reasons:ro
+      - ./outputs:/data/outputs
+      - ./RCA_Demo:/opt/ran-telco/RCA_Demo:ro
+      - ./netfix-backend/src/netfix_backend/api/main.py:/opt/ran-telco/netfix-backend/src/netfix_backend/api/main.py
+      - netfix-data:/data/netfix
+
+  rca-explain:
+    build:
+      context: ./ran-rca-explanation-service
+      dockerfile: docker/Dockerfile
+    container_name: ran-rca-explain
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      LLM_MODEL: ${LLM_MODEL:-qwen3:14b}
+      OLLAMA_BASE_URL: http://ran-ollama:11434
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "8010:8010"
+
+volumes:
+  mongo-data:
+  redis-data:
+  ollama-data:
+  netfix-data:

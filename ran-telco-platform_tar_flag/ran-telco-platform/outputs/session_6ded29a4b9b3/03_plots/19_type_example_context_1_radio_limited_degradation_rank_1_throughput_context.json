@@ -1,0 +1,12 @@
+{
+  "id": "19_type_example_context_1_radio_limited_degradation_rank_1_throughput_context",
+  "filename": "19_type_example_context_1_radio_limited_degradation_rank_1_throughput_context.png",
+  "title": "19 Type Example Context 1 Radio Limited Degradation Rank 1 Throughput Context",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "bar",
+  "x_label": "Category / Identifier",
+  "y_label": "Incident Count",
+  "png_url": "/api/sessions/session_6ded29a4b9b3/plots/19_type_example_context_1_radio_limited_degradation_rank_1_throughput_context.png",
+  "json_url": "/api/sessions/session_6ded29a4b9b3/plots/19_type_example_context_1_radio_limited_degradation_rank_1_throughput_context.json",
+  "size_bytes": 247498
+}

@@ -1,0 +1,12 @@
+{
+  "id": "17b_route_by_download_analysis_window",
+  "filename": "17b_route_by_download_analysis_window.png",
+  "title": "17B Route By Download Analysis Window",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_7a6c07a0947a/plots/17b_route_by_download_analysis_window.png",
+  "json_url": "/api/sessions/session_7a6c07a0947a/plots/17b_route_by_download_analysis_window.json",
+  "size_bytes": 174816
+}

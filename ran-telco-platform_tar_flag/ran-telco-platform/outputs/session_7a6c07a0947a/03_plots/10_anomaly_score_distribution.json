@@ -1,0 +1,12 @@
+{
+  "id": "10_anomaly_score_distribution",
+  "filename": "10_anomaly_score_distribution.png",
+  "title": "10 Anomaly Score Distribution",
+  "category": "Anomaly Detection",
+  "chart_type": "area",
+  "x_label": "Metric Value / Quantile",
+  "y_label": "Sample Frequency Density",
+  "png_url": "/api/sessions/session_7a6c07a0947a/plots/10_anomaly_score_distribution.png",
+  "json_url": "/api/sessions/session_7a6c07a0947a/plots/10_anomaly_score_distribution.json",
+  "size_bytes": 47347
+}

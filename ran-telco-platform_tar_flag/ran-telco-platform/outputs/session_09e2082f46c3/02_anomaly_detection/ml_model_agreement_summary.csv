@@ -1,0 +1,4 @@
+﻿ml_independent_trigger_count,rows,final_ml_anomalies,median_ml_score,median_confidence,median_actual_tp
+0,402,0,0.0,3.0,33.67442062874903
+1,8,0,0.0,59.535,12.75314070395297
+2,2,2,73.375,89.75999999999999,6.127456158300275

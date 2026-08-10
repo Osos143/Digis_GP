@@ -1,0 +1,12 @@
+{
+  "id": "09_route_by_throughput",
+  "filename": "09_route_by_throughput.png",
+  "title": "09 Route By Throughput",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_6ded29a4b9b3/plots/09_route_by_throughput.png",
+  "json_url": "/api/sessions/session_6ded29a4b9b3/plots/09_route_by_throughput.json",
+  "size_bytes": 219954
+}

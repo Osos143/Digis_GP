@@ -1,0 +1,13 @@
+﻿statistical_definition,statistical_flag,ml_final_flag,rows,pct_all_rows
+broad_statistical_candidate,False,False,24149,74.90849308269743
+broad_statistical_candidate,False,True,3,0.009305788200260562
+broad_statistical_candidate,True,False,7954,24.672746448290837
+broad_statistical_candidate,True,True,132,0.40945468081146474
+statistical_rca_handoff,False,False,26018,80.70599913145978
+statistical_rca_handoff,False,True,3,0.009305788200260562
+statistical_rca_handoff,True,False,6085,18.875240399528508
+statistical_rca_handoff,True,True,132,0.40945468081146474
+statistical_high_or_critical,False,False,28417,88.14752776226813
+statistical_high_or_critical,False,True,14,0.043427011601215953
+statistical_high_or_critical,True,False,3686,11.433711768720144
+statistical_high_or_critical,True,True,121,0.37533345741050933

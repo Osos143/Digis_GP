@@ -1,0 +1,18 @@
+﻿fusion_source,final_priority_severity,detection_confidence,rows,median_actual_tp,median_final_priority,median_raw_priority,median_impact,median_confidence
+ml_only_retained,Medium,Very High,1,30.009735,57.82,57.82,38.14,81.88
+not_handed_off,Normal,High,392,10.301956,0.0,46.835,29.4,65.965
+not_handed_off,Normal,Low,25692,49.1066835,0.0,4.99,0.0,11.08
+not_handed_off,Normal,Medium,2984,9.44183975,0.0,28.759999999999998,16.755000000000003,47.855000000000004
+not_handed_off,Normal,Very High,14,6.927568,0.0,54.75,31.765,81.245
+statistical_and_ml_consensus,Critical,Very High,25,5.86572,93.96,93.96,89.01,100.0
+statistical_and_ml_consensus,High,Very High,100,18.0880515,80.75,80.75,65.19,100.0
+statistical_and_ml_consensus,Medium,Very High,7,17.958809,63.95,63.95,41.72,88.95
+statistical_only_retained,Critical,Very High,22,2.330432,93.235,93.235,94.39,94.22
+statistical_only_retained,High,High,898,0.660456,75.11,75.11,77.945,72.0
+statistical_only_retained,High,Low,70,1.544616,67.49,67.49,94.465,36.245000000000005
+statistical_only_retained,High,Medium,500,0.7707200000000001,73.25,73.25,90.95,51.255
+statistical_only_retained,High,Very High,225,6.13296,77.52,77.52,69.48,85.98
+statistical_only_retained,Medium,High,441,11.808944,60.53,60.53,55.39,66.06
+statistical_only_retained,Medium,Low,167,4.320968,59.52,59.52,82.14,31.53
+statistical_only_retained,Medium,Medium,682,10.472964000000001,56.695,56.695,58.69,53.99
+statistical_only_retained,Medium,Very High,18,10.547160000000002,62.205,62.205,45.06,82.11

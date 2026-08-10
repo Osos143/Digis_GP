@@ -1,0 +1,12 @@
+{
+  "id": "12_anomaly_count_by_type",
+  "filename": "12_anomaly_count_by_type.png",
+  "title": "12 Anomaly Count By Type",
+  "category": "Anomaly Detection",
+  "chart_type": "bar",
+  "x_label": "Category / Identifier",
+  "y_label": "Incident Count",
+  "png_url": "/api/sessions/session_71bd2e8e4f1d/plots/12_anomaly_count_by_type.png",
+  "json_url": "/api/sessions/session_71bd2e8e4f1d/plots/12_anomaly_count_by_type.json",
+  "size_bytes": 56899
+}

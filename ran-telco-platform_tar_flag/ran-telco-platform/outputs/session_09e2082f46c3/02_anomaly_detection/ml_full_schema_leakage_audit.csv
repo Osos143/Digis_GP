@@ -1,0 +1,395 @@
+﻿column,dtype,used_by_any_model,models_using_column,decision,exclusion_reason,target_or_post_anomaly_pattern_flag,non_null_pct,unique_values
+source_index,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+Activity.DNS Resolution Time,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Remote Address,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Activity.Remote IPs,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Activity.Source Ports,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Activity.Sub Activity,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Activity.TTFB,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Error,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Throughput.HTTP_DL,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,43.932038834951456,181
+Throughput.Physical_DL,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,43.932038834951456,181
+Activity.Band,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Extra_KPIs.Attach Delay,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+LTE - SecondaryCell 1 - SCell1_EARFCN_UL,float64,False,,NOT_USED,not selected for any model objective,False,4.368932038834951,18
+Activity.LCI,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.ARFCN,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Private IP,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,1
+Activity.Activity,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Activity.Connection Reset,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Duplicated ACK,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Duration,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.End TimeStamp,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Fast Retransmission,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Out of Order,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Packet Loss Rate,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Power,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Public IP,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Activity.Quality,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.SINR,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Size,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Spurious Retransmission,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Start TimeStamp,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Status,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Activity.TCP Window Update,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.Tech,str,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,1
+Activity.Throughput,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Activity.Throughput WIFI,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,0.48543689320388345,2
+Extra_KPIs.RRC Connection Setup Time,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+LTE - SecondaryCell 1 - SCell1_MCS_CW1,float64,False,,NOT_USED,not selected for any model objective,False,36.650485436893206,151
+LTE - SecondaryCell 1 - SCell1_Modulation_CW1,str,False,,NOT_USED,not selected for any model objective,False,36.650485436893206,3
+LTE - SecondaryCell 1 - SCell1_RxAntNum,float64,False,,NOT_USED,not selected for any model objective,False,37.37864077669903,154
+LTE - SecondaryCell 1 - SCell1_SpatialRank,float64,False,,NOT_USED,not selected for any model objective,False,37.37864077669903,154
+LTE - SecondaryCell 1 - SCell1_TxAntNum,float64,False,,NOT_USED,not selected for any model objective,False,37.37864077669903,154
+Extra_KPIs.LTE Handover Interruption Time,float64,False,,NOT_USED,not selected for any model objective,False,3.3980582524271843,14
+Extra_KPIs.ERRC Connection Setup Time,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+LTE - SecondaryCell 1 - SCell1_1024QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_16QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_256QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_64QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_BLER,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_LayerNum,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_MCS_CW0,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_Modulation_CW0,str,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,3
+LTE - SecondaryCell 1 - SCell1_QPSKUsage,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_ResourceBlockNum,float64,False,,NOT_USED,not selected for any model objective,False,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_Throughput,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_ThroughputStream0,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_ThroughputStream1,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_ThroughputStreamAll,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,38.349514563106794,158
+LTE - SecondaryCell 1 - SCell1_Rank1Usage,float64,False,,NOT_USED,not selected for any model objective,False,70.3883495145631,290
+LTE - SecondaryCell 1 - SCell1_Rank2Usage,float64,False,,NOT_USED,not selected for any model objective,False,70.3883495145631,290
+LTE - SecondaryCell 1 - SCell1_Rank3Usage,float64,False,,NOT_USED,not selected for any model objective,False,70.3883495145631,290
+LTE - SecondaryCell 1 - SCell1_Rank4Usage,float64,False,,NOT_USED,not selected for any model objective,False,70.3883495145631,290
+LTE - SecondaryCell 1 - SCell1_CQI_CW1,float64,False,,NOT_USED,not selected for any model objective,False,37.13592233009709,153
+LTE - SecondaryCell 1 - SCell1_BandWidth_UL,float64,False,,NOT_USED,not selected for any model objective,False,29.85436893203883,123
+LTE - SecondaryCell 1 - SCell1_CQI,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 - SCell1_CQI_CW0,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 - SCell1_TransMode,str,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,2
+LTE - Serving - R15_Support,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+LTE - SecondaryCell 1 Radio - SCell1_RSRP,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_RSRQ,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_RSSI,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_SINR,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_Frame_Timing_0,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_Frame_Timing_1,float64,False,,NOT_USED,not selected for any model objective,False,38.83495145631068,160
+LTE - SecondaryCell 1 Radio - SCell1_eNBTxDifference,float64,False,,NOT_USED,not selected for any model objective,False,72.57281553398059,299
+LTE - SecondaryCell 1 - SCell1_Band,float64,False,,NOT_USED,not selected for any model objective,False,39.80582524271845,164
+LTE - SecondaryCell 1 - SCell1_BandWidth_DL,float64,False,,NOT_USED,not selected for any model objective,False,39.80582524271845,164
+LTE - SecondaryCell 1 - SCell1_EARFCN_DL,float64,False,,NOT_USED,not selected for any model objective,False,39.80582524271845,164
+LTE - SecondaryCell 1 - SCell1_PCI,float64,False,,NOT_USED,not selected for any model objective,False,39.80582524271845,164
+Extra_KPIs.UMTS Handover Interruption Time,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+LTE - PrimaryCell - PCell_CQI_CW1,float64,False,,NOT_USED,not selected for any model objective,False,98.54368932038835,406
+LTE - PrimaryCell - PCell_MCS_CW1,float64,False,,NOT_USED,not selected for any model objective,False,98.7864077669903,407
+LTE - PrimaryCell - PCell_Modulation_CW1,str,False,,NOT_USED,not selected for any model objective,False,98.7864077669903,3
+LTE.RACH.RACH_Latency,float64,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,226
+LTE.RACH.RACH_Result,str,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,2
+LTE.RACH.RACH_Reason,str,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,3
+LTE - PrimaryCell - PCell_Rank1Usage,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_Rank2Usage,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_Rank3Usage,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_Rank4Usage,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_RxAntNum,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_SpatialRank,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_TxAntNum,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE.LTE_Data_KPI.Agg_Throughput_UL,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,99.27184466019418,409
+LTE - PrimaryCell - PCell_CQI,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_CQI_CW0,float64,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,410
+LTE - PrimaryCell - PCell_TransMode,str,False,,NOT_USED,not selected for any model objective,False,99.51456310679612,2
+LTE - PrimaryCell - PCell_BandWidth_UL,float64,False,,NOT_USED,not selected for any model objective,False,99.27184466019418,409
+LTE - PrimaryCell - PCell_EARFCN_UL,float64,False,,NOT_USED,not selected for any model objective,False,99.27184466019418,409
+LTE - PrimaryCell - PCell_1024QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_16QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_256QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_64QAMUsage,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_BLER,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_LayerNum,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_MCS_CW0,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_Modulation_CW0,str,False,,NOT_USED,not selected for any model objective,False,100.0,3
+LTE - PrimaryCell - PCell_QPSKUsage,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_ResourceBlockNum,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_Throughput,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE - PrimaryCell - PCell_ThroughputStream0,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE - PrimaryCell - PCell_ThroughputStream1,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE - PrimaryCell - PCell_ThroughputStreamAll,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE.DownlinkMeasurements.Throughput_DL,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE.LTE_Data_KPI.Agg_Throughput_DL,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+LTE - PrimaryCell - PCell_BandWidth_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - Serving - BandWidth_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE.LTE_Data_KPI.Agg_Bandwidth_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_Band,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_EARFCN_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell - PCell_PCI,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell Radio - PCell_RSRQ,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell Radio - PCell_RSSI,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell Radio - PCell_SINR,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - PrimaryCell Radio - RSRP,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - Serving - Band,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - Serving - EARFCN_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - Serving - PCI,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE.DedicatedRadioLink.CarrierCount,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE - Serving - ECI,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+LTE - Serving - EnodeBID,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+LTE - Serving - LCI,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+LTE - Serving - MCC,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,407
+LTE - Serving - MNC,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+LTE - Serving - TAC,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+LTE.LTE_Data_KPI.Agg_RB_DL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+LTE.LTE_Data_KPI.Agg_RB_UL,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+Events.subject,str,False,,NOT_USED,not selected for any model objective,False,16.019417475728158,23
+Events.description,str,False,,NOT_USED,not selected for any model objective,False,18.689320388349515,53
+WCDMA - WCDMACellsTable(3) - Band,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - EcNo,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - EcNo Before RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - PSC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - RSCP,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - RSCP After RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - Set_Type,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(3) - UARFCN,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+Events.Tech,str,False,,NOT_USED,not selected for any model objective,False,24.271844660194176,16
+Events.Timestamp,str,False,,NOT_USED,not selected for any model objective,False,24.271844660194176,100
+Events.category,str,False,,NOT_USED,not selected for any model objective,False,24.271844660194176,23
+Events.titles,str,False,,NOT_USED,not selected for any model objective,False,24.271844660194176,43
+WCDMA - WCDMACellsTable(2) - Band,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - EcNo,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - EcNo Before RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - PSC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - RSCP,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - RSCP After RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - Set_Type,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(2) - UARFCN,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+Extra_KPIs.CSFB RAT,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+Extra_KPIs.Call RAT,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - Band,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - EcNo,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - EcNo Before RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - PSC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - RSCP,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - RSCP After RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - Set_Type,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(1) - UARFCN,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - RSCP_Strongest_Neighbor_2nd,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - Band,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - EcNo,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - EcNo Before RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - PSC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - RSCP,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - RSCP After RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - WCDMACellsTable(0) - UARFCN,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - RAI,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - ServiceType,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - LAC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - RSCP_Strongest_Neighbor_1st,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHAICHStatus,object,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHAICHTiming,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHMsgLength,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHPreambleCount,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHSubChannel,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHTxPower,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHMaxTxPower,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHPreambleOffset,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - RACHPreamblesCountMax,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - URA_Identity,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - UplinkMeasurements - Uu_UL_Interference,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - SIR,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - TxPowerCommandDL,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - TxPowerCommandUL,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - CI,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - LCI,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - RNCID,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - MCC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - Serving - MNC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - PowerControlAlgorithm,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - TPCStepSize,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - BLER_DL,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - TxPower,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - EcNo,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - EcNo Before RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - RSCP,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - RSCP After RAKE,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - DownlinkMeasurements - RSSI,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - BandIndicator,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - PSC,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - UARFCN_DL,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - UARFCN_UL,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+WCDMA - ServingCell - Active_set_num,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Location - Accuracy,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+Location - Altitude,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+Location - Latitude,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+Location - Longitude,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+Location - Speed,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.Connection_reset,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.TCP_window_update,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.dns_time,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.duplicate_ack,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.fast_retransmission,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.initial_rtt,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.out_of_order,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.pkt_loss,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.rtt,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+PCAP.spurious_retransmission,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+id,str,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,4
+imsi,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+timestamp,"datetime64[ns, UTC+02:00]",False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+id_imsi,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+id_session_time_raw,str,False,,NOT_USED,not selected for any model objective,False,100.0,4
+id_route_test_label,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+id_log_time_raw,str,False,,NOT_USED,not selected for any model objective,False,100.0,4
+id_session_time,datetime64[us],False,,NOT_USED,not selected for any model objective,False,100.0,4
+id_log_time,datetime64[us],False,,NOT_USED,not selected for any model objective,False,100.0,4
+id_location_label,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+id_test_type,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+date,object,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+hour,int32,False,,NOT_USED,not selected for any model objective,False,100.0,1
+minute,int32,False,,NOT_USED,not selected for any model objective,False,100.0,10
+sample_gap_seconds,float64,False,,NOT_USED,not selected for any model objective,False,99.27184466019418,7
+session_elapsed_seconds,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,124
+Activity.Start TimeStamp_parsed,"datetime64[us, UTC+02:00]",False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+Activity.End TimeStamp_parsed,"datetime64[us, UTC+02:00]",False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+activity_duration_seconds_from_timestamps,float64,False,,NOT_USED,not selected for any model objective,False,0.48543689320388345,2
+has_valid_location,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+prev_lat,float64,False,,NOT_USED,not selected for any model objective,False,99.27184466019418,409
+prev_lon,float64,False,,NOT_USED,not selected for any model objective,False,99.27184466019418,409
+distance_from_prev_m,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,99.27184466019418,409
+latitude,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+longitude,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+speed,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+location_accuracy,float64,True,capability;capability_augmented;capability_pure;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+altitude,float64,True,capability;capability_augmented;capability_pure;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+actual_lte_dl_throughput,float64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,412
+serving_pci,float64,True,cell_aware,USED,objective-safe curated feature,False,100.0,412
+serving_earfcn,float64,True,capability;capability_augmented;capability_pure;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+serving_band,float64,True,capability;capability_augmented;capability_pure;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+serving_eci,float64,True,cell_aware,USED,objective-safe curated feature,False,99.75728155339806,411
+serving_enodebid,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+serving_lci,float64,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,411
+lte_rsrp,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_rsrq,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_sinr,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_rssi,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_cqi,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,99.51456310679612,410
+lte_mcs,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_bler,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_rank,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,99.51456310679612,410
+lte_rb_count,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_agg_rb_dl,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_bandwidth_dl,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+lte_agg_bandwidth_dl,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+carrier_count,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+scell1_rsrp,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.83495145631068,160
+scell1_rsrq,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.83495145631068,160
+scell1_sinr,float64,True,capability;capability_augmented;capability_pure;cell_aware;lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.83495145631068,160
+scell1_cqi,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.83495145631068,160
+scell1_mcs,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.349514563106794,158
+scell1_bler,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.349514563106794,158
+scell1_rb_count,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,38.349514563106794,158
+rach_latency,float64,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,226
+rach_result,str,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,2
+rach_reason,str,False,,NOT_USED,not selected for any model objective,False,54.85436893203883,3
+has_lte_measurement,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+has_lte_dl_throughput,bool,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+is_download_test,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+download_activity_window_raw_flag,bool,True,capability;capability_augmented;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+download_analysis_window_flag,bool,True,capability;capability_augmented;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+download_context_label,str,True,capability;capability_augmented;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,3
+inactive_download_context_flag,bool,True,capability;capability_augmented;cell_aware;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+rsrp_bin,str,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+rsrq_bin,str,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+sinr_bin,str,True,capability_augmented,USED,objective-safe curated feature,False,100.0,4
+poor_rsrp_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+poor_rsrq_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+poor_sinr_flag,bool,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+high_bler_flag,bool,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+low_cqi_flag,bool,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+low_rb_allocation_flag,bool,True,capability_augmented,USED,objective-safe curated feature,False,100.0,2
+neighbor_count,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+best_neighbor_rsrp,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+strong_neighbor_count,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+serving_minus_best_neighbor_rsrp,float64,False,,NOT_USED,not selected for any model objective,False,0.0,0
+neighbor_pci_count,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+any_event_count_prev30s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_any_event_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+any_event_count_pm30s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_any_event_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+measurement_report_event_count_prev5s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_measurement_report_event_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+measurement_report_event_count_pm5s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_measurement_report_event_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+handover_execution_count_prev5s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_handover_execution_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+handover_execution_count_pm5s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_handover_execution_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+handover_failure_count_prev10s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_handover_failure_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+handover_failure_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_handover_failure_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_attempt_count_prev10s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_rach_attempt_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_attempt_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_rach_attempt_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_failure_count_prev10s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_rach_failure_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_failure_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_rach_failure_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ca_activation_change_count_prev10s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_ca_activation_change_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ca_activation_change_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_ca_activation_change_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+failure_other_count_prev10s,int64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+near_failure_other_prev_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+failure_other_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_failure_other_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+handover_mobility_count_pm5s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_handover_mobility_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ca_change_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_ca_change_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_count_pm10s,int64,False,,NOT_USED,target/throughput/post-anomaly name guard,True,100.0,1
+near_rach_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rach_failure_direct_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,2
+ca_condition_label,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_usage_evidence_reliable_flag,bool,False,,NOT_USED,not selected for any model objective,False,100.0,1
+reliable_rb_columns,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_reference_column,str,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_usage_value,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+rb_low_usage_threshold,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_medium_usage_threshold,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_high_usage_threshold,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_low_usage_flag,bool,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+rb_medium_or_high_usage_flag,bool,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+rb_high_usage_flag,bool,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,2
+rb_usage_bucket,str,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,4
+rb_demand_confidence,str,False,,NOT_USED,not selected for any model objective,False,100.0,4
+estimated_available_rb,float64,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,227
+rb_capacity_estimation_method,str,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,3
+rb_utilization_pct,float64,False,,NOT_USED,not selected for any model objective,False,100.0,412
+lte_agg_rb_dl_bin,category,False,,NOT_USED,not selected for any model objective,False,99.75728155339806,6
+ml_hour_sin,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_hour_cos,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+rb_utilization_pct_clipped,float64,True,lstm_temporal;resource;temporal_lag,USED,objective-safe curated feature,False,100.0,412
+rb_demand_confidence_ml,str,True,resource;temporal_lag,USED,objective-safe curated feature,False,100.0,4
+ml_log1p_measurement_report_event_count_prev5s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_handover_execution_count_prev5s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_handover_failure_count_prev10s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_rach_attempt_count_prev10s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_rach_failure_count_prev10s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_ca_activation_change_count_prev10s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_log1p_failure_other_count_prev10s,float64,False,,NOT_USED,not selected for any model objective,False,100.0,1
+ml_tp_log_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,99.02912621359224,408
+ml_tp_log_lag_2,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,404
+ml_tp_log_lag_3,float64,True,temporal_lag,USED,objective-safe curated feature,False,97.0873786407767,400
+ml_tp_log_lag_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,95.14563106796116,392
+ml_tp_log_lag_10,float64,True,temporal_lag,USED,objective-safe curated feature,False,90.29126213592234,372
+ml_tp_log_past_median_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,224
+ml_tp_log_past_mean_10,float64,True,temporal_lag,USED,objective-safe curated feature,False,97.0873786407767,400
+ml_tp_log_past_slope_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,95.14563106796116,392
+ml_rsrp_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,99.02912621359224,408
+ml_rsrp_past_mean_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,404
+ml_sinr_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,99.02912621359224,408
+ml_sinr_past_mean_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,404
+ml_rb_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,99.02912621359224,408
+ml_rb_past_mean_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,404
+ml_bler_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,99.02912621359224,408
+ml_bler_past_mean_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.05825242718447,404
+ml_cqi_lag_1,float64,True,temporal_lag,USED,objective-safe curated feature,False,98.54368932038835,406
+ml_cqi_past_mean_5,float64,True,temporal_lag,USED,objective-safe curated feature,False,97.57281553398059,402
+ml_temporal_history_count,int64,True,temporal_lag,USED,objective-safe curated feature,False,100.0,21

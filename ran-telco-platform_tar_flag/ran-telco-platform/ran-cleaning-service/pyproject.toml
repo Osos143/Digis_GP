@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ran-cleaning-service"
+version = "2.0.0"
+description = "Modular CLI service for the LTE drive-test throughput cleaning / preprocessing pipeline"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "plotly",
+    "ipython",
+    "pyarrow",
+]
+
+[project.scripts]
+ran-clean = "ran_cleaning.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ran_cleaning = ["stages/*.py"]

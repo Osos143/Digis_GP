@@ -1,0 +1,12 @@
+{
+  "id": "16_throughput_gap_p75_distribution",
+  "filename": "16_throughput_gap_p75_distribution.png",
+  "title": "16 Throughput Gap P75 Distribution",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "area",
+  "x_label": "Metric Value / Quantile",
+  "y_label": "Sample Frequency Density",
+  "png_url": "/api/sessions/session_7a6c07a0947a/plots/16_throughput_gap_p75_distribution.png",
+  "json_url": "/api/sessions/session_7a6c07a0947a/plots/16_throughput_gap_p75_distribution.json",
+  "size_bytes": 39807
+}

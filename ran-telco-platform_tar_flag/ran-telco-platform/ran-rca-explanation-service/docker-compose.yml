@@ -1,0 +1,38 @@
+# Standalone compose file -- runs this service plus its own Ollama server.
+# If you already have an Ollama server running elsewhere (e.g. from
+# ran-telco-platform's own docker-compose.yml), skip the `ollama` service
+# here and just point OLLAMA_BASE_URL at that one instead.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ran-rca-ollama
+    volumes:
+      - ollama-data:/root/.ollama
+    ports:
+      - "11434:11434"
+    # First-time setup:
+    #   docker compose up -d ollama
+    #   docker compose exec ollama ollama pull qwen3:14b
+
+  rca-explain:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: ran-rca-explain
+    depends_on:
+      - ollama
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      LLM_MODEL: ${LLM_MODEL:-qwen3:14b}
+      OLLAMA_BASE_URL: http://ollama:11434
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./:/data:ro   # so you can point --input at a mounted JSON file via `docker compose run`
+    # API runs by default. For the CLI instead:
+    #   docker compose run --rm rca-explain ran-rca-explain --input /data/sample_input.json
+
+volumes:
+  ollama-data:

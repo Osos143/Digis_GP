@@ -1,0 +1,1146 @@
+﻿dataset,column,family,dtype,full_non_null_count,full_missing_count,full_missing_pct,sample_unique_count,sample_unique_pct,sample_non_null_examples,sample_min,sample_max,sample_mean,sample_std,sample_top_values,is_protected,remove_reason
+drive_raw,Activity.DAB,Activity,float64,0,64949,100.0,0,0.0,[],,,,,,True,100% missing
+drive_raw,Activity.MSISDN,Activity,float64,0,64949,100.0,0,0.0,[],,,,,,True,100% missing
+drive_raw,Activity.Round Trip Time,Activity,float64,0,64949,100.0,0,0.0,[],,,,,,True,100% missing
+drive_raw,Activity.TCP Connection Time,Activity,float64,0,64949,100.0,0,0.0,[],,,,,,True,100% missing
+drive_raw,Browsing.Access Time,Browsing,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Browsing.DNS Time,Browsing,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Browsing.Data Size,Browsing,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Browsing.Total Time,Browsing,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Browsing.Transfer Time,Browsing,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.CSFB After VoLTE,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.MO VoLTE Call Setup Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.MT CSFB Call Setup Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.MT CSFB Return Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.MT Call Setup Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.MT VoLTE Call Setup Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.SIP Registration Delay,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Extra_KPIs.WE WIFI OTP Time,Extra_KPIs,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - CellConfigurations - CellReselectionOffset,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - CellConfigurations - IRAT_FDD_QOffset,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - CellConfigurations - IRAT_QSearch_I,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - CellConfigurations - ServPriorityClass,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ChannelConfigurations - CCH_T3168,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ChannelConfigurations - CCH_T3192,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ChannelConfigurations - CELL_RESELECT_OFFSET,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ChannelConfigurations - NMO,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - DedicatedChannels(4) - ARFCN,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - DedicatedChannels(4) - Band,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - DedicatedChannels(4) - C2I,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - DedicatedChannels(4) - RxLev,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - DedicatedChannels(4) - Timeslot,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_LLC_BLER_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_LLC_ReTx_Rate_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_LLC_Throughput_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_LLC_Throughput_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_RLC_ReTx_Rate_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_RLC_Throughput_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Data_Throughput - GPRS_RLC_Throughput_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_8PSK_CV_BEP,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_8PSK_Mean_BEP,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_C_Value,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_CodingScheme_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_CodingScheme_UL,GSM,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_EDGE_DL_Window_Size,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_EDGE_UL_Window_Size,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_GMSK_CV_BEP,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_GMSK_Mean_BEP,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Peak_Throughput,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Radio_Priority,GSM,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TBF_Request_Cause,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TFI_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TFI_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Timeslot_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_Timeslot_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_RMAC_TimingAdvanceIndex,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Dedicated_Mode - GPRS_SM_Cause,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delay_Class,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delivery_Erroneous_SDU,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Delivery_Order,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Guaranteed_Bit_Rate_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Guaranteed_Bit_Rate_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_Bit_Rate_DL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_Bit_Rate_UL,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Max_SDU_Size,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Mean_Throughput,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Peak_Throughput,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Precedence_Class,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Reliability_Class,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Residual_BER,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_SDU_Error_Ratio,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Traffic_Class,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Traffic_Priority,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_SM_QoS - GPRS_SM_QoS_Transfer_Delay,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Serving_Cell - GPRS_SM_Access_Point_Name,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Serving_Cell - GPRS_SM_LLC_SAPI,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Serving_Cell - GPRS_SM_NSAPI,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - GPRS_Serving_Cell - GPRS_SM_PDP_End_User_IP_Address,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(0) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(0) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(0) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(0) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(1) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(1) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(1) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(1) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(10) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(10) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(10) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(10) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(11) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(11) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(11) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(11) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(12) - BSIC,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(12) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(12) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(12) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(12) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(2) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(2) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(2) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(2) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(3) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(3) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(3) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(3) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(4) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(4) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(4) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(4) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(5) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(5) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(5) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(5) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(6) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(6) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(6) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(6) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(7) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(7) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(7) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(7) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(8) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(8) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(8) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(8) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(9) - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(9) - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(9) - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - NeighborCells(9) - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - Serving - Band,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - Serving - CELL_RESELECT_OFFSET,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ServingCells - C1,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ServingCells - C2,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ServingCells - C31,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ServingCells - C32,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,GSM - ServingCells - PBCCH,GSM,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - Band,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - EARFCN,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - Mod3,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - PCI,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - RSRP,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - RSRQ,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(39) - ServType,LTE,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,LTE - NeighborCells(40) - Band,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - EARFCN,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - Mod3,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - PCI,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - RSRP,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - RSRQ,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(40) - ServType,LTE,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,LTE - NeighborCells(41) - Band,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - EARFCN,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - Mod3,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - PCI,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - RSRP,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - RSRQ,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(41) - ServType,LTE,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,LTE - NeighborCells(42) - Band,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - EARFCN,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - Mod3,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - PCI,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - RSRP,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - RSRQ,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(42) - ServType,LTE,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,LTE.VoLTE.Latency,LTE,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - APP_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - APP_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Agg_RB_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_APP_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_APP_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_MAC_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_MAC_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_PDCP_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_PDCP_Throughput_DL_Without_4GOnly,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_PDCP_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_PDCP_Throughput_UL_Without_4GOnly,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_Physical_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_RLC_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - DC_RLC_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - MAC_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - MAC_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - PDCP_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - PDCP_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Physical_Throughput_SUL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Physical_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - RLC_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - RLC_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - SDAP_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - SDAP_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Total_Bandwidth_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Data_Performance - Total_Bandwidth_DL_DC,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CCE_Usage_Level_16_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CCE_Usage_Level_1_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CCE_Usage_Level_2_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CCE_Usage_Level_4_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CCE_Usage_Level_8_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - CQI_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - MAC_BLER_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - MCS_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - ModUsage_1024QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - ModUsage_16QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - ModUsage_256QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - ModUsage_64QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - ModUsage_QPSK_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - Modulation_DL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - PDCCH_DCI_Format_DL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - RBG_Size,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - RB_Num_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - RB_Num_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - TB_Size_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - DownlinkMeasurements - TB_Size_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(0) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(0) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(1) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(1) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(1) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(10) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(10) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(10) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(11) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(11) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(11) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(12) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(12) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(12) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(13) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(13) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(13) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(2) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(2) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(2) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(3) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(3) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(3) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(4) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(4) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(4) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(5) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(5) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(5) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(6) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(6) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(6) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(7) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(7) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(7) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(8) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(8) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(8) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(9) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - NeighborCells(9) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - NeighborCells(9) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_Central,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_Central_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_PointA,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_PointA_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_SSB,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ARFCN_SSB_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Band,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Band_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Bandwidth_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Bandwidth_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Frequency_Central,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Frequency_Central_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Frequency_SSB,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_Frequency_SSB_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_GSCN_Central,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_GSCN_Central_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_GSCN_SSB,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_GSCN_SSB_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_SCS,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_SSB_Beam_Num,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_SSBeam_Index,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ServCellIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell - PCell_ServingCellGroup_ID,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_CQI_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_CSI_RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_CSI_RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_CSI_SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Carrier_RSSI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_MAC_BLER_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_MAC_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_MCS_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_1024QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_16QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_256QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_64QAM_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_ModUsage_QPSK_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Modulation_DL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Num_Antenna_Rx,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Num_CSI_Ports,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Num_Layers_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_PDSCH_SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Pathloss_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_RBG_Size,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Max_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_RB_Num_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_RankIndicator_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SSB_Beam_SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SS_RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SS_RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_SS_SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_Scheduled_Count_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Max_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_DL - PCell_TB_Size_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Hopping_Flag_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_MAC_BLER_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_MAC_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_MCS_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_16QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_256QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_64QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_ModUsage_QPSK_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Modulation_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Num_Layers_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_PDCCH_DCI_Format_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Physical_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Power_Tx_PUSCH,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_RB_Num_Average_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_RB_Num_Total_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_RankIndicator_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_Scheduled_Count_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_TB_Size_Average_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_TB_Size_Total_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - PrimaryCell_Radio_UL - PCell_TxMode,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - SecondaryCell_1_Radio_DL - SCell_Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - SecondaryCell_1_Radio_UL - SCell_Physical_Throughput_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - SecondaryCell_2_Radio_DL - SCell_Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - SecondaryCell_3_Radio_DL - SCell_Physical_Throughput_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving - MNC,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - Band,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - Serving(0) - BeamIndex,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - Mod4,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - NR_ARFCN,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - PCI,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - RSRP,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - RSRQ,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - SINR,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - Serving(0) - ServingType,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - UplinkMeasurements - CCE_Usage_Level_16_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - CCE_Usage_Level_1_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - CCE_Usage_Level_2_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - CCE_Usage_Level_4_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - CCE_Usage_Level_8_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - MAC_BLER_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - MCS_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - ModUsage_16QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - ModUsage_256QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - ModUsage_64QAM_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - ModUsage_QPSK_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Modulation_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PDCCH_DCI_Format_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PUCCH_Format0_Usage_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PUCCH_Format1_Usage_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PUCCH_Format2_Usage_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PUCCH_Format3_Usage_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - PUCCH_Format4_Usage_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Power_Headroom,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Power_Tx_PRACH,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Power_Tx_PUCCH,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Power_Tx_PUSCH,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Power_Tx_SRS,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - RB_Num_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - RB_Num_Max_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - RB_Num_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - RLC_BLER_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - Scheduled_Count_UL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - TB_Size_Average_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - TB_Size_Max_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G - UplinkMeasurements - TB_Size_Total_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G.PrimaryCell_Radio_DL.PCell_RankIndicator_DL,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G.PrimaryCell_Radio_UL.PCell_RankIndicator_UL,NR5G,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,NR5G.UplinkMeasurements.Power_Tx_PUSCH,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,NR5G.VoNR.Latency,NR5G,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.additional_servers,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.connection_icon,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.connection_mode,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.date,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.distance,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.download,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.download_latency,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.hasSecondary,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.id,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.idle_latency,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.isp_name,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.jitter,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.latency,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.path,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.ploss,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.server_name,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.share_url,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.sponsor_name,SpeedTest,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,SpeedTest.sponsor_url,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.upload,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,SpeedTest.upload_latency,SpeedTest,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Throughput.Physical_UL,Throughput,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Throughput.Session HTTP UL,Throughput,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Voice_Quality.MOS_Active,Voice_Quality,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Voice_Quality.MOS_Passive,Voice_Quality,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,Voice_Quality.Percent_Active,Voice_Quality,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - Band,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - EcNo,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - EcNo Before RAKE,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - PSC,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - RSCP,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - RSCP After RAKE,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - Set_Type,WCDMA,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(22) - UARFCN,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - Band,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - EcNo,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - EcNo Before RAKE,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - PSC,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - RSCP,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - RSCP After RAKE,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - Set_Type,WCDMA,object,0,64949,100.0,0,0.0,[],,,,,{},False,100% missing
+drive_raw,WCDMA - WCDMACellsTable(23) - UARFCN,WCDMA,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Buffer Size,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Freezing Time,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Quality,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Resolution,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Resolution Change,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Session Failure,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Video Loaded Time,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Video Ready to Start Time,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,YouTube.Video Start Time,YouTube,float64,0,64949,100.0,0,0.0,[],,,,,,False,100% missing
+drive_raw,LTE - NeighborCells(37) - Band,LTE,float64,1,64948,99.998,1,100.0,['41.0'],41.0,41.0,41.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - EARFCN,LTE,float64,1,64948,99.998,1,100.0,['40790.0'],40790.0,40790.0,40790.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - Mod3,LTE,float64,1,64948,99.998,1,100.0,['2.0'],2.0,2.0,2.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - PCI,LTE,float64,1,64948,99.998,1,100.0,['50.0'],50.0,50.0,50.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - RSRP,LTE,float64,1,64948,99.998,1,100.0,['-112.6875'],-112.6875,-112.6875,-112.6875,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - RSRQ,LTE,float64,1,64948,99.998,1,100.0,['-22.375'],-22.375,-22.375,-22.375,,,False,>70% missing
+drive_raw,LTE - NeighborCells(37) - ServType,LTE,object,1,64948,99.998,1,100.0,['N'],,,,,{'N': 1},False,>70% missing
+drive_raw,LTE - NeighborCells(38) - Band,LTE,float64,1,64948,99.998,1,100.0,['41.0'],41.0,41.0,41.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - EARFCN,LTE,float64,1,64948,99.998,1,100.0,['40988.0'],40988.0,40988.0,40988.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - Mod3,LTE,float64,1,64948,99.998,1,100.0,['2.0'],2.0,2.0,2.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - PCI,LTE,float64,1,64948,99.998,1,100.0,['110.0'],110.0,110.0,110.0,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - RSRP,LTE,float64,1,64948,99.998,1,100.0,['-114.5625'],-114.5625,-114.5625,-114.5625,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - RSRQ,LTE,float64,1,64948,99.998,1,100.0,['-23.0625'],-23.0625,-23.0625,-23.0625,,,False,>70% missing
+drive_raw,LTE - NeighborCells(38) - ServType,LTE,object,1,64948,99.998,1,100.0,['N'],,,,,{'N': 1},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - Band,WCDMA,float64,1,64948,99.998,1,100.0,['8.0'],8.0,8.0,8.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - EcNo,WCDMA,float64,1,64948,99.998,1,100.0,['-20.55773'],-20.55773,-20.55773,-20.55773,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - EcNo Before RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-28.498894'],-28.498894,-28.498894,-28.498894,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - PSC,WCDMA,float64,1,64948,99.998,1,100.0,['367.0'],367.0,367.0,367.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - RSCP,WCDMA,float64,1,64948,99.998,1,100.0,['-103.09889'],-103.09889,-103.09889,-103.09889,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - RSCP After RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-95.15773'],-95.15773,-95.15773,-95.15773,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - Set_Type,WCDMA,object,1,64948,99.998,1,100.0,['D'],,,,,{'D': 1},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(19) - UARFCN,WCDMA,float64,1,64948,99.998,1,100.0,['3066.0'],3066.0,3066.0,3066.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - Band,WCDMA,float64,1,64948,99.998,1,100.0,['8.0'],8.0,8.0,8.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - EcNo,WCDMA,float64,1,64948,99.998,1,100.0,['-20.55773'],-20.55773,-20.55773,-20.55773,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - EcNo Before RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-27.33503'],-27.33503,-27.33503,-27.33503,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - PSC,WCDMA,float64,1,64948,99.998,1,100.0,['446.0'],446.0,446.0,446.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - RSCP,WCDMA,float64,1,64948,99.998,1,100.0,['-103.53503'],-103.53503,-103.53503,-103.53503,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - RSCP After RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-96.75773'],-96.75773,-96.75773,-96.75773,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - Set_Type,WCDMA,object,1,64948,99.998,1,100.0,['D'],,,,,{'D': 1},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(20) - UARFCN,WCDMA,float64,1,64948,99.998,1,100.0,['3066.0'],3066.0,3066.0,3066.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - Band,WCDMA,float64,1,64948,99.998,1,100.0,['8.0'],8.0,8.0,8.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - EcNo,WCDMA,float64,1,64948,99.998,1,100.0,['-21.253948'],-21.253948,-21.253948,-21.253948,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - EcNo Before RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-29.636805'],-29.636805,-29.636805,-29.636805,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - PSC,WCDMA,float64,1,64948,99.998,1,100.0,['19.0'],19.0,19.0,19.0,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - RSCP,WCDMA,float64,1,64948,99.998,1,100.0,['-105.536804'],-105.536804,-105.536804,-105.536804,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - RSCP After RAKE,WCDMA,float64,1,64948,99.998,1,100.0,['-97.153946'],-97.153946,-97.153946,-97.153946,,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - Set_Type,WCDMA,object,1,64948,99.998,1,100.0,['D'],,,,,{'D': 1},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(21) - UARFCN,WCDMA,float64,1,64948,99.998,1,100.0,['3066.0'],3066.0,3066.0,3066.0,,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(3) - ARFCN,GSM,float64,2,64947,99.997,2,100.0,"['123.0', '80.0']",80.0,123.0,101.5,30.405591591021544,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(3) - Band,GSM,float64,2,64947,99.997,1,50.0,"['900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(3) - C2I,GSM,float64,2,64947,99.997,2,100.0,"['10.32519', '18.969362']",10.32519,18.969362,14.647276,6.112352638942882,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(3) - RxLev,GSM,float64,2,64947,99.997,2,100.0,"['-106.0', '-79.0']",-106.0,-79.0,-92.5,19.091883092036785,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(3) - Timeslot,GSM,float64,2,64947,99.997,2,100.0,"['3.0', '6.0']",3.0,6.0,4.5,2.1213203435596424,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - Band,LTE,float64,2,64947,99.997,1,50.0,"['41.0', '41.0']",41.0,41.0,41.0,0.0,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - EARFCN,LTE,float64,2,64947,99.997,1,50.0,"['40988.0', '40988.0']",40988.0,40988.0,40988.0,0.0,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - Mod3,LTE,float64,2,64947,99.997,2,100.0,"['2.0', '1.0']",1.0,2.0,1.5,0.7071067811865476,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - PCI,LTE,float64,2,64947,99.997,2,100.0,"['50.0', '118.0']",50.0,118.0,84.0,48.08326112068523,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - RSRP,LTE,float64,2,64947,99.997,2,100.0,"['-119.75', '-116.4375']",-119.75,-116.4375,-118.09375,2.3422912126804385,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - RSRQ,LTE,float64,2,64947,99.997,2,100.0,"['-21.5625', '-21.875']",-21.875,-21.5625,-21.71875,0.2209708691207961,,False,>70% missing
+drive_raw,LTE - NeighborCells(36) - ServType,LTE,object,2,64947,99.997,1,50.0,"['N', 'N']",,,,,{'N': 2},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - Band,WCDMA,float64,2,64947,99.997,1,50.0,"['8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - EcNo,WCDMA,float64,2,64947,99.997,2,100.0,"['-19.150623', '-18.96097']",-19.150623,-18.96097,-19.0557965,0.13410492237237218,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - EcNo Before RAKE,WCDMA,float64,2,64947,99.997,2,100.0,"['-27.08701', '-26.418066']",-27.08701,-26.418066,-26.752538,0.4730148386340537,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - PSC,WCDMA,float64,2,64947,99.997,2,100.0,"['140.0', '380.0']",140.0,380.0,260.0,169.7056274847714,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - RSCP,WCDMA,float64,2,64947,99.997,2,100.0,"['-102.88701', '-102.618065']",-102.88701,-102.618065,-102.7525375,0.1901728332662176,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - RSCP After RAKE,WCDMA,float64,2,64947,99.997,2,100.0,"['-94.95062', '-95.160965']",-95.160965,-94.95062,-95.0557925,0.14873637588868702,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - Set_Type,WCDMA,object,2,64947,99.997,2,100.0,"['M', 'D']",,,,,"{'M': 1, 'D': 1}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(18) - UARFCN,WCDMA,float64,2,64947,99.997,2,100.0,"['3087.0', '3066.0']",3066.0,3087.0,3076.5,14.849242404917497,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - Band,LTE,float64,5,64944,99.992,3,60.0,"['28.0', '1.0', '41.0', '41.0', '41.0']",1.0,41.0,30.4,17.372391890583174,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - EARFCN,LTE,float64,5,64944,99.992,4,80.0,"['9310.0', '356.0', '40988.0', '40790.0', '40988.0']",356.0,40988.0,26486.4,20018.81801705585,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - Mod3,LTE,float64,5,64944,99.992,3,60.0,"['0.0', '0.0', '2.0', '1.0', '1.0']",0.0,2.0,0.8,0.8366600265340756,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - PCI,LTE,float64,5,64944,99.992,5,100.0,"['414.0', '351.0', '110.0', '487.0', '160.0']",110.0,487.0,304.4,162.9180775727482,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - RSRP,LTE,float64,5,64944,99.992,5,100.0,"['-102.08929', '-126.395836', '-119.0', '-112.875', '-116.125']",-126.395836,-102.08929,-115.29702520000001,8.914758002826279,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - RSRQ,LTE,float64,5,64944,99.992,5,100.0,"['-20.107143', '-21.75', '-23.1875', '-20.6875', '-22.875']",-23.1875,-20.107143,-21.721428600000003,1.3375196258335051,,False,>70% missing
+drive_raw,LTE - NeighborCells(35) - ServType,LTE,object,5,64944,99.992,1,20.0,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 5},False,>70% missing
+drive_raw,GSM - NeighborCells(12) - ARFCN,GSM,float64,6,64943,99.991,3,50.0,"['67.0', '67.0', '80.0', '67.0', '68.0']",67.0,80.0,69.33333333333333,5.240865068542279,,False,>70% missing
+drive_raw,GSM - NeighborCells(12) - Band,GSM,float64,6,64943,99.991,1,16.667,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(12) - RxLev,GSM,float64,6,64943,99.991,5,83.333,"['-96.0', '-95.0', '-101.0', '-98.0', '-96.0']",-101.0,-95.0,-97.5,2.258317958127243,,False,>70% missing
+drive_raw,GSM - NeighborCells(12) - ServType,GSM,object,6,64943,99.991,1,16.667,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 6},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - Band,WCDMA,float64,6,64943,99.991,1,16.667,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - EcNo,WCDMA,float64,6,64943,99.991,6,100.0,"['-19.112026', '-18.18164', '-18.307518', '-19.073767', '-18.924015']",-19.112026,-18.18164,-18.723795166666665,0.395198872315909,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - EcNo Before RAKE,WCDMA,float64,6,64943,99.991,5,83.333,"['-26.85239', '-24.07854', '-26.418066', '-27.33503', '-26.216173']",-27.33503,-24.07854,-26.292098166666666,1.1521313266433502,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - PSC,WCDMA,float64,6,64943,99.991,6,100.0,"['233.0', '511.0', '273.0', '44.0', '408.0']",44.0,511.0,279.8333333333333,162.84890747765752,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - RSCP,WCDMA,float64,6,64943,99.991,6,100.0,"['-91.45239', '-87.77854', '-89.31807', '-103.13503', '-104.016174']",-104.016174,-87.77854,-96.50876566666666,7.753626663160966,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - RSCP After RAKE,WCDMA,float64,6,64943,99.991,6,100.0,"['-83.71202', '-81.88164', '-81.20752', '-94.87377', '-96.724014']",-96.724014,-81.20752,-88.94046149999998,7.38216667768518,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - Set_Type,WCDMA,object,6,64943,99.991,2,33.333,"['M', 'D', 'M', 'M', 'M']",,,,,"{'M': 5, 'D': 1}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(17) - UARFCN,WCDMA,float64,6,64943,99.991,2,33.333,"['3066.0', '3066.0', '3066.0', '3087.0', '3066.0']",3066.0,3087.0,3069.5,8.573214099741124,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - Band,LTE,float64,10,64939,99.985,3,30.0,"['1.0', '41.0', '3.0', '41.0', '41.0']",1.0,41.0,25.4,20.150544519800064,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - EARFCN,LTE,float64,10,64939,99.985,7,70.0,"['356.0', '40790.0', '1850.0', '40790.0', '41384.0']",356.0,41384.0,25107.8,20635.534022651314,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - Mod3,LTE,float64,10,64939,99.985,3,30.0,"['1.0', '1.0', '0.0', '1.0', '2.0']",0.0,2.0,1.1,0.7378647873726218,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - PCI,LTE,float64,10,64939,99.985,8,80.0,"['364.0', '115.0', '123.0', '133.0', '110.0']",110.0,469.0,186.5,125.9111238577081,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - RSRP,LTE,float64,10,64939,99.985,10,100.0,"['-120.6875', '-117.00446', '-123.5', '-127.020836', '-115.04086']",-129.34375,-108.2375,-119.212657,6.933559832237871,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - RSRQ,LTE,float64,10,64939,99.985,9,90.0,"['-23.0625', '-19.433035', '-22.625', '-21.3125', '-21.622597']",-23.0625,-19.25,-21.462854800000002,1.2954799590996553,,False,>70% missing
+drive_raw,LTE - NeighborCells(34) - ServType,LTE,object,10,64939,99.985,1,10.0,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 10},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - Band,WCDMA,float64,11,64938,99.983,1,9.091,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - EcNo,WCDMA,float64,11,64938,99.983,10,90.909,"['-18.307518', '-18.029257', '-18.85103', '-19.035841', '-19.389713']",-19.389713,-18.029257,-18.615892181818182,0.4083691829124277,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - EcNo Before RAKE,WCDMA,float64,11,64938,99.983,9,81.818,"['-25.838537', '-24.727654', '-27.33503', '-26.216173', '-27.08701']",-27.33503,-24.45626,-25.88418,0.9498636502731321,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - PSC,WCDMA,float64,11,64938,99.983,9,81.818,"['225.0', '217.0', '233.0', '233.0', '169.0']",160.0,353.0,235.54545454545453,51.165151492717456,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - RSCP,WCDMA,float64,11,64938,99.983,11,100.0,"['-90.43854', '-88.42766', '-89.635025', '-89.31617', '-95.18701']",-103.82326,-86.96136,-93.90236227272726,6.5824153422050795,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - RSCP After RAKE,WCDMA,float64,11,64938,99.983,11,100.0,"['-82.90752', '-81.729256', '-81.15103', '-82.13584', '-87.489716']",-96.54381,-79.57571,-86.63407509090908,6.4974663902721534,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - Set_Type,WCDMA,object,11,64938,99.983,2,18.182,"['M', 'M', 'M', 'M', 'D']",,,,,"{'M': 9, 'D': 2}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(16) - UARFCN,WCDMA,float64,11,64938,99.983,2,18.182,"['3066.0', '3066.0', '3066.0', '3066.0', '3087.0']",3066.0,3087.0,3069.818181818182,8.494918267036851,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(2) - ARFCN,GSM,float64,13,64936,99.98,5,38.462,"['123.0', '123.0', '123.0', '80.0', '123.0']",78.0,124.0,99.3076923076923,23.001393491788765,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(2) - Band,GSM,float64,13,64936,99.98,1,7.692,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(2) - C2I,GSM,float64,13,64936,99.98,13,100.0,"['15.247933', '16.157354', '2.9589274', '7.203328', '17.562742']",2.9589274,18.22041,12.54149997692308,5.21178832183453,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(2) - RxLev,GSM,float64,13,64936,99.98,11,84.615,"['-76.0', '-78.0', '-93.0', '-94.0', '-87.0']",-106.0,-62.0,-85.53846153846153,12.05968065231818,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(2) - Timeslot,GSM,float64,13,64936,99.98,6,46.154,"['4.0', '3.0', '3.0', '3.0', '0.0']",0.0,7.0,3.0,2.0,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - Band,LTE,float64,17,64932,99.974,4,23.529,"['28.0', '1.0', '1.0', '41.0', '41.0']",1.0,41.0,23.235294117647058,19.13938809028617,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - EARFCN,LTE,float64,17,64932,99.974,8,47.059,"['9310.0', '356.0', '356.0', '40790.0', '41186.0']",356.0,41384.0,20784.470588235294,19961.08392008575,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - Mod3,LTE,float64,17,64932,99.974,3,17.647,"['2.0', '1.0', '0.0', '1.0', '1.0']",0.0,2.0,1.2941176470588236,0.7717436331412898,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - PCI,LTE,float64,17,64932,99.974,12,70.588,"['230.0', '250.0', '147.0', '487.0', '487.0']",52.0,487.0,215.0,142.87319552666273,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - RSRP,LTE,float64,17,64932,99.974,17,100.0,"['-104.395836', '-116.8125', '-120.375', '-117.36607', '-132.75']",-132.75,-102.51786,-116.49424505882354,7.867117182257999,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - RSRQ,LTE,float64,17,64932,99.974,17,100.0,"['-20.84375', '-21.5625', '-20.8125', '-19.415178', '-21.78125']",-22.8125,-19.169643,-21.037924470588237,1.0335957232751305,,False,>70% missing
+drive_raw,LTE - NeighborCells(33) - ServType,LTE,object,17,64932,99.974,1,5.882,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 17},False,>70% missing
+drive_raw,GSM - NeighborCells(11) - BSIC,GSM,float64,21,64928,99.968,7,33.333,"['27.0', '32.0', '32.0', '62.0', '62.0']",12.0,62.0,41.04761904761905,16.912942353346416,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - Band,WCDMA,float64,22,64927,99.966,1,4.545,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - EcNo,WCDMA,float64,22,64927,99.966,18,81.818,"['-18.743805', '-18.503452', '-18.029257', '-18.743805', '-18.307518']",-20.004799,-17.287724,-18.42935472727273,0.6278085360603244,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - EcNo Before RAKE,WCDMA,float64,22,64927,99.966,16,72.727,"['-26.6298', '-25.838537', '-23.843826', '-27.08701', '-26.216173']",-28.177406,-20.950188,-25.52881709090909,1.5519064795930357,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - PSC,WCDMA,float64,22,64927,99.966,15,68.182,"['336.0', '52.0', '44.0', '233.0', '233.0']",44.0,511.0,240.9090909090909,132.28933264805417,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - RSCP,WCDMA,float64,22,64927,99.966,22,100.0,"['-97.6298', '-100.23854', '-89.64383', '-91.787', '-94.41617']",-108.23503,-84.80933,-94.34245340909092,7.511187973360587,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - RSCP After RAKE,WCDMA,float64,22,64927,99.966,22,100.0,"['-89.743805', '-92.90346', '-83.82926', '-83.4438', '-86.507515']",-100.20855,-78.94033,-87.24299195454545,7.014386747330031,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - Set_Type,WCDMA,object,22,64927,99.966,2,9.091,"['M', 'D', 'D', 'M', 'M']",,,,,"{'M': 14, 'D': 8}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(15) - UARFCN,WCDMA,float64,22,64927,99.966,2,9.091,"['3066.0', '3066.0', '3087.0', '3066.0', '3066.0']",3066.0,3087.0,3069.818181818182,8.29019135649309,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - Band,LTE,float64,30,64919,99.954,4,13.333,"['28.0', '1.0', '1.0', '28.0', '3.0']",1.0,41.0,24.866666666666667,18.42362301659126,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - EARFCN,LTE,float64,30,64919,99.954,7,23.333,"['9310.0', '500.0', '500.0', '9310.0', '1850.0']",356.0,41384.0,22075.866666666665,19395.973381861633,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - Mod3,LTE,float64,30,64919,99.954,3,10.0,"['1.0', '0.0', '1.0', '2.0', '1.0']",0.0,2.0,1.1333333333333333,0.8193072487266861,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - PCI,LTE,float64,30,64919,99.954,22,73.333,"['139.0', '144.0', '145.0', '332.0', '322.0']",39.0,487.0,217.03333333333333,130.19917986216967,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - RSRP,LTE,float64,30,64919,99.954,29,96.667,"['-103.47321', '-113.75', '-117.010414', '-116.0', '-115.8625']",-133.4375,-102.6875,-117.05640163333334,7.3588462021291345,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - RSRQ,LTE,float64,30,64919,99.954,28,93.333,"['-19.383928', '-21.0', '-20.46875', '-21.75', '-20.85625']",-23.1875,-18.4375,-20.994073633333333,1.078934010199067,,False,>70% missing
+drive_raw,LTE - NeighborCells(32) - ServType,LTE,object,30,64919,99.954,1,3.333,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 30},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - Band,WCDMA,float64,31,64918,99.952,1,3.226,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - EcNo,WCDMA,float64,31,64918,99.952,23,74.194,"['-19.819996', '-18.40438', '-18.570778', '-18.85103', '-18.40438']",-19.819996,-16.483366,-18.136975774193548,0.7008597531738053,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - EcNo Before RAKE,WCDMA,float64,31,64918,99.952,20,64.516,"['-27.87809', '-25.169464', '-25.169464', '-26.216173', '-26.418066']",-27.87809,-21.129885,-24.930852483870964,1.3312374857256155,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - PSC,WCDMA,float64,31,64918,99.952,20,64.516,"['433.0', '433.0', '156.0', '15.0', '204.0']",15.0,511.0,228.70967741935485,139.70640489931904,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - RSCP,WCDMA,float64,31,64918,99.952,31,100.0,"['-104.17809', '-96.169464', '-102.26946', '-102.516174', '-101.71807']",-106.12325,-84.189835,-95.25988412903227,6.671873970332312,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - RSCP After RAKE,WCDMA,float64,31,64918,99.952,31,100.0,"['-96.119995', '-89.40438', '-95.67078', '-95.15103', '-93.704384']",-98.04033,-77.063286,-88.46600816129032,6.576815399148928,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - Set_Type,WCDMA,object,31,64918,99.952,2,6.452,"['M', 'M', 'D', 'M', 'D']",,,,,"{'M': 21, 'D': 10}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(14) - UARFCN,WCDMA,float64,31,64918,99.952,2,6.452,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3070.064516129032,8.433802953476237,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - Band,WCDMA,float64,46,64903,99.929,1,2.174,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - EcNo,WCDMA,float64,46,64903,99.929,35,76.087,"['-18.743805', '-17.601778', '-19.730461', '-18.307518', '-17.287724']",-19.730461,-16.462439,-17.950430326086952,0.6654898150451973,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - EcNo Before RAKE,WCDMA,float64,46,64903,99.929,25,54.348,"['-26.6298', '-24.869987', '-27.87809', '-25.661358', '-23.62115']",-27.87809,-20.55773,-24.985020195652172,1.346529314474836,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - PSC,WCDMA,float64,46,64903,99.929,28,60.87,"['230.0', '336.0', '281.0', '156.0', '156.0']",4.0,433.0,212.08695652173913,117.11434603971104,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - RSCP,WCDMA,float64,46,64903,99.929,46,100.0,"['-97.4298', '-102.26999', '-104.27809', '-99.76135', '-100.221146']",-108.82326,-83.65773,-95.37849873913045,6.471880466402802,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - RSCP After RAKE,WCDMA,float64,46,64903,99.929,46,100.0,"['-89.54381', '-95.00178', '-96.13046', '-92.40752', '-93.887726']",-101.07571,-78.629005,-88.34390945652174,6.257356785884413,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - Set_Type,WCDMA,object,46,64903,99.929,2,4.348,"['D', 'M', 'D', 'M', 'D']",,,,,"{'M': 27, 'D': 19}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(13) - UARFCN,WCDMA,float64,46,64903,99.929,2,4.348,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3068.7391304347825,7.1505548583734875,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - Ping Pong HO,GSM,float64,48,64901,99.926,1,2.083,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - Band,LTE,float64,48,64901,99.926,4,8.333,"['41.0', '41.0', '41.0', '28.0', '3.0']",1.0,41.0,20.5625,19.27064380777034,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - EARFCN,LTE,float64,48,64901,99.926,8,16.667,"['41384.0', '41186.0', '40790.0', '9310.0', '1850.0']",356.0,41384.0,19028.125,19737.59322414754,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - Mod3,LTE,float64,48,64901,99.926,3,6.25,"['2.0', '2.0', '2.0', '1.0', '2.0']",0.0,2.0,1.2291666666666667,0.8809951658604623,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - PCI,LTE,float64,48,64901,99.926,27,56.25,"['110.0', '110.0', '110.0', '250.0', '497.0']",110.0,497.0,229.66666666666666,126.44371943436796,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - RSRP,LTE,float64,48,64901,99.926,46,95.833,"['-113.125', '-118.1875', '-121.0', '-103.1375', '-112.125']",-130.3125,-103.1375,-117.40340745833333,6.705408904283758,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - RSRQ,LTE,float64,48,64901,99.926,42,87.5,"['-24.6875', '-22.3125', '-23.5', '-18.76875', '-20.375']",-24.6875,-18.395834,-21.025828541666666,1.323937236570075,,False,>70% missing
+drive_raw,LTE - NeighborCells(31) - ServType,LTE,object,48,64901,99.926,1,2.083,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 48},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - Band,WCDMA,float64,62,64887,99.905,1,1.613,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - EcNo,WCDMA,float64,62,64887,99.905,50,80.645,"['-18.21277', '-18.96097', '-18.307518', '-17.574722', '-19.556746']",-19.911415,-15.859132,-17.89036722580645,0.8159142343742016,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - EcNo Before RAKE,WCDMA,float64,62,64887,99.905,30,48.387,"['-24.45626', '-26.023252', '-25.838537', '-23.62115', '-26.023252']",-27.598076,-17.96977,-24.553369354838704,1.8700237615833821,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - PSC,WCDMA,float64,62,64887,99.905,39,62.903,"['97.0', '242.0', '242.0', '328.0', '156.0']",4.0,511.0,197.41935483870967,128.0425836423432,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - RSCP,WCDMA,float64,62,64887,99.905,62,100.0,"['-95.85626', '-101.12325', '-103.23854', '-99.721146', '-102.423256']",-108.13854,-82.73584,-95.69530480645162,6.135170404029832,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - RSCP After RAKE,WCDMA,float64,62,64887,99.905,62,100.0,"['-89.61277', '-94.06097', '-95.70752', '-93.67472', '-95.95675']",-100.704384,-77.555504,-89.03230270967742,5.795347695586825,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - Set_Type,WCDMA,object,62,64887,99.905,2,3.226,"['M', 'D', 'D', 'M', 'M']",,,,,"{'M': 40, 'D': 22}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(12) - UARFCN,WCDMA,float64,62,64887,99.905,2,3.226,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3070.7419354838707,8.852035949700262,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - Band,LTE,float64,81,64868,99.875,4,4.938,"['1.0', '3.0', '3.0', '41.0', '3.0']",1.0,41.0,22.74074074074074,18.557867454113484,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - EARFCN,LTE,float64,81,64868,99.875,8,9.877,"['356.0', '1850.0', '1850.0', '40988.0', '1850.0']",356.0,41384.0,20337.40740740741,19327.019895587742,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - Mod3,LTE,float64,81,64868,99.875,3,3.704,"['0.0', '0.0', '2.0', '1.0', '2.0']",0.0,2.0,1.1111111111111112,0.85146931829632,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - PCI,LTE,float64,81,64868,99.875,42,51.852,"['393.0', '414.0', '110.0', '487.0', '353.0']",0.0,487.0,235.25925925925927,121.18908550048741,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - RSRP,LTE,float64,81,64868,99.875,78,96.296,"['-107.75', '-102.60227', '-105.6875', '-116.77917', '-106.875']",-134.9375,-92.708336,-116.32387297530865,8.426872428358752,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - RSRQ,LTE,float64,81,64868,99.875,70,86.42,"['-21.9375', '-22.767046', '-21.5', '-19.741667', '-18.28125']",-24.625,-17.95673,-20.92674116049383,1.3063099442794908,,False,>70% missing
+drive_raw,LTE - NeighborCells(30) - ServType,LTE,object,81,64868,99.875,1,1.235,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 81},False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - Subchannel,GSM,float64,82,64867,99.874,2,2.439,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,1.0,0.8414634146341463,0.36749106632702194,,False,>70% missing
+drive_raw,Extra_KPIs.MO CSFB Return Time,Extra_KPIs,float64,84,64865,99.871,84,100.0,"['5.267214999999997', '5.189423999999995', '6.954777', '4.531378999999999', '4.940697']",1.2196280000000002,45.022468,6.0931272380952395,4.612635163893419,,False,>70% missing
+drive_raw,GSM - ServingCells - TCH_Power,GSM,float64,90,64859,99.861,26,28.889,"['-61.0', '-65.0', '-56.0', '-65.0', '-65.0']",-81.0,-54.0,-67.26666666666667,7.2728523993321845,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - ChannelMode,GSM,object,96,64853,99.852,3,3.125,"['Speech V2', 'Speech V2', 'Speech V2', 'Speech V2', 'Speech V2']",,,,,"{'Speech V3': 76, 'Speech V2': 14, 'Signalling Only': 6}",False,>70% missing
+drive_raw,GSM - NeighborCells(10) - BSIC,GSM,float64,102,64847,99.843,19,18.627,"['27.0', '27.0', '27.0', '26.0', '26.0']",6.0,66.0,37.81372549019608,16.835682516170362,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - Band,LTE,float64,104,64845,99.84,4,3.846,"['1.0', '41.0', '41.0', '41.0', '3.0']",1.0,41.0,21.471153846153847,18.868454555063327,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - EARFCN,LTE,float64,104,64845,99.84,8,7.692,"['356.0', '40790.0', '40790.0', '40790.0', '1850.0']",356.0,41384.0,19478.634615384617,19433.405658217718,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - Mod3,LTE,float64,104,64845,99.84,3,2.885,"['0.0', '2.0', '0.0', '2.0', '2.0']",0.0,2.0,1.0096153846153846,0.8301969857213537,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - PCI,LTE,float64,104,64845,99.84,46,44.231,"['147.0', '137.0', '414.0', '110.0', '116.0']",10.0,487.0,240.6346153846154,136.95255061603996,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - RSRP,LTE,float64,104,64845,99.84,98,94.231,"['-111.9375', '-127.0625', '-107.1875', '-116.4375', '-104.1875']",-133.25,-97.270836,-116.73581922115386,8.376799862574714,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - RSRQ,LTE,float64,104,64845,99.84,85,81.731,"['-20.8125', '-21.09375', '-20.9375', '-21.0', '-19.5']",-24.25,-17.875,-20.489820576923076,1.13366804254061,,False,>70% missing
+drive_raw,LTE - NeighborCells(29) - ServType,LTE,object,104,64845,99.84,1,0.962,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 104},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - Band,WCDMA,float64,107,64842,99.835,1,0.935,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - EcNo,WCDMA,float64,107,64842,99.835,70,65.421,"['-17.88204', '-17.41583', '-19.228867', '-18.089571', '-18.604836']",-20.247444,-15.646386,-17.926806439252335,0.8547861470503776,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - EcNo Before RAKE,WCDMA,float64,107,64842,99.835,44,41.121,"['-25.169464', '-24.869987', '-27.598076', '-23.30718', '-26.216173']",-27.87809,-18.470177,-24.658203280373833,1.8542044230119992,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - PSC,WCDMA,float64,107,64842,99.835,55,51.402,"['448.0', '230.0', '12.0', '160.0', '127.0']",0.0,511.0,221.85981308411215,124.17390791753274,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - RSCP,WCDMA,float64,107,64842,99.835,106,99.065,"['-97.86946', '-98.069984', '-97.79807', '-95.50718', '-101.016174']",-112.53503,-79.99982,-96.21147458878505,5.966375243003452,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - RSCP After RAKE,WCDMA,float64,107,64842,99.835,106,99.065,"['-90.58204', '-90.61583', '-89.42886', '-90.289566', '-93.40484']",-104.71438,-75.25073,-89.480077953271,5.425518720181173,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - Set_Type,WCDMA,object,107,64842,99.835,2,1.869,"['D', 'D', 'M', 'D', 'M']",,,,,"{'M': 75, 'D': 32}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(11) - UARFCN,WCDMA,float64,107,64842,99.835,2,1.869,"['3066.0', '3087.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3070.5140186915887,8.667184354861545,,False,>70% missing
+drive_raw,GSM - CellConfigurations - AccessMin,GSM,float64,109,64840,99.832,1,0.917,"['-100.0', '-100.0', '-100.0', '-100.0', '-100.0']",-100.0,-100.0,-100.0,0.0,,False,>70% missing
+drive_raw,GSM - CellConfigurations - CellBarred,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - CellConfigurations - CellReselectHysteresis,GSM,float64,109,64840,99.832,1,0.917,"['6.0', '6.0', '6.0', '6.0', '6.0']",6.0,6.0,6.0,0.0,,False,>70% missing
+drive_raw,GSM - CellConfigurations - NewEstablishmentCauseIndicator,GSM,object,109,64840,99.832,1,0.917,"['Emergency Call', 'Emergency Call', 'Emergency Call', 'Emergency Call', 'Emergency Call']",,,,,{'Emergency Call': 109},False,>70% missing
+drive_raw,GSM - CellConfigurations - PenaltyTime,GSM,float64,109,64840,99.832,1,0.917,"['20.0', '20.0', '20.0', '20.0', '20.0']",20.0,20.0,20.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CBQ,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CCH_ATT,GSM,float64,109,64840,99.832,1,0.917,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CCH_BS_AG_BLKS_RES,GSM,float64,109,64840,99.832,1,0.917,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CCH_BS_PA_MFRMS,GSM,float64,109,64840,99.832,1,0.917,"['9.0', '9.0', '9.0', '9.0', '9.0']",9.0,9.0,9.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CCH_CCCH_CONF,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CCH_T3212,GSM,float64,109,64840,99.832,1,0.917,"['40.0', '40.0', '40.0', '40.0', '40.0']",40.0,40.0,40.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CELL_BAR_ACCESS,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - CELL_RESELECT_HYSTERESIS,GSM,float64,109,64840,99.832,1,0.917,"['6.0', '6.0', '6.0', '6.0', '6.0']",6.0,6.0,6.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - MAX_RETRANS,GSM,float64,109,64840,99.832,1,0.917,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - MS_TXPWR_MAX_CCH,GSM,float64,109,64840,99.832,1,0.917,"['5.0', '5.0', '5.0', '5.0', '5.0']",5.0,5.0,5.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - NECI,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - PENALTY_TIME,GSM,float64,109,64840,99.832,1,0.917,"['20.0', '20.0', '20.0', '20.0', '20.0']",20.0,20.0,20.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - REESTABLISHMENT,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - RXLEV_ACCESS_MIN,GSM,float64,109,64840,99.832,1,0.917,"['-100.0', '-100.0', '-100.0', '-100.0', '-100.0']",-100.0,-100.0,-100.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - TEMPORARY_OFFSET,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - ChannelConfigurations - TX_INTEGER,GSM,float64,109,64840,99.832,1,0.917,"['17.0', '17.0', '17.0', '17.0', '17.0']",17.0,17.0,17.0,0.0,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - EstablishCause,GSM,object,109,64840,99.832,1,0.917,"['Originating Call', 'Originating Call', 'Originating Call', 'Originating Call', 'Originating Call']",,,,,{'Originating Call': 109},False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - PageMode,GSM,object,109,64840,99.832,1,0.917,"['Normal Paging', 'Normal Paging', 'Normal Paging', 'Normal Paging', 'Normal Paging']",,,,,{'Normal Paging': 109},False,>70% missing
+drive_raw,GSM - Serving - CELL_RESELECT_HYSTERESIS,GSM,float64,109,64840,99.832,1,0.917,"['6.0', '6.0', '6.0', '6.0', '6.0']",6.0,6.0,6.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - PENALTY_TIME,GSM,float64,109,64840,99.832,1,0.917,"['20.0', '20.0', '20.0', '20.0', '20.0']",20.0,20.0,20.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - RAC,GSM,float64,109,64840,99.832,1,0.917,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - RXLEV_ACCESS_MIN,GSM,float64,109,64840,99.832,1,0.917,"['-100.0', '-100.0', '-100.0', '-100.0', '-100.0']",-100.0,-100.0,-100.0,0.0,,False,>70% missing
+drive_raw,Extra_KPIs.GSM Handover Interruption Time,Extra_KPIs,float64,119,64830,99.817,119,100.0,"['181.8269999999984', '341.8920000000014', '1.69899999999501', '30.26200000000045', '354.654']",0.2510000000004453,599.615,168.93739495798332,167.06063216497097,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - Band,LTE,float64,135,64814,99.792,4,2.963,"['28.0', '28.0', '1.0', '28.0', '1.0']",1.0,41.0,21.074074074074073,18.74997696700262,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - EARFCN,LTE,float64,135,64814,99.792,8,5.926,"['9310.0', '9310.0', '500.0', '9310.0', '356.0']",356.0,41384.0,18794.696296296297,19286.030594155905,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - Mod3,LTE,float64,135,64814,99.792,3,2.222,"['0.0', '0.0', '0.0', '1.0', '2.0']",0.0,2.0,1.037037037037037,0.7861431206089051,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - PCI,LTE,float64,135,64814,99.792,64,47.407,"['147.0', '138.0', '123.0', '121.0', '212.0']",10.0,487.0,248.88148148148147,130.22374842748636,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - RSRP,LTE,float64,135,64814,99.792,132,97.778,"['-99.86364', '-112.35491', '-123.9375', '-101.296875', '-107.84375']",-133.125,-92.083336,-116.79629105925925,9.244663301334167,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - RSRQ,LTE,float64,135,64814,99.792,103,76.296,"['-20.360796', '-20.415178', '-20.875', '-20.6875', '-20.40625']",-23.604166,-17.83125,-20.261073118518517,1.113941756304115,,False,>70% missing
+drive_raw,LTE - NeighborCells(28) - ServType,LTE,object,135,64814,99.792,1,0.741,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 135},False,>70% missing
+drive_raw,GSM - ServingCells - C2I,GSM,float64,150,64799,99.769,149,99.333,"['12.11525', '4.2057676', '4.191932', '3.3374557', '17.571613']",0.21036491,20.061737,11.891559826733333,6.106875313956364,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - Band,LTE,float64,184,64765,99.717,4,2.174,"['3.0', '41.0', '28.0', '1.0', '28.0']",1.0,41.0,19.570652173913043,19.01294950165999,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - EARFCN,LTE,float64,184,64765,99.717,8,4.348,"['1850.0', '41384.0', '9310.0', '356.0', '9310.0']",356.0,41384.0,17874.380434782608,19400.480453935914,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - Mod3,LTE,float64,184,64765,99.717,3,1.63,"['0.0', '0.0', '0.0', '0.0', '2.0']",0.0,2.0,1.065217391304348,0.8467791478067764,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - PCI,LTE,float64,184,64765,99.717,71,38.587,"['468.0', '129.0', '456.0', '351.0', '338.0']",3.0,487.0,247.53804347826087,129.0618891167358,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - RSRP,LTE,float64,184,64765,99.717,170,92.391,"['-104.09375', '-122.854164', '-109.23558', '-123.75', '-102.3']",-133.5,-96.916664,-117.15245615760868,8.28672258284143,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - RSRQ,LTE,float64,184,64765,99.717,140,76.087,"['-19.875', '-23.020834', '-19.716347', '-19.9375', '-20.1375']",-24.2625,-17.420673,-20.19022783695652,1.2433147626683674,,False,>70% missing
+drive_raw,LTE - NeighborCells(27) - ServType,LTE,object,184,64765,99.717,1,0.543,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 184},False,>70% missing
+drive_raw,Throughput.Session HTTP DL,Throughput,float64,188,64761,99.711,169,89.894,"['34.926788330078125', '28.14091110229492', '1.1240843534469604', '11.54250144958496', '24.273178100585938']",-37.93830871582031,54.90507507324219,13.89354649637925,17.600919778505517,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - Band,WCDMA,float64,222,64727,99.658,1,0.45,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - EcNo,WCDMA,float64,222,64727,99.658,98,44.144,"['-17.138819', '-18.639164', '-18.673765', '-18.85103', '-18.96097']",-20.004799,-14.444902,-18.069080882882883,0.8922592737560118,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - EcNo Before RAKE,WCDMA,float64,222,64727,99.658,56,25.225,"['-21.069155', '-26.023252', '-26.216173', '-26.418066', '-27.08701']",-27.87809,-16.199167,-24.881346288288285,1.9189287348081283,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - PSC,WCDMA,float64,222,64727,99.658,96,43.243,"['152.0', '173.0', '208.0', '332.0', '332.0']",0.0,511.0,218.5990990990991,123.31861613380826,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - RSCP,WCDMA,float64,222,64727,99.658,217,97.748,"['-96.969154', '-101.32326', '-103.21617', '-90.118065', '-93.587006']",-111.41617,-78.37132,-96.2799948108108,5.893323823557056,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - RSCP After RAKE,WCDMA,float64,222,64727,99.658,222,100.0,"['-93.03882', '-93.93916', '-95.67377', '-82.55103', '-85.46097']",-103.703445,-72.88737,-89.46772968918918,5.545453691050553,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - Set_Type,WCDMA,object,222,64727,99.658,2,0.901,"['M', 'M', 'M', 'M', 'D']",,,,,"{'M': 152, 'D': 70}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(10) - UARFCN,WCDMA,float64,222,64727,99.658,2,0.901,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3071.391891891892,9.194456672834006,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - Band,LTE,float64,248,64701,99.618,4,1.613,"['41.0', '41.0', '1.0', '28.0', '1.0']",1.0,41.0,22.298387096774192,18.82649517209547,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - EARFCN,LTE,float64,248,64701,99.618,8,3.226,"['40988.0', '41384.0', '500.0', '9310.0', '356.0']",356.0,41384.0,20163.887096774193,19424.24396778404,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - Mod3,LTE,float64,248,64701,99.618,3,1.21,"['0.0', '0.0', '2.0', '2.0', '1.0']",0.0,2.0,1.0362903225806452,0.8312552994486315,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - PCI,LTE,float64,248,64701,99.618,86,34.677,"['468.0', '129.0', '131.0', '149.0', '148.0']",42.0,488.0,238.01209677419354,128.38020714218038,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - RSRP,LTE,float64,248,64701,99.618,228,91.935,"['-116.4375', '-125.3125', '-115.4375', '-109.57895', '-121.479164']",-134.16667,-89.10625,-117.47802916532258,8.650644376357574,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - RSRQ,LTE,float64,248,64701,99.618,173,69.758,"['-19.3125', '-23.5625', '-20.8125', '-19.661184', '-18.708334']",-23.6875,-17.1875,-20.164976737903224,1.3680967088656402,,False,>70% missing
+drive_raw,LTE - NeighborCells(26) - ServType,LTE,object,248,64701,99.618,1,0.403,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 248},False,>70% missing
+drive_raw,Extra_KPIs.MO CSFB Call Setup Time,Extra_KPIs,float64,250,64699,99.615,250,100.0,"['7.057578999999997', '7.052038000000003', '7.878770000000003', '6.829416999999999', '6.903332000000006']",3.4594130000000014,18.168698,7.219677183999999,1.7939672842952352,,False,>70% missing
+drive_raw,Extra_KPIs.MO Call Setup Time Until Connect,Extra_KPIs,float64,254,64695,99.609,254,100.0,"['11.695184999999997', '14.091511000000004', '14.709405000000004', '13.777859', '14.748363000000005']",5.028248000000001,28.226545,13.399402066929133,3.458430373390087,,False,>70% missing
+drive_raw,Extra_KPIs.MO Call Setup Time,Extra_KPIs,float64,259,64690,99.601,259,100.0,"['7.057578999999997', '7.052038000000003', '7.878770000000003', '6.829416999999999', '6.903332000000006']",2.8044899999999995,18.168698,7.14606654054054,1.8733079082428046,,False,>70% missing
+drive_raw,GSM - NeighborCells(9) - BSIC,GSM,float64,271,64678,99.583,36,13.284,"['26.0', '27.0', '26.0', '26.0', '27.0']",4.0,76.0,36.845018450184504,19.02488533813773,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - Band,LTE,float64,324,64625,99.501,4,1.235,"['1.0', '1.0', '41.0', '41.0', '41.0']",1.0,41.0,22.882716049382715,18.901041235416095,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - EARFCN,LTE,float64,324,64625,99.501,8,2.469,"['356.0', '356.0', '40790.0', '41186.0', '41384.0']",356.0,41384.0,21186.74074074074,19572.243296570035,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - Mod3,LTE,float64,324,64625,99.501,3,0.926,"['0.0', '0.0', '1.0', '0.0', '1.0']",0.0,2.0,1.0061728395061729,0.7868651882776245,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - PCI,LTE,float64,324,64625,99.501,110,33.951,"['147.0', '393.0', '469.0', '393.0', '130.0']",3.0,495.0,249.03395061728395,130.2949574372328,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - RSRP,LTE,float64,324,64625,99.501,298,91.975,"['-111.9375', '-107.75', '-113.4375', '-105.53125', '-111.74219']",-137.0,-89.65625,-117.61191844444446,8.796409319520503,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - RSRQ,LTE,float64,324,64625,99.501,233,71.914,"['-20.8125', '-21.9375', '-19.291666', '-20.8125', '-20.445312']",-24.1875,-16.75,-19.995369722222225,1.3578618418457893,,False,>70% missing
+drive_raw,LTE - NeighborCells(25) - ServType,LTE,object,324,64625,99.501,1,0.309,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 324},False,>70% missing
+drive_raw,LTE - NeighborCells(24) - Band,LTE,float64,392,64557,99.396,4,1.02,"['28.0', '41.0', '28.0', '3.0', '28.0']",1.0,41.0,21.301020408163264,18.560089706205513,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - EARFCN,LTE,float64,392,64557,99.396,8,2.041,"['9310.0', '40988.0', '9310.0', '1850.0', '9310.0']",356.0,41384.0,18763.80612244898,19127.905535957,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - Mod3,LTE,float64,392,64557,99.396,3,0.765,"['1.0', '1.0', '1.0', '0.0', '0.0']",0.0,2.0,1.038265306122449,0.828559932139008,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - PCI,LTE,float64,392,64557,99.396,118,30.102,"['148.0', '469.0', '430.0', '393.0', '318.0']",0.0,495.0,257.5229591836735,128.80189385360197,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - RSRP,LTE,float64,392,64557,99.396,363,92.602,"['-98.84375', '-116.25', '-100.50781', '-98.53125', '-86.5125']",-133.57031,-84.03125,-117.18432567346937,8.830698917283234,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - RSRQ,LTE,float64,392,64557,99.396,270,68.878,"['-19.98125', '-19.875', '-19.0625', '-20.375', '-20.866667']",-27.1875,-16.4375,-19.83958592346939,1.4804980408635078,,False,>70% missing
+drive_raw,LTE - NeighborCells(24) - ServType,LTE,object,392,64557,99.396,1,0.255,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 392},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - Band,WCDMA,float64,436,64513,99.329,1,0.229,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - EcNo,WCDMA,float64,436,64513,99.329,117,26.835,"['-18.639164', '-18.814995', '-18.089571', '-18.708645', '-19.112026']",-21.069155,-11.979126,-18.02521153440367,0.8846552198231942,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - EcNo Before RAKE,WCDMA,float64,436,64513,99.329,72,16.514,"['-26.216173', '-26.85239', '-25.491127', '-26.023252', '-26.023252']",-28.84609,-13.504799,-24.806892107798166,2.002176177436766,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - PSC,WCDMA,float64,436,64513,99.329,123,28.211,"['340.0', '160.0', '181.0', '173.0', '57.0']",0.0,511.0,210.03440366972478,125.01205904080048,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - RSCP,WCDMA,float64,436,64513,99.329,418,95.872,"['-97.71617', '-94.55238', '-95.89113', '-94.82326', '-96.82326']",-113.16136,-75.529884,-94.87753434862384,6.49330452063982,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - RSCP After RAKE,WCDMA,float64,436,64513,99.329,432,99.083,"['-90.13916', '-86.51499', '-88.48957', '-87.50865', '-89.91203']",-106.20865,-71.0111,-88.09585390825688,6.0933835464640715,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - Set_Type,WCDMA,object,436,64513,99.329,2,0.459,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 344, 'D': 92}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(9) - UARFCN,WCDMA,float64,436,64513,99.329,2,0.459,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3071.538990825688,9.264731935129085,,False,>70% missing
+drive_raw,GSM - NeighborCells(11) - ARFCN,GSM,float64,452,64497,99.304,11,2.434,"['68.0', '66.0', '66.0', '66.0', '66.0']",66.0,80.0,70.64159292035399,4.6738262700311335,,False,>70% missing
+drive_raw,GSM - NeighborCells(11) - Band,GSM,float64,452,64497,99.304,1,0.221,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(11) - RxLev,GSM,float64,452,64497,99.304,32,7.08,"['-93.0', '-93.0', '-97.0', '-93.0', '-95.0']",-114.0,-79.0,-96.62389380530973,6.666935647236753,,False,>70% missing
+drive_raw,GSM - NeighborCells(11) - ServType,GSM,object,452,64497,99.304,1,0.221,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 452},False,>70% missing
+drive_raw,LTE - NeighborCells(23) - Band,LTE,float64,487,64462,99.25,4,0.821,"['1.0', '28.0', '41.0', '41.0', '41.0']",1.0,41.0,22.759753593429156,18.5009671179995,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - EARFCN,LTE,float64,487,64462,99.25,8,1.643,"['500.0', '9310.0', '40988.0', '40988.0', '41384.0']",356.0,41384.0,20208.48049281314,19242.142126178223,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - Mod3,LTE,float64,487,64462,99.25,3,0.616,"['0.0', '1.0', '1.0', '0.0', '0.0']",0.0,2.0,1.0759753593429158,0.7859215341418014,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - PCI,LTE,float64,487,64462,99.25,128,26.283,"['393.0', '430.0', '469.0', '147.0', '393.0']",0.0,488.0,243.3182751540041,132.18875757149132,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - RSRP,LTE,float64,487,64462,99.25,437,89.733,"['-108.0625', '-99.322914', '-114.25', '-109.4375', '-126.73077']",-136.59375,-87.900566,-117.15141551950718,9.3099427944813,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - RSRQ,LTE,float64,487,64462,99.25,339,69.61,"['-19.4375', '-19.276041', '-18.765625', '-20.1875', '-19.23798']",-27.1875,-16.1875,-19.80007436550308,1.636034679629665,,False,>70% missing
+drive_raw,LTE - NeighborCells(23) - ServType,LTE,object,487,64462,99.25,1,0.205,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 487},False,>70% missing
+drive_raw,GSM - NeighborCells(8) - BSIC,GSM,float64,522,64427,99.196,43,8.238,"['27.0', '27.0', '72.0', '35.0', '35.0']",1.0,76.0,39.547892720306514,19.22187367070789,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - Band,LTE,float64,587,64362,99.096,4,0.681,"['28.0', '3.0', '3.0', '28.0', '3.0']",1.0,41.0,21.68824531516184,18.658963244863443,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - EARFCN,LTE,float64,587,64362,99.096,8,1.363,"['9310.0', '1850.0', '1850.0', '9310.0', '1850.0']",356.0,41384.0,19373.195911413968,19263.930316253514,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - Mod3,LTE,float64,587,64362,99.096,3,0.511,"['0.0', '2.0', '2.0', '0.0', '2.0']",0.0,2.0,0.989778534923339,0.8240608173751519,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - PCI,LTE,float64,587,64362,99.096,148,25.213,"['330.0', '332.0', '332.0', '147.0', '335.0']",0.0,496.0,252.9182282793867,130.86142838320953,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - RSRP,LTE,float64,587,64362,99.096,520,88.586,"['-100.3125', '-103.0', '-103.895836', '-94.125', '-111.9375']",-136.5,-86.73125,-117.41994683816013,9.17527170087258,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - RSRQ,LTE,float64,587,64362,99.096,394,67.121,"['-19.414062', '-18.8125', '-18.166666', '-19.9375', '-18.2']",-25.0625,-15.757212,-19.64634115843271,1.5783010655488934,,False,>70% missing
+drive_raw,LTE - NeighborCells(22) - ServType,LTE,object,587,64362,99.096,1,0.17,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 587},False,>70% missing
+drive_raw,GSM - DedicatedChannels(1) - ARFCN,GSM,float64,622,64327,99.042,11,1.768,"['124.0', '79.0', '80.0', '123.0', '123.0']",70.0,124.0,90.16398713826366,19.482568835370635,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(1) - Band,GSM,float64,622,64327,99.042,1,0.161,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(1) - C2I,GSM,float64,622,64327,99.042,622,100.0,"['8.577806', '7.3734746', '16.954542', '15.52987', '17.23401']",-0.2643854,19.84564,13.601587317615754,5.283354953823618,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(1) - RxLev,GSM,float64,622,64327,99.042,55,8.842,"['-88.0', '-90.0', '-67.0', '-75.0', '-73.0']",-115.0,-51.0,-81.29099678456592,10.108456113331982,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(1) - Timeslot,GSM,float64,622,64327,99.042,8,1.286,"['1.0', '0.0', '4.0', '3.0', '3.0']",0.0,7.0,2.8617363344051445,1.6467942433118046,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - Band,LTE,float64,688,64261,98.941,4,0.581,"['41.0', '28.0', '28.0', '1.0', '1.0']",1.0,41.0,21.684593023255815,18.5074262873509,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - EARFCN,LTE,float64,688,64261,98.941,8,1.163,"['40988.0', '9310.0', '9310.0', '500.0', '500.0']",356.0,41384.0,19049.656976744187,19119.696510804733,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - Mod3,LTE,float64,688,64261,98.941,3,0.436,"['0.0', '0.0', '0.0', '0.0', '2.0']",0.0,2.0,1.010174418604651,0.826180756265208,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - PCI,LTE,float64,688,64261,98.941,150,21.802,"['468.0', '147.0', '393.0', '393.0', '335.0']",0.0,488.0,249.84883720930233,127.83737098092845,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - RSRP,LTE,float64,688,64261,98.941,606,88.081,"['-118.546875', '-98.81875', '-97.05048', '-100.40441', '-118.6875']",-135.4375,-86.291664,-116.88048306686049,9.618561165028444,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - RSRQ,LTE,float64,688,64261,98.941,430,62.5,"['-19.09375', '-18.73125', '-18.064903', '-18.69853', '-18.0']",-25.4375,-15.7,-19.46008365261628,1.5720746761819266,,False,>70% missing
+drive_raw,LTE - NeighborCells(21) - ServType,LTE,object,688,64261,98.941,1,0.145,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 688},False,>70% missing
+drive_raw,LTE - NeighborCells(20) - Band,LTE,float64,809,64140,98.754,4,0.494,"['41.0', '41.0', '41.0', '28.0', '3.0']",1.0,41.0,21.835599505562424,18.428586232065474,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - EARFCN,LTE,float64,809,64140,98.754,8,0.989,"['41384.0', '40988.0', '40790.0', '9310.0', '1850.0']",356.0,41384.0,19169.414091470953,19064.469511639887,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - Mod3,LTE,float64,809,64140,98.754,3,0.371,"['0.0', '1.0', '2.0', '1.0', '1.0']",0.0,2.0,1.019777503090235,0.8050610025088717,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - PCI,LTE,float64,809,64140,98.754,164,20.272,"['147.0', '148.0', '395.0', '148.0', '310.0']",0.0,497.0,248.04326328800988,131.0045039556446,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - RSRP,LTE,float64,809,64140,98.754,703,86.897,"['-123.8125', '-119.25', '-113.6875', '-96.38702', '-97.15625']",-135.0625,-78.625,-116.2570213016069,9.640634378217134,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - RSRQ,LTE,float64,809,64140,98.754,506,62.546,"['-20.125', '-18.875', '-18.625', '-17.122597', '-18.5625']",-27.0,-15.1484375,-19.31131494746601,1.5977422443883325,,False,>70% missing
+drive_raw,LTE - NeighborCells(20) - ServType,LTE,object,809,64140,98.754,1,0.124,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 809},False,>70% missing
+drive_raw,GSM - NeighborCells(7) - BSIC,GSM,float64,875,64074,98.653,49,5.6,"['2.0', '35.0', '4.0', '35.0', '35.0']",1.0,76.0,35.59428571428571,19.79641726792913,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - Band,WCDMA,float64,928,64021,98.571,1,0.108,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - EcNo,WCDMA,float64,928,64021,98.571,143,15.409,"['-19.18957', '-17.796045', '-18.18164', '-19.150623', '-18.437153']",-20.61167,-11.876244,-17.988378856681035,0.8650405081665641,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - EcNo Before RAKE,WCDMA,float64,928,64021,98.571,96,10.345,"['-26.023252', '-24.45626', '-24.869987', '-26.6298', '-25.838537']",-28.84609,-13.130446,-24.71348089601293,1.9742219944652648,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - PSC,WCDMA,float64,928,64021,98.571,149,16.056,"['340.0', '160.0', '181.0', '152.0', '340.0']",0.0,511.0,211.35129310344828,121.06558297584765,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - RSCP,WCDMA,float64,928,64021,98.571,865,93.211,"['-95.923256', '-98.25626', '-94.86999', '-98.329796', '-98.538536']",-115.67809,-75.06915,-93.99192914331897,6.0522255473004565,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - RSCP After RAKE,WCDMA,float64,928,64021,98.571,891,96.013,"['-89.08957', '-91.59605', '-88.18164', '-90.85062', '-91.137146']",-110.30345,-69.96954,-87.26682749676725,5.886248321364088,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - Set_Type,WCDMA,object,928,64021,98.571,2,0.216,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 766, 'D': 162}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(8) - UARFCN,WCDMA,float64,928,64021,98.571,2,0.216,"['3066.0', '3066.0', '3066.0', '3066.0', '3066.0']",3066.0,3087.0,3072.404094827586,9.673385927186194,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - Band,LTE,float64,945,64004,98.545,4,0.423,"['1.0', '3.0', '28.0', '41.0', '1.0']",1.0,41.0,20.43174603174603,18.506350479525267,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - EARFCN,LTE,float64,945,64004,98.545,8,0.847,"['500.0', '1850.0', '9310.0', '41186.0', '500.0']",356.0,41384.0,17865.504761904762,18972.614156526917,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - Mod3,LTE,float64,945,64004,98.545,3,0.317,"['0.0', '2.0', '1.0', '1.0', '0.0']",0.0,2.0,1.0,0.8233869695926183,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - PCI,LTE,float64,945,64004,98.545,175,18.519,"['147.0', '332.0', '469.0', '469.0', '393.0']",0.0,497.0,246.43492063492064,129.69450842863625,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - RSRP,LTE,float64,945,64004,98.545,814,86.138,"['-111.875', '-104.3125', '-100.13958', '-112.6625', '-101.09722']",-134.5625,-85.854164,-116.01684198412698,9.60342193574517,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - RSRQ,LTE,float64,945,64004,98.545,570,60.317,"['-19.020834', '-18.25', '-18.429167', '-17.0875', '-20.458334']",-25.927084,-15.125,-19.19114802222222,1.6387030070921687,,False,>70% missing
+drive_raw,LTE - NeighborCells(19) - ServType,LTE,object,945,64004,98.545,1,0.106,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 945},False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_MCS_CW1,LTE,float64,1042,63907,98.396,26,2.495,"['24.0', '18.0', '2.0', '12.0', '6.0']",2.0,27.0,17.113243761996163,5.109242462058752,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Modulation_CW1,LTE,object,1042,63907,98.396,4,0.384,"['64QAM', '64QAM', 'QPSK', '16QAM', 'QPSK']",,,,,"{'64QAM': 736, '16QAM': 153, '256QAM': 129, 'QPSK': 24}",False,>70% missing
+drive_raw,LTE - NeighborCells(18) - Band,LTE,float64,1107,63842,98.296,4,0.361,"['41.0', '3.0', '28.0', '41.0', '1.0']",1.0,41.0,21.008130081300813,18.427879235513984,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - EARFCN,LTE,float64,1107,63842,98.296,8,0.723,"['40790.0', '1850.0', '9310.0', '40790.0', '500.0']",356.0,41384.0,18249.271906052392,18961.390073516046,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - Mod3,LTE,float64,1107,63842,98.296,3,0.271,"['1.0', '1.0', '1.0', '2.0', '0.0']",0.0,2.0,1.043360433604336,0.8168206232391646,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - PCI,LTE,float64,1107,63842,98.296,187,16.893,"['148.0', '148.0', '148.0', '395.0', '408.0']",0.0,497.0,254.46341463414635,129.75560302909332,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - RSRP,LTE,float64,1107,63842,98.296,910,82.204,"['-119.275', '-106.75', '-99.5625', '-110.375', '-99.489586']",-135.5,-74.458336,-115.66334687624207,9.92626474214166,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - RSRQ,LTE,float64,1107,63842,98.296,678,61.247,"['-18.690624', '-18.1875', '-18.2625', '-16.833334', '-19.921875']",-29.4375,-15.083333,-19.08561665221319,1.7599884629790907,,False,>70% missing
+drive_raw,LTE - NeighborCells(18) - ServType,LTE,object,1107,63842,98.296,1,0.09,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1107},False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_RxAntNum,LTE,float64,1127,63822,98.265,3,0.266,"['2.0', '2.0', '4.0', '2.0', '2.0']",1.0,4.0,2.6876663708961845,0.9517948654292173,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_SpatialRank,LTE,float64,1127,63822,98.265,3,0.266,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,3.0,1.7462289263531499,0.496364646493516,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_TxAntNum,LTE,float64,1127,63822,98.265,1,0.089,"['4.0', '4.0', '4.0', '4.0', '4.0']",4.0,4.0,4.0,0.0,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_1024QAMUsage,LTE,float64,1158,63791,98.217,1,0.086,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_16QAMUsage,LTE,float64,1158,63791,98.217,1027,88.687,"['0.0', '0.0', '10.0', '50.0', '50.0']",0.0,100.0,25.644465830258202,24.95582964098315,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_256QAMUsage,LTE,float64,1158,63791,98.217,171,14.767,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,98.57143,5.28406246092487,16.904179670588533,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_64QAMUsage,LTE,float64,1158,63791,98.217,1044,90.155,"['0.0', '80.0', '0.0', '0.0', '50.0']",0.0,100.0,59.14274501765112,33.49412278691423,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_BLER,LTE,float64,1158,63791,98.217,1095,94.56,"['0.0', '40.0', '10.0', '25.0', '0.0']",0.0,100.0,10.908946889464595,6.227932353023803,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_LayerNum,LTE,float64,1158,63791,98.217,4,0.345,"['1.0', '2.0', '4.0', '1.0', '2.0']",1.0,4.0,1.7357512953367875,0.5067733920103346,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_MCS_CW0,LTE,float64,1158,63791,98.217,29,2.504,"['9.0', '17.0', '3.0', '10.0', '15.0']",0.0,28.0,17.578583765112263,5.151159243653669,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Modulation_CW0,LTE,object,1158,63791,98.217,4,0.345,"['QPSK', '64QAM', '16QAM', '16QAM', '16QAM']",,,,,"{'64QAM': 844, '16QAM': 166, '256QAM': 137, 'QPSK': 11}",False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_QPSKUsage,LTE,float64,1158,63791,98.217,752,64.94,"['100.0', '20.0', '90.0', '50.0', '0.0']",0.0,100.0,9.928726623753887,20.963822939446885,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_ResourceBlockNum,LTE,float64,1158,63791,98.217,97,8.377,"['4.0', '26.0', '7.0', '23.0', '4.0']",3.0,100.0,48.928324697754746,26.580824557999662,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Throughput,LTE,float64,1158,63791,98.217,1157,99.914,"['0.000616', '0.068224', '0.00972', '0.022848', '0.002416']",0.000392,146.87444,28.849400514917093,23.4754578909325,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_ThroughputStream0,LTE,float64,1158,63791,98.217,1157,99.914,"['0.000616', '0.03424', '0.00972', '0.022848', '0.001128']",0.000392,56.67429,15.890967380633851,11.550225995393111,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_ThroughputStream1,LTE,float64,1158,63791,98.217,1042,89.983,"['0.0', '0.033984', '0.0', '0.0', '0.001288']",0.0,97.407455,12.958433150881692,13.22705794129636,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_ThroughputStreamAll,LTE,float64,1158,63791,98.217,1157,99.914,"['0.000616', '0.068224', '0.00972', '0.022848', '0.002416']",0.000392,146.87444,28.849400514917093,23.4754578909325,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - Band,LTE,float64,1257,63692,98.065,4,0.318,"['1.0', '41.0', '28.0', '28.0', '3.0']",1.0,41.0,20.182179793158312,18.394848369002776,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - EARFCN,LTE,float64,1257,63692,98.065,8,0.636,"['500.0', '40988.0', '9310.0', '9310.0', '1850.0']",356.0,41384.0,17457.444709626096,18827.543797991613,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - Mod3,LTE,float64,1257,63692,98.065,3,0.239,"['2.0', '2.0', '0.0', '1.0', '0.0']",0.0,2.0,1.026252983293556,0.8313779002466695,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - PCI,LTE,float64,1257,63692,98.065,193,15.354,"['332.0', '395.0', '393.0', '469.0', '393.0']",0.0,502.0,247.7852028639618,126.58049226839283,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - RSRP,LTE,float64,1257,63692,98.065,1040,82.737,"['-108.770836', '-117.145836', '-97.80417', '-96.67789', '-100.3125']",-134.98438,-78.21875,-115.05622362450279,9.723899412217492,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - RSRQ,LTE,float64,1257,63692,98.065,726,57.757,"['-18.291666', '-18.03125', '-17.979166', '-16.766827', '-19.5']",-28.8125,-14.791667,-18.935610922832137,1.8001880018398748,,False,>70% missing
+drive_raw,LTE - NeighborCells(17) - ServType,LTE,object,1257,63692,98.065,1,0.08,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1257},False,>70% missing
+drive_raw,GSM - NeighborCells(6) - BSIC,GSM,float64,1319,63630,97.969,50,3.791,"['61.0', '35.0', '2.0', '27.0', '51.0']",1.0,76.0,34.85898407884761,20.590224322773018,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_CQI_CW1,LTE,float64,1319,63630,97.969,14,1.061,"['15.0', '11.0', '15.0', '13.0', '13.0']",2.0,15.0,10.011372251705838,2.6938965207502266,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - TCH,GSM,float64,1410,63539,97.829,12,0.851,"['75.0', '75.0', '75.0', '75.0', '75.0']",65.0,76.0,70.41702127659575,3.7749681200729177,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - Band,LTE,float64,1425,63524,97.806,4,0.281,"['41.0', '3.0', '1.0', '41.0', '28.0']",1.0,41.0,20.43298245614035,18.465650045919634,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - EARFCN,LTE,float64,1425,63524,97.806,8,0.561,"['41384.0', '1850.0', '356.0', '41186.0', '9310.0']",356.0,41384.0,17744.430877192983,18919.64470508,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - Mod3,LTE,float64,1425,63524,97.806,3,0.211,"['0.0', '0.0', '2.0', '1.0', '0.0']",0.0,2.0,1.0203508771929826,0.8238073710910258,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - PCI,LTE,float64,1425,63524,97.806,203,14.246,"['147.0', '147.0', '149.0', '469.0', '330.0']",0.0,502.0,249.24561403508773,127.23735350031394,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - RSRP,LTE,float64,1425,63524,97.806,1153,80.912,"['-123.8125', '-109.0625', '-107.0625', '-117.875', '-96.90865']",-133.9375,-73.5625,-114.9245889445614,9.939938261023263,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - RSRQ,LTE,float64,1425,63524,97.806,805,56.491,"['-20.125', '-17.75', '-17.8125', '-17.8125', '-16.391827']",-25.1875,-14.46875,-18.75121284245614,1.7666605453843292,,False,>70% missing
+drive_raw,LTE - NeighborCells(16) - ServType,LTE,object,1425,63524,97.806,1,0.07,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1425},False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_CQI,LTE,float64,1492,63457,97.703,14,0.938,"['15.0', '13.0', '15.0', '13.0', '14.0']",1.0,15.0,9.973190348525469,2.5591497076144734,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_CQI_CW0,LTE,float64,1492,63457,97.703,14,0.938,"['15.0', '13.0', '15.0', '15.0', '13.0']",1.0,15.0,10.500670241286864,2.707145738250512,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_TransMode,LTE,object,1516,63433,97.666,1,0.066,"['TM4-CL SM', 'TM4-CL SM', 'TM4-CL SM', 'TM4-CL SM', 'TM4-CL SM']",,,,,{'TM4-CL SM': 1516},False,>70% missing
+drive_raw,LTE - NeighborCells(15) - Band,LTE,float64,1636,63313,97.481,4,0.244,"['41.0', '1.0', '41.0', '1.0', '41.0']",1.0,41.0,20.01833740831296,18.407076319742526,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - EARFCN,LTE,float64,1636,63313,97.481,8,0.489,"['40790.0', '500.0', '40988.0', '356.0', '40988.0']",356.0,41384.0,17354.29217603912,18827.359446329927,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - Mod3,LTE,float64,1636,63313,97.481,3,0.183,"['1.0', '0.0', '1.0', '1.0', '1.0']",0.0,2.0,1.0311735941320292,0.8303899628102104,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - PCI,LTE,float64,1636,63313,97.481,204,12.469,"['148.0', '393.0', '469.0', '469.0', '148.0']",0.0,503.0,245.59718826405867,128.1155669687902,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - RSRP,LTE,float64,1636,63313,97.481,1304,79.707,"['-121.017365', '-109.6875', '-117.09375', '-103.0625', '-112.552086']",-136.5,-81.9375,-114.52611588997557,9.648699641706363,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - RSRQ,LTE,float64,1636,63313,97.481,928,56.724,"['-20.100695', '-17.125', '-17.5', '-17.1875', '-16.3125']",-26.609375,-14.395833,-18.684736502444988,1.860191486299747,,False,>70% missing
+drive_raw,LTE - NeighborCells(15) - ServType,LTE,object,1636,63313,97.481,1,0.061,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1636},False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_Frame_Timing_0,LTE,float64,1693,63256,97.393,340,20.083,"['274717.0', '274717.0', '274717.0', '274719.0', '274716.0']",6928.0,305980.0,165326.31187241583,95139.2507632758,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_Frame_Timing_1,LTE,float64,1693,63256,97.393,340,20.083,"['274717.0', '274717.0', '274717.0', '274719.0', '274716.0']",6928.0,305980.0,165326.31187241583,95139.2507632758,,False,>70% missing
+drive_raw,GSM - NeighborCells(5) - BSIC,GSM,float64,1722,63227,97.349,51,2.962,"['56.0', '72.0', '27.0', '72.0', '4.0']",1.0,76.0,34.390243902439025,20.08100614328495,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_RSRP,LTE,float64,1730,63219,97.336,1576,91.098,"['-87.28009', '-88.53918', '-85.99662', '-88.43125', '-86.72321']",-128.45956,-55.440132,-88.44079930809248,13.453533974625701,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_RSRQ,LTE,float64,1730,63219,97.336,1569,90.694,"['-11.409722', '-13.462687', '-13.013514', '-12.551042', '-11.9375']",-29.78125,-5.125,-14.265181953179189,2.89082917448539,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_RSSI,LTE,float64,1730,63219,97.336,1577,91.156,"['-55.011574', '-54.5653', '-52.324326', '-55.139584', '-54.1125']",-84.98981,-22.709517,-54.2693677317919,12.951545592482153,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_SINR,LTE,float64,1730,63219,97.336,1577,91.156,"['16.79815', '18.380596', '22.229729', '15.7233305', '16.87143']",-11.1,28.581627,9.931595114430635,7.030055205691398,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Band,LTE,float64,1743,63206,97.316,4,0.229,"['28.0', '28.0', '28.0', '28.0', '28.0']",1.0,41.0,4.392426850258175,7.016528789506561,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_BandWidth_DL,LTE,float64,1743,63206,97.316,2,0.115,"['20.0', '20.0', '20.0', '20.0', '20.0']",10.0,20.0,17.796901893287437,4.145744866674068,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_EARFCN_DL,LTE,float64,1743,63206,97.316,5,0.287,"['9310.0', '9310.0', '9310.0', '9310.0', '9310.0']",356.0,41186.0,2025.9954102122776,2422.0237299238356,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_PCI,LTE,float64,1743,63206,97.316,35,2.008,"['212.0', '212.0', '212.0', '212.0', '212.0']",8.0,447.0,200.50143430866322,56.81398407689908,,False,>70% missing
+drive_raw,GSM - NeighborCells(10) - ARFCN,GSM,float64,1756,63193,97.296,13,0.74,"['68.0', '76.0', '76.0', '76.0', '76.0']",65.0,80.0,71.83029612756265,4.099991539565565,,False,>70% missing
+drive_raw,GSM - NeighborCells(10) - Band,GSM,float64,1756,63193,97.296,1,0.057,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(10) - RxLev,GSM,float64,1756,63193,97.296,46,2.62,"['-90.0', '-93.0', '-94.0', '-92.0', '-94.0']",-114.0,-69.0,-94.56662870159454,6.57237612185503,,False,>70% missing
+drive_raw,GSM - NeighborCells(10) - ServType,GSM,object,1756,63193,97.296,1,0.057,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1756},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - Band,WCDMA,float64,1792,63157,97.241,1,0.056,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - EcNo,WCDMA,float64,1792,63157,97.241,182,10.156,"['-18.089571', '-18.779255', '-18.503452', '-16.901459', '-17.96977']",-21.317337,-11.112371,-17.876007573939734,0.8987933085608393,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - EcNo Before RAKE,WCDMA,float64,1792,63157,97.241,124,6.92,"['-25.838537', '-25.838537', '-25.838537', '-22.238571', '-24.45626']",-28.498894,-12.223858,-24.5403478125,1.9939612265697113,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - PSC,WCDMA,float64,1792,63157,97.241,171,9.542,"['152.0', '152.0', '160.0', '448.0', '73.0']",0.0,511.0,206.62946428571428,120.95427370898366,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - RSCP,WCDMA,float64,1792,63157,97.241,1587,88.56,"['-98.33854', '-101.83854', '-98.43854', '-95.43857', '-103.25626']",-117.13503,-72.561356,-93.51417593526786,6.457672571278373,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - RSCP After RAKE,WCDMA,float64,1792,63157,97.241,1712,95.536,"['-90.58957', '-94.77925', '-91.103455', '-90.101456', '-96.769775']",-109.852264,-65.57377,-86.84983573883927,6.349151615739644,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - Set_Type,WCDMA,object,1792,63157,97.241,2,0.112,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 1459, 'D': 333}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(7) - UARFCN,WCDMA,float64,1792,63157,97.241,2,0.112,"['3087.0', '3087.0', '3087.0', '3087.0', '3087.0']",3066.0,3087.0,3073.359375,10.022101831733108,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - Band,LTE,float64,1908,63041,97.062,4,0.21,"['3.0', '3.0', '28.0', '1.0', '41.0']",1.0,41.0,19.789832285115303,18.32587842378422,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - EARFCN,LTE,float64,1908,63041,97.062,8,0.419,"['1850.0', '1850.0', '9310.0', '500.0', '40790.0']",356.0,41384.0,16935.117400419287,18691.833448552694,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - Mod3,LTE,float64,1908,63041,97.062,3,0.157,"['0.0', '0.0', '0.0', '2.0', '1.0']",0.0,2.0,0.9937106918238994,0.8121793557300557,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - PCI,LTE,float64,1908,63041,97.062,219,11.478,"['147.0', '393.0', '393.0', '395.0', '148.0']",0.0,497.0,248.4072327044025,125.99255140706626,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - RSRP,LTE,float64,1908,63041,97.062,1507,78.983,"['-109.5625', '-103.30469', '-96.3625', '-105.03125', '-112.885414']",-136.0,-79.015625,-113.70234406813417,9.96497623515311,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - RSRQ,LTE,float64,1908,63041,97.062,1012,53.04,"['-18.4375', '-16.992188', '-17.24375', '-16.1875', '-15.90625']",-30.0,-14.125,-18.64355784538784,1.9767146054361342,,False,>70% missing
+drive_raw,LTE - NeighborCells(14) - ServType,LTE,object,1908,63041,97.062,1,0.052,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 1908},False,>70% missing
+drive_raw,GSM - NeighborCells(4) - BSIC,GSM,float64,2117,62832,96.741,52,2.456,"['73.0', '16.0', '72.0', '16.0', '14.0']",1.0,76.0,36.27916863486065,20.064593368891828,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Rank1Usage,LTE,float64,2171,62778,96.657,597,27.499,"['100.0', '100.0', '100.0', '100.0', '100.0']",0.0,100.0,32.01931381221741,38.9195223782297,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Rank2Usage,LTE,float64,2171,62778,96.657,653,30.078,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,100.0,66.53658344593276,39.0132954214562,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Rank3Usage,LTE,float64,2171,62778,96.657,82,3.777,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,100.0,1.4426997525103638,9.869246813896542,,False,>70% missing
+drive_raw,LTE - SecondaryCell 2 - SCell2_Rank4Usage,LTE,float64,2171,62778,96.657,3,0.138,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,2.8888888,0.0014026433901427914,0.06209039536823812,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - HSN,GSM,float64,2204,62745,96.607,29,1.316,"['15.0', '15.0', '15.0', '15.0', '15.0']",0.0,57.0,26.692377495462797,19.02512174336718,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - MAIO,GSM,float64,2204,62745,96.607,2,0.091,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,1.0,0.047186932849364795,0.21208662121767763,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - Band,LTE,float64,2234,62715,96.56,4,0.179,"['41.0', '1.0', '1.0', '1.0', '1.0']",1.0,41.0,19.025514771709936,18.113237207626028,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - EARFCN,LTE,float64,2234,62715,96.56,8,0.358,"['40790.0', '500.0', '356.0', '356.0', '500.0']",356.0,41384.0,15941.54521038496,18344.48026157036,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - Mod3,LTE,float64,2234,62715,96.56,3,0.134,"['2.0', '0.0', '0.0', '2.0', '0.0']",0.0,2.0,1.0483437779767233,0.8181710600816244,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - PCI,LTE,float64,2234,62715,96.56,221,9.893,"['395.0', '147.0', '393.0', '332.0', '147.0']",0.0,497.0,249.26275738585497,124.75240281013848,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - RSRP,LTE,float64,2234,62715,96.56,1723,77.126,"['-97.625', '-111.5', '-108.5625', '-107.625', '-113.5']",-134.375,-77.2625,-112.78316603133393,9.8791888504135,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - RSRQ,LTE,float64,2234,62715,96.56,1206,53.984,"['-25.125', '-18.375', '-16.416666', '-16.875', '-15.8125']",-29.25,-13.9375,-18.575610158236348,2.056572914106649,,False,>70% missing
+drive_raw,LTE - NeighborCells(13) - ServType,LTE,object,2234,62715,96.56,1,0.045,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2234},False,>70% missing
+drive_raw,GSM - NeighborCells(9) - ARFCN,GSM,float64,2393,62556,96.316,13,0.543,"['70.0', '68.0', '68.0', '68.0', '68.0']",65.0,80.0,70.96280819055579,3.3309440249561506,,False,>70% missing
+drive_raw,GSM - NeighborCells(9) - Band,GSM,float64,2393,62556,96.316,1,0.042,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(9) - RxLev,GSM,float64,2393,62556,96.316,47,1.964,"['-89.0', '-88.0', '-94.0', '-92.0', '-94.0']",-112.0,-64.0,-92.99038863351441,6.587232346823764,,False,>70% missing
+drive_raw,GSM - NeighborCells(9) - ServType,GSM,object,2393,62556,96.316,1,0.042,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2393},False,>70% missing
+drive_raw,GSM - NeighborCells(3) - BSIC,GSM,float64,2403,62546,96.3,53,2.206,"['72.0', '40.0', '44.0', '35.0', '61.0']",1.0,76.0,36.922180607573864,21.073465403651763,,False,>70% missing
+drive_raw,GSM - NeighborCells(2) - BSIC,GSM,float64,2609,62340,95.983,53,2.031,"['35.0', '61.0', '14.0', '14.0', '72.0']",1.0,76.0,36.76351092372556,21.761262916988706,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - Band,LTE,float64,2641,62308,95.934,4,0.151,"['28.0', '41.0', '1.0', '41.0', '1.0']",1.0,41.0,19.541082923135175,18.2494063052336,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - EARFCN,LTE,float64,2641,62308,95.934,8,0.303,"['9310.0', '40988.0', '500.0', '41186.0', '500.0']",356.0,41384.0,16601.878833775085,18570.385409925988,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - Mod3,LTE,float64,2641,62308,95.934,3,0.114,"['1.0', '2.0', '2.0', '1.0', '2.0']",0.0,2.0,0.9954562665656949,0.8243329431799158,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - PCI,LTE,float64,2641,62308,95.934,234,8.86,"['487.0', '395.0', '332.0', '148.0', '332.0']",0.0,497.0,242.5380537675123,124.14120202414114,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - RSRP,LTE,float64,2641,62308,95.934,2028,76.789,"['-94.45', '-99.770836', '-107.25', '-116.875', '-107.375']",-132.91667,-72.5,-112.30924282355168,9.881685790164203,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - RSRQ,LTE,float64,2641,62308,95.934,1379,52.215,"['-23.975', '-22.875', '-17.65625', '-15.75', '-16.4375']",-29.5625,-13.560096,-18.513783509655433,2.102920146290027,,False,>70% missing
+drive_raw,LTE - NeighborCells(12) - ServType,LTE,object,2641,62308,95.934,1,0.038,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2641},False,>70% missing
+drive_raw,GSM - NeighborCells(8) - ARFCN,GSM,float64,2725,62224,95.804,13,0.477,"['73.0', '65.0', '73.0', '73.0', '73.0']",65.0,80.0,70.84697247706421,3.5147678543673266,,False,>70% missing
+drive_raw,GSM - NeighborCells(8) - Band,GSM,float64,2725,62224,95.804,1,0.037,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(8) - RxLev,GSM,float64,2725,62224,95.804,51,1.872,"['-89.0', '-86.0', '-78.0', '-89.0', '-87.0']",-110.0,-58.0,-90.8851376146789,6.99834908351856,,False,>70% missing
+drive_raw,GSM - NeighborCells(8) - ServType,GSM,object,2725,62224,95.804,1,0.037,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2725},False,>70% missing
+drive_raw,GSM - ServingCells - C2A,GSM,float64,2739,62210,95.783,1454,53.085,"['-3.827886645994167', '-3.583253996184136', '-3.038409729978096', '-3.189680107527215', '-3.547148546267576']",-4.969296480732149,1.4092684199243029,-2.0720473369062105,1.5831556219752594,,False,>70% missing
+drive_raw,GSM - NeighborCells(1) - BSIC,GSM,float64,2782,62167,95.717,53,1.905,"['56.0', '40.0', '14.0', '61.0', '40.0']",1.0,76.0,37.298346513299784,22.884937806838266,,False,>70% missing
+drive_raw,GSM - ServingCells - Band,GSM,float64,2880,62069,95.566,1,0.035,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(0) - BSIC,GSM,float64,2883,62066,95.561,52,1.804,"['40.0', '65.0', '56.0', '40.0', '61.0']",1.0,76.0,36.02358654179674,22.768670386849465,,False,>70% missing
+drive_raw,GSM - NeighborCells(0) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['69.0', '72.0', '74.0', '69.0', '70.0']",65.0,80.0,69.91070234113712,3.7846495575368055,,False,>70% missing
+drive_raw,GSM - NeighborCells(0) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(0) - RxLev,GSM,float64,2990,61959,95.396,65,2.174,"['-80.0', '-78.0', '-73.0', '-75.0', '-79.0']",-108.0,-39.0,-74.60100334448161,9.400052621699599,,False,>70% missing
+drive_raw,GSM - NeighborCells(0) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(1) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['74.0', '69.0', '71.0', '70.0', '69.0']",65.0,80.0,70.15117056856187,3.7256029576606546,,False,>70% missing
+drive_raw,GSM - NeighborCells(1) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(1) - RxLev,GSM,float64,2990,61959,95.396,49,1.639,"['-84.0', '-80.0', '-77.0', '-82.0', '-83.0']",-104.0,-55.0,-79.84682274247491,7.380719704585902,,False,>70% missing
+drive_raw,GSM - NeighborCells(1) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(2) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['67.0', '67.0', '70.0', '71.0', '71.0']",65.0,80.0,70.74314381270904,3.644394424597083,,False,>70% missing
+drive_raw,GSM - NeighborCells(2) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(2) - RxLev,GSM,float64,2990,61959,95.396,42,1.405,"['-80.0', '-82.0', '-81.0', '-84.0', '-85.0']",-104.0,-61.0,-82.77090301003345,6.817608235651659,,False,>70% missing
+drive_raw,GSM - NeighborCells(2) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(3) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['76.0', '66.0', '69.0', '75.0', '67.0']",65.0,80.0,70.72274247491639,3.6378899648498435,,False,>70% missing
+drive_raw,GSM - NeighborCells(3) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(3) - RxLev,GSM,float64,2990,61959,95.396,43,1.438,"['-85.0', '-84.0', '-83.0', '-85.0', '-86.0']",-104.0,-60.0,-84.98695652173913,6.3957395096783,,False,>70% missing
+drive_raw,GSM - NeighborCells(3) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(4) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['66.0', '71.0', '75.0', '66.0', '75.0']",65.0,80.0,70.55852842809365,3.6783188119569865,,False,>70% missing
+drive_raw,GSM - NeighborCells(4) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(4) - RxLev,GSM,float64,2990,61959,95.396,40,1.338,"['-85.0', '-85.0', '-84.0', '-88.0', '-86.0']",-105.0,-64.0,-86.785618729097,6.173567957021037,,False,>70% missing
+drive_raw,GSM - NeighborCells(4) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(5) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['72.0', '74.0', '66.0', '74.0', '66.0']",65.0,80.0,70.26588628762542,3.6500306098863504,,False,>70% missing
+drive_raw,GSM - NeighborCells(5) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(5) - RxLev,GSM,float64,2990,61959,95.396,43,1.438,"['-86.0', '-85.0', '-84.0', '-89.0', '-87.0']",-106.0,-63.0,-87.90802675585284,6.178879927803634,,False,>70% missing
+drive_raw,GSM - NeighborCells(5) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(6) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['71.0', '70.0', '67.0', '65.0', '74.0']",65.0,80.0,70.48260869565217,3.536200763834802,,False,>70% missing
+drive_raw,GSM - NeighborCells(6) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(6) - RxLev,GSM,float64,2990,61959,95.396,53,1.773,"['-86.0', '-86.0', '-87.0', '-91.0', '-89.0']",-109.0,-51.0,-88.82675585284281,6.613101232118491,,False,>70% missing
+drive_raw,GSM - NeighborCells(6) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - NeighborCells(7) - ARFCN,GSM,float64,2990,61959,95.396,13,0.435,"['65.0', '73.0', '65.0', '67.0', '65.0']",65.0,80.0,70.52575250836121,3.406521457916265,,False,>70% missing
+drive_raw,GSM - NeighborCells(7) - Band,GSM,float64,2990,61959,95.396,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - NeighborCells(7) - RxLev,GSM,float64,2990,61959,95.396,58,1.94,"['-88.0', '-86.0', '-88.0', '-92.0', '-89.0']",-110.0,-51.0,-89.68628762541806,7.2606156702137,,False,>70% missing
+drive_raw,GSM - NeighborCells(7) - ServType,GSM,object,2990,61959,95.396,1,0.033,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 2990},False,>70% missing
+drive_raw,GSM - DedicatedChannels(0) - ARFCN,GSM,float64,3006,61943,95.372,18,0.599,"['75.0', '75.0', '79.0', '79.0', '79.0']",65.0,124.0,81.34630738522954,17.555374657685487,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(0) - Band,GSM,float64,3006,61943,95.372,1,0.033,"['900.0', '900.0', '900.0', '900.0', '900.0']",900.0,900.0,900.0,0.0,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(0) - C2I,GSM,float64,3006,61943,95.372,3006,100.0,"['2.2857928', '1.7029247', '3.563567', '3.6586454', '5.188189']",0.1618843,20.082174,10.419460112348634,6.4525159466136,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(0) - RxLev,GSM,float64,3006,61943,95.372,66,2.196,"['-76.0', '-77.0', '-100.0', '-102.0', '-97.0']",-111.0,-46.0,-81.91017964071857,12.910439590384586,,False,>70% missing
+drive_raw,GSM - DedicatedChannels(0) - Timeslot,GSM,float64,3006,61943,95.372,8,0.266,"['4.0', '4.0', '0.0', '0.0', '0.0']",0.0,7.0,3.0189620758483033,1.9134273908161952,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - BERActual,GSM,float64,3023,61926,95.346,2162,71.518,"['17.100119', '16.0832', '19.937042', '16.084126', '15.614795']",0.0,28.246552,7.71252697058422,8.6040933543845,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - BERFull,GSM,float64,3023,61926,95.346,2171,71.816,"['17.100119', '16.0832', '19.937042', '16.084126', '17.239595']",0.0,28.246552,8.076923493045022,8.59936537452746,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - BERSub,GSM,float64,3023,61926,95.346,341,11.28,"['0.0', '0.0', '0.1925', '0.0', '0.0']",0.0,28.246552,0.7443963136599404,2.9110936255973123,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - FERActual,GSM,float64,3023,61926,95.346,111,3.672,"['84.0', '84.0', '84.0', '84.0', '73.91304']",0.0,100.0,33.840140823784324,39.426612687523175,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - FERFull,GSM,float64,3023,61926,95.346,26,0.86,"['84.0', '84.0', '84.0', '84.0', '72.0']",0.0,100.0,33.7029440952696,39.32798013006817,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - FERSub,GSM,float64,3023,61926,95.346,10,0.331,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,100.0,1.2222957300694675,8.497235612786994,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - RLTCurrent,GSM,float64,3030,61919,95.335,13,0.429,"['64.0', '64.0', '64.0', '64.0', '64.0']",16.0,64.0,62.68250825082508,6.796445503941514,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - RxLevFull,GSM,float64,3030,61919,95.335,64,2.112,"['-69.0', '-78.0', '-104.0', '-102.0', '-99.0']",-110.0,-47.0,-82.32508250825083,13.571336700488402,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - RxLevSub,GSM,float64,3030,61919,95.335,62,2.046,"['-70.0', '-78.0', '-77.0', '-83.0', '-76.0']",-108.0,-47.0,-77.85445544554456,9.768174768781774,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - RxQualFull,GSM,float64,3030,61919,95.335,8,0.264,"['7.0', '7.0', '7.0', '7.0', '7.0']",0.0,7.0,3.725742574257426,3.1202959751178603,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - RxQualSub,GSM,float64,3030,61919,95.335,8,0.264,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,7.0,0.4749174917491749,1.4062063218701324,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - TA,GSM,float64,3030,61919,95.335,16,0.528,"['2.0', '2.0', '1.0', '1.0', '1.0']",0.0,19.0,1.8528052805280528,2.6149600815626672,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - TxPowerActual,GSM,float64,3030,61919,95.335,28,0.924,"['29.0', '27.0', '23.0', '27.0', '25.0']",5.0,33.0,26.295379537953796,6.595130993936438,,False,>70% missing
+drive_raw,GSM - DedicatedInfo - TxPowerOrdered,GSM,float64,3030,61919,95.335,15,0.495,"['27.0', '27.0', '23.0', '27.0', '25.0']",5.0,33.0,26.274587458745874,6.626216806705739,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - ChannelType,GSM,object,3030,61919,95.335,3,0.099,"['FR', 'FR', 'FR', 'FR', 'FR']",,,,,"{'FR': 2948, 'HR': 76, 'SDCCH/8': 6}",False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - CipheringAlgorithm,GSM,object,3030,61919,95.335,2,0.066,"['A5/3', 'A5/3', 'A5/3', 'A5/3', 'A5/3']",,,,,"{'A5/3': 2449, 'A5/1': 581}",False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - Hopping,GSM,float64,3030,61919,95.335,2,0.066,"['0.0', '0.0', '1.0', '1.0', '1.0']",0.0,1.0,0.7270627062706271,0.44554241282532925,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - ServHoppingFrequencyList,GSM,object,3030,61919,95.335,29,0.957,"['[75]', '[75]', '[79]', '[79]', '[79]']",,,,,"{'[77]': 408, '[79]': 337, '[123]': 275, '[80]': 242, '[124]': 179}",False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - ServTrainingSeq,GSM,float64,3030,61919,95.335,8,0.264,"['6.0', '6.0', '5.0', '5.0', '5.0']",0.0,7.0,3.314191419141914,2.0991351462347785,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - TimeslotNumber,GSM,float64,3030,61919,95.335,8,0.264,"['4.0', '4.0', '0.0', '0.0', '0.0']",0.0,7.0,3.012871287128713,1.9067479362103208,,False,>70% missing
+drive_raw,GSM - DedicatedRadioLink - ULDTXUsed,GSM,float64,3030,61919,95.335,1,0.033,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,0.0,0.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - CI,GSM,float64,3030,61919,95.335,67,2.211,"['20162.0', '20162.0', '30192.0', '30192.0', '30192.0']",10159.0,30230.0,20352.596369636965,7897.219045512764,,False,>70% missing
+drive_raw,GSM - Serving - LAC,GSM,float64,3030,61919,95.335,1,0.033,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - MCC,GSM,float64,3030,61919,95.335,1,0.033,"['542.0', '542.0', '542.0', '542.0', '542.0']",542.0,542.0,542.0,0.0,,False,>70% missing
+drive_raw,GSM - Serving - MNC,GSM,float64,3030,61919,95.335,1,0.033,"['2.0', '2.0', '2.0', '2.0', '2.0']",2.0,2.0,2.0,0.0,,False,>70% missing
+drive_raw,GSM - ServingCells - ARFCN,GSM,float64,3030,61919,95.335,12,0.396,"['75.0', '75.0', '72.0', '72.0', '72.0']",65.0,76.0,70.72145214521453,3.6578179415172185,,False,>70% missing
+drive_raw,GSM - ServingCells - BSIC,GSM,float64,3030,61919,95.335,35,1.155,"['16.0', '16.0', '65.0', '65.0', '65.0']",1.0,76.0,35.57359735973597,23.003804125016202,,False,>70% missing
+drive_raw,GSM - ServingCells - RxLev,GSM,float64,3030,61919,95.335,62,2.046,"['-70.0', '-78.0', '-77.0', '-83.0', '-76.0']",-108.0,-47.0,-77.85445544554456,9.768174768781774,,False,>70% missing
+drive_raw,GSM - ServingCells - RxQualFull,GSM,float64,3030,61919,95.335,8,0.264,"['7.0', '7.0', '7.0', '7.0', '7.0']",0.0,7.0,3.725742574257426,3.1202959751178603,,False,>70% missing
+drive_raw,GSM - ServingCells - RxQualSub,GSM,float64,3030,61919,95.335,8,0.264,"['0.0', '0.0', '0.0', '0.0', '0.0']",0.0,7.0,0.4749174917491749,1.4062063218701324,,False,>70% missing
+drive_raw,GSM - ServingCells - ServType,GSM,object,3030,61919,95.335,1,0.033,"['S', 'S', 'S', 'S', 'S']",,,,,{'S': 3030},False,>70% missing
+drive_raw,LTE - NeighborCells(11) - Band,LTE,float64,3163,61786,95.13,4,0.126,"['41.0', '1.0', '3.0', '41.0', '41.0']",1.0,41.0,19.191590262409104,18.250712828661328,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - EARFCN,LTE,float64,3163,61786,95.13,8,0.253,"['40988.0', '356.0', '1850.0', '41186.0', '41186.0']",356.0,41384.0,16350.402782168827,18544.079824086504,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - Mod3,LTE,float64,3163,61786,95.13,3,0.095,"['0.0', '1.0', '0.0', '1.0', '2.0']",0.0,2.0,1.072083465064812,0.8260398675209929,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - PCI,LTE,float64,3163,61786,95.13,239,7.556,"['147.0', '310.0', '393.0', '148.0', '395.0']",0.0,497.0,242.8201074928865,123.38440910518281,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - RSRP,LTE,float64,3163,61786,95.13,2330,73.664,"['-105.0', '-100.8125', '-100.03125', '-116.5', '-113.75']",-134.625,-75.15625,-111.52350063452417,9.86325430786644,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - RSRQ,LTE,float64,3163,61786,95.13,1633,51.628,"['-21.8125', '-22.0625', '-23.911459', '-15.375', '-14.1875']",-28.338541,-12.375,-18.490716011065444,2.1846018646394043,,False,>70% missing
+drive_raw,LTE - NeighborCells(11) - ServType,LTE,object,3163,61786,95.13,1,0.032,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 3163},False,>70% missing
+drive_raw,LTE - SecondaryCell 2 Radio - SCell2_eNBTxDifference,LTE,float64,3304,61645,94.913,1390,42.07,"['9.76297', '7.45076', '2.4236069', '10.4375', '11.21875']",0.0051498413,21.387703,7.941629964337561,4.138871476321206,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - Band,WCDMA,float64,3408,61541,94.753,1,0.029,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - EcNo,WCDMA,float64,3408,61541,94.753,226,6.631,"['-18.371853', '-18.503452', '-18.604836', '-18.708645', '-18.339565']",-20.891905,-11.021954,-17.75482981132629,0.9773332102722353,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - EcNo Before RAKE,WCDMA,float64,3408,61541,94.753,177,5.194,"['-26.418066', '-26.418066', '-26.418066', '-26.418066', '-25.169464']",-29.223478,-12.008973,-24.25752782012911,2.182064110625517,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - PSC,WCDMA,float64,3408,61541,94.753,178,5.223,"['210.0', '152.0', '152.0', '210.0', '46.0']",0.0,511.0,210.7787558685446,120.56809952149973,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - RSCP,WCDMA,float64,3408,61541,94.753,2833,83.128,"['-102.21807', '-93.118065', '-95.118065', '-101.21807', '-103.26946']",-118.55626,-69.81715,-92.705268502054,6.839873883441152,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - RSCP After RAKE,WCDMA,float64,3408,61541,94.753,3147,92.342,"['-94.17186', '-85.203445', '-87.30483', '-93.50865', '-96.43956']",-112.15931,-62.104836,-86.20257055457746,6.701957191752377,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - Set_Type,WCDMA,object,3408,61541,94.753,2,0.059,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 2838, 'D': 570}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(6) - UARFCN,WCDMA,float64,3408,61541,94.753,2,0.059,"['3087.0', '3087.0', '3087.0', '3087.0', '3087.0']",3066.0,3087.0,3074.4973591549297,10.308763860767646,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - Band,LTE,float64,3840,61109,94.088,4,0.104,"['28.0', '28.0', '28.0', '28.0', '3.0']",1.0,41.0,19.324739583333333,18.385768430679057,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - EARFCN,LTE,float64,3840,61109,94.088,8,0.208,"['9310.0', '9310.0', '9310.0', '9310.0', '1850.0']",356.0,41384.0,16749.59375,18730.235522974417,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - Mod3,LTE,float64,3840,61109,94.088,3,0.078,"['1.0', '2.0', '0.0', '0.0', '0.0']",0.0,2.0,1.0479166666666666,0.8193389500155538,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - PCI,LTE,float64,3840,61109,94.088,252,6.562,"['151.0', '395.0', '228.0', '393.0', '393.0']",0.0,503.0,247.20104166666667,121.34594317676228,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - RSRP,LTE,float64,3840,61109,94.088,2789,72.63,"['-93.15625', '-89.03125', '-99.03125', '-90.72266', '-97.739586']",-139.3125,-77.234375,-110.83877384270833,9.793343001831731,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - RSRQ,LTE,float64,3840,61109,94.088,1981,51.589,"['-21.625', '-21.65625', '-22.09375', '-21.699219', '-21.447916']",-30.0,-12.21875,-18.52334329765625,2.3014446675109994,,False,>70% missing
+drive_raw,LTE - NeighborCells(10) - ServType,LTE,object,3840,61109,94.088,1,0.026,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 3840},False,>70% missing
+drive_raw,LTE - NeighborCells(9) - Band,LTE,float64,4926,60023,92.416,4,0.081,"['41.0', '41.0', '28.0', '28.0', '3.0']",1.0,41.0,20.04181892001624,18.417975027736635,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - EARFCN,LTE,float64,4926,60023,92.416,8,0.162,"['41186.0', '41186.0', '9310.0', '9310.0', '1850.0']",356.0,41384.0,17406.761266747868,18843.630058838593,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - Mod3,LTE,float64,4926,60023,92.416,3,0.061,"['0.0', '2.0', '0.0', '2.0', '0.0']",0.0,2.0,1.0556232237109215,0.8156787509254554,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - PCI,LTE,float64,4926,60023,92.416,268,5.441,"['147.0', '395.0', '228.0', '284.0', '147.0']",0.0,500.0,247.7328461226147,122.40598043309103,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - RSRP,LTE,float64,4926,60023,92.416,3486,70.767,"['-102.25', '-100.083336', '-95.24375', '-95.875', '-95.045456']",-138.8125,-71.4375,-109.97886048193261,9.514240352032587,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - RSRQ,LTE,float64,4926,60023,92.416,2451,49.756,"['-21.125', '-18.375', '-21.19375', '-21.6875', '-19.948864']",-30.0,-11.675,-18.641767430369466,2.392049830075082,,False,>70% missing
+drive_raw,LTE - NeighborCells(9) - ServType,LTE,object,4926,60023,92.416,1,0.02,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 4926},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - Band,WCDMA,float64,5943,59006,90.85,1,0.017,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - EcNo,WCDMA,float64,5943,59006,90.85,321,5.401,"['-18.570778', '-19.112026', '-17.090298', '-18.150734', '-18.150734']",-20.891905,-9.700107,-17.501371719249537,1.1292991204629388,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - EcNo Before RAKE,WCDMA,float64,5943,59006,90.85,249,4.19,"['-24.869987', '-25.017145', '-21.580564', '-25.661358', '-26.216173']",-28.84609,-10.263084,-23.722796357900048,2.5321412028585444,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - PSC,WCDMA,float64,5943,59006,90.85,181,3.046,"['16.0', '192.0', '192.0', '329.0', '201.0']",0.0,511.0,211.61366313309776,121.6208172390286,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - RSCP,WCDMA,float64,5943,59006,90.85,4725,79.505,"['-103.86999', '-97.71714', '-94.38057', '-94.26135', '-87.516174']",-115.72765,-68.22765,-91.43062078613494,7.054183757791546,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - RSCP After RAKE,WCDMA,float64,5943,59006,90.85,5385,90.611,"['-97.57078', '-91.81203', '-89.890305', '-86.75073', '-79.45073']",-111.701775,-61.324017,-85.20919626737339,6.877077745910145,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - Set_Type,WCDMA,object,5943,59006,90.85,2,0.034,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 4884, 'D': 1059}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(5) - UARFCN,WCDMA,float64,5943,59006,90.85,2,0.034,"['3087.0', '3087.0', '3087.0', '3066.0', '3066.0']",3066.0,3087.0,3074.7915194346288,10.360943841352464,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - Band,LTE,float64,6357,58592,90.212,4,0.063,"['3.0', '3.0', '3.0', '3.0', '3.0']",1.0,41.0,20.460280006292276,18.457429890752834,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - EARFCN,LTE,float64,6357,58592,90.212,8,0.126,"['1850.0', '1850.0', '1850.0', '1850.0', '1850.0']",356.0,41384.0,17883.799591002044,18941.97506678135,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - Mod3,LTE,float64,6357,58592,90.212,3,0.047,"['1.0', '1.0', '1.0', '1.0', '1.0']",0.0,2.0,1.0709454145036967,0.8158865129943221,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - PCI,LTE,float64,6357,58592,90.212,271,4.263,"['289.0', '289.0', '289.0', '289.0', '289.0']",0.0,503.0,250.97844895390907,123.48061741505707,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - RSRP,LTE,float64,6357,58592,90.212,4391,69.073,"['-108.525', '-109.90625', '-109.90625', '-109.90625', '-109.90625']",-139.3125,-69.625,-109.0737990684285,9.36579731514791,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - RSRQ,LTE,float64,6357,58592,90.212,2953,46.453,"['-20.56875', '-20.648438', '-20.648438', '-20.648438', '-20.648438']",-29.625,-10.4375,-18.719057943605474,2.449132834654664,,False,>70% missing
+drive_raw,LTE - NeighborCells(8) - ServType,LTE,object,6357,58592,90.212,1,0.016,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 6357},False,>70% missing
+drive_raw,LTE - NeighborCells(7) - Band,LTE,float64,8475,56474,86.951,4,0.047,"['1.0', '3.0', '1.0', '3.0', '3.0']",1.0,41.0,21.76519174041298,18.493959017145368,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - EARFCN,LTE,float64,8475,56474,86.951,9,0.106,"['356.0', '1850.0', '356.0', '1850.0', '1850.0']",356.0,41384.0,19281.099469026547,19135.655565564044,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - Mod3,LTE,float64,8475,56474,86.951,3,0.035,"['1.0', '1.0', '2.0', '1.0', '1.0']",0.0,2.0,1.0691445427728614,0.813031206349936,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - PCI,LTE,float64,8475,56474,86.951,298,3.516,"['289.0', '487.0', '140.0', '139.0', '289.0']",0.0,503.0,251.77144542772862,122.7209640272453,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - RSRP,LTE,float64,8475,56474,86.951,5562,65.628,"['-110.34375', '-107.31875', '-110.84375', '-107.5', '-111.20625']",-136.9375,-67.145836,-108.18724442513273,9.144533378716398,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - RSRQ,LTE,float64,8475,56474,86.951,3552,41.912,"['-21.65625', '-19.45625', '-21.0', '-22.5625', '-21.18125']",-30.0,-10.125,-18.751594877227138,2.4557354671161518,,False,>70% missing
+drive_raw,LTE - NeighborCells(7) - ServType,LTE,object,8475,56474,86.951,1,0.012,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 8475},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - Band,WCDMA,float64,9216,55733,85.81,1,0.011,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - EcNo,WCDMA,float64,9216,55733,85.81,484,5.252,"['-19.911415', '-19.150623', '-18.96097', '-18.339565', '-18.21277']",-21.648943,-4.8981733,-17.113495326790364,1.4144211077705415,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - EcNo Before RAKE,WCDMA,float64,9216,55733,85.81,394,4.275,"['-27.87809', '-25.491127', '-26.85239', '-25.838537', '-25.169464']",-29.636805,-5.5915027,-22.913336950683597,3.0884209791074064,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - PSC,WCDMA,float64,9216,55733,85.81,189,2.051,"['16.0', '192.0', '16.0', '16.0', '16.0']",0.0,511.0,209.75520833333334,118.62796468093326,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - RSCP,WCDMA,float64,9216,55733,85.81,7246,78.624,"['-100.07809', '-94.89113', '-96.45239', '-99.538536', '-99.36946']",-116.76999,-61.81617,-89.9540487842882,7.2796109186721365,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - RSCP After RAKE,WCDMA,float64,9216,55733,85.81,8127,88.184,"['-92.11141', '-88.55063', '-88.56097', '-92.039566', '-92.412766']",-110.168106,-54.598244,-84.15420723057724,7.03539083430663,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - Set_Type,WCDMA,object,9216,55733,85.81,2,0.022,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 7689, 'D': 1527}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(4) - UARFCN,WCDMA,float64,9216,55733,85.81,2,0.022,"['3087.0', '3087.0', '3087.0', '3087.0', '3087.0']",3066.0,3087.0,3075.54296875,10.456861669836433,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - Band,LTE,float64,11246,53703,82.685,4,0.036,"['3.0', '1.0', '1.0', '1.0', '3.0']",1.0,41.0,22.87737862351058,18.455392256618357,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - EARFCN,LTE,float64,11246,53703,82.685,8,0.071,"['1850.0', '356.0', '356.0', '356.0', '1850.0']",356.0,41384.0,20461.825537969056,19221.795209834418,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - Mod3,LTE,float64,11246,53703,82.685,3,0.027,"['1.0', '1.0', '1.0', '1.0', '1.0']",0.0,2.0,1.058242930819847,0.8142162213831474,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - PCI,LTE,float64,11246,53703,82.685,323,2.872,"['487.0', '289.0', '322.0', '289.0', '352.0']",0.0,502.0,253.70593988973857,122.18464205254926,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - RSRP,LTE,float64,11246,53703,82.685,6943,61.738,"['-104.84375', '-112.078125', '-108.8125', '-108.84375', '-108.5']",-132.9375,-66.229164,-107.30843996425398,9.020957372574125,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - RSRQ,LTE,float64,11246,53703,82.685,4276,38.022,"['-19.125', '-22.484375', '-21.5', '-21.875', '-19.416666']",-30.0,-10.0625,-18.75626666134626,2.486694874134008,,False,>70% missing
+drive_raw,LTE - NeighborCells(6) - ServType,LTE,object,11246,53703,82.685,1,0.009,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 11246},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - Band,WCDMA,float64,13955,50994,78.514,1,0.007,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - EcNo,WCDMA,float64,13955,50994,78.514,906,6.492,"['-18.743805', '-19.957855', '-18.029257', '-18.708645', '-18.85103']",-20.891905,-3.3430288,-16.424451569064853,2.0345185943380297,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - EcNo Before RAKE,WCDMA,float64,13955,50994,78.514,788,5.647,"['-25.327318', '-27.08701', '-26.023252', '-24.869987', '-26.6298']",-29.223478,-3.6684802,-21.47700325809387,4.05364079154437,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - PSC,WCDMA,float64,13955,50994,78.514,190,1.362,"['16.0', '16.0', '16.0', '192.0', '439.0']",0.0,511.0,211.31608742386243,118.6686660847422,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - RSCP,WCDMA,float64,13955,50994,78.514,11278,80.817,"['-99.82732', '-99.38701', '-101.32326', '-99.26999', '-100.329796']",-116.698074,-54.65087,-87.56736520652095,7.772923983345763,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - RSCP After RAKE,WCDMA,float64,13955,50994,78.514,12371,88.649,"['-93.243805', '-92.25786', '-93.32926', '-93.10864', '-92.551025']",-110.31886,-53.56624,-82.51481356366894,7.380287914246588,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - Set_Type,WCDMA,object,13955,50994,78.514,4,0.029,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 11631, 'D': 2307, 'A': 12, 'AS': 5}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(3) - UARFCN,WCDMA,float64,13955,50994,78.514,2,0.014,"['3087.0', '3087.0', '3087.0', '3087.0', '3087.0']",3066.0,3087.0,3075.92139018273,10.48442118799613,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - Band,LTE,float64,15034,49915,76.853,4,0.027,"['3.0', '1.0', '1.0', '1.0', '3.0']",1.0,41.0,24.053212717839564,18.42574586851951,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - EARFCN,LTE,float64,15034,49915,76.853,8,0.053,"['1850.0', '356.0', '356.0', '356.0', '1850.0']",356.0,41384.0,21849.91579087402,19292.59659113285,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - Mod3,LTE,float64,15034,49915,76.853,3,0.02,"['1.0', '1.0', '1.0', '2.0', '1.0']",0.0,2.0,1.051815883996275,0.8050361763826726,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - PCI,LTE,float64,15034,49915,76.853,325,2.162,"['289.0', '289.0', '151.0', '140.0', '139.0']",0.0,501.0,251.63702274843686,120.70864183867381,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - RSRP,LTE,float64,15034,49915,76.853,8797,58.514,"['-104.7', '-111.5', '-109.671875', '-110.6875', '-104.890625']",-134.0,-62.44643,-106.49668870799522,8.949972666250044,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - RSRQ,LTE,float64,15034,49915,76.853,5202,34.602,"['-18.9', '-21.296875', '-19.78125', '-21.09375', '-20.195312']",-29.3125,-7.4583335,-18.643035229812423,2.499685742929878,,False,>70% missing
+drive_raw,LTE - NeighborCells(5) - ServType,LTE,object,15034,49915,76.853,1,0.007,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 15034},False,>70% missing
+drive_raw,LTE - NeighborCells(4) - Band,LTE,float64,19087,45862,70.612,4,0.021,"['3.0', '3.0', '3.0', '3.0', '3.0']",1.0,41.0,24.902027558023786,18.29039219332486,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - EARFCN,LTE,float64,19087,45862,70.612,8,0.042,"['1850.0', '1850.0', '1850.0', '1850.0', '1850.0']",356.0,41384.0,22740.707182899354,19238.952468750926,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - Mod3,LTE,float64,19087,45862,70.612,3,0.016,"['2.0', '2.0', '1.0', '1.0', '1.0']",0.0,2.0,1.0699428930685808,0.8130764260104151,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - PCI,LTE,float64,19087,45862,70.612,319,1.671,"['140.0', '140.0', '289.0', '289.0', '289.0']",0.0,497.0,247.62901451249542,120.03316546555797,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - RSRP,LTE,float64,19087,45862,70.612,10572,55.388,"['-108.36875', '-104.675', '-104.11875', '-106.35', '-105.8375']",-133.65,-61.575893,-105.49244423806779,9.201365220920353,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - RSRQ,LTE,float64,19087,45862,70.612,5971,31.283,"['-17.73125', '-20.5', '-19.75', '-19.29375', '-19.7625']",-30.0,-7.21875,-18.37694074338555,2.538974151574814,,False,>70% missing
+drive_raw,LTE - NeighborCells(4) - ServType,LTE,object,19087,45862,70.612,1,0.005,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 19087},False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - Band,WCDMA,float64,19199,45750,70.44,1,0.005,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - EcNo,WCDMA,float64,19199,45750,70.44,1186,6.177,"['-17.11449', '-18.570778', '-16.44161', '-18.244123', '-16.63276']",-22.31824,-2.6805475,-15.719604684603366,2.351784235725656,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - EcNo Before RAKE,WCDMA,float64,19199,45750,70.44,1087,5.662,"['-20.504454', '-25.491127', '-19.430874', '-26.216173', '-21.317337']",-29.636805,-3.515399,-19.968210702411586,4.450284929133824,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - PSC,WCDMA,float64,19199,45750,70.44,200,1.042,"['192.0', '192.0', '192.0', '192.0', '192.0']",0.0,511.0,212.9101515703943,113.8205743195128,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - RSCP,WCDMA,float64,19199,45750,70.44,16210,84.431,"['-92.80446', '-101.79113', '-89.93088', '-101.016174', '-98.517334']",-120.22348,-48.391747,-84.68371680894839,8.510669422358424,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - RSCP After RAKE,WCDMA,float64,19199,45750,70.44,17239,89.791,"['-89.41449', '-94.87078', '-86.94161', '-93.04413', '-93.832756']",-113.92,-47.832226,-80.4351107954581,7.976265078235416,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - Set_Type,WCDMA,object,19199,45750,70.44,4,0.021,"['M', 'M', 'M', 'M', 'M']",,,,,"{'M': 12903, 'A': 3535, 'D': 2708, 'AS': 53}",False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(2) - UARFCN,WCDMA,float64,19199,45750,70.44,2,0.01,"['3087.0', '3087.0', '3087.0', '3087.0', '3087.0']",3066.0,3087.0,3075.7939476014376,10.476507377433771,,False,>70% missing
+drive_raw,WCDMA - WCDMACellsTable(1) - Band,WCDMA,float64,22752,42197,64.969,1,0.004,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - WCDMACellsTable(0) - Band,WCDMA,float64,24531,40418,62.23,1,0.004,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - WCDMACellsTable(0) - Set_Type,WCDMA,object,24531,40418,62.23,1,0.004,"['A', 'A', 'A', 'A', 'A']",,,,,{'A': 24531},False,constant / single unique value
+drive_raw,LTE - NeighborCells(3) - ServType,LTE,object,24634,40315,62.072,1,0.004,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 24634},False,constant / single unique value
+drive_raw,WCDMA - Serving - ServiceType,WCDMA,float64,24751,40198,61.892,1,0.004,"['3.0', '3.0', '3.0', '3.0', '3.0']",3.0,3.0,3.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - UplinkMeasurements - RACHAICHTiming,WCDMA,float64,24931,40018,61.614,1,0.004,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - UplinkMeasurements - RACHMsgLength,WCDMA,float64,24931,40018,61.614,1,0.004,"['20.0', '20.0', '20.0', '20.0', '20.0']",20.0,20.0,20.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - UplinkMeasurements - RACHMaxTxPower,WCDMA,float64,24950,39999,61.585,1,0.004,"['24.0', '24.0', '24.0', '24.0', '24.0']",24.0,24.0,24.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - Serving - MCC,WCDMA,float64,25151,39798,61.276,1,0.004,"['542.0', '542.0', '542.0', '542.0', '542.0']",542.0,542.0,542.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - Serving - MNC,WCDMA,float64,25151,39798,61.276,1,0.004,"['2.0', '2.0', '2.0', '2.0', '2.0']",2.0,2.0,2.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - DownlinkMeasurements - PowerControlAlgorithm,WCDMA,float64,25189,39760,61.217,1,0.004,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - DownlinkMeasurements - TPCStepSize,WCDMA,float64,25189,39760,61.217,1,0.004,"['1.0', '1.0', '1.0', '1.0', '1.0']",1.0,1.0,1.0,0.0,,False,constant / single unique value
+drive_raw,WCDMA - ServingCell - BandIndicator,WCDMA,float64,25448,39501,60.818,1,0.004,"['8.0', '8.0', '8.0', '8.0', '8.0']",8.0,8.0,8.0,0.0,,False,constant / single unique value
+drive_raw,LTE - NeighborCells(2) - ServType,LTE,object,29667,35282,54.323,1,0.003,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 29667},False,constant / single unique value
+drive_raw,LTE - NeighborCells(1) - ServType,LTE,object,35197,29752,45.808,1,0.003,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 35197},False,constant / single unique value
+drive_raw,LTE - NeighborCells(0) - ServType,LTE,object,37480,27469,42.293,1,0.003,"['N', 'N', 'N', 'N', 'N']",,,,,{'N': 37480},False,constant / single unique value
+drive_raw,PCAP.Connection_reset,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.TCP_window_update,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.dns_time,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.duplicate_ack,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.fast_retransmission,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.initial_rtt,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.out_of_order,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.pkt_loss,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.rtt,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value
+drive_raw,PCAP.spurious_retransmission,PCAP,int64,64949,0,0.0,1,0.002,"['0', '0', '0', '0', '0']",0.0,0.0,0.0,0.0,,False,constant / single unique value

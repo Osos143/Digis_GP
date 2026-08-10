@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ran-rca-explanation-service"
+version = "1.0.0"
+description = "Generates professional, senior-RAN-engineer-style explanations for already-analyzed network anomalies (evidence + matched root cause + optional suggested solutions), using a local LLM via Ollama."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2",
+    "langchain-core>=0.3",
+    "langchain-ollama>=0.2",
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[project.optional-dependencies]
+cloud = ["langchain-anthropic>=0.3"]
+
+[project.scripts]
+ran-rca-explain = "ran_rca_explanation.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

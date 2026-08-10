@@ -1,0 +1,46 @@
+{
+  "anomaly_id": "INC-0017",
+  "anomaly": {
+    "detection_case": "sustained_low_throughput",
+    "severity": "High",
+    "priority_score_0_100": 88,
+    "radio_kpis": {
+      "rsrp_median_dbm": -118.4,
+      "rsrq_median_db": -15.2,
+      "sinr_median_db": -1.1,
+      "cqi_median": 3,
+      "mcs_median": 4,
+      "bler_median_pct": 21.0
+    },
+    "resource_kpis": {
+      "rb_usage_median": 28.0,
+      "throughput_per_rb_median": 0.31
+    },
+    "throughput": {
+      "actual_median_mbps": 1.4,
+      "expected_median_mbps": 14.8
+    }
+  },
+  "reasons": [
+    {
+      "reason_id": "low_rsrp",
+      "title": "Low RSRP",
+      "category": "Coverage",
+      "description": "Serving cell RSRP is far below the poor threshold, indicating the UE is at the edge of coverage or shadowed. Downstream SINR/CQI/MCS degradation is a symptom of this weak signal, not an independent interference problem."
+    }
+  ],
+  "solutions": [
+    {
+      "solution_id": "sol-01",
+      "title": "Uptilt / re-point nearest sector toward the affected area",
+      "priority": "High",
+      "description": "Adjust the serving sector's mechanical or electrical downtilt to improve coverage in the affected drive-test segment, based on the geolocation of the low-RSRP samples."
+    },
+    {
+      "solution_id": "sol-02",
+      "title": "Evaluate a new small-cell / repeater site",
+      "priority": "Medium",
+      "description": "If antenna re-pointing does not sufficiently close the coverage gap, evaluate adding a small cell or repeater to serve this specific area."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "05d_tp_vs_agg_rb",
+  "filename": "05d_tp_vs_agg_rb.png",
+  "title": "05D Tp Vs Agg Rb",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_6ded29a4b9b3/plots/05d_tp_vs_agg_rb.png",
+  "json_url": "/api/sessions/session_6ded29a4b9b3/plots/05d_tp_vs_agg_rb.json",
+  "size_bytes": 385852
+}

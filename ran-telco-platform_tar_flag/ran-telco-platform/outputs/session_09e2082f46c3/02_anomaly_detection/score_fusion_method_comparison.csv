@@ -1,0 +1,4 @@
+﻿method,median_all_rows,median_final_handoff_rows,p90_final_handoff_rows,statistical_only_median,ml_only_median,consensus_median
+fusion_naive_average_score_0_100,0.0,44.75,47.05,43.75,,81.36500000000001
+fusion_weighted_max_score_0_100,0.0,71.04,75.04,70.0,,72.4
+fusion_selected_impact_confidence_score_0_100,3.455,72.63,85.91,71.68,,87.21000000000001

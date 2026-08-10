@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netfix-backend"
+version = "1.0.0"
+description = "NetFix two-phase orchestration backend: Phase 1 (upload/clean/detect/stats, automatic) and Phase 2 (thresholds/rule-based cause matching/LLM explanation, interactive), built around one persistent Analysis Session."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pymongo",
+    "redis",
+    "pydantic>=2",
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "langchain-core>=0.3",
+    "langchain-ollama>=0.2",
+    # This service imports ran_kpi_labeling and ran_reason_matching directly
+    # (see services/*.py docstrings for exactly what's reused from each) --
+    # install both alongside this package, e.g.:
+    #   pip install -e ../ran-kpi-labeling-service
+    #   pip install -e ../ran-reason-matching-service
+    #   pip install -e .
+    # (see docker/netfix-backend/Dockerfile for the containerized version).
+]
+
+[project.optional-dependencies]
+cloud = ["langchain-anthropic>=0.3"]
+
+[project.scripts]
+netfix-backend = "netfix_backend.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

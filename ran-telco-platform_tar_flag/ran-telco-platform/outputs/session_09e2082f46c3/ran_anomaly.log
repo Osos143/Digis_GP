@@ -1,0 +1,982 @@
+=== Executing: ran-anomaly --output-dir /data/outputs/session_09e2082f46c3 --mongo-uri mongodb://mongo:27017 --mongo-db ran_telco ===
+RAN anomaly-detection service
+------------------------------
+Output dir           : /data/outputs/session_09e2082f46c3
+Expected feature table: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+MongoDB              : mongodb://mongo:27017
+
+Run ID: 20260731T150738Z
+
+======================================================================
+Running stage: 01_imports_and_settings.py
+======================================================================
+Notebook configured.
+Raw drive-test path: Raw_Data/Network_Drive_Test.pkl
+Output root: /data/outputs/session_09e2082f46c3
+Preprocessing/cleaning folder: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning
+Anomaly-detection folder: /data/outputs/session_09e2082f46c3/02_anomaly_detection
+Plots folder: /data/outputs/session_09e2082f46c3/03_plots
+Final RCA handoff folder: /data/outputs/session_09e2082f46c3/04_rca_handoff_final
+Missing threshold: 70.0 %
+
+======================================================================
+Running stage: 02_utility_functions.py
+======================================================================
+Loading clean pre-anomaly parquet: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+Loaded clean pre-anomaly LTE-DL table shape: (412, 364)
+    source_index                                                                id                 timestamp  actual_lte_dl_throughput    lte_rsrp   lte_sinr        rb_usage_bucket  carrier_count     download_context_label
+0          32048  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:40+02:00                  0.834178 -100.928458  10.303266           low_rb_usage       0.986708  outside_download_activity
+1          32049  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:41+02:00                  0.011639 -106.095228   7.264514           low_rb_usage       1.006146  outside_download_activity
+2          32053  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:45+02:00                  1.929366 -109.146571   3.709712           low_rb_usage       2.005774  outside_download_activity
+3          32056  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:48+02:00                  0.688379 -111.646301   2.184578           low_rb_usage       0.992494  outside_download_activity
+4          32059  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:51+02:00                  0.605321 -112.429966   2.948216           low_rb_usage       0.995757  outside_download_activity
+5          32061  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:53+02:00                 10.159955 -109.516442   8.037698           low_rb_usage       1.011827  outside_download_activity
+6          32062  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:54+02:00                 25.660861 -110.884179   9.821185           low_rb_usage       0.946300  outside_download_activity
+7          32063  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:55+02:00                 26.338702 -111.459284   9.388161        medium_rb_usage       1.001812  outside_download_activity
+8          32064  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:56+02:00                 27.702913 -110.591825   7.929890  below_median_rb_usage       1.012599  outside_download_activity
+9          32065  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:57+02:00                 27.659589 -110.902998   8.510899  below_median_rb_usage       1.007651  outside_download_activity
+10         32066  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:58+02:00                 29.310579 -111.333456   8.683327  below_median_rb_usage       0.955656  outside_download_activity
+11         32067  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:37:59+02:00                 18.478066 -111.152712   7.305178           low_rb_usage       0.990409  outside_download_activity
+12         32068  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:00+02:00                 27.541865 -111.914753   9.524556        medium_rb_usage       1.014093  outside_download_activity
+13         32069  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:01+02:00                 34.930166 -111.145779  11.144568  below_median_rb_usage       0.986890  outside_download_activity
+14         32070  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:02+02:00                 20.066377 -110.425956  10.382521        medium_rb_usage       1.053074  outside_download_activity
+15         32071  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:03+02:00                 25.672929 -110.702510   9.055205        medium_rb_usage       1.007747  outside_download_activity
+16         32072  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:04+02:00                  6.029151 -107.881278  11.200307           low_rb_usage       1.013175  outside_download_activity
+17         32073  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:05+02:00                  5.095872 -109.344985  10.849210           low_rb_usage       1.010542  outside_download_activity
+18         32074  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:06+02:00                  3.236115 -112.129987   7.649593           low_rb_usage       0.985915  outside_download_activity
+19         32075  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942 2025-08-26 23:38:07+02:00                 17.220702 -111.119961   9.723868           low_rb_usage       1.037042  outside_download_activity
+
+======================================================================
+Running stage: 03_statistical_anomaly_scores.py
+======================================================================
+Anomaly analysis rows: 412 / 412 LTE-DL rows (100.00%).
+Download activity context is retained only as metadata; RB usage is the main demand/resource-confidence signal.
+LOW_TP_FIXED_MBPS=10 Mbps flags 6.07% of analyzed LTE-DL rows (6.07% of all LTE-DL rows).
+Robust log modified-z min=-6.725; threshold=-3.0; flagged=21 rows.
+Global LTE-DL-row P10 throughput threshold: 15.873 Mbps
+Global LTE-DL-row P25 throughput threshold: 24.579 Mbps
+Rolling bad-window context rows: 7
+Rolling sustained-degradation sample rows: 6
+Bad-session context rows: 0
+Bad-session low-sample rows: 0
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/statistical_threshold_calibration_report.csv  shape=(5, 7)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/statistical_low_tail_method_overlap.csv  shape=(9, 5)
+Data-driven low-tail calibration:
+               threshold_method  threshold_mbps                                                interpretation  distance_from_fixed_10mbps  flagged_rows  flagged_pct_analysis     fixed_10mbps_validation
+0        fixed_domain_reference         10.0000                      Domain reference; not the only detector.                      0.0000           NaN                   NaN  SUPPORTED_AS_DOMAIN_ANCHOR
+1                    global_p10         15.8733                             Data-driven bottom 10% threshold.                      5.8733          42.0               10.1942  SUPPORTED_AS_DOMAIN_ANCHOR
+2            median_session_p10         14.9620                Typical session-relative bottom 10% threshold.                      4.9620           NaN                   NaN  SUPPORTED_AS_DOMAIN_ANCHOR
+3               iqr_lower_fence          7.8696  Distribution-adaptive extreme lower fence in log-throughput.                     -2.1304          23.0                5.5825  SUPPORTED_AS_DOMAIN_ANCHOR
+4  robust_mad_modified_z_cutoff          6.1411             Robust distribution-adaptive extreme tail cutoff.                     -3.8589          21.0                5.0971  SUPPORTED_AS_DOMAIN_ANCHOR
+Low-tail consensus rows (>=2 of global P10 / IQR / robust MAD): 23
+     method_a    method_b  intersection_rows  union_rows  jaccard
+0  global_p10  global_p10                 42          42   1.0000
+1  global_p10         iqr                 23          42   0.5476
+2  global_p10  robust_mad                 21          42   0.5000
+3         iqr  global_p10                 23          42   0.5476
+4         iqr         iqr                 23          23   1.0000
+5         iqr  robust_mad                 21          23   0.9130
+6  robust_mad  global_p10                 21          42   0.5000
+7  robust_mad         iqr                 21          23   0.9130
+8  robust_mad  robust_mad                 21          21   1.0000
+
+======================================================================
+Running stage: 04_group_p75_expected_throughput.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/expected_throughput_group_p75.csv  shape=(11, 16)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/expected_throughput_group_radio_p75.csv  shape=(11, 16)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/expected_throughput_group_rb_conditioned_p75.csv  shape=(17, 17)
+Radio P75 reference levels:
+                groups
+fallback_level        
+3                    4
+4                    4
+5                    2
+6                    1
+RB-conditioned P75 reference levels:
+                groups
+fallback_level        
+3                    5
+4                    6
+5                    5
+6                    1
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/p75_reliability_summary.csv  shape=(3, 7)
+   expected_tp_radio_source_level expected_tp_confidence  rows  median_expected_p75  median_actual_tp  underperform_context_pct  strict_underperform_pct
+0                             3.0                   high   346               36.313            32.370                      10.7                      3.5
+1                             4.0                   high    21              106.145            72.104                      14.3                      0.0
+2                             5.0                 medium    45               37.173            38.113                      26.7                      0.0
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/rb_conditioned_p75_reliability_summary.csv  shape=(4, 7)
+   expected_tp_rb_source_level expected_tp_rb_confidence  rows  median_expected_rb_p75  median_actual_tp  underperform_context_pct  strict_underperform_pct
+0                          3.0                      high   237                  39.811            31.495                       3.0                      2.5
+1                          4.0                      high    34                 116.727            96.526                       2.9                      2.9
+2                          5.0                    medium   133                  42.896            33.942                      18.0                      0.0
+3                          6.0   not_available_or_sparse     8                  50.825             1.413                     100.0                      0.0
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/p75_expected_throughput_diagnostics.csv  shape=(3, 8)
+                                      scope  rows  mean_actual_tp  median_actual_tp  mean_expected_p75  median_expected_p75  underperform_context_pct  strict_underperform_pct
+0                 all_lte_dl_rows_radio_p75   412          41.199            33.454             54.532               36.313                    12.621                    2.913
+1  analysis_rows_all_valid_lte_dl_radio_p75   412          41.199            33.454             54.532               36.313                    12.621                    2.913
+2        all_lte_dl_rows_rb_conditioned_p75   412          41.199            33.454             52.272               42.896                     9.709                    1.699
+
+======================================================================
+Running stage: 05_combine_anomaly_cases.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_method_summary.csv  shape=(33, 5)
+                                      method_or_case                     flag_role  flagged_rows  flagged_pct  flagged_pct_of_all_lte_dl_rows
+0                                 low_tp_family_flag    trigger_family_independent            45       10.922                          10.922
+1                          temporal_drop_family_flag    trigger_family_independent            51       12.379                          12.379
+2                            expected_tp_family_flag    trigger_family_independent            14        3.398                           3.398
+3                          rb_efficiency_family_flag                trigger_family             5        1.214                           1.214
+4                       sustained_window_family_flag  context_or_case_family_alias             6        1.456                           1.456
+5                          radio_limited_family_flag  context_or_case_family_alias            11        2.670                           2.670
+6                    ca_underperformance_family_flag  context_or_case_family_alias             6        1.456                           1.456
+7                                  low_tp_fixed_flag                trigger_detail            25        6.068                           6.068
+8                             low_tp_global_p10_flag                trigger_detail            42       10.194                          10.194
+9                            low_tp_session_p10_flag                trigger_detail            38        9.223                           9.223
+10                              low_tp_robust_z_flag                trigger_detail            21        5.097                           5.097
+11                                   low_tp_iqr_flag                trigger_detail            23        5.583                           5.583
+12                                 rolling_drop_flag                trigger_detail            37        8.981                           8.981
+13                rolling_sustained_degradation_flag                trigger_detail             6        1.456                           1.456
+14                                  sudden_drop_flag                trigger_detail            40        9.709                           9.709
+15                          underperform_vs_p75_flag                trigger_detail            12        2.913                           2.913
+16                       underperform_vs_rb_p75_flag                trigger_detail             7        1.699                           1.699
+17                    low_rb_efficiency_high_rb_flag                trigger_detail             5        1.214                           1.214
+18                          ca_underperformance_flag                trigger_detail             6        1.456                           1.456
+19                    radio_limited_degradation_flag                  case_context            11        2.670                           2.670
+20                  unexpected_underperformance_flag                  case_context            11        2.670                           2.670
+21                    event_related_degradation_flag                  context_only             2        0.485                           0.485
+22                                  bad_session_flag                  context_only             0        0.000                           0.000
+23                           bad_session_sample_flag                  context_only             0        0.000                           0.000
+24                  underperform_vs_p75_context_flag                  context_only            52       12.621                          12.621
+25               underperform_vs_rb_p75_context_flag                  context_only            40        9.709                           9.709
+26  p75_underperformance_demand_unknown_context_flag                  context_only            22        5.340                           5.340
+27                                low_tp_low_rb_flag                  case_context            33        8.010                           8.010
+28                                 rb_low_usage_flag                  context_only           103       25.000                          25.000
+29                    low_tail_robust_consensus_flag                       unknown            23        5.583                           5.583
+30                   weak_low_rb_only_candidate_flag                  context_only            13        3.155                           3.155
+31                             is_throughput_anomaly                candidate_gate            69       16.748                          16.748
+32                                  rca_handoff_flag                  handoff_gate            55       13.350                          13.350
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_flag_overlap_summary.csv  shape=(16, 7)
+    independent_trigger_count  context_flag_count  rows  anomaly_rows  mean_score  median_score  median_tp
+0                           0                   0   274             0       0.000          0.00     41.346
+1                           0                   1    64             0       0.000          0.00     26.740
+2                           0                   2     5             0       0.000          0.00     20.357
+3                           1                   0     4             4      53.500         54.00     37.773
+4                           1                   1    12            12      51.175         50.00     24.268
+5                           1                   2    10            10      39.890         29.65     16.333
+6                           1                   3     4             4      56.750         59.00     19.560
+7                           1                   4     5             5      37.900         41.00      0.688
+8                           1                   5     2             2      41.350         41.35      1.382
+9                           2                   2     3             3      58.700         54.50     13.133
+10                          2                   3     3             3      60.833         60.50     15.352
+11                          2                   4     5             5      76.860         75.80      3.236
+12                          2                   5     8             8      77.762         84.70      4.159
+13                          2                   6     4             4      84.000         85.35      2.798
+14                          3                   3     4             4      76.750         76.45     12.472
+15                          4                   3     5             5      89.140         89.90      4.588
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_score_distribution_qc.csv  shape=(15, 3)
+                   metric   value                                                            qc_note
+0            flagged_rows  69.000         Number of anomaly rows used for score-distribution checks.
+1               score_p10  33.120                                          Flagged-score percentile.
+2               score_p25  50.000                                          Flagged-score percentile.
+3               score_p50  56.500                                          Flagged-score percentile.
+4               score_p75  75.800                                          Flagged-score percentile.
+5               score_p80  80.820                                          Flagged-score percentile.
+6               score_p90  90.180                                          Flagged-score percentile.
+7               score_p95  93.600                                          Flagged-score percentile.
+8               score_p99  93.964                                          Flagged-score percentile.
+9     severity_pct_Medium  44.928                                 Share of flagged rows by severity.
+10      severity_pct_High  42.029                                 Share of flagged rows by severity.
+11       severity_pct_Low  11.594                                 Share of flagged rows by severity.
+12  severity_pct_Critical   1.449                                 Share of flagged rows by severity.
+13   pct_exact_low_rb_cap   0.000                 Share of flagged scores exactly at the low-RB cap.
+14     pct_exact_soft_cap   0.000  Share of flagged scores exactly at the non-catastrophic soft cap.
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_percentage_qc_review.csv  shape=(33, 7)
+                                      method_or_case                     flag_role  flagged_pct  expected_low_pct  expected_high_pct   qc_status                                                                           interpretation
+0                                 low_tp_family_flag    trigger_family_independent       10.922               0.0                100          OK                                                         No fixed review band configured.
+1                          temporal_drop_family_flag    trigger_family_independent       12.379               0.0                100          OK                                                         No fixed review band configured.
+2                            expected_tp_family_flag    trigger_family_independent        3.398               2.0                 15          OK                    Expected-throughput family combines radio-P75 and RB-conditioned P75.
+3                          rb_efficiency_family_flag                trigger_family        1.214               0.5                  8          OK  RB-efficiency family should not dominate; it confirms inefficient use of allocated RBs.
+4                       sustained_window_family_flag  context_or_case_family_alias        1.456               0.0                100          OK                                                         No fixed review band configured.
+5                          radio_limited_family_flag  context_or_case_family_alias        2.670               0.0                100          OK                                                         No fixed review band configured.
+6                    ca_underperformance_family_flag  context_or_case_family_alias        1.456               0.0                100          OK                                                         No fixed review band configured.
+7                                  low_tp_fixed_flag                trigger_detail        6.068              10.0                 25  LOW_REVIEW                               10 Mbps should capture the lower tail, not half the route.
+8                             low_tp_global_p10_flag                trigger_detail       10.194               9.0                 11          OK                                 Global P10 should be almost exactly 10% by construction.
+9                            low_tp_session_p10_flag                trigger_detail        9.223               3.0                 12          OK      Session P10 should be lower than 10% overall after the low-session-threshold guard.
+10                              low_tp_robust_z_flag                trigger_detail        5.097               1.0                  6          OK  Robust z is an extreme lower-tail method; 0% usually means the threshold is too strict.
+11                                   low_tp_iqr_flag                trigger_detail        5.583               1.0                  6          OK                               Log-IQR should catch only extreme low-throughput outliers.
+12                                 rolling_drop_flag                trigger_detail        8.981               3.0                 15          OK                      Rolling drop should capture local collapses, not every low segment.
+13                rolling_sustained_degradation_flag                trigger_detail        1.456               5.0                 18  LOW_REVIEW                Sustained window degradation can be broader than extreme outlier methods.
+14                                  sudden_drop_flag                trigger_detail        9.709               3.0                 15          OK               Sudden one-sample drops are common in drive tests but should stay bounded.
+15                          underperform_vs_p75_flag                trigger_detail        2.913               1.0                 10          OK           Reliable radio-P75 underperformance should be narrower after RB-demand gating.
+16                       underperform_vs_rb_p75_flag                trigger_detail        1.699               1.0                 10          OK                RB-conditioned P75 underperformance should be narrow and high confidence.
+17                    low_rb_efficiency_high_rb_flag                trigger_detail        1.214               0.5                  8          OK         Low throughput-per-RB under medium/high RB should be narrow and high confidence.
+18                          ca_underperformance_flag                trigger_detail        1.456               1.0                  8          OK                     Tightened CA underperformance should not dominate the anomaly table.
+19                    radio_limited_degradation_flag                  case_context        2.670               3.0                 18  LOW_REVIEW  With calibrated poor-radio thresholds, this should focus on clearly bad radio evidence.
+20                  unexpected_underperformance_flag                  case_context        2.670               2.0                 12          OK                   Unexpected underperformance should be narrower than broad P75 context.
+21                    event_related_degradation_flag                  context_only        0.485               3.0                 18  LOW_REVIEW                          Event evidence is contextual and should not use near_any_event.
+22                                  bad_session_flag                  context_only        0.000               0.0                100          OK                                                         No fixed review band configured.
+23                           bad_session_sample_flag                  context_only        0.000               0.0                100          OK                                                         No fixed review band configured.
+24                  underperform_vs_p75_context_flag                  context_only       12.621               0.0                100          OK                                                         No fixed review band configured.
+25               underperform_vs_rb_p75_context_flag                  context_only        9.709               0.0                100          OK                                                         No fixed review band configured.
+26  p75_underperformance_demand_unknown_context_flag                  context_only        5.340               0.0                100          OK                                                         No fixed review band configured.
+27                                low_tp_low_rb_flag                  case_context        8.010               0.0                100          OK                                                         No fixed review band configured.
+28                                 rb_low_usage_flag                  context_only       25.000               0.0                100          OK                                                         No fixed review band configured.
+29                    low_tail_robust_consensus_flag                       unknown        5.583               0.0                100          OK                                                         No fixed review band configured.
+30                   weak_low_rb_only_candidate_flag                  context_only        3.155               0.0                100          OK                                                         No fixed review band configured.
+31                             is_throughput_anomaly                candidate_gate       16.748               8.0                 26          OK     Broad statistical candidate gate. The stricter RCA handoff is controlled separately.
+32                                  rca_handoff_flag                  handoff_gate       13.350               8.0                 22          OK                         Practical RCA handoff subset after weak low-RB-only suppression.
+Sanity check passed: every anomaly row has a non-default anomaly_type.
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_component_empirical_validation.csv  shape=(4, 5)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_independent_family_overlap.csv  shape=(16, 5)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_weight_health_check.csv  shape=(1, 6)
+Empirical fusion component validation:
+                           component    mean  median     p90  nonzero_pct
+0  score_base_from_strongest_trigger  47.681  50.000  55.000      100.000
+1         score_continuous_magnitude  51.199  47.026  82.776      100.000
+2    score_independent_trigger_bonus   1.976   0.000   5.493       46.377
+3               score_evidence_bonus   3.101   3.000   7.000       81.159
+   anomaly_rows  median_base_or_magnitude  median_total_bonus  p90_total_bonus  pct_rows_bonus_exceeds_base_or_magnitude                       verdict
+0            69                      55.0               5.466           10.466                                       0.0  BONUS_IS_SUPPORTING_EVIDENCE
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/stat_28_fusion_component_contribution_audit.png
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_cells_ranked.csv  shape=(0, 20)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_pci_ranked.csv  shape=(0, 20)
+[mongo] no records to write for 'worst_performing_cells_rca_handoff'.
+[mongo] no records to write for 'worst_performing_pci_rca_handoff'.
+Ranked cells: 0 | Ranked PCI-only groups: 0
+Empty DataFrame
+Columns: [serving_cell_key, rows, sessions, median_tp_mbps, p10_tp_mbps, mean_tp_mbps, low_tp_pct, stat_anomaly_pct, rca_handoff_pct, median_p75_gap_mbps, p90_p75_gap_mbps, median_rsrp_dbm, median_rsrq_db, median_sinr_db, median_cqi, median_mcs, median_bler_pct, p90_bler_pct, median_rb_usage, median_tp_per_rb]
+Index: []
+
+======================================================================
+Running stage: 06_rca_handoff_table.py
+======================================================================
+Saved Parquet: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_dl_anomaly_audit_table_post_scoring.parquet  shape=(412, 212)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomaly_candidates_all.csv  shape=(69, 215)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_baseline.csv  shape=(55, 215)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/throughput_anomaly_episode_summary.csv  shape=(44, 58)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_summary_by_type_severity.csv  shape=(12, 12)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/anomaly_summary_by_serving_pci.csv  shape=(55, 20)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_dl_session_anomaly_summary.csv  shape=(4, 19)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomaly_output_schema.csv  shape=(215, 5)
+Anomaly handoff shape: (55, 215)
+Episode summary shape: (44, 58)
+                       anomaly_type anomaly_severity  anomalies  episodes  mean_score  mean_actual_tp  mean_expected_tp  mean_expected_radio_p75  mean_expected_rb_conditioned_p75  mean_rb_usage  mean_throughput_per_rb  mean_gap
+11                      sudden_drop           Medium         20        20      52.540          25.250            53.571                   53.571                            44.819        102.847                   0.286    28.321
+10                      sudden_drop             High          8         8      81.400           5.947            68.180                   68.180                            46.973         63.122                   0.309    62.233
+1         radio_limited_degradation             High          6         6      86.317           1.744            52.872                   52.872                            34.889         32.005                  -1.580    51.127
+0               ca_underperformance             High          6         5      82.250           8.867            70.214                   70.214                            67.592        147.052                   0.066    61.347
+5   rb_conditioned_underperformance             High          4         4      65.800          21.160            74.089                   74.089                            78.631        167.902                   0.126    52.929
+8                rolling_local_drop             High          3         3      66.733           7.939            51.074                   51.074                            39.234         90.038                   0.083    43.135
+2         radio_limited_degradation           Medium          2         2      56.500          12.990            36.313                   36.313                            24.640         74.036                   0.176    23.323
+9                rolling_local_drop           Medium          2         2      52.250          19.054            36.743                   36.743                            26.921         62.886                   0.313    17.689
+6    rb_efficiency_underperformance         Critical          1         1      93.600           1.400            62.465                   62.465                            68.421        106.090                   0.013    61.065
+7    rb_efficiency_underperformance             High          1         1      89.900           1.782            36.313                   36.313                            46.701         94.202                   0.019    34.531
+3        radio_p75_underperformance             High          1         1      60.500          18.387            62.465                   62.465                            68.421        131.332                   0.140    44.078
+4        radio_p75_underperformance           Medium          1         1      57.000          18.278            62.465                   62.465                            68.421        160.281                   0.114    44.187
+       anomaly_id anomaly_episode_id                 timestamp                                                                id  actual_lte_dl_throughput  expected_tp_p75  throughput_ratio_p75  anomaly_score_0_100 anomaly_severity  \
+6   LTE-TP-000007   LTE-TP-EP-000006 2025-08-26 23:38:04+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                  6.029151        36.006173              0.167448                 65.9             High   
+7   LTE-TP-000008   LTE-TP-EP-000006 2025-08-26 23:38:05+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                  5.095872        36.006173              0.141528                 71.2             High   
+8   LTE-TP-000009   LTE-TP-EP-000006 2025-08-26 23:38:06+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                  3.236115        36.313052              0.089117                 75.8             High   
+9   LTE-TP-000010   LTE-TP-EP-000007 2025-08-26 23:38:44+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                 14.596878        36.313052              0.401973                 56.5           Medium   
+11  LTE-TP-000012   LTE-TP-EP-000009 2025-08-26 23:39:20+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                  1.781751        36.313052              0.049066                 89.9             High   
+12  LTE-TP-000013   LTE-TP-EP-000009 2025-08-26 23:39:21+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                  8.122885        62.464924              0.130039                 80.1             High   
+13  LTE-TP-000014   LTE-TP-EP-000010 2025-08-26 23:39:25+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                 19.954911        62.464924              0.319458                 52.0           Medium   
+14  LTE-TP-000015   LTE-TP-EP-000011 2025-08-26 23:39:28+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                 10.002969        62.464924              0.160137                 77.1             High   
+15  LTE-TP-000016   LTE-TP-EP-000012 2025-08-26 23:39:38+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942                 31.558970        62.464924              0.505227                 58.0           Medium   
+16  LTE-TP-000017   LTE-TP-EP-000013 2025-08-26 23:39:49+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                  5.074715        62.464924              0.081241                 92.6             High   
+17  LTE-TP-000018   LTE-TP-EP-000013 2025-08-26 23:39:50+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 11.458120        62.464924              0.183433                 77.2             High   
+18  LTE-TP-000019   LTE-TP-EP-000014 2025-08-26 23:40:00+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 42.788553        62.464924              0.685001                 56.0           Medium   
+19  LTE-TP-000020   LTE-TP-EP-000014 2025-08-26 23:40:01+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 14.048161        62.464924              0.224897                 75.7             High   
+20  LTE-TP-000021   LTE-TP-EP-000015 2025-08-26 23:40:22+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 18.609955        36.313052              0.512487                 50.0           Medium   
+21  LTE-TP-000022   LTE-TP-EP-000016 2025-08-26 23:40:34+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 14.108088        36.313052              0.388513                 54.5           Medium   
+22  LTE-TP-000023   LTE-TP-EP-000017 2025-08-26 23:40:51+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 18.521974        36.313052              0.510064                 50.0           Medium   
+24  LTE-TP-000025   LTE-TP-EP-000018 2025-08-26 23:40:55+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                  4.505971        36.313052              0.124087                 71.3             High   
+25  LTE-TP-000026   LTE-TP-EP-000019 2025-08-26 23:41:09+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 20.423988        36.313052              0.562442                 50.0           Medium   
+26  LTE-TP-000027   LTE-TP-EP-000020 2025-08-26 23:41:12+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                 18.024359        36.313052              0.496360                 50.0           Medium   
+27  LTE-TP-000028   LTE-TP-EP-000021 2025-08-26 23:41:14+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151                  0.339163        36.313052              0.009340                 89.6             High   
+
+                       anomaly_type    lte_rsrp   lte_sinr  serving_pci  
+6                       sudden_drop -107.881278  11.200307   145.084033  
+7         radio_limited_degradation -109.344985  10.849210   148.818988  
+8                rolling_local_drop -112.129987   7.649593   149.378357  
+9         radio_limited_degradation -107.801227   8.958227   146.549954  
+11   rb_efficiency_underperformance -108.113172   7.666737   275.991131  
+12              ca_underperformance -104.841185   6.999419   144.424617  
+13                      sudden_drop -109.368406   4.450391   150.875126  
+14                      sudden_drop -104.532038   8.451699   294.998855  
+15                      sudden_drop -108.850962   6.970211   276.919276  
+16              ca_underperformance -110.849834   5.508278   289.976224  
+17              ca_underperformance -105.021600   5.803287   291.084513  
+18                      sudden_drop -104.031297   6.906157   291.046947  
+19  rb_conditioned_underperformance -102.812000   3.691718   276.456383  
+20                      sudden_drop -108.004377   7.711926   288.369248  
+21                      sudden_drop -107.588731   7.333629   285.724185  
+22                      sudden_drop -109.930607   6.961193   288.923367  
+24                      sudden_drop -107.783904   6.119452   285.142966  
+25                      sudden_drop -103.849680   8.919997   291.997719  
+26                      sudden_drop -105.821992   6.864757   284.625073  
+27        radio_limited_degradation -108.281309   8.690104   287.379946  
+
+======================================================================
+Running stage: 07_post_anomaly_visual_qc.py
+======================================================================
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/10_anomaly_score_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/10b_anomaly_score_distribution_flagged_only.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/10c_anomaly_trigger_overlap_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/11_anomaly_method_percentages.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/12_anomaly_count_by_type.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/13_anomaly_count_by_severity.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/14_actual_vs_expected_with_anomalies.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/15_throughput_ratio_p75_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/16_throughput_gap_p75_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/17_route_by_anomaly_score.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/17c_route_with_anomaly_overlay.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/17b_route_by_download_analysis_window.png
+Selected anomaly summary:
+                  timestamp                                                                id               anomaly_type  \
+0 2025-08-26 23:45:35+02:00  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  radio_limited_degradation   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;iqr_extreme_l...                 94.1                  0.500098       108.960803   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp  lte_rsrq   lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       50.824613               0.00459                  0.00984         3.03461    low_rb_usage     low_or_uncertain           0.164798 -105.054689 -8.010726  16.395398       2.034531  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_1_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id anomaly_type  \
+0 2025-08-26 23:43:37+02:00  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  sudden_drop   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session_percentile_low_throughput;iqr_e...                 93.9                  0.648813       106.145386   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb   lte_rsrp  lte_rsrq   lte_sinr  carrier_count           download_context_label  \
+0                       50.824613              0.006112                 0.012766        0.410145    low_rb_usage     low_or_uncertain           1.581914 -97.938231 -7.833236  20.341303       2.003042  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_2_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_2_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id anomaly_type  \
+0 2025-08-26 23:45:43+02:00  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  sudden_drop   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;iqr_extreme_low_throughput;robust_z_ext...                 93.8                  0.897039        80.595527   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp  lte_rsrq   lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       50.824613               0.01113                  0.01765       65.164175    low_rb_usage     low_or_uncertain           0.013766 -102.227204 -7.093133  13.913368        1.94736  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_3_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_3_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id                    anomaly_type  \
+0 2025-08-26 23:43:04+02:00  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  rb_efficiency_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;rb_efficiency_underperformance;radio_p75_underperformance;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session...                 93.6                  1.400068        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value  rb_usage_bucket rb_demand_confidence  throughput_per_rb   lte_rsrp   lte_rsrq  lte_sinr  carrier_count           download_context_label  \
+0                       68.421373              0.022414                 0.020462      106.090386  medium_rb_usage               medium           0.013197 -111.71034 -11.998533  8.244473       1.973398  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_4_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_4_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id               anomaly_type  \
+0 2025-08-26 23:41:36+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  radio_limited_degradation   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session_perce...                 93.6                  0.221723        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       50.824613               0.00355                 0.004363       24.157673    low_rb_usage     low_or_uncertain           0.009178 -105.852217 -11.953762  5.390937       2.023653  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_5_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_5_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id         anomaly_type  \
+0 2025-08-26 23:39:49+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  ca_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  unexpected_underperformance;ca_underperformance;rb_efficiency_underperformance;rb_conditioned_underperformance;radio_p75_underperformance;rolling_local_drop;fixed_low_throughpu...                 92.6                  5.074715        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count           download_context_label  \
+0                       65.932257              0.081241                 0.076969      175.097495   high_rb_usage                 high           0.028982 -110.849834 -10.878242  5.508278       1.995729  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_6_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_6_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id anomaly_type  \
+0 2025-08-26 23:43:52+02:00  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  sudden_drop   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session_percentile_low_throughput;iqr_e...                 91.3                  6.908465       106.145386   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb   lte_rsrp  lte_rsrq   lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       50.824613              0.065085                 0.135928        58.15702    low_rb_usage     low_or_uncertain            0.11879 -99.840094 -7.418245  20.367937       2.008732  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_7_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_7_radio_context.png
+Selected anomaly summary:
+                  timestamp                                                                id                    anomaly_type  \
+0 2025-08-26 23:39:20+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942  rb_efficiency_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;rb_efficiency_underperformance;rb_conditioned_underperformance;radio_p75_underperformance;sudden_drop;rolling_local_drop;fixed_low_throughput;global_p...                 89.9                  1.781751        36.313052   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value  rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count     download_context_label  \
+0                       46.701309              0.049066                 0.038152       94.202056  medium_rb_usage               medium           0.018914 -108.113172 -10.253504  7.666737        1.00789  outside_download_activity   
+
+   download_analysis_window_flag  
+0                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_8_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_8_radio_context.png
+
+Representative anomaly type example: sudden_drop
+Selected anomaly summary:
+                  timestamp                                                                id anomaly_type  \
+0 2025-08-26 23:43:37+02:00  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  sudden_drop   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session_percentile_low_throughput;iqr_e...                 93.9                  0.648813       106.145386   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb   lte_rsrp  lte_rsrq   lte_sinr  carrier_count           download_context_label  \
+0                       50.824613              0.006112                 0.012766        0.410145    low_rb_usage     low_or_uncertain           1.581914 -97.938231 -7.833236  20.341303       2.003042  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_1_sudden_drop_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_1_sudden_drop_rank_1_radio_context.png
+
+Representative anomaly type example: radio_limited_degradation
+Selected anomaly summary:
+                  timestamp                                                                id               anomaly_type  \
+0 2025-08-26 23:45:35+02:00  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  radio_limited_degradation   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;resource_limited_or_demand_uncertain_low_throughput;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;iqr_extreme_l...                 94.1                  0.500098       108.960803   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp  lte_rsrq   lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       50.824613               0.00459                  0.00984         3.03461    low_rb_usage     low_or_uncertain           0.164798 -105.054689 -8.010726  16.395398       2.034531  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_2_radio_limited_degradation_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_2_radio_limited_degradation_rank_1_radio_context.png
+
+Representative anomaly type example: ca_underperformance
+Selected anomaly summary:
+                  timestamp                                                                id         anomaly_type  \
+0 2025-08-26 23:39:49+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  ca_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  unexpected_underperformance;ca_underperformance;rb_efficiency_underperformance;rb_conditioned_underperformance;radio_p75_underperformance;rolling_local_drop;fixed_low_throughpu...                 92.6                  5.074715        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count           download_context_label  \
+0                       65.932257              0.081241                 0.076969      175.097495   high_rb_usage                 high           0.028982 -110.849834 -10.878242  5.508278       1.995729  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_3_ca_underperformance_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_3_ca_underperformance_rank_1_radio_context.png
+
+Representative anomaly type example: rolling_local_drop
+Selected anomaly summary:
+                  timestamp                                                                id        anomaly_type  \
+0 2025-08-26 23:38:06+02:00  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942  rolling_local_drop   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  resource_limited_or_demand_uncertain_low_throughput;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session_percentile_low_throughput;iqr_extreme_low_t...                 75.8                  3.236115        36.313052   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count     download_context_label  download_analysis_window_flag  
+0                       24.639944              0.089117                 0.131336       51.323968    low_rb_usage     low_or_uncertain           0.063053 -112.129987 -11.962365  7.649593       0.985915  outside_download_activity                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_4_rolling_local_drop_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_4_rolling_local_drop_rank_1_radio_context.png
+
+Representative anomaly type example: rb_conditioned_underperformance
+Selected anomaly summary:
+                  timestamp                                                                id                     anomaly_type  \
+0 2025-08-26 23:40:01+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  rb_conditioned_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;rb_conditioned_underperformance;radio_p75_underperformance;sudden_drop;rolling_local_drop;global_percentile_low_throughput;session_percentile_low_thro...                 75.7                 14.048161        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value rb_usage_bucket rb_demand_confidence  throughput_per_rb  lte_rsrp   lte_rsrq  lte_sinr  carrier_count           download_context_label  \
+0                       65.932257              0.224897                  0.21307      175.425808   high_rb_usage                 high            0.08008  -102.812 -11.255862  3.691718       1.967916  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_5_rb_conditioned_underperformance_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_5_rb_conditioned_underperformance_rank_1_radio_context.png
+
+Representative anomaly type example: rb_efficiency_underperformance
+Selected anomaly summary:
+                  timestamp                                                                id                    anomaly_type  \
+0 2025-08-26 23:43:04+02:00  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  rb_efficiency_underperformance   
+
+                                                                                                                                                                    anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  expected_tp_p75  \
+0  radio_limited_degradation;rb_efficiency_underperformance;radio_p75_underperformance;sudden_drop;rolling_local_drop;fixed_low_throughput;global_percentile_low_throughput;session...                 93.6                  1.400068        62.464924   
+
+   expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value  rb_usage_bucket rb_demand_confidence  throughput_per_rb   lte_rsrp   lte_rsrq  lte_sinr  carrier_count           download_context_label  \
+0                       68.421373              0.022414                 0.020462      106.090386  medium_rb_usage               medium           0.013197 -111.71034 -11.998533  8.244473       1.973398  active_download_analysis_window   
+
+   download_analysis_window_flag  
+0                           True  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_6_rb_efficiency_underperformance_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_6_rb_efficiency_underperformance_rank_1_radio_context.png
+
+Representative anomaly type example: radio_p75_underperformance
+Selected anomaly summary:
+                  timestamp                                                                id                anomaly_type                                                         anomaly_type_flags  anomaly_score_0_100  actual_lte_dl_throughput  \
+0 2025-08-26 23:41:44+02:00  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  radio_p75_underperformance  unexpected_underperformance;radio_p75_underperformance;rolling_local_drop                 60.5                 18.387304   
+
+   expected_tp_p75  expected_tp_rb_conditioned_p75  throughput_ratio_p75  throughput_ratio_rb_p75  rb_usage_value  rb_usage_bucket rb_demand_confidence  throughput_per_rb    lte_rsrp   lte_rsrq  lte_sinr  carrier_count     download_context_label  \
+0        62.464924                       68.421373              0.294362                 0.268736      131.331847  medium_rb_usage               medium           0.140006 -105.211468 -12.295308  5.460585       2.022565  outside_download_activity   
+
+   download_analysis_window_flag  
+0                          False  
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_7_radio_p75_underperformance_rank_1_throughput_context.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_7_radio_p75_underperformance_rank_1_radio_context.png
+
+======================================================================
+Running stage: 08_ml_lstm_fusion_config.py
+======================================================================
+PyTorch is not available. The LSTM trial will be skipped.
+Reason: No module named 'torch'
+Pre-trained model artifacts found at /data/outputs/02_anomaly_detection/ml_model_artifacts — running in INFERENCE mode (skipping ML training).
+PyTorch available: False
+LSTM device: cpu
+OOF group folds: 5
+
+======================================================================
+Running stage: 09_feature_construction.py
+======================================================================
+Loading clean pre-anomaly parquet: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_feature_leakage_audit.csv  shape=(351, 7)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_safe_feature_views.csv  shape=(213, 3)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_safe_feature_list.csv  shape=(40, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_capability_pure_feature_list.csv  shape=(17, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_capability_contextual_feature_list.csv  shape=(21, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_resource_feature_list.csv  shape=(40, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_temporal_hgb_feature_list.csv  shape=(59, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_lstm_feature_list.csv  shape=(25, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_cell_aware_ablation_feature_list.csv  shape=(23, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_full_schema_leakage_audit.csv  shape=(394, 9)
+ML rows: 412
+Sessions: 4
+capability_pure: 15 numeric + 2 categorical
+capability: 18 numeric + 3 categorical
+resource: 34 numeric + 6 categorical
+capability_augmented: 22 numeric + 6 categorical
+cell_aware: 18 numeric + 5 categorical
+temporal_lag: 53 numeric + 6 categorical
+lstm_temporal: 25 numeric + 0 categorical
+               view                                          column  kept_for_ml                            reason    dtype  non_null_pct  unique_values
+0   capability_pure                                     ml_hour_sin        False  constant or single-value feature  float64         100.0              1
+1   capability_pure                                     ml_hour_cos        False  constant or single-value feature  float64         100.0              1
+17  capability_pure                                  neighbor_count        False  constant or single-value feature    int64         100.0              1
+18  capability_pure                              best_neighbor_rsrp        False  constant or single-value feature  float64           0.0              0
+19  capability_pure                           strong_neighbor_count        False  constant or single-value feature    int64         100.0              1
+20  capability_pure                serving_minus_best_neighbor_rsrp        False  constant or single-value feature  float64           0.0              0
+21  capability_pure                              neighbor_pci_count        False  constant or single-value feature    int64         100.0              1
+22  capability_pure                                  ca_active_flag        False                           missing  missing           NaN              0
+25  capability_pure                                    id_test_type        False  constant or single-value feature      str         100.0              1
+26  capability_pure                              ca_condition_label        False  constant or single-value feature      str         100.0              1
+27       capability                                     ml_hour_sin        False  constant or single-value feature  float64         100.0              1
+28       capability                                     ml_hour_cos        False  constant or single-value feature  float64         100.0              1
+44       capability                                  neighbor_count        False  constant or single-value feature    int64         100.0              1
+45       capability                              best_neighbor_rsrp        False  constant or single-value feature  float64           0.0              0
+46       capability                           strong_neighbor_count        False  constant or single-value feature    int64         100.0              1
+47       capability                serving_minus_best_neighbor_rsrp        False  constant or single-value feature  float64           0.0              0
+48       capability                              neighbor_pci_count        False  constant or single-value feature    int64         100.0              1
+49       capability  ml_log1p_measurement_report_event_count_prev5s        False  constant or single-value feature  float64         100.0              1
+50       capability        ml_log1p_handover_execution_count_prev5s        False  constant or single-value feature  float64         100.0              1
+51       capability         ml_log1p_handover_failure_count_prev10s        False  constant or single-value feature  float64         100.0              1
+52       capability             ml_log1p_rach_attempt_count_prev10s        False  constant or single-value feature  float64         100.0              1
+53       capability             ml_log1p_rach_failure_count_prev10s        False  constant or single-value feature  float64         100.0              1
+54       capability     ml_log1p_ca_activation_change_count_prev10s        False  constant or single-value feature  float64         100.0              1
+55       capability            ml_log1p_failure_other_count_prev10s        False  constant or single-value feature  float64         100.0              1
+56       capability         near_measurement_report_event_prev_flag        False  constant or single-value feature     bool         100.0              1
+57       capability               near_handover_execution_prev_flag        False  constant or single-value feature     bool         100.0              1
+58       capability                 near_handover_failure_prev_flag        False  constant or single-value feature     bool         100.0              1
+59       capability                     near_rach_failure_prev_flag        False  constant or single-value feature     bool         100.0              1
+60       capability             near_ca_activation_change_prev_flag        False  constant or single-value feature     bool         100.0              1
+61       capability                    near_failure_other_prev_flag        False  constant or single-value feature     bool         100.0              1
+                    view feature_type  features
+0             capability  categorical         3
+1             capability      numeric        18
+2   capability_augmented  categorical         6
+3   capability_augmented      numeric        22
+4        capability_pure  categorical         2
+5        capability_pure      numeric        15
+6             cell_aware  categorical         5
+7             cell_aware      numeric        18
+8          lstm_temporal      numeric        25
+9               resource  categorical         6
+10              resource      numeric        34
+11          temporal_lag  categorical         6
+12          temporal_lag      numeric        53
+
+======================================================================
+Running stage: 10_preprocessors_crossfit.py
+======================================================================
+
+======================================================================
+Running inference stage: _inference_only.py (replaces stages 11-13)
+======================================================================
+  Loaded hgb_resource_q50.joblib -> expected_tp_ml_hgb_resource_q50
+  Loaded hgb_strict_causal_temporal_q50.joblib -> expected_tp_ml_hgb_temporal_q50
+  Loaded gb_resource_q75_calibrated_base.joblib -> expected_tp_ml_q75_resource
+Inference mode: loaded 3 production models and generated predictions.
+Reduced causal predictive model set completed (inference).
+
+======================================================================
+Skipping stage: 12_lstm_helpers.py (inference mode)
+======================================================================
+
+======================================================================
+Skipping stage: 13_execute_lstm_crossfit.py (inference mode)
+======================================================================
+
+======================================================================
+Running stage: 14_reduced_ml_anomaly_logic.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_residual_thresholds_oof.csv  shape=(4, 5)
+Inference mode: loaded saved IsolationForest model.
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_anomaly_method_summary.csv  shape=(8, 4)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_anomaly_score_distribution_qc.csv  shape=(1, 8)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_model_agreement_summary.csv  shape=(3, 6)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_ml_review_context_not_final.csv  shape=(46, 468)
+Saved Parquet: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_dl_anomaly_audit_table_with_ml.parquet  shape=(412, 468)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_ml.csv  shape=(2, 468)
+                               method_or_case                             flag_role  flagged_rows  flagged_pct
+0       ml_q75_resource_underperformance_flag           PRODUCTION_resource_trigger             9     2.184466
+1       ml_hgb_resource_underperformance_flag           PRODUCTION_resource_trigger             3     0.728155
+2       ml_hgb_temporal_underperformance_flag           PRODUCTION_temporal_trigger             3     0.728155
+3           ml_lstm_q50_underperformance_flag               CONTEXT_validation_only             0     0.000000
+4                         ml_iforest_raw_flag  CONTEXT_unsupervised_validation_only             8     1.941748
+5  ml_iforest_confirmed_underperformance_flag               CONTEXT_validation_only             2     0.485437
+6                   ml_anomaly_candidate_flag                        candidate_gate            10     2.427184
+7                    is_ml_throughput_anomaly          strict_production_final_gate             2     0.485437
+   rows  ml_candidate_rows  ml_final_anomaly_rows  ml_final_anomaly_pct  single_family_final_rows  lstm_oof_available_pct  lstm_context_overlap_with_final_pct  iforest_context_overlap_with_final_pct
+0   412                 10                      2                0.4854                         0                     0.0                                  0.0                                    50.0
+   ml_independent_trigger_count  rows  final_ml_anomalies  median_ml_score  median_confidence  median_actual_tp
+0                             0   402                   0            0.000              3.000            33.674
+1                             1     8                   0            0.000             59.535            12.753
+2                             2     2                   2           73.375             89.760             6.127
+
+======================================================================
+Running stage: 15_final_ml_validation_plots.py
+======================================================================
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/ml_21_actual_vs_hgb_temporal_oof.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/ml_22_actual_vs_hgb_resource_oof.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/ml_23_actual_vs_q75_resource_oof.png
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/ml_final_model_selection_summary.csv  shape=(4, 5)
+                                                  model                     role                                                                                                            selection_reason  mean_r2_mbps  mean_mae_mbps
+0                        HGB_strict_causal_temporal_Q50          KEEP_PRODUCTION                                                                          KEEP: pre-trained strict-causal forecasting model.           NaN            NaN
+1                          HGB_resource_conditioned_Q50          KEEP_PRODUCTION                                                                   KEEP: pre-trained resource-conditioned central predictor.           NaN            NaN
+2  GradientBoosting_resource_conditioned_Q75_calibrated          KEEP_PRODUCTION                                                           KEEP: pre-trained calibrated upper expected-throughput reference.           NaN            NaN
+3                        IsolationForest_residual_space  CONTEXT_VALIDATION_ONLY  VALIDATION ONLY: unsupervised residual-space corroboration; not a throughput predictor and excluded from final cases/JSON.           NaN            NaN
+
+======================================================================
+Running stage: 16_fusion_layer.py
+======================================================================
+Saved Parquet: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_fused_row_level.parquet  shape=(412, 637)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_final_fused_row_level.csv  shape=(21, 637)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/ml_vs_statistical_overlap_summary.csv  shape=(12, 5)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/final_score_fusion_distribution_summary.csv  shape=(8, 9)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/score_fusion_method_comparison.csv  shape=(3, 7)
+          statistical_definition  statistical_flag  ml_final_flag  rows  pct_all_rows
+0    broad_statistical_candidate             False          False   343     83.252427
+1    broad_statistical_candidate             False           True     0      0.000000
+2    broad_statistical_candidate              True          False    67     16.262136
+3    broad_statistical_candidate              True           True     2      0.485437
+4        statistical_rca_handoff             False          False   357     86.650485
+5        statistical_rca_handoff             False           True     0      0.000000
+6        statistical_rca_handoff              True          False    53     12.864078
+7        statistical_rca_handoff              True           True     2      0.485437
+8   statistical_high_or_critical             False          False   382     92.718447
+9   statistical_high_or_critical             False           True     0      0.000000
+10  statistical_high_or_critical              True          False    28      6.796117
+11  statistical_high_or_critical              True           True     2      0.485437
+                  fusion_source final_priority_severity detection_confidence  rows  median_actual_tp  median_final_priority  median_raw_priority  median_impact  median_confidence
+0                not_handed_off                  Normal                 High     4            27.047                  0.000               49.040         35.750             65.275
+1                not_handed_off                  Normal                  Low   351            36.380                  0.000                2.840          0.000              6.320
+2                not_handed_off                  Normal               Medium    36            18.151                  0.000               31.165         20.465             49.990
+3  statistical_and_ml_consensus                    High            Very High     2             6.127                 87.210               87.210         76.740            100.000
+4     statistical_only_retained                    High                 High     6             0.574                 73.375               73.375         72.715             72.800
+5     statistical_only_retained                    High            Very High     6             4.831                 84.175               84.175         78.265             86.145
+6     statistical_only_retained                  Medium                 High     6            13.767                 60.865               60.865         54.285             65.380
+7     statistical_only_retained                  Medium               Medium     1            34.400                 54.380               54.380         53.860             55.020
+Final fused row handoff: 21 rows
+
+======================================================================
+Running stage: 17_episodes_and_incidents.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_final_fused_episode_rows_all_candidates.csv  shape=(21, 640)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomaly_episodes_all_candidates.csv  shape=(18, 52)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomalies_final_fused_episode_rows.csv  shape=(15, 640)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_anomaly_episodes_final_rca_handoff.csv  shape=(12, 52)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/lte_throughput_operational_incidents_final_rca_handoff.csv  shape=(12, 18)
+All candidate fused episodes: 18
+Strict final RCA episodes: 12
+Operational RCA incidents: 12
+    final_episode_id                                                                id         route_label                start_time                  end_time  rows  latitude_start  longitude_start  latitude_end  longitude_end  primary_serving_pci  \
+17  LTE-TP-EP-000018  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:52+02:00 2025-08-26 23:45:52+02:00     1      -17.815219       177.399136    -17.815219     177.399136           147.194393   
+0   LTE-TP-EP-000001  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942  Fiji-Nadi-LTE-DL-D 2025-08-26 23:39:20+02:00 2025-08-26 23:39:21+02:00     2      -17.814575       177.396751    -17.824097     177.396507           144.424617   
+16  LTE-TP-EP-000017  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:43+02:00 2025-08-26 23:45:43+02:00     1      -17.816382       177.400674    -17.816382     177.400674           140.629338   
+1   LTE-TP-EP-000002  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:39:49+02:00 2025-08-26 23:39:50+02:00     2      -17.810622       177.395866    -17.820949     177.394801           289.976224   
+11  LTE-TP-EP-000012  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:04+02:00 2025-08-26 23:43:04+02:00     1      -17.814484       177.396194    -17.814484     177.396194           134.916290   
+8   LTE-TP-EP-000009  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:42:12+02:00 2025-08-26 23:42:12+02:00     1      -17.814440       177.396790    -17.814440     177.396790           147.719750   
+15  LTE-TP-EP-000016  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:35+02:00 2025-08-26 23:45:35+02:00     1      -17.805608       177.399722    -17.805608     177.399722           149.611130   
+4   LTE-TP-EP-000005  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:41:36+02:00 2025-08-26 23:41:36+02:00     1      -17.816252       177.396567    -17.816252     177.396567           298.608689   
+13  LTE-TP-EP-000014  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:52+02:00 2025-08-26 23:43:52+02:00     1      -17.809351       177.401284    -17.809351     177.401284           150.509459   
+12  LTE-TP-EP-000013  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:37+02:00 2025-08-26 23:43:37+02:00     1      -17.815810       177.397987    -17.815810     177.397987           144.865723   
+3   LTE-TP-EP-000004  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:41:14+02:00 2025-08-26 23:41:14+02:00     1      -17.812502       177.397904    -17.812502     177.397904           287.379946   
+2   LTE-TP-EP-000003  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:40:00+02:00 2025-08-26 23:40:01+02:00     2      -17.818158       177.395370    -17.817507     177.394365           276.456383   
+
+    primary_earfcn  primary_band  min_actual_tp  median_actual_tp  max_expected_tp  max_expected_gap  min_actual_expected_ratio  max_row_priority  mean_row_priority  max_row_impact  mean_row_impact  max_row_confidence  mean_row_confidence  consensus_rows  \
+17    40271.018451     42.032504      10.473161         10.473161       108.960803         98.487642                   0.096119             89.72             89.720           81.30           81.300              100.00              100.000               1   
+0     40923.366098     40.877993       1.781751          4.952318        62.464924         54.342039                   0.049066             84.70             80.840           72.18           70.805              100.00               93.105               1   
+16    41943.900162     40.579964       0.897039          0.897039        56.475165         55.578126                   0.015884             87.46             87.460           88.59           88.590               86.08               86.080               0   
+1     40279.696849     39.135916       5.074715          8.266418        62.464924         57.390209                   0.081241             85.33             78.505           77.61           69.045               94.76               90.070               0   
+11    42229.439987     40.304451       1.400068          1.400068        62.464924         61.064856                   0.022414             85.91             85.910           87.47           87.470               84.00               84.000               0   
+8     41735.205581     40.752049       4.587663          4.587663        62.464924         57.877261                   0.073444             83.02             83.020           78.92           78.920               88.02               88.020               0   
+15    39619.668925     42.651472       0.500098          0.500098        52.775076         52.274978                   0.009476             81.50             81.500           87.97           87.970               73.60               73.600               0   
+4     41444.122219     39.987768       0.221723          0.221723        25.267329         25.045606                   0.008775             75.68             75.680           77.39           77.390               73.60               73.600               0   
+13    42156.410399     39.086816       6.908465          6.908465        50.760730         43.852265                   0.136099             74.12             74.120           72.28           72.280               76.38               76.380               0   
+12    39998.261505     41.194188       0.648813          0.648813        20.061945         19.413132                   0.032341             72.63             72.630           73.15           73.150               72.00               72.000               0   
+3     42255.308579     40.680987       0.339163          0.339163              NaN               NaN                        NaN             68.03             68.030           68.81           68.810               67.08               67.080               0   
+2     39512.334842     40.616317      14.048161         28.418357        80.177684         48.416763                   0.224897             63.94             59.945           53.53           45.790               77.82               77.245               0   
+
+    statistical_only_rows  ml_only_rows        dominant_statistical_type                                dominant_ml_type            fusion_source_mode  duration_seconds  distance_affected_m  agreement_pct  episode_impact_score_0_100  \
+17                      0             0              ca_underperformance       ml_quantile_p75_resource_underperformance  statistical_and_ml_consensus               0.0           461.771737          100.0                       65.31   
+0                       1             0              ca_underperformance       ml_quantile_p75_resource_underperformance  statistical_and_ml_consensus               1.0          1211.849562           50.0                       61.07   
+16                      1             0                      sudden_drop                                          normal     statistical_only_retained               0.0           332.082667            0.0                       70.78   
+1                       2             0              ca_underperformance       ml_quantile_p75_resource_underperformance     statistical_only_retained               1.0          1153.842374            0.0                       63.70   
+11                      1             0   rb_efficiency_underperformance                                          normal     statistical_only_retained               0.0            93.224898            0.0                       69.94   
+8                       1             0              ca_underperformance       ml_quantile_p75_resource_underperformance     statistical_only_retained               0.0           818.865959            0.0                       63.53   
+15                      1             0        radio_limited_degradation                                          normal     statistical_only_retained               0.0           849.937258            0.0                       70.31   
+4                       1             0        radio_limited_degradation                                          normal     statistical_only_retained               0.0           522.125406            0.0                       62.38   
+13                      1             0                      sudden_drop                                          normal     statistical_only_retained               0.0           335.437154            0.0                       58.55   
+12                      1             0                      sudden_drop                                          normal     statistical_only_retained               0.0           153.078435            0.0                       59.20   
+3                       1             0        radio_limited_degradation                                          normal     statistical_only_retained               0.0           382.936222            0.0                       55.94   
+2                       2             0  rb_conditioned_underperformance  ml_hgb_strict_causal_temporal_underperformance     statistical_only_retained               1.0           308.965243            0.0                       45.81   
+
+    episode_detection_confidence_0_100  episode_final_priority_0_100 episode_impact_severity episode_detection_confidence  underperform_vs_p75_flag_rows  underperform_vs_rb_p75_flag_rows  low_rb_efficiency_high_rb_flag_rows  ca_underperformance_flag_rows  \
+17                              100.00                         80.92                    High                    Very High                              1                                 0                                    0                              1   
+0                                90.78                         74.44                    High                    Very High                              2                                 1                                    2                              1   
+16                               73.17                         71.85                    High                         High                              0                                 0                                    0                              0   
+1                                79.37                         70.75                    High                         High                              2                                 1                                    1                              2   
+11                               71.40                         70.60                    High                         High                              1                                 0                                    1                              0   
+8                                74.82                         68.61                    High                         High                              1                                 1                                    1                              1   
+15                               62.56                         66.82                    High                         High                              0                                 0                                    0                              0   
+4                                62.56                         62.46                    High                         High                              0                                 0                                    0                              0   
+13                               64.92                         61.42                    High                         High                              0                                 0                                    0                              0   
+12                               61.20                         60.10                    High                         High                              0                                 0                                    0                              0   
+3                                57.02                         56.43                    High                       Medium                              0                                 0                                    0                              0   
+2                                66.00                         54.89                  Medium                         High                              1                                 1                                    0                              0   
+
+    ml_q75_resource_underperformance_flag_rows  ml_hgb_resource_underperformance_flag_rows  ml_hgb_temporal_underperformance_flag_rows  near_handover_execution_flag_rows  near_handover_failure_flag_rows  near_rach_failure_flag_rows  \
+17                                           1                                           1                                           1                                  0                                0                            0   
+0                                            2                                           1                                           1                                  0                                0                            0   
+16                                           0                                           0                                           0                                  0                                0                            0   
+1                                            2                                           1                                           0                                  0                                0                            0   
+11                                           0                                           0                                           0                                  0                                0                            0   
+8                                            1                                           0                                           0                                  0                                0                            0   
+15                                           0                                           0                                           0                                  0                                0                            0   
+4                                            0                                           0                                           0                                  0                                0                            0   
+13                                           0                                           0                                           0                                  0                                0                            0   
+12                                           0                                           0                                           0                                  0                                0                            0   
+3                                            0                                           0                                           0                                  0                                0                            0   
+2                                            1                                           0                                           1                                  0                                0                            0   
+
+    near_ca_activation_change_flag_rows  strong_direct_evidence_rows  final_episode_handoff_flag episode_priority_severity  
+17                                    0                            5                        True                      High  
+0                                     0                           10                        True                      High  
+16                                    0                            0                        True                      High  
+1                                     0                            9                        True                      High  
+11                                    0                            2                        True                      High  
+8                                     0                            5                        True                      High  
+15                                    0                            0                        True                      High  
+4                                     0                            0                        True                    Medium  
+13                                    0                            0                        True                    Medium  
+12                                    0                            0                        True                    Medium  
+3                                     0                            0                        True                    Medium  
+2                                     0                            4                        True                    Medium  
+   operational_incident_id                                                                id         route_label                start_time                  end_time  strict_episodes  rows  max_priority  mean_priority  max_impact  max_confidence  \
+11              INC-000012  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:52+02:00 2025-08-26 23:45:52+02:00                1     1         80.92          80.92       65.31          100.00   
+0               INC-000001  542020041221088+20250827094025+Fiji-Nadi-LTE-DL-D!20250827093942  Fiji-Nadi-LTE-DL-D 2025-08-26 23:39:20+02:00 2025-08-26 23:39:21+02:00                1     2         74.44          74.44       61.07           90.78   
+10              INC-000011  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:43+02:00 2025-08-26 23:45:43+02:00                1     1         71.85          71.85       70.78           73.17   
+1               INC-000002  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:39:49+02:00 2025-08-26 23:39:50+02:00                1     2         70.75          70.75       63.70           79.37   
+6               INC-000007  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:04+02:00 2025-08-26 23:43:04+02:00                1     1         70.60          70.60       69.94           71.40   
+5               INC-000006  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:42:12+02:00 2025-08-26 23:42:12+02:00                1     1         68.61          68.61       63.53           74.82   
+9               INC-000010  542020041221088+20250827094925+Fiji-Nadi-LTE-DL-D!20250827094611  Fiji-Nadi-LTE-DL-D 2025-08-26 23:45:35+02:00 2025-08-26 23:45:35+02:00                1     1         66.82          66.82       70.31           62.56   
+4               INC-000005  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:41:36+02:00 2025-08-26 23:41:36+02:00                1     1         62.46          62.46       62.38           62.56   
+8               INC-000009  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:52+02:00 2025-08-26 23:43:52+02:00                1     1         61.42          61.42       58.55           64.92   
+7               INC-000008  542020041221088+20250827094725+Fiji-Nadi-LTE-DL-D!20250827094401  Fiji-Nadi-LTE-DL-D 2025-08-26 23:43:37+02:00 2025-08-26 23:43:37+02:00                1     1         60.10          60.10       59.20           61.20   
+3               INC-000004  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:41:14+02:00 2025-08-26 23:41:14+02:00                1     1         56.43          56.43       55.94           57.02   
+2               INC-000003  542020041221088+20250827094505+Fiji-Nadi-LTE-DL-D!20250827094151  Fiji-Nadi-LTE-DL-D 2025-08-26 23:40:00+02:00 2025-08-26 23:40:01+02:00                1     2         54.89          54.89       45.81           66.00   
+
+    consensus_rows  statistical_only_rows  ml_only_rows        dominant_statistical_type                                dominant_ml_type  primary_serving_pci  duration_seconds  
+11               1                      0             0              ca_underperformance       ml_quantile_p75_resource_underperformance           147.194393               0.0  
+0                1                      1             0              ca_underperformance       ml_quantile_p75_resource_underperformance           144.424617               1.0  
+10               0                      1             0                      sudden_drop                                          normal           140.629338               0.0  
+1                0                      2             0              ca_underperformance       ml_quantile_p75_resource_underperformance           289.976224               1.0  
+6                0                      1             0   rb_efficiency_underperformance                                          normal           134.916290               0.0  
+5                0                      1             0              ca_underperformance       ml_quantile_p75_resource_underperformance           147.719750               0.0  
+9                0                      1             0        radio_limited_degradation                                          normal           149.611130               0.0  
+4                0                      1             0        radio_limited_degradation                                          normal           298.608689               0.0  
+8                0                      1             0                      sudden_drop                                          normal           150.509459               0.0  
+7                0                      1             0                      sudden_drop                                          normal           144.865723               0.0  
+3                0                      1             0        radio_limited_degradation                                          normal           287.379946               0.0  
+2                0                      2             0  rb_conditioned_underperformance  ml_hgb_strict_causal_temporal_underperformance           276.456383               1.0  
+[mongo] wrote 12 documents to ran_telco.rca_anomaly_incidents_full_compact
+[mongo] wrote 12 documents to ran_telco.rca_anomaly_incidents_shortlist_diverse
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_full_compact.csv  shape=(12, 12)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_shortlist_diverse.csv  shape=(12, 12)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_json_schema_dictionary.csv  shape=(13, 3)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/top_anomaly_case_gap_drop_plot_index.csv  shape=(9, 9)
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/FINAL_RCA_KEY_FILES_MANIFEST.csv  shape=(9, 2)
+Compact RCA incidents: 12 | Diverse shortlist: 12
+   incident_id             detection_case  priority_score_0_100 severity  requires_human_review
+0   INC-000012        ca_underperformance                 89.72     High                  False
+1   INC-000002        ca_underperformance                 85.33     High                  False
+2   INC-000001        ca_underperformance                 84.70     High                  False
+3   INC-000011        temporal_local_drop                 87.46     High                  False
+4   INC-000009        temporal_local_drop                 74.12     High                  False
+5   INC-000008        temporal_local_drop                 72.63     High                  False
+6   INC-000007  radio_limited_degradation                 85.91     High                  False
+7   INC-000010  radio_limited_degradation                 81.50     High                  False
+8   INC-000005  radio_limited_degradation                 75.68     High                  False
+9   INC-000006        ca_underperformance                 83.02     High                  False
+10  INC-000004  radio_limited_degradation                 68.03     High                  False
+11  INC-000003  radio_limited_degradation                 63.94   Medium                  False
+
+======================================================================
+Running stage: 18_fusion_episode_visual_validation.py
+======================================================================
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/50_final_fused_row_priority_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/51_statistical_vs_ml_score_fusion.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/52_fusion_method_ecdf_comparison.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/52_final_handoff_by_fusion_source.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/53_route_final_fused_anomaly_overlay.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/54_final_episode_priority_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/55_episode_duration_vs_priority.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/56_final_detection_funnel.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_01.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_02.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_03.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_04.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_05.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_06.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_07.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_08.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/58_operational_incident_priority_distribution.png
+
+======================================================================
+Running stage: 19_final_artifacts_and_index.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/final_output_file_index.csv  shape=(182, 3)
+Final optimized pipeline artifacts indexed: 182
+              category                                                                                     file                                                                                                                                   path
+82               plots                                                            04_throughput_by_sinr_bin.png                                                              /data/outputs/session_09e2082f46c3/03_plots/04_throughput_by_sinr_bin.png
+83               plots                                                       05_throughput_by_carrier_count.png                                                         /data/outputs/session_09e2082f46c3/03_plots/05_throughput_by_carrier_count.png
+84               plots                                                       05b_throughput_by_ca_condition.png                                                         /data/outputs/session_09e2082f46c3/03_plots/05b_throughput_by_ca_condition.png
+85               plots                                                         05c_throughput_by_agg_rb_bin.png                                                           /data/outputs/session_09e2082f46c3/03_plots/05c_throughput_by_agg_rb_bin.png
+86               plots                                                                     05d_tp_vs_agg_rb.png                                                                       /data/outputs/session_09e2082f46c3/03_plots/05d_tp_vs_agg_rb.png
+87               plots                                                    05e_throughput_by_rb_usage_bucket.png                                                      /data/outputs/session_09e2082f46c3/03_plots/05e_throughput_by_rb_usage_bucket.png
+88               plots                                                                        06_tp_vs_rsrp.png                                                                          /data/outputs/session_09e2082f46c3/03_plots/06_tp_vs_rsrp.png
+89               plots                                                                        07_tp_vs_rsrq.png                                                                          /data/outputs/session_09e2082f46c3/03_plots/07_tp_vs_rsrq.png
+90               plots                                                                        08_tp_vs_sinr.png                                                                          /data/outputs/session_09e2082f46c3/03_plots/08_tp_vs_sinr.png
+91               plots                                                               09_route_by_throughput.png                                                                 /data/outputs/session_09e2082f46c3/03_plots/09_route_by_throughput.png
+92               plots                                                        10_anomaly_score_distribution.png                                                          /data/outputs/session_09e2082f46c3/03_plots/10_anomaly_score_distribution.png
+93               plots                                          10b_anomaly_score_distribution_flagged_only.png                                            /data/outputs/session_09e2082f46c3/03_plots/10b_anomaly_score_distribution_flagged_only.png
+94               plots                                             10c_anomaly_trigger_overlap_distribution.png                                               /data/outputs/session_09e2082f46c3/03_plots/10c_anomaly_trigger_overlap_distribution.png
+95               plots                                                        11_anomaly_method_percentages.png                                                          /data/outputs/session_09e2082f46c3/03_plots/11_anomaly_method_percentages.png
+96               plots                                                             12_anomaly_count_by_type.png                                                               /data/outputs/session_09e2082f46c3/03_plots/12_anomaly_count_by_type.png
+97               plots                                                         13_anomaly_count_by_severity.png                                                           /data/outputs/session_09e2082f46c3/03_plots/13_anomaly_count_by_severity.png
+98               plots                                                 14_actual_vs_expected_with_anomalies.png                                                   /data/outputs/session_09e2082f46c3/03_plots/14_actual_vs_expected_with_anomalies.png
+99               plots                                                 15_throughput_ratio_p75_distribution.png                                                   /data/outputs/session_09e2082f46c3/03_plots/15_throughput_ratio_p75_distribution.png
+100              plots                                                   16_throughput_gap_p75_distribution.png                                                     /data/outputs/session_09e2082f46c3/03_plots/16_throughput_gap_p75_distribution.png
+101              plots                                                            17_route_by_anomaly_score.png                                                              /data/outputs/session_09e2082f46c3/03_plots/17_route_by_anomaly_score.png
+102              plots                                                17b_route_by_download_analysis_window.png                                                  /data/outputs/session_09e2082f46c3/03_plots/17b_route_by_download_analysis_window.png
+103              plots                                                       17c_route_with_anomaly_overlay.png                                                         /data/outputs/session_09e2082f46c3/03_plots/17c_route_with_anomaly_overlay.png
+104              plots                                  18_top_anomaly_episode_context_rank_1_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_1_radio_context.png
+105              plots                             18_top_anomaly_episode_context_rank_1_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_1_throughput_context.png
+106              plots                                  18_top_anomaly_episode_context_rank_2_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_2_radio_context.png
+107              plots                             18_top_anomaly_episode_context_rank_2_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_2_throughput_context.png
+108              plots                                  18_top_anomaly_episode_context_rank_3_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_3_radio_context.png
+109              plots                             18_top_anomaly_episode_context_rank_3_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_3_throughput_context.png
+110              plots                                  18_top_anomaly_episode_context_rank_4_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_4_radio_context.png
+111              plots                             18_top_anomaly_episode_context_rank_4_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_4_throughput_context.png
+112              plots                                  18_top_anomaly_episode_context_rank_5_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_5_radio_context.png
+113              plots                             18_top_anomaly_episode_context_rank_5_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_5_throughput_context.png
+114              plots                                  18_top_anomaly_episode_context_rank_6_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_6_radio_context.png
+115              plots                             18_top_anomaly_episode_context_rank_6_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_6_throughput_context.png
+116              plots                                  18_top_anomaly_episode_context_rank_7_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_7_radio_context.png
+117              plots                             18_top_anomaly_episode_context_rank_7_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_7_throughput_context.png
+118              plots                                  18_top_anomaly_episode_context_rank_8_radio_context.png                                    /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_8_radio_context.png
+119              plots                             18_top_anomaly_episode_context_rank_8_throughput_context.png                               /data/outputs/session_09e2082f46c3/03_plots/18_top_anomaly_episode_context_rank_8_throughput_context.png
+120              plots                           19_type_example_context_1_sudden_drop_rank_1_radio_context.png                             /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_1_sudden_drop_rank_1_radio_context.png
+121              plots                      19_type_example_context_1_sudden_drop_rank_1_throughput_context.png                        /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_1_sudden_drop_rank_1_throughput_context.png
+122              plots             19_type_example_context_2_radio_limited_degradation_rank_1_radio_context.png               /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_2_radio_limited_degradation_rank_1_radio_context.png
+123              plots        19_type_example_context_2_radio_limited_degradation_rank_1_throughput_context.png          /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_2_radio_limited_degradation_rank_1_throughput_context.png
+124              plots                   19_type_example_context_3_ca_underperformance_rank_1_radio_context.png                     /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_3_ca_underperformance_rank_1_radio_context.png
+125              plots              19_type_example_context_3_ca_underperformance_rank_1_throughput_context.png                /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_3_ca_underperformance_rank_1_throughput_context.png
+126              plots                    19_type_example_context_4_rolling_local_drop_rank_1_radio_context.png                      /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_4_rolling_local_drop_rank_1_radio_context.png
+127              plots               19_type_example_context_4_rolling_local_drop_rank_1_throughput_context.png                 /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_4_rolling_local_drop_rank_1_throughput_context.png
+128              plots       19_type_example_context_5_rb_conditioned_underperformance_rank_1_radio_context.png         /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_5_rb_conditioned_underperformance_rank_1_radio_context.png
+129              plots  19_type_example_context_5_rb_conditioned_underperformance_rank_1_throughput_context.png    /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_5_rb_conditioned_underperformance_rank_1_throughput_context.png
+130              plots        19_type_example_context_6_rb_efficiency_underperformance_rank_1_radio_context.png          /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_6_rb_efficiency_underperformance_rank_1_radio_context.png
+131              plots   19_type_example_context_6_rb_efficiency_underperformance_rank_1_throughput_context.png     /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_6_rb_efficiency_underperformance_rank_1_throughput_context.png
+132              plots            19_type_example_context_7_radio_p75_underperformance_rank_1_radio_context.png              /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_7_radio_p75_underperformance_rank_1_radio_context.png
+133              plots       19_type_example_context_7_radio_p75_underperformance_rank_1_throughput_context.png         /data/outputs/session_09e2082f46c3/03_plots/19_type_example_context_7_radio_p75_underperformance_rank_1_throughput_context.png
+134              plots                                             50_final_fused_row_priority_distribution.png                                               /data/outputs/session_09e2082f46c3/03_plots/50_final_fused_row_priority_distribution.png
+135              plots                                                    51_statistical_vs_ml_score_fusion.png                                                      /data/outputs/session_09e2082f46c3/03_plots/51_statistical_vs_ml_score_fusion.png
+136              plots                                                    52_final_handoff_by_fusion_source.png                                                      /data/outputs/session_09e2082f46c3/03_plots/52_final_handoff_by_fusion_source.png
+137              plots                                                     52_fusion_method_ecdf_comparison.png                                                       /data/outputs/session_09e2082f46c3/03_plots/52_fusion_method_ecdf_comparison.png
+138              plots                                                 53_route_final_fused_anomaly_overlay.png                                                   /data/outputs/session_09e2082f46c3/03_plots/53_route_final_fused_anomaly_overlay.png
+139              plots                                               54_final_episode_priority_distribution.png                                                 /data/outputs/session_09e2082f46c3/03_plots/54_final_episode_priority_distribution.png
+140              plots                                                      55_episode_duration_vs_priority.png                                                        /data/outputs/session_09e2082f46c3/03_plots/55_episode_duration_vs_priority.png
+141              plots                                                            56_final_detection_funnel.png                                                              /data/outputs/session_09e2082f46c3/03_plots/56_final_detection_funnel.png
+142              plots                                                      57_top_fused_episode_context_01.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_01.png
+143              plots                                                      57_top_fused_episode_context_02.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_02.png
+144              plots                                                      57_top_fused_episode_context_03.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_03.png
+145              plots                                                      57_top_fused_episode_context_04.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_04.png
+146              plots                                                      57_top_fused_episode_context_05.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_05.png
+147              plots                                                      57_top_fused_episode_context_06.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_06.png
+148              plots                                                      57_top_fused_episode_context_07.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_07.png
+149              plots                                                      57_top_fused_episode_context_08.png                                                        /data/outputs/session_09e2082f46c3/03_plots/57_top_fused_episode_context_08.png
+150              plots                                        58_operational_incident_priority_distribution.png                                          /data/outputs/session_09e2082f46c3/03_plots/58_operational_incident_priority_distribution.png
+151              plots                                                     ml_21_actual_vs_hgb_temporal_oof.png                                                       /data/outputs/session_09e2082f46c3/03_plots/ml_21_actual_vs_hgb_temporal_oof.png
+152              plots                                                     ml_22_actual_vs_hgb_resource_oof.png                                                       /data/outputs/session_09e2082f46c3/03_plots/ml_22_actual_vs_hgb_resource_oof.png
+153              plots                                                     ml_23_actual_vs_q75_resource_oof.png                                                       /data/outputs/session_09e2082f46c3/03_plots/ml_23_actual_vs_q75_resource_oof.png
+154              plots                                          stat_28_fusion_component_contribution_audit.png                                            /data/outputs/session_09e2082f46c3/03_plots/stat_28_fusion_component_contribution_audit.png
+155  final_rca_handoff                                                   rca_anomaly_incidents_full_compact.csv                                         /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_full_compact.csv
+156  final_rca_handoff                                                  rca_anomaly_incidents_full_compact.json                                        /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_full_compact.json
+157  final_rca_handoff                                              rca_anomaly_incidents_shortlist_diverse.csv                                    /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_shortlist_diverse.csv
+158  final_rca_handoff                                             rca_anomaly_incidents_shortlist_diverse.json                                   /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_anomaly_incidents_shortlist_diverse.json
+159  final_rca_handoff                                                           rca_json_schema_dictionary.csv                                                 /data/outputs/session_09e2082f46c3/04_rca_handoff_final/rca_json_schema_dictionary.csv
+160  final_rca_handoff                                                 top_anomaly_case_gap_drop_plot_index.csv                                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/top_anomaly_case_gap_drop_plot_index.csv
+161  final_rca_handoff                                                        worst_performing_cells_ranked.csv                                              /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_cells_ranked.csv
+162  final_rca_handoff                                                  worst_performing_cells_rca_handoff.json                                        /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_cells_rca_handoff.json
+163  final_rca_handoff                                                          worst_performing_pci_ranked.csv                                                /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_pci_ranked.csv
+164  final_rca_handoff                                                    worst_performing_pci_rca_handoff.json                                          /data/outputs/session_09e2082f46c3/04_rca_handoff_final/worst_performing_pci_rca_handoff.json
+165   key_review_files                                                         FINAL_RCA_KEY_FILES_MANIFEST.csv                           /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/FINAL_RCA_KEY_FILES_MANIFEST.csv
+166   key_review_files                                                             README_FIRST_RCA_HANDOFF.txt                               /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/README_FIRST_RCA_HANDOFF.txt
+167   key_review_files                                                fusion_component_empirical_validation.csv                  /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_component_empirical_validation.csv
+168   key_review_files                                                    fusion_independent_family_overlap.csv                      /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_independent_family_overlap.csv
+169   key_review_files                                                           fusion_weight_health_check.csv                             /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/fusion_weight_health_check.csv
+170   key_review_files                                                     ml_final_model_selection_summary.csv                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/ml_final_model_selection_summary.csv
+171   key_review_files                                                  statistical_low_tail_method_overlap.csv                    /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/statistical_low_tail_method_overlap.csv
+172   key_review_files                                             statistical_threshold_calibration_report.csv               /data/outputs/session_09e2082f46c3/04_rca_handoff_final/00_key_review_files/statistical_threshold_calibration_report.csv
+173     top_case_plots                                                           ca_underperformance_top_01.png                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/ca_underperformance_top_01.png
+174     top_case_plots                                                           ca_underperformance_top_02.png                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/ca_underperformance_top_02.png
+175     top_case_plots                                                     radio_limited_degradation_top_01.png                 /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/radio_limited_degradation_top_01.png
+176     top_case_plots                                                     radio_limited_degradation_top_02.png                 /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/radio_limited_degradation_top_02.png
+177     top_case_plots                                      rb_conditioned_expected_underperformance_top_01.png  /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/rb_conditioned_expected_underperformance_top_01.png
+178     top_case_plots                                      rb_conditioned_expected_underperformance_top_02.png  /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/rb_conditioned_expected_underperformance_top_02.png
+179     top_case_plots                                                           temporal_local_drop_top_01.png                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/temporal_local_drop_top_01.png
+180     top_case_plots                                                           temporal_local_drop_top_02.png                       /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/temporal_local_drop_top_02.png
+181     top_case_plots                                                          temporal_sudden_drop_top_01.png                      /data/outputs/session_09e2082f46c3/04_rca_handoff_final/01_top_anomaly_case_plots/temporal_sudden_drop_top_01.png
+
+All stages completed successfully.

@@ -1,0 +1,37 @@
+[
+  {
+    "reason_id": "poor_coverage_weak_rsrp",
+    "title": "Poor coverage (weak RSRP)",
+    "description": "Serving cell RSRP is very weak (below roughly -110 dBm), often paired with weak RSRQ. Indicates the UE is at the edge of coverage or shadowed by terrain/buildings. Throughput drops because the weak link budget cannot sustain high-order modulation, regardless of interference or loading conditions.",
+    "category": "coverage",
+    "typical_signals": ["rsrp_median_dbm below -110", "rsrq_median_db below -14"]
+  },
+  {
+    "reason_id": "high_interference_low_sinr",
+    "title": "High interference (low SINR/CQI despite adequate RSRP)",
+    "description": "RSRP is adequate (better than roughly -105 dBm) but SINR and CQI are low and BLER is elevated. This points to interference or poor signal quality rather than a raw coverage problem -- the signal is strong enough to receive but too noisy/corrupted to decode efficiently, so MCS and throughput both suffer.",
+    "category": "interference",
+    "typical_signals": ["sinr_median_db below 0", "cqi_median below 5", "bler_median_pct above 10", "rsrp_median_dbm above -105"]
+  },
+  {
+    "reason_id": "resource_congestion",
+    "title": "Cell resource congestion (high PRB usage)",
+    "description": "Radio conditions (RSRP/SINR/CQI/BLER) are all reasonably healthy but throughput is still below expectation, and resource block usage is medium-to-high. This indicates the cell is congested/loaded -- other users are consuming the available resource blocks -- rather than the UE's own radio link being impaired.",
+    "category": "capacity",
+    "typical_signals": ["rb_usage_median above 60", "rb_medium_or_high_usage true", "cqi_median above 7", "bler_median_pct below 8"]
+  },
+  {
+    "reason_id": "mobility_handoff_disruption",
+    "title": "Mobility / handoff disruption",
+    "description": "A short, sharp throughput drop that coincides with a cell/PCI change or rapidly varying serving cell identity, rather than sustained poor KPIs on one cell. Radio KPIs may look fine before and after but dip briefly during the transition. Distinguish from sustained degradation by short duration and cell-boundary timing.",
+    "category": "mobility",
+    "typical_signals": ["duration_seconds short (well under sustained-window thresholds)", "detection_case mentions temporal_drop or handoff", "serving_cell_key/serving_pci changing near the anomaly window"]
+  },
+  {
+    "reason_id": "carrier_aggregation_scell_issue",
+    "title": "Secondary carrier (CA SCell) degradation",
+    "description": "Carrier aggregation is active but the secondary cell's RSRP/SINR/CQI/BLER (the scell1_* fields) are notably worse than the primary cell's, dragging combined throughput down even though the primary carrier looks fine on its own.",
+    "category": "carrier_aggregation",
+    "typical_signals": ["ca_active true", "scell1_sinr_median_db low relative to primary sinr", "scell1_bler_median_pct elevated"]
+  }
+]

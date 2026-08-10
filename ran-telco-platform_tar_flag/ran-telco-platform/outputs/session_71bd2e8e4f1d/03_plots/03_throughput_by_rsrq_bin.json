@@ -1,0 +1,12 @@
+{
+  "id": "03_throughput_by_rsrq_bin",
+  "filename": "03_throughput_by_rsrq_bin.png",
+  "title": "03 Throughput By Rsrq Bin",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "line",
+  "x_label": "Radio RF Metric Level",
+  "y_label": "Throughput (Mbps)",
+  "png_url": "/api/sessions/session_71bd2e8e4f1d/plots/03_throughput_by_rsrq_bin.png",
+  "json_url": "/api/sessions/session_71bd2e8e4f1d/plots/03_throughput_by_rsrq_bin.json",
+  "size_bytes": 35882
+}

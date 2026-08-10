@@ -1,0 +1,16 @@
+﻿metric,value,qc_note
+flagged_rows,69.0,Number of anomaly rows used for score-distribution checks.
+score_p10,33.12,Flagged-score percentile.
+score_p25,50.0,Flagged-score percentile.
+score_p50,56.5,Flagged-score percentile.
+score_p75,75.8,Flagged-score percentile.
+score_p80,80.82,Flagged-score percentile.
+score_p90,90.18,Flagged-score percentile.
+score_p95,93.6,Flagged-score percentile.
+score_p99,93.964,Flagged-score percentile.
+severity_pct_Medium,44.928,Share of flagged rows by severity.
+severity_pct_High,42.029,Share of flagged rows by severity.
+severity_pct_Low,11.594,Share of flagged rows by severity.
+severity_pct_Critical,1.449,Share of flagged rows by severity.
+pct_exact_low_rb_cap,0.0,Share of flagged scores exactly at the low-RB cap.
+pct_exact_soft_cap,0.0,Share of flagged scores exactly at the non-catastrophic soft cap.
