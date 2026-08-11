@@ -73,6 +73,8 @@
 \Crefname{section}{Section}{Sections}
 \crefname{equation}{Equation}{Equations}
 \Crefname{equation}{Equation}{Equations}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
 
 % ---------- Project palette ----------
 \definecolor{itiBlue}{RGB}{0,82,147}
@@ -184,11 +186,19 @@
 \newcommand{\colname}[1]{\texttt{#1}}
 \newcommand{\flowarrow}{\ensuremath{\Longrightarrow}}
 
-% ---------- Figure/table label convention ----------
-% This project uses cleveref's explicit label-type form because it is the
-% label syntax that is compatible with the inherited thesis class:
-%   figures: \label[fig]{descriptive-key}
-%   tables:  \label[tab]{descriptive-key}
-% References should use the bare key, e.g. Figure~\ref{descriptive-key}.
-% Figures are intentionally written with the normal LaTeX figure environment;
-% no project-specific figure wrapper is defined here.
+% ---------- Explicit label convention ----------
+% IMPORTANT: this inherited thesis setup behaves correctly when labels use
+% cleveref's explicit type form. Keep the label immediately after \caption for
+% floats/algorithms. Use bare keys for figures, tables, and algorithms.
+%
+%   figure:    \label[fig]{descriptive-key}
+%   table:     \label[tab]{descriptive-key}
+%   algorithm: \label[algorithm]{descriptive-key}
+%
+% References:
+%   Figure~\ref{descriptive-key}
+%   Table~\ref{descriptive-key}
+%   Algorithm~\ref{descriptive-key}
+%
+% Chapter/section/equation labels also use an explicit type so no untyped
+% \label remains in the two maintained technical chapters.

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 12:13
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1272,14 +1272,8 @@ File: l3backend-xetex.def 2025-04-14 L3 backend support: XeTeX
 \g__pdfannot_backend_int=\count398
 \g__pdfannot_backend_link_int=\count399
 ) (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
-(Chapters/Planning_Intelligence.aux
-
-LaTeX Warning: Label `a' multiply defined.
-
-
-LaTeX Warning: Label `a@cref' multiply defined.
-
-) (Chapters/Integration_and_Platform_Design.aux))
+(Chapters/Planning_Intelligence.aux)
+(Chapters/Integration_and_Platform_Design.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -1547,10 +1541,6 @@ Chapter 2.
 ]
 Chapter 3.
 
-LaTeX Warning: Reference `sec:pi-overview-business' on page 1 undefined on inpu
-t line 24.
-
-
 Underfull \hbox (badness 2600) in paragraph at lines 45--45
 []|\T1/lmr/m/n/12 Groups PCIs for PSS/SSS 
  []
@@ -1609,12 +1599,7 @@ File: Figures/PI_05_site_size_distribution.png Graphic file (type bmp)
 [28]
 
 [29]
-
-LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 390.
-
-
-
-Underfull \vbox (badness 3240) has occurred while \output is active []
+Underfull \vbox (badness 6236) has occurred while \output is active []
 
 
 
@@ -1641,15 +1626,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [34]
-
-LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 569.
-
-
-
-LaTeX Warning: Reference `alg:pi-dsatur' on page 1 undefined on input line 569.
-
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1677,12 +1653,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[38]
-
-LaTeX Warning: Reference `chap:integration-platform-design' on page 1 undefined
- on input line 696.
-
-)
+[38])
 
 [39]
 \openout2 = `Chapters/Integration_and_Platform_Design.aux'.
@@ -1705,21 +1676,14 @@ Chapter 4.
 LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 45CEB687DDBAC0B9BEC9FAFC2DFF2626;11060.
  ) 
 Here is how much of TeX's memory you used:
- 40441 strings out of 403341
- 841442 string characters out of 5463328
+ 40439 strings out of 403341
+ 841375 string characters out of 5463328
  1289427 words of memory out of 5000000
- 68195 multiletter control sequences out of 15000+600000
+ 68193 multiletter control sequences out of 15000+600000
  725231 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,15n,109p,1195b,1122s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -1,11 +1,11 @@
 \chapter{Planning Intelligence}
-\label{chap:planning-intelligence}
+\label[chapter]{chap:planning-intelligence}
 
 \section{Overview and Scope}
-\label{sec:pi-overview}
+\label[section]{sec:pi-overview}
 
 Planning Intelligence is the second, independent workspace of NetFix AI. Where the
-Drive Test Intelligence workspace (\cref{chap:anomaly-detection}) turns raw
+Drive Test Intelligence workspace turns raw
 throughput measurements into prioritized incidents, Planning Intelligence solves a
 different engineering problem: assigning radio identity parameters to every sector
 of a live 5G NR network so that neighboring cells cannot be confused with one
@@ -21,7 +21,7 @@ in four regions --- Alexandria (\texttt{ALX}), Sinai (\texttt{SIN}), Upper Egypt
 (\texttt{UPP}), and Delta (\texttt{DEL}).
 \end{infobox}
 
-As noted in \cref{sec:pi-overview-business} of the project overview, the planning
+At platform level, the planning
 dataset and the drive-test dataset are independent: planning output is never used
 to prove or correct a drive-test anomaly, and drive-test observations are never
 treated as ground truth for planning decisions.
@@ -72,7 +72,7 @@ respect to whichever subset happened to be replanned. All results in this
 chapter are from a full-reset run.
 
 \section{System Architecture}
-\label{sec:pi-architecture}
+\label[section]{sec:pi-architecture}
 
 The engine is implemented as nine flat, function-based Python modules --- no
 classes, no dataclasses, plain dictionaries throughout the data flow. Each
@@ -125,7 +125,7 @@ processed largest-first so that the most constrained (densest) subgraphs are
 solved while the most wall-clock budget is still available.
 
 \section{Pipeline Stages in Detail}
-\label{sec:pi-stages}
+\label[section]{sec:pi-stages}
 
 \subsection{Stage 1: Data Loading}
 
@@ -161,7 +161,7 @@ Measured on the raw dataset: 2{,}554 sectors across 725 sites, all requiring
 planning under the full-reset flag, single band \texttt{N41}.
 
 \subsection{Stage 2: Neighbor Graph Construction}
-\label{sec:pi-neighbor-graph}
+\label[section]{sec:pi-neighbor-graph}
 
 Latitude/longitude is projected onto a local flat-earth East-North-Up (ENU)
 plane centered on the dataset centroid --- accurate enough for cell-planning
@@ -211,7 +211,7 @@ is structurally expected, not a defect in the assignment algorithm.
 \end{warningbox}
 
 \subsection{Stage 3: Geometry Engine}
-\label{sec:pi-geometry}
+\label[section]{sec:pi-geometry}
 
 \fname{facing.py} is shared verbatim by the assignment engine (Stage~5) and the
 validator (Stage~6), which guarantees the planner and the independent auditor
@@ -223,8 +223,8 @@ used anywhere in the geometry model.
   \texttt{bearing\_deg}(A,B) &= \text{great-circle compass bearing from } A \text{ to } B \\
   \texttt{angle\_diff}(a,b) &= \min(|a-b| \bmod 360,\; 360 - (|a-b| \bmod 360)) \\
   \texttt{distance\_m}(A,B) &= \text{haversine great-circle distance} \\
-  \texttt{alignment}(A,B) &= \max\!\big(0,\ \cos(\texttt{angle\_diff}(\text{azimuth}_A,\ \texttt{bearing\_deg}(A,B)))\big) \label{eq:alignment}\\
-  \texttt{interference\_potential}(A,B) &= \frac{\texttt{alignment}(A,B) + \texttt{alignment}(B,A)}{\texttt{distance\_m}(A,B)^2} \label{eq:interference}
+  \texttt{alignment}(A,B) &= \max\!\big(0,\ \cos(\texttt{angle\_diff}(\text{azimuth}_A,\ \texttt{bearing\_deg}(A,B)))\big) \label[equation]{eq:alignment}\\
+  \texttt{interference\_potential}(A,B) &= \frac{\texttt{alignment}(A,B) + \texttt{alignment}(B,A)}{\texttt{distance\_m}(A,B)^2} \label[equation]{eq:interference}
 \end{align}
 
 \Cref{eq:alignment} returns $0$ for co-located sectors (bearing undefined) or
@@ -261,7 +261,7 @@ been arbitrary rather than derived.
 \end{infobox}
 
 \subsection{Stage 4: Constraint Generation}
-\label{sec:pi-constraints}
+\label[section]{sec:pi-constraints}
 
 \fname{constraints.py} answers exactly one question: \emph{which PCI and RSI
 values are legal for a given sector, right now?} It never mutates assignments;
@@ -320,7 +320,7 @@ the rule implementation behaves exactly as the site geometry predicts, not as an
 approximation of it.
 
 \section{Stage 5: The Assignment Engine}
-\label{sec:pi-assignment}
+\label[section]{sec:pi-assignment}
 
 \fname{assignment\_engine.py} runs three sub-stages in strict order: Mod4, then
 PCI, then RSI. Every hard rule from Stage~4 is enforced without exception; the
@@ -328,7 +328,7 @@ only freedom the engine has is in \emph{which} legal value to pick, and in
 which \emph{order} sectors are processed.
 
 \subsection{Sub-stage 5.1: Mod4 Assignment}
-\label{sec:pi-mod4}
+\label[section]{sec:pi-mod4}
 
 Mod4 is planned as a \textbf{weighted graph-coloring problem}. Nodes are
 sectors; edges connect tier-1 inter-site pairs with nonzero
@@ -350,7 +350,7 @@ the degree-of-saturation (DSATUR) heuristic, adapted to a weighted objective.
 
 \begin{algorithm}[H]
 \caption{Weighted DSATUR coloring for Mod4}
-\label{alg:pi-dsatur}
+\label[algorithm]{pi-dsatur}
 \KwIn{sectors to plan, interference edges, co-site forbidden-color function}
 \KwOut{mod4\_of: mapping from sector id to $\{0,1,2,3\}$}
 Initialize \texttt{uncolored} $\leftarrow$ all sectors to plan\;
@@ -370,7 +370,7 @@ optimum for a weighted objective, so a repair pass follows.
 
 \begin{algorithm}[H]
 \caption{Weighted local search repair (recolor + swap)}
-\label{alg:pi-repair}
+\label[algorithm]{pi-repair}
 \KwIn{initial mod4\_of, interference edges, co-site legality rules, time budget (\SI{60}{\second})}
 \KwOut{repaired mod4\_of}
 \Repeat{no improving move exists \textnormal{or} time budget exceeded}{
@@ -387,7 +387,7 @@ optimum for a weighted objective, so a repair pass follows.
 Total interference weight is bounded below by zero and \emph{strictly}
 decreases every round that a move is applied, so the repair loop is guaranteed
 to terminate at a genuine local optimum. The \SI{60}{\second} wall-clock budget
-in \cref{alg:pi-repair} is a safety net for exceptionally dense pockets, not the
+in Algorithm~\ref{pi-repair} is a safety net for exceptionally dense pockets, not the
 expected termination path.
 \end{successbox}
 
@@ -447,7 +447,7 @@ infeasible.
 \end{infobox}
 
 \section{Stage 6: Independent Validation}
-\label{sec:pi-validation}
+\label[section]{sec:pi-validation}
 
 \fname{validator.py} recomputes every hard rule \textbf{completely
 independently} of the planner --- it never reads planner-internal state, only
@@ -499,7 +499,7 @@ sees in the spreadsheet and the numbers the validator computed can never drift
 apart.
 
 \section{Planning Modes}
-\label{sec:pi-modes}
+\label[section]{sec:pi-modes}
 
 \begin{table}[H]
   \centering
@@ -524,7 +524,7 @@ down to the new site's region only, using the same \texttt{region\_of()}
 prefix rule that \fname{bulk\_plan.py} uses.
 
 \section{Hard Rules Reference}
-\label{sec:pi-hard-rules}
+\label[section]{sec:pi-hard-rules}
 
 \begin{table}[H]
   \centering
@@ -550,7 +550,7 @@ sectors and 725 sites in the verified full-reset run --- \textbf{PASS}.
 \end{successbox}
 
 \section{Soft Rules Reference}
-\label{sec:pi-soft-rules}
+\label[section]{sec:pi-soft-rules}
 
 Each soft rule exists because the network's own density creates a pigeonhole
 constraint --- not because the planner failed to try. Table~\ref{pi-soft-rules}
@@ -564,7 +564,7 @@ reports measured values alongside the structural expectation each should match.
     \midrule
     Mod3 Non-Adjacent Reuse (sites) & 3 Mod3 values, 4--5 sectors on 433 sites & 433 & 433 (= count of 4--5-sector sites) \\
     Mod4 Non-Adjacent Intra-site (sites) & 4 Mod4 values, 5 sectors on 2 sites & 2 & 2 (= count of 5-sector sites) \\
-    Mod4 Inter-site (sectors) & 4 Mod4 values against $\sim$100 avg.\ tier-1 neighbors/sector & 517 (20.2\%) & No exact closed-form floor; minimized by \cref{alg:pi-dsatur,alg:pi-repair}, bounded below by network density \\
+    Mod4 Inter-site (sectors) & 4 Mod4 values against $\sim$100 avg.\ tier-1 neighbors/sector & 517 (20.2\%) & No exact closed-form floor; minimized by Algorithms~\ref{pi-dsatur} and~\ref{pi-repair}, bounded below by network density \\
     \bottomrule
   \end{tabularx}
   \caption{Soft rules, structural cause, and measured results}
@@ -589,7 +589,7 @@ repair pass.
 \end{warningbox}
 
 \section{Measured Results and Performance}
-\label{sec:pi-results}
+\label[section]{sec:pi-results}
 
 Figure~\ref{pi-kpi-summary} summarizes every measured KPI from a single
 full-reset run of the pipeline against the live 2{,}554-sector, 725-site
@@ -678,7 +678,7 @@ reproducible rather than dependent on iteration order or randomness.
 \end{infobox}
 
 \section{Chapter Summary}
-\label{sec:pi-summary}
+\label[section]{sec:pi-summary}
 
 The Planning Intelligence engine assigns PCI, RSI, and Mod4/Mod3 to every
 sector of a 2{,}554-sector, 725-site live network through a seven-stage,
@@ -692,5 +692,4 @@ across the entire dataset, and the two soft-rule metrics that have exact
 structural expectations matched them precisely. The remaining soft metric ---
 Mod4 inter-site clashes --- represents a genuine, density-driven structural
 ceiling for single-sector optimization, and is the basis for the multi-sector
-coordinated-move extension proposed as future work in
-\cref{chap:integration-platform-design}.
+coordinated-move extension proposed as future work in the platform-integration chapter.

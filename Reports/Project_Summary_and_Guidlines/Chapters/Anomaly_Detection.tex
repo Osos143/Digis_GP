@@ -1,5 +1,5 @@
 \chapter{Drive Test Throughput Anomaly Detection and Prioritization}
-\label{chap:anomaly-detection}
+\label[chapter]{chap:anomaly-detection}
 
 \section{Chapter Scope and Role within NetFix AI}
 
@@ -70,7 +70,7 @@ The throughput distribution is strongly right-skewed, which is important because
 Drive-test samples are temporally correlated. A random row split would allow neighboring observations from the same route and session to appear in both model training and validation, artificially improving predictive metrics. The pipeline therefore assigns a session identifier and treats the session as the minimum independence unit for machine-learning validation. Temporal features used by production models are constructed from current or past information only; future samples are not allowed to leak into the prediction of the present row.
 
 \section{Statistical Detection Layer}
-\label{sec:statistical-layer}
+\label[section]{sec:statistical-layer}
 
 The statistical layer intentionally retains multiple views of abnormal behavior because no single threshold can represent all relevant degradation mechanisms. The individual flags are grouped into four independent families for scoring: \textbf{low level}, \textbf{temporal change}, \textbf{expected underperformance}, and \textbf{RB efficiency}.
 
@@ -181,7 +181,7 @@ RB efficiency & 518 & 1.61\% \\
 The broader statistical logic produces \num{8086} candidate rows (25.08\% of the LTE-DL population), of which \num{6217} satisfy the statistical RCA-eligibility rules. All configured detector-percentage quality checks passed in the final run; importantly, the narrow expected-throughput and RB-efficiency families did not dominate the candidate population.
 
 \section{Standalone Statistical Severity Score}
-\label{sec:stat-score}
+\label[section]{sec:stat-score}
 
 The statistical score is not a flag count. It combines a strongest-trigger floor, continuous magnitude, a bounded independent-family bonus, and a bounded context bonus.
 
@@ -228,7 +228,7 @@ Low-RB observations without strong radio or temporal explanation are smoothly co
 The contribution audit confirms that the score is driven mainly by anomaly seriousness rather than bonuses. Among final statistical anomaly rows, the mean strongest-trigger base was 44.47 and the mean continuous magnitude was 55.74, whereas the mean family and context bonuses were only 1.31 and 3.85 respectively. Candidate-score quality control also showed a median score of 58.70, P90 of 87.55, P95 of 92.90, and no artificial pile-up at either compression boundary.
 
 \section{Session-Safe Machine-Learning Evidence}
-\label{sec:ml-evidence}
+\label[section]{sec:ml-evidence}
 
 Machine learning is a supporting evidence source rather than the primary detector. Three models are allowed to participate in the production decision:
 \begin{enumerate}
@@ -296,7 +296,7 @@ C_{\mathrm{ML,base}}=1-(1-E_{\mathrm{resource}})(1-E_{\mathrm{temporal}}).
 Only 322 rows (0.999\%) reached the ML candidate gate, 140 rows (0.434\%) became final strict production-ML anomalies, and only four rows (0.012\%) were ultimately retained through an ML-only supervised exception path. All four require human review. This confirms that ML is intentionally selective rather than a broad replacement for the statistical layer.
 
 \section{Row-Level Statistical--ML Fusion}
-\label{sec:row-fusion}
+\label[section]{sec:row-fusion}
 
 The final row-level fusion does not average statistical and ML scores. Instead, it derives bounded evidence confidence and a mechanism-aware impact score.
 
@@ -344,7 +344,7 @@ The final row-level handoff contains \num{3574} observations: \num{3434} statist
 The selected impact--confidence fusion also outperformed naive score averaging as an operational ranking mechanism. Among final handoff rows, the selected method produced a median priority of 68.31 and P90 of 83.25, compared with a median of 35.13 for a naive statistical/ML average. This matters because a missing ML score should not suppress a strong interpretable statistical anomaly.
 
 \section{Episode Construction and Persistence}
-\label{sec:episode-fusion}
+\label[section]{sec:episode-fusion}
 
 One-second rows are too granular for direct RCA. Final fused rows are grouped within the same session when timestamp gaps are at most three seconds and serving-cell continuity is compatible. This creates candidate episodes that represent continuous or near-continuous degradation.
 
@@ -378,7 +378,7 @@ The final run formed \num{2087} candidate fused episodes. Strict gating retained
 \end{figure}
 
 \section{Operational Incident Consolidation}
-\label{sec:incident-fusion}
+\label[section]{sec:incident-fusion}
 
 Strict episodes can still represent the same engineer-facing network problem when separated by a short recovery or internal gap. Compatible episodes are therefore consolidated when the temporal gap is at most five seconds, spatial distance is at most approximately \SI{50}{\metre}, the session is the same, the serving-cell relationship is compatible, and the dominant mechanism is compatible.
 
@@ -427,7 +427,7 @@ This reduction is controlled consolidation rather than data loss. Broad candidat
 The compact handoff contains \num{1382} unique incident IDs and matching canonical priorities across the operational CSV, compact CSV, and compact JSON artifacts. This is important for downstream RCA because every engineer-facing problem has one stable identifier and one canonical ranking score, while peak-row and episode priorities remain available as supporting forensic context.
 
 \section{Representative Detected Degradation}
-\label{sec:representative-case}
+\label[section]{sec:representative-case}
 
 Figure~\ref{top-episode-context} shows a high-priority final episode around the selected anomaly instant. The figure overlays actual throughput, statistical opportunity references, resource and temporal model predictions, and the rolling baseline. The selected episode has priority approximately 87.0, impact 76.4, confidence 100, and persistence 22.2. At the anomaly instant the actual throughput is approximately \SI{3.18}{\mega\bit\per\second}, while the radio-conditioned P75 opportunity reference is approximately \SI{118.45}{\mega\bit\per\second} and the RB-conditioned P75 reference is approximately \SI{107.87}{\mega\bit\per\second}.
 
@@ -443,7 +443,7 @@ The important point is not simply that throughput is low. Multiple independent v
 The same methodology also detects cases that fixed low-throughput thresholds alone would miss. For example, a sudden degradation can remain above \SI{10}{\mega\bit\per\second} but still show a very large local drop or expected-throughput gap. Conversely, radio-limited cases are preserved even when an expected-capability comparison would be inappropriate; they use a radio-specific impact formulation based on absolute low throughput and persistence instead of exaggerating the gap to an unrelated high prediction.
 
 \section{Serving-Cell Prioritization Derived from Detected Behavior}
-\label{sec:cell-ranking}
+\label[section]{sec:cell-ranking}
 
 After row, episode, and incident construction, the notebook also aggregates behavior by serving-cell identity to provide an engineering prioritization view. This ranking is not used to decide whether an individual row is anomalous; it is a downstream summary of cell performance across the available observations.
 
