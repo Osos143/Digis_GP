@@ -54,6 +54,26 @@
 \usepackage[colorlinks=true]{hyperref}
 \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
 
+
+% ---------- Final-document label/reference safety ----------
+% Do not remove \label: cross-references need it. The visible fig:/tab: keys
+% come from showkeys, so only its renderer is neutralized.
+\providecommand*{\showkeyslabelformat}[1]{}
+\renewcommand*{\showkeyslabelformat}[1]{}
+\AtBeginDocument{\renewcommand*{\showkeyslabelformat}[1]{}}
+
+% Consistent reference names.
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{chapter}{Chapter}{Chapters}
+\Crefname{chapter}{Chapter}{Chapters}
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{equation}{Equation}{Equations}
+\Crefname{equation}{Equation}{Equations}
+
 % ---------- Project palette ----------
 \definecolor{itiBlue}{RGB}{0,82,147}
 \definecolor{netfixBlue}{RGB}{17,83,219}
@@ -85,13 +105,13 @@
 \emergencystretch=2em
 
 % ---------- Professional chapter hierarchy ----------
+% Large thesis-style title, no decorative rules. "CHAPTER X" remains upper-right.
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\color{netfixNavy}}
-  {\filleft\fontsize{16}{18}\selectfont\color{netfixBlue}\MakeUppercase{\chaptername}\ \thechapter}
-  {0.6ex}
-  {\titlerule[1.2pt]\vspace{1.0ex}\filright\fontsize{29}{33}\selectfont}
-  [\vspace{0.9ex}\titlerule]
-\titlespacing*{\chapter}{0pt}{-18pt}{24pt}
+  {\filleft\fontsize{15}{17}\selectfont\color{netfixBlue}\MakeUppercase{\chaptername}\ \thechapter}
+  {0.9ex}
+  {\filright\fontsize{26}{30}\selectfont}
+\titlespacing*{\chapter}{0pt}{-12pt}{24pt}
 
 \titleformat{\section}
   {\normalfont\Large\bfseries\color{itiBlue}}
@@ -122,12 +142,13 @@
 
 % ---------- Caption style ----------
 \captionsetup{
-  position=bottom,
   skip=6pt,
   font=small,
   labelfont={bf,color=netfixNavy},
   textfont=small
 }
+\captionsetup[figure]{position=bottom}
+\captionsetup[table]{position=bottom}
 
 % ---------- Reusable columns and boxes ----------
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
@@ -163,19 +184,11 @@
 \newcommand{\colname}[1]{\texttt{#1}}
 \newcommand{\flowarrow}{\ensuremath{\Longrightarrow}}
 
-% ---------- Robust project figure macro ----------
-% Usage: \projectfigure[width]{filename}{caption}{label}
-% It compiles even if a collaborator has not yet pulled the figure.
-\newcommand{\projectfigure}[4][0.94\linewidth]{%
-  \begin{figure}[htbp]
-    \centering
-    \IfFileExists{Figures/#2}{%
-      \includegraphics[width=#1]{#2}%
-    }{%
-      \fbox{\parbox[c][4.0cm][c]{0.82\linewidth}{\centering
-      Missing project figure: \\ \texttt{Figures/#2}}}%
-    }
-    \caption{#3}
-    \label{#4}
-  \end{figure}%
-}
+% ---------- Figure/table label convention ----------
+% This project uses cleveref's explicit label-type form because it is the
+% label syntax that is compatible with the inherited thesis class:
+%   figures: \label[fig]{descriptive-key}
+%   tables:  \label[tab]{descriptive-key}
+% References should use the bare key, e.g. Figure~\ref{descriptive-key}.
+% Figures are intentionally written with the normal LaTeX figure environment;
+% no project-specific figure wrapper is defined here.

@@ -29,12 +29,10 @@ treated as ground truth for planning decisions.
 \subsection{The Three Assigned Parameters}
 
 Every sector requires three interrelated identity values, summarized in
-\cref{tab:pi-parameters}.
+Table~\ref{pi-parameters}.
 
 \begin{table}[H]
   \centering
-  \caption{Radio identity parameters assigned by the planning engine}
-  \label{tab:pi-parameters}
   \begin{tabularx}{\linewidth}{l c Y}
     \toprule
     \textbf{Parameter} & \textbf{3GPP range} & \textbf{Role} \\
@@ -45,6 +43,8 @@ Every sector requires three interrelated identity values, summarized in
     Mod3 $= \mathrm{PCI}\bmod 3$ & $0$--$2$ & Groups PCIs for PSS/SSS synchronization-signal separation; enforced ring-adjacently on co-site sectors. \\
     \bottomrule
   \end{tabularx}
+  \caption{Radio identity parameters assigned by the planning engine}
+  \label[tab]{pi-parameters}
 \end{table}
 
 Mod3 and Mod4 are not independently assigned --- they are algebraic consequences
@@ -76,12 +76,10 @@ chapter are from a full-reset run.
 
 The engine is implemented as nine flat, function-based Python modules --- no
 classes, no dataclasses, plain dictionaries throughout the data flow. Each
-module has exactly one responsibility, summarized in \cref{tab:pi-modules}.
+module has exactly one responsibility, summarized in Table~\ref{pi-modules}.
 
 \begin{table}[H]
   \centering
-  \caption{Pipeline modules and their responsibilities}
-  \label{tab:pi-modules}
   \begin{tabularx}{\linewidth}{l l Y}
     \toprule
     \textbf{Stage} & \textbf{Module} & \textbf{Input $\Rightarrow$ Output} \\
@@ -95,6 +93,8 @@ module has exactly one responsibility, summarized in \cref{tab:pi-modules}.
     7. Export & \fname{exporter.py} & assignments + report $\Rightarrow$ workbook with \texttt{KPI\_Report} sheet \\
     \bottomrule
   \end{tabularx}
+  \caption{Pipeline modules and their responsibilities}
+  \label[tab]{pi-modules}
 \end{table}
 
 Two orchestration modules sit above the shared engine (\fname{assignment\_engine.py}):
@@ -102,13 +102,16 @@ Two orchestration modules sit above the shared engine (\fname{assignment\_engine
 \fname{add\_site.py} plans a single new site against a region that has already
 been planned. Both call the identical \texttt{assign\_all()} function; the only
 difference is what is pre-populated in \texttt{existing\_assignments}.
-\Cref{fig:pi-architecture} shows the full data flow.
+Figure~\ref{pi-architecture} shows the full data flow.
 
-\projectfigure{PI_01_pipeline_architecture.png}
-  {End-to-end planning pipeline. Geometry (Stage~3) is shared between the
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{PI_01_pipeline_architecture.png}
+  \caption{End-to-end planning pipeline. Geometry (Stage~3) is shared between the
   assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing
   both agree on what ``facing'' means.}
-  {fig:pi-architecture}
+  \label[fig]{pi-architecture}
+\end{figure}
 
 \subsection{Why Regions Can Be Planned Independently}
 
@@ -138,8 +141,6 @@ uses instead of the sheet-flagged incremental mode.
 
 \begin{table}[H]
   \centering
-  \caption{Sector record structure (loader.py)}
-  \label{tab:pi-sector-dict}
   \begin{tabularx}{\linewidth}{l Y}
     \toprule
     \textbf{Field} & \textbf{Description} \\
@@ -152,6 +153,8 @@ uses instead of the sheet-flagged incremental mode.
     \colname{rsi}, \colname{pci}, \colname{mod4} & \texttt{None} if unassigned; a non-\texttt{None} PCI marks the sector as \emph{locked} \\
     \bottomrule
   \end{tabularx}
+  \caption{Sector record structure (loader.py)}
+  \label[tab]{pi-sector-dict}
 \end{table}
 
 Measured on the raw dataset: 2{,}554 sectors across 725 sites, all requiring
@@ -182,8 +185,6 @@ tightest possible reuse-distance case, and intentional.
 
 \begin{table}[H]
   \centering
-  \caption{Measured neighbor graph statistics, full dataset}
-  \label{tab:pi-graph-stats}
   \begin{tabularx}{\linewidth}{Y c}
     \toprule
     \textbf{Metric} & \textbf{Value} \\
@@ -198,6 +199,8 @@ tightest possible reuse-distance case, and intentional.
     Isolated nodes (no tier-1 neighbor) & 0 \\
     \bottomrule
   \end{tabularx}
+  \caption{Measured neighbor graph statistics, full dataset}
+  \label[tab]{pi-graph-stats}
 \end{table}
 
 \begin{warningbox}{Structural implication}
@@ -226,18 +229,24 @@ used anywhere in the geometry model.
 
 \Cref{eq:alignment} returns $0$ for co-located sectors (bearing undefined) or
 angular offsets $\geq 90^\circ$, and $1$ for a dead-ahead offset of $0^\circ$.
-\Cref{fig:pi-alignment-curve} plots this relationship.
+Figure~\ref{pi-alignment-curve} plots this relationship.
 
-\projectfigure{PI_02_cosine_alignment_model.png}
-  {Cosine alignment model: alignment vs. angular offset from boresight. Key points:
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{PI_02_cosine_alignment_model.png}
+  \caption{Cosine alignment model: alignment vs. angular offset from boresight. Key points:
   $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$.}
-  {fig:pi-alignment-curve}
+  \label[fig]{pi-alignment-curve}
+\end{figure}
 
-\projectfigure{PI_03_interference_potential_vs_distance.png}
-  {Interference potential vs. distance for a fully-facing pair (both alignments
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{PI_03_interference_potential_vs_distance.png}
+  \caption{Interference potential vs. distance for a fully-facing pair (both alignments
   $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and
   Tier-2 (14\,km) boundaries are marked for reference.}
-  {fig:pi-interference-distance}
+  \label[fig]{pi-interference-distance}
+\end{figure}
 
 \begin{infobox}{Why not a binary cone?}
 A hard beamwidth cutoff (e.g.\ ``within $60^\circ$ = facing, beyond = not'') creates
@@ -268,8 +277,6 @@ rule strictness depends on how many sectors share a site:
 
 \begin{table}[H]
   \centering
-  \caption{Mod3 rule by site size}
-  \label{tab:pi-mod3-rule}
   \begin{tabularx}{\linewidth}{l Y}
     \toprule
     \textbf{Site size} & \textbf{Mod3 rule} \\
@@ -278,25 +285,33 @@ rule strictness depends on how many sectors share a site:
     $4$--$5$ co-located sectors & Ring-adjacent pairs must differ; all 3 Mod3 values should appear on the site; any unavoidable reuse falls only on non-adjacent pairs. \\
     \bottomrule
   \end{tabularx}
+  \caption{Mod3 rule by site size}
+  \label[tab]{pi-mod3-rule}
 \end{table}
 
-\Cref{fig:pi-ring-adjacency} illustrates the ring for a representative 4-sector
+Figure~\ref{pi-ring-adjacency} illustrates the ring for a representative 4-sector
 site.
 
-\projectfigure[0.62\linewidth]{PI_04_ring_adjacency_4sector.png}
-  {Ring adjacency for a 4-sector site at $0^\circ/90^\circ/180^\circ/270^\circ$.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{PI_04_ring_adjacency_4sector.png}
+  \caption{Ring adjacency for a 4-sector site at $0^\circ/90^\circ/180^\circ/270^\circ$.
   Ring pairs (solid) must differ under the hard rule; the two non-adjacent
   diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole
   principle forces it.}
-  {fig:pi-ring-adjacency}
+  \label[fig]{pi-ring-adjacency}
+\end{figure}
 
-\paragraph{Measured site-size distribution.} \Cref{fig:pi-site-sizes} shows the
+\paragraph{Measured site-size distribution.} Figure~\ref{pi-site-sizes} shows the
 distribution across all 725 sites in the dataset.
 
-\projectfigure[0.72\linewidth]{PI_05_site_size_distribution.png}
-  {Measured site-size distribution, full dataset. $431+2=433$ sites fall under
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\linewidth]{PI_05_site_size_distribution.png}
+  \caption{Measured site-size distribution, full dataset. $431+2=433$ sites fall under
   the 4--5-sector ring-adjacent-only rule.}
-  {fig:pi-site-sizes}
+  \label[fig]{pi-site-sizes}
+\end{figure}
 
 This distribution is the direct explanation for the soft-rule counts reported
 in \cref{sec:pi-soft-rules}: $431+2=433$ sites have 4 or 5 co-located sectors,
@@ -385,12 +400,10 @@ site-coverage state can be tracked incrementally as siblings are placed one
 after another. For each sector, the candidate PCI pool is filtered through the
 hard rules --- no tier-1 collision, no tier-2 confusion, not in a forbidden
 Mod3 group --- and then narrowed by the four-layer preference funnel in
-\cref{tab:pi-pci-layers}.
+Table~\ref{pi-pci-layers}.
 
 \begin{table}[H]
   \centering
-  \caption{PCI layered preference funnel}
-  \label{tab:pi-pci-layers}
   \begin{tabularx}{\linewidth}{c Y}
     \toprule
     \textbf{Layer} & \textbf{Preference} \\
@@ -401,6 +414,8 @@ Mod3 group --- and then narrowed by the four-layer preference funnel in
     4 (fallback) & Any hard-legal candidate \\
     \bottomrule
   \end{tabularx}
+  \caption{PCI layered preference funnel}
+  \label[tab]{pi-pci-layers}
 \end{table}
 
 Within whichever layer yields a non-empty pool, the PCI with the lowest global
@@ -423,7 +438,7 @@ then the same deterministic hash used for PCI.
 
 \begin{infobox}{Why RSI reuse could be promoted to a hard rule}
 A degree-bound proof over the measured tier-2 neighbor counts
-(\cref{tab:pi-graph-stats}) confirmed that even the worst-case 14\,km
+(Table~\ref{pi-graph-stats}) confirmed that even the worst-case 14\,km
 neighborhood --- 344 sectors, the maximum observed --- still leaves more than
 480 of the 831 available RSI values free. This headroom is what justifies
 treating RSI Tier-2 reuse as a \emph{hard} constraint rather than a soft one:
@@ -445,8 +460,6 @@ by pair, by sector, and by site --- and the overall \texttt{pass} flag is
 
 \begin{table}[H]
   \centering
-  \caption{Rules checked by the independent validator}
-  \label{tab:pi-validator-rules}
   \begin{tabularx}{\linewidth}{l c Y}
     \toprule
     \textbf{Rule} & \textbf{Hard/Soft} & \textbf{Detection method} \\
@@ -462,6 +475,8 @@ by pair, by sector, and by site --- and the overall \texttt{pass} flag is
     Mod4 Inter-site & Soft & Sector's nearest facing inter-site neighbor shares Mod4 \\
     \bottomrule
   \end{tabularx}
+  \caption{Rules checked by the independent validator}
+  \label[tab]{pi-validator-rules}
 \end{table}
 
 The Mod4 Inter-site check deserves special mention: it is \textbf{per-sector
@@ -488,8 +503,6 @@ apart.
 
 \begin{table}[H]
   \centering
-  \caption{Bulk planning vs. single-site planning}
-  \label{tab:pi-modes}
   \begin{tabularx}{\linewidth}{l Y Y}
     \toprule
      & \textbf{Bulk planning (\fname{bulk\_plan.py})} & \textbf{Single-site planning (\fname{add\_site.py})} \\
@@ -500,6 +513,8 @@ apart.
     Measured runtime & \SI{53.36}{\second} total, 4 regions (\cref{sec:pi-results}) & Well under \SI{5}{\second} target; scoped to one site's local neighborhood \\
     \bottomrule
   \end{tabularx}
+  \caption{Bulk planning vs. single-site planning}
+  \label[tab]{pi-modes}
 \end{table}
 
 Both callers share the \emph{exact same} \texttt{assign\_all()} function; the
@@ -513,8 +528,6 @@ prefix rule that \fname{bulk\_plan.py} uses.
 
 \begin{table}[H]
   \centering
-  \caption{Hard rules enforced by the planning engine (all must equal zero)}
-  \label{tab:pi-hard-rules-full}
   \begin{tabularx}{\linewidth}{l c Y}
     \toprule
     \textbf{Rule} & \textbf{Distance/scope} & \textbf{Why it matters} \\
@@ -527,6 +540,8 @@ prefix rule that \fname{bulk\_plan.py} uses.
     Mod4 Intra-site & Co-site, ring-adjacent & Ring-adjacent sectors sharing Mod4 share SRS/DMRS resource allocation, degrading uplink channel estimation at the boundary. \\
     \bottomrule
   \end{tabularx}
+  \caption{Hard rules enforced by the planning engine (all must equal zero)}
+  \label[tab]{pi-hard-rules-full}
 \end{table}
 
 \begin{successbox}{Measured result}
@@ -538,13 +553,11 @@ sectors and 725 sites in the verified full-reset run --- \textbf{PASS}.
 \label{sec:pi-soft-rules}
 
 Each soft rule exists because the network's own density creates a pigeonhole
-constraint --- not because the planner failed to try. \Cref{tab:pi-soft-rules}
+constraint --- not because the planner failed to try. Table~\ref{pi-soft-rules}
 reports measured values alongside the structural expectation each should match.
 
 \begin{table}[H]
   \centering
-  \caption{Soft rules, structural cause, and measured results}
-  \label{tab:pi-soft-rules}
   \begin{tabularx}{\linewidth}{Y Y c Y}
     \toprule
     \textbf{Rule} & \textbf{Structural cause} & \textbf{Measured} & \textbf{Structural expectation} \\
@@ -554,6 +567,8 @@ reports measured values alongside the structural expectation each should match.
     Mod4 Inter-site (sectors) & 4 Mod4 values against $\sim$100 avg.\ tier-1 neighbors/sector & 517 (20.2\%) & No exact closed-form floor; minimized by \cref{alg:pi-dsatur,alg:pi-repair}, bounded below by network density \\
     \bottomrule
   \end{tabularx}
+  \caption{Soft rules, structural cause, and measured results}
+  \label[tab]{pi-soft-rules}
 \end{table}
 
 The first two soft metrics match their structural expectation \emph{exactly},
@@ -576,19 +591,20 @@ repair pass.
 \section{Measured Results and Performance}
 \label{sec:pi-results}
 
-\Cref{fig:pi-kpi-summary} summarizes every measured KPI from a single
+Figure~\ref{pi-kpi-summary} summarizes every measured KPI from a single
 full-reset run of the pipeline against the live 2{,}554-sector, 725-site
 dataset.
 
-\projectfigure{PI_06_kpi_summary.png}
-  {Measured KPI results, full dataset, single full-reset run. Green bars are
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{PI_06_kpi_summary.png}
+  \caption{Measured KPI results, full dataset, single full-reset run. Green bars are
   hard rules (all zero); amber bars are soft, structurally-expected counts.}
-  {fig:pi-kpi-summary}
+  \label[fig]{pi-kpi-summary}
+\end{figure}
 
 \begin{table}[H]
   \centering
-  \caption{Full measured results summary}
-  \label{tab:pi-results-summary}
   \begin{tabularx}{\linewidth}{Y Y}
     \toprule
     \textbf{Metric} & \textbf{Measured value} \\
@@ -610,25 +626,28 @@ dataset.
     Overall result & \textbf{PASS} \\
     \bottomrule
   \end{tabularx}
+  \caption{Full measured results summary}
+  \label[tab]{pi-results-summary}
 \end{table}
 
 \subsection{Runtime Benchmarks}
 
-\Cref{fig:pi-runtime,tab:pi-region-runtime} break the total planning time down
+Figure~\ref{pi-runtime} and Table~\ref{pi-region-runtime} break the total planning time down
 by region. Regions are processed largest-first, which is why Alexandria and
 Sinai dominate total wall-clock time: both the interference graph and the
 local-search repair scale with each region's own density, not the global
 dataset size, consistent with the region-independence property of
 \cref{sec:pi-architecture}.
 
-\projectfigure{PI_07_runtime_by_region.png}
-  {\fname{bulk\_plan()} wall-clock time per region, measured on the full dataset.}
-  {fig:pi-runtime}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{PI_07_runtime_by_region.png}
+  \caption{\fname{bulk\_plan()} wall-clock time per region, measured on the full dataset.}
+  \label[fig]{pi-runtime}
+\end{figure}
 
 \begin{table}[H]
   \centering
-  \caption{Measured per-region runtime}
-  \label{tab:pi-region-runtime}
   \begin{tabularx}{\linewidth}{l c c c}
     \toprule
     \textbf{Region} & \textbf{Sectors} & \textbf{Sites} & \textbf{Plan time (s)} \\
@@ -641,6 +660,8 @@ dataset size, consistent with the region-independence property of
     \textbf{Total} & \textbf{2{,}554} & \textbf{725} & \textbf{53.36} \\
     \bottomrule
   \end{tabularx}
+  \caption{Measured per-region runtime}
+  \label[tab]{pi-region-runtime}
 \end{table}
 
 The independent \fname{validate()} call on the resulting assignments completed

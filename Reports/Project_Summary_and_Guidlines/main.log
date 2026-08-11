@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 10:07
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 12:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1263,7 +1263,7 @@ Package cleveref Info: no abbreviation of names on input line 7852.
 ==> First Aid for cleveref.sty applied!
 )
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 10.
+h' as default language. on input line 19.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xete
 x.def
@@ -1271,206 +1271,44 @@ File: l3backend-xetex.def 2025-04-14 L3 backend support: XeTeX
 \g__graphics_track_int=\count397
 \g__pdfannot_backend_int=\count398
 \g__pdfannot_backend_link_int=\count399
-) (main.aux (Chapters/Anomaly_Detection.aux
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-) (Chapters/RCA.aux) (Chapters/Planning_Intelligence.aux
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
+) (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
+(Chapters/Planning_Intelligence.aux
 
 LaTeX Warning: Label `a' multiply defined.
 
 
 LaTeX Warning: Label `a@cref' multiply defined.
 
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
-
-LaTeX Warning: Label `f' multiply defined.
-
-
-LaTeX Warning: Label `f@cref' multiply defined.
-
-
-LaTeX Warning: Label `t' multiply defined.
-
-
-LaTeX Warning: Label `t@cref' multiply defined.
-
 ) (Chapters/Integration_and_Platform_Design.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Info: Redefining \microtypecontext on input line 10.
-Package microtype Info: Applying patch `item' on input line 10.
-Package microtype Info: Applying patch `toc' on input line 10.
-Package microtype Info: Applying patch `eqnum' on input line 10.
-Package microtype Info: Applying patch `footnote' on input line 10.
-Package microtype Info: Applying patch `verbatim' on input line 10.
-LaTeX Info: Redefining \microtypesetup on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Info: Redefining \microtypecontext on input line 19.
+Package microtype Info: Applying patch `item' on input line 19.
+Package microtype Info: Applying patch `toc' on input line 19.
+Package microtype Info: Applying patch `eqnum' on input line 19.
+Package microtype Info: Applying patch `footnote' on input line 19.
+Package microtype Info: Applying patch `verbatim' on input line 19.
+LaTeX Info: Redefining \microtypesetup on input line 19.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -1487,7 +1325,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 10.
+or `english'. on input line 19.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -1533,12 +1371,12 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 10.
+Package hyperref Info: Link coloring ON on input line 19.
 (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 11.
+Package hyperref Info: Option `pageanchor' set `false' on input line 20.
 File: ../ITI_Logo.png Graphic file (type bmp)
 <../ITI_Logo.png>
 
@@ -1555,7 +1393,7 @@ File: ../ITI_Logo.png Graphic file (type bmp)
 
 
 ]
-Package hyperref Info: Option `pageanchor' set `true' on input line 58.
+Package hyperref Info: Option `pageanchor' set `true' on input line 67.
  (FrontMatter/Project_Overview.tex)
 
 [1
@@ -1628,79 +1466,61 @@ File: Figures/01_pre_anomaly_throughput_distribution.png Graphic file (type bmp
 [4]
 
 [5]
-Underfull \vbox (badness 2503) has occurred while \output is active []
-
-
 
 [6]
 
 [7]
-Underfull \hbox (badness 1077) in paragraph at lines 257--257
+Underfull \hbox (badness 1077) in paragraph at lines 260--260
 []|\T1/lmr/m/n/12 HGB resource- 
  []
 
 
-Underfull \vbox (badness 3029) has occurred while \output is active []
+Underfull \vbox (badness 1708) has occurred while \output is active []
 
 
 
 [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [9]
-
-[10]
 File: Figures/50_final_fused_row_priority_distribution.png Graphic file (type b
 mp)
 <Figures/50_final_fused_row_priority_distribution.png>
 
 
-[11]
+[10]
 File: Figures/54_final_episode_priority_distribution.png Graphic file (type bmp
 )
 <Figures/54_final_episode_priority_distribution.png>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5133) has occurred while \output is active []
 
 
+
+[11]
 
 [12]
 File: Figures/58_operational_incident_priority_distribution.png Graphic file (t
 ype bmp)
 <Figures/58_operational_incident_priority_distribution.png>
-
-Underfull \vbox (badness 2326) has occurred while \output is active []
-
-
-
-[13]
 File: Figures/56_final_detection_funnel.png Graphic file (type bmp)
 <Figures/56_final_detection_funnel.png>
 
 
-LaTeX Warning: Reference `fig:top-episode-context' on page 1 undefined on input
- line 407.
-
-
-
-[14]
+[13]
 File: Figures/57_top_fused_episode_context_01.png Graphic file (type bmp)
 <Figures/57_top_fused_episode_context_01.png>
 
+
+[14]
 
 [15]
 File: Figures/14b_worst_performing_cells_ranked.png Graphic file (type bmp)
 <Figures/14b_worst_performing_cells_ranked.png>
 
-Underfull \vbox (badness 2020) has occurred while \output is active []
 
+[16])
 
-
-[16]
-
-[17])
+[17]
 
 [18]
 \openout2 = `Chapters/RCA.aux'.
@@ -1731,11 +1551,7 @@ LaTeX Warning: Reference `sec:pi-overview-business' on page 1 undefined on inpu
 t line 24.
 
 
-LaTeX Warning: Reference `tab:pi-parameters' on page 1 undefined on input line 
-32.
-
-
-Underfull \hbox (badness 2600) in paragraph at lines 47--47
+Underfull \hbox (badness 2600) in paragraph at lines 45--45
 []|\T1/lmr/m/n/12 Groups PCIs for PSS/SSS 
  []
 
@@ -1745,24 +1561,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [21]
-
-LaTeX Warning: Reference `tab:pi-modules' on page 1 undefined on input line 79.
-
-
-
-Underfull \vbox (badness 1072) has occurred while \output is active []
+Underfull \vbox (badness 2903) has occurred while \output is active []
 
 
 
 [22]
-
-LaTeX Warning: Reference `fig:pi-architecture' on page 1 undefined on input lin
-e 105.
-
 File: Figures/PI_01_pipeline_architecture.png Graphic file (type bmp)
 <Figures/PI_01_pipeline_architecture.png>
 
-LaTeX Warning: Float too large for page by 27.27455pt on input line 111.
+
+LaTeX Warning: Float too large for page by 0.19112pt on input line 114.
 
 
 
@@ -1771,43 +1579,29 @@ LaTeX Warning: Float too large for page by 27.27455pt on input line 111.
 [24]
 
 [25]
-Overfull \hbox (34.99748pt too wide) detected at line 225
+Overfull \hbox (34.99748pt too wide) detected at line 228
 []
  []
 
-
-LaTeX Warning: Reference `fig:pi-alignment-curve' on page 1 undefined on input 
-line 229.
-
-
-
-[26]
 File: Figures/PI_02_cosine_alignment_model.png Graphic file (type bmp)
 <Figures/PI_02_cosine_alignment_model.png>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 234.
+(Font)              <10.95> on input line 238.
 File: Figures/PI_03_interference_potential_vs_distance.png Graphic file (type b
 mp)
 <Figures/PI_03_interference_potential_vs_distance.png>
 
-Underfull \hbox (badness 1122) in paragraph at lines 261--265
+
+[26]
+
+[27]
+Underfull \hbox (badness 1122) in paragraph at lines 270--274
 [] []\T1/lmr/m/sl/12 Ring ad-ja-cency.[] \T1/lmr/m/n/12 Co-site sec-tors are or
 -dered by az-imuth and treated as a ring;
  []
 
-
-
-[27]
-
-LaTeX Warning: Reference `fig:pi-ring-adjacency' on page 1 undefined on input l
-ine 283.
-
 File: Figures/PI_04_ring_adjacency_4sector.png Graphic file (type bmp)
 <Figures/PI_04_ring_adjacency_4sector.png>
-
-LaTeX Warning: Reference `fig:pi-site-sizes' on page 1 undefined on input line 
-293.
-
 File: Figures/PI_05_site_size_distribution.png Graphic file (type bmp)
 <Figures/PI_05_site_size_distribution.png>
 
@@ -1816,7 +1610,7 @@ File: Figures/PI_05_site_size_distribution.png Graphic file (type bmp)
 
 [29]
 
-LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 375.
+LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 390.
 
 
 
@@ -1826,23 +1620,13 @@ Underfull \vbox (badness 3240) has occurred while \output is active []
 
 [30]
 
-LaTeX Warning: Reference `tab:pi-pci-layers' on page 1 undefined on input line 
-388.
-
-
-
 [31]
-
-LaTeX Warning: Reference `tab:pi-graph-stats' on page 1 undefined on input line
- 426.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [32]
-Underfull \hbox (badness 3557) in paragraph at lines 502--502
+Underfull \hbox (badness 3557) in paragraph at lines 515--515
 []|\T1/lmr/bx/n/12 Bulk plan-ning 
  []
 
@@ -1858,15 +1642,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [34]
 
-LaTeX Warning: Reference `tab:pi-soft-rules' on page 1 undefined on input line 
-541.
-
-
-LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 556.
+LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 569.
 
 
 
-LaTeX Warning: Reference `alg:pi-dsatur' on page 1 undefined on input line 556.
+LaTeX Warning: Reference `alg:pi-dsatur' on page 1 undefined on input line 569.
 
 
 
@@ -1875,10 +1655,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [35]
-
-LaTeX Warning: Reference `fig:pi-kpi-summary' on page 1 undefined on input line
- 579.
-
 File: Figures/PI_06_kpi_summary.png Graphic file (type bmp)
 <Figures/PI_06_kpi_summary.png>
 
@@ -1888,35 +1664,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [36]
 
-LaTeX Warning: Reference `tab:pi-region-runtime' on page 1 undefined on input l
-ine 617.
+[37]
+File: Figures/PI_07_runtime_by_region.png Graphic file (type bmp)
+<Figures/PI_07_runtime_by_region.png>
 
-
-LaTeX Warning: Reference `fig:pi-runtime' on page 1 undefined on input line 617
-.
+Underfull \hbox (badness 10000) in alignment at lines 662--662
+[][][][] 
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[37]
-File: Figures/PI_07_runtime_by_region.png Graphic file (type bmp)
-<Figures/PI_07_runtime_by_region.png>
-
-Underfull \hbox (badness 10000) in alignment at lines 643--643
-[][][][] 
- []
-
-
-Underfull \vbox (badness 1533) has occurred while \output is active []
-
-
-
 [38]
 
 LaTeX Warning: Reference `chap:integration-platform-design' on page 1 undefined
- on input line 675.
+ on input line 696.
 
 )
 
@@ -1952,11 +1716,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 45CEB687DDBAC0B9BEC9FAFC2DFF2626;11060.
  ) 
 Here is how much of TeX's memory you used:
- 40397 strings out of 403341
- 840590 string characters out of 5463328
- 1286424 words of memory out of 5000000
- 68151 multiletter control sequences out of 15000+600000
- 722233 words of font info for 96 fonts, out of 8000000 for 9000
+ 40441 strings out of 403341
+ 841442 string characters out of 5463328
+ 1289427 words of memory out of 5000000
+ 68195 multiletter control sequences out of 15000+600000
+ 725231 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,15n,109p,1195b,1122s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

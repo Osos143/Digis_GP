@@ -40,8 +40,6 @@ The most recent validated execution began with \num{64949} raw drive-test rows a
 
 \begin{table}[htbp]
 \centering
-\caption{Final-run data scale used by the anomaly-detection pipeline.}
-\label{tab:data-scale}
 \begin{tabularx}{0.88\textwidth}{Y r}
 \toprule
 \textbf{Artifact / population} & \textbf{Size} \\
@@ -54,11 +52,18 @@ Pre-anomaly feature table & \num{32238} rows $\times$ 353 columns \\
 Sampling interval used by temporal logic & approximately 1 second \\
 \bottomrule
 \end{tabularx}
+\caption{Final-run data scale used by the anomaly-detection pipeline.}
+\label[tab]{data-scale}
 \end{table}
 
 The throughput distribution is strongly right-skewed, which is important because symmetric Gaussian assumptions are not suitable for every detector. The median LTE-DL throughput is approximately \SI{38.80}{\mega\bit\per\second}; the empirical global tenth percentile is approximately \SI{4.99}{\mega\bit\per\second}. The global P10 therefore lies very close to the severe low-throughput engineering anchor around \SI{5}{\mega\bit\per\second}, while the broader operational low-throughput reference remains \SI{10}{\mega\bit\per\second}.
 
-\projectfigure[0.95\linewidth]{01_pre_anomaly_throughput_distribution.png}{LTE-DL throughput distribution before anomaly detection. The long upper tail motivates robust lower-tail statistics and conditional expected-throughput references rather than one global Gaussian threshold.}{fig:pre-anomaly-distribution}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\linewidth]{01_pre_anomaly_throughput_distribution.png}
+  \caption{LTE-DL throughput distribution before anomaly detection. The long upper tail motivates robust lower-tail statistics and conditional expected-throughput references rather than one global Gaussian threshold.}
+  \label[fig]{pre-anomaly-distribution}
+\end{figure}
 
 \subsection{Session boundaries and leakage control}
 
@@ -159,8 +164,6 @@ The low-efficiency condition compares $\eta_{\mathrm{RB}}$ with the lower tail a
 
 \begin{table}[htbp]
 \centering
-\caption{Independent statistical families in the final run.}
-\label{tab:stat-families}
 \begin{tabularx}{0.88\textwidth}{Y r r}
 \toprule
 \textbf{Independent family} & \textbf{Rows} & \textbf{Share} \\
@@ -171,6 +174,8 @@ Expected underperformance & \num{1480} & 4.59\% \\
 RB efficiency & 518 & 1.61\% \\
 \bottomrule
 \end{tabularx}
+\caption{Independent statistical families in the final run.}
+\label[tab]{stat-families}
 \end{table}
 
 The broader statistical logic produces \num{8086} candidate rows (25.08\% of the LTE-DL population), of which \num{6217} satisfy the statistical RCA-eligibility rules. All configured detector-percentage quality checks passed in the final run; importantly, the narrow expected-throughput and RB-efficiency families did not dominate the candidate population.
@@ -243,8 +248,6 @@ The final run used five group-aware folds, so every one of the \num{32238} rows 
 
 \begin{table}[htbp]
 \centering
-\caption{Predictive-model quality from the final validation run.}
-\label{tab:ml-quality}
 \begin{tabularx}{\textwidth}{Y r r r r}
 \toprule
 \textbf{Model} & \textbf{Train $R^2$} & \textbf{Held-out $R^2$} & \textbf{Train MAE} & \textbf{Held-out MAE} \\
@@ -255,6 +258,8 @@ Calibrated resource Q75 & 0.836 & 0.809 & 12.42 & 13.75 \\
 LSTM-Q50 validation comparator & 0.807 & 0.749 & 13.31 & 14.74 \\
 \bottomrule
 \end{tabularx}
+\caption{Predictive-model quality from the final validation run.}
+\label[tab]{ml-quality}
 \end{table}
 
 The temporal HGB model is the strongest central predictor. The Q75 model has a different role: it approximates an upper achievable opportunity reference and is therefore not expected to minimize central-prediction error.
@@ -329,7 +334,12 @@ Impact receives a slight majority weight so a severe degradation remains importa
 
 The final row-level handoff contains \num{3574} observations: \num{3434} statistical-only retained rows (96.08\%), 136 statistical--ML consensus rows (3.81\%), and four supervised ML-only rows (0.11\%). The dominant row-impact families were radio (\num{1421}), capability (\num{1115}), temporal (973), and resource (65).
 
-\projectfigure[0.94\linewidth]{50_final_fused_row_priority_distribution.png}{Distribution of final fused row-level priority. The row score represents the seriousness and evidence strength of an exact one-second observation before temporal aggregation.}{fig:row-priority}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.94\linewidth]{50_final_fused_row_priority_distribution.png}
+  \caption{Distribution of final fused row-level priority. The row score represents the seriousness and evidence strength of an exact one-second observation before temporal aggregation.}
+  \label[fig]{row-priority}
+\end{figure}
 
 The selected impact--confidence fusion also outperformed naive score averaging as an operational ranking mechanism. Among final handoff rows, the selected method produced a median priority of 68.31 and P90 of 83.25, compared with a median of 35.13 for a naive statistical/ML average. This matters because a missing ML score should not suppress a strong interpretable statistical anomaly.
 
@@ -360,7 +370,12 @@ Priority_{\mathrm{episode}}=0.55I_{\mathrm{episode}}+0.45C_{\mathrm{episode}}.
 
 The final run formed \num{2087} candidate fused episodes. Strict gating retained \num{1429} final episodes containing \num{2824} fused anomaly rows. Of the retained episodes, \num{1362} passed the normal priority-and-confidence gate and 67 passed a verified critical-evidence override. Median episode persistence was 22.25.
 
-\projectfigure[0.94\linewidth]{54_final_episode_priority_distribution.png}{Priority distribution of strict final episodes. Episode scoring broadens the question from ``how bad was this second?'' to ``how severe, persistent, and well-supported was the complete anomaly period?''}{fig:episode-priority}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.94\linewidth]{54_final_episode_priority_distribution.png}
+  \caption{Priority distribution of strict final episodes. Episode scoring broadens the question from ``how bad was this second?'' to ``how severe, persistent, and well-supported was the complete anomaly period?''}
+  \label[fig]{episode-priority}
+\end{figure}
 
 \section{Operational Incident Consolidation}
 \label{sec:incident-fusion}
@@ -387,7 +402,12 @@ In the final payload this value is stored as \colname{incident\_final\_priority\
 
 Only 47 episode-to-episode bridges were accepted, showing that consolidation is conservative. The \num{1429} strict episodes became \num{1382} operational incidents. Most incidents contain exactly one strict episode; only 38 contain multiple episodes. The final incident-priority range is 34.31--78.41 with a median of 56.51. Severity counts are 11 Low, \num{1224} Medium, and 147 High; no incident reaches the Critical threshold.
 
-\projectfigure[0.94\linewidth]{58_operational_incident_priority_distribution.png}{Operational RCA incident-priority distribution. The incident score is intentionally more conservative than the peak row score because it represents the complete engineer-facing problem after persistence, recurrence, and evidence consistency are considered.}{fig:incident-priority}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.94\linewidth]{58_operational_incident_priority_distribution.png}
+  \caption{Operational RCA incident-priority distribution. The incident score is intentionally more conservative than the peak row score because it represents the complete engineer-facing problem after persistence, recurrence, and evidence consistency are considered.}
+  \label[fig]{incident-priority}
+\end{figure}
 
 \section{End-to-End Reduction and Final Handoff}
 
@@ -397,18 +417,28 @@ The final detection funnel is
 \end{equation}
 This reduction is controlled consolidation rather than data loss. Broad candidates are filtered by mechanism quality; correlated statistics are grouped; ML is required to meet strict predictive-disagreement conditions; weak isolated rows are removed; continuous observations become episodes; and nearby compatible episodes become incidents.
 
-\projectfigure[0.94\linewidth]{56_final_detection_funnel.png}{Final anomaly-detection and RCA-handoff funnel for the most recent run. Statistical and ML paths are not additive counts at every intermediate stage; they converge at row-level fusion before episode and incident aggregation.}{fig:detection-funnel}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.94\linewidth]{56_final_detection_funnel.png}
+  \caption{Final anomaly-detection and RCA-handoff funnel for the most recent run. Statistical and ML paths are not additive counts at every intermediate stage; they converge at row-level fusion before episode and incident aggregation.}
+  \label[fig]{detection-funnel}
+\end{figure}
 
 The compact handoff contains \num{1382} unique incident IDs and matching canonical priorities across the operational CSV, compact CSV, and compact JSON artifacts. This is important for downstream RCA because every engineer-facing problem has one stable identifier and one canonical ranking score, while peak-row and episode priorities remain available as supporting forensic context.
 
 \section{Representative Detected Degradation}
 \label{sec:representative-case}
 
-\Cref{fig:top-episode-context} shows a high-priority final episode around the selected anomaly instant. The figure overlays actual throughput, statistical opportunity references, resource and temporal model predictions, and the rolling baseline. The selected episode has priority approximately 87.0, impact 76.4, confidence 100, and persistence 22.2. At the anomaly instant the actual throughput is approximately \SI{3.18}{\mega\bit\per\second}, while the radio-conditioned P75 opportunity reference is approximately \SI{118.45}{\mega\bit\per\second} and the RB-conditioned P75 reference is approximately \SI{107.87}{\mega\bit\per\second}.
+Figure~\ref{top-episode-context} shows a high-priority final episode around the selected anomaly instant. The figure overlays actual throughput, statistical opportunity references, resource and temporal model predictions, and the rolling baseline. The selected episode has priority approximately 87.0, impact 76.4, confidence 100, and persistence 22.2. At the anomaly instant the actual throughput is approximately \SI{3.18}{\mega\bit\per\second}, while the radio-conditioned P75 opportunity reference is approximately \SI{118.45}{\mega\bit\per\second} and the RB-conditioned P75 reference is approximately \SI{107.87}{\mega\bit\per\second}.
 
 The important point is not simply that throughput is low. Multiple independent views agree that the row is far below a credible opportunity: the statistical P75 references are high, the production predictive families also expect substantially higher throughput, and the local temporal context indicates a sharp collapse. This produces high confidence without relying on a single threshold.
 
-\projectfigure[0.96\linewidth]{57_top_fused_episode_context_01.png}{Representative high-priority fused episode. The shaded region marks the selected anomaly period; the upper panel emphasizes opportunity references and the lower panel shows central/temporal predictive context.}{fig:top-episode-context}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.96\linewidth]{57_top_fused_episode_context_01.png}
+  \caption{Representative high-priority fused episode. The shaded region marks the selected anomaly period; the upper panel emphasizes opportunity references and the lower panel shows central/temporal predictive context.}
+  \label[fig]{top-episode-context}
+\end{figure}
 
 The same methodology also detects cases that fixed low-throughput thresholds alone would miss. For example, a sudden degradation can remain above \SI{10}{\mega\bit\per\second} but still show a very large local drop or expected-throughput gap. Conversely, radio-limited cases are preserved even when an expected-capability comparison would be inappropriate; they use a radio-specific impact formulation based on absolute low throughput and persistence instead of exaggerating the gap to an unrelated high prediction.
 
@@ -427,7 +457,12 @@ Weights are renormalized over metrics actually available for the entity. Therefo
 
 In the final run, ECI 1079182 is ranked first with a bad-cell score of 90.37/100. It has 35 observations across two sessions, median throughput of \SI{7.28}{\mega\bit\per\second}, P10 throughput of \SI{1.96}{\mega\bit\per\second}, statistical anomaly rate of 91.43\%, and median P75 opportunity gap of \SI{37.18}{\mega\bit\per\second}. Its ranking reliability is labeled Low because the supporting sample and session counts are limited; the score therefore prioritizes investigation without pretending that evidence volume is high.
 
-\projectfigure[0.96\linewidth]{14b_worst_performing_cells_ranked.png}{Worst-performing LTE serving cells ranked by the multi-KPI percentile badness score. Ranking reliability must be interpreted together with the score.}{fig:bad-cell-ranking}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.96\linewidth]{14b_worst_performing_cells_ranked.png}
+  \caption{Worst-performing LTE serving cells ranked by the multi-KPI percentile badness score. Ranking reliability must be interpreted together with the score.}
+  \label[fig]{bad-cell-ranking}
+\end{figure}
 
 \section{Validation, Governance, and Limitations}
 

@@ -1,3 +1,12 @@
+% ----------------------------------------------------------------
+% FINAL-THESIS SAFETY: suppress internal LaTeX label keys.
+% The custom thesis class loads showkeys in draft mode. showkeys uses
+% \providecommand for this formatter, so defining it before \documentclass
+% guarantees that keys such as fig:... and tab:... are never printed.
+% This does NOT disable \label or cross-references.
+% ----------------------------------------------------------------
+\providecommand*\showkeyslabelformat[1]{}
+
 \documentclass[12pt,twoside,openright]{thesis}
 
 % Shared formatting lives in one file so chapter authors rarely need to edit main.tex.
