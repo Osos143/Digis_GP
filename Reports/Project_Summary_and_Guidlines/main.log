@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  10 AUG 2026 14:35
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1320,8 +1320,128 @@ LaTeX Warning: Label `f' multiply defined.
 
 LaTeX Warning: Label `f@cref' multiply defined.
 
-) (Chapters/RCA.aux) (Chapters/Planning_Intelligence.aux)
-(Chapters/Integration_and_Platform_Design.aux))
+) (Chapters/RCA.aux) (Chapters/Planning_Intelligence.aux
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `a' multiply defined.
+
+
+LaTeX Warning: Label `a@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+
+LaTeX Warning: Label `f' multiply defined.
+
+
+LaTeX Warning: Label `f@cref' multiply defined.
+
+
+LaTeX Warning: Label `t' multiply defined.
+
+
+LaTeX Warning: Label `t@cref' multiply defined.
+
+) (Chapters/Integration_and_Platform_Design.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -1440,29 +1560,46 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 58.
 
 [1
 
-] (main.toc)
+] (main.toc
+
+[2
+
+])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 
 
-[2
+[3] (main.lof
+Underfull \vbox (badness 6110) has occurred while \output is active []
 
-] (main.lof)
+
+
+[4
+
+]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+7.
+ (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
 
 
-[3
-
-] (main.lot)
+[5] (main.lot)
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
 
 
-[4
+[6
 
 ]
 \openout2 = `Chapters/Anomaly_Detection.aux'.
@@ -1530,15 +1667,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [12]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-86.
- (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 File: Figures/58_operational_incident_priority_distribution.png Graphic file (t
 ype bmp)
 <Figures/58_operational_incident_priority_distribution.png>
@@ -1598,14 +1726,206 @@ Chapter 2.
 
 ]
 Chapter 3.
-)
+
+LaTeX Warning: Reference `sec:pi-overview-business' on page 1 undefined on inpu
+t line 24.
+
+
+LaTeX Warning: Reference `tab:pi-parameters' on page 1 undefined on input line 
+32.
+
+
+Underfull \hbox (badness 2600) in paragraph at lines 47--47
+[]|\T1/lmr/m/n/12 Groups PCIs for PSS/SSS 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [21]
+
+LaTeX Warning: Reference `tab:pi-modules' on page 1 undefined on input line 79.
+
+
+
+Underfull \vbox (badness 1072) has occurred while \output is active []
+
+
+
+[22]
+
+LaTeX Warning: Reference `fig:pi-architecture' on page 1 undefined on input lin
+e 105.
+
+File: Figures/PI_01_pipeline_architecture.png Graphic file (type bmp)
+<Figures/PI_01_pipeline_architecture.png>
+
+LaTeX Warning: Float too large for page by 27.27455pt on input line 111.
+
+
+
+[23]
+
+[24]
+
+[25]
+Overfull \hbox (34.99748pt too wide) detected at line 225
+[]
+ []
+
+
+LaTeX Warning: Reference `fig:pi-alignment-curve' on page 1 undefined on input 
+line 229.
+
+
+
+[26]
+File: Figures/PI_02_cosine_alignment_model.png Graphic file (type bmp)
+<Figures/PI_02_cosine_alignment_model.png>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 234.
+File: Figures/PI_03_interference_potential_vs_distance.png Graphic file (type b
+mp)
+<Figures/PI_03_interference_potential_vs_distance.png>
+
+Underfull \hbox (badness 1122) in paragraph at lines 261--265
+[] []\T1/lmr/m/sl/12 Ring ad-ja-cency.[] \T1/lmr/m/n/12 Co-site sec-tors are or
+-dered by az-imuth and treated as a ring;
+ []
+
+
+
+[27]
+
+LaTeX Warning: Reference `fig:pi-ring-adjacency' on page 1 undefined on input l
+ine 283.
+
+File: Figures/PI_04_ring_adjacency_4sector.png Graphic file (type bmp)
+<Figures/PI_04_ring_adjacency_4sector.png>
+
+LaTeX Warning: Reference `fig:pi-site-sizes' on page 1 undefined on input line 
+293.
+
+File: Figures/PI_05_site_size_distribution.png Graphic file (type bmp)
+<Figures/PI_05_site_size_distribution.png>
+
+
+[28]
+
+[29]
+
+LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 375.
+
+
+
+Underfull \vbox (badness 3240) has occurred while \output is active []
+
+
+
+[30]
+
+LaTeX Warning: Reference `tab:pi-pci-layers' on page 1 undefined on input line 
+388.
+
+
+
+[31]
+
+LaTeX Warning: Reference `tab:pi-graph-stats' on page 1 undefined on input line
+ 426.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[32]
+Underfull \hbox (badness 3557) in paragraph at lines 502--502
+[]|\T1/lmr/bx/n/12 Bulk plan-ning 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[34]
+
+LaTeX Warning: Reference `tab:pi-soft-rules' on page 1 undefined on input line 
+541.
+
+
+LaTeX Warning: Reference `alg:pi-repair' on page 1 undefined on input line 556.
+
+
+
+LaTeX Warning: Reference `alg:pi-dsatur' on page 1 undefined on input line 556.
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[35]
+
+LaTeX Warning: Reference `fig:pi-kpi-summary' on page 1 undefined on input line
+ 579.
+
+File: Figures/PI_06_kpi_summary.png Graphic file (type bmp)
+<Figures/PI_06_kpi_summary.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[36]
+
+LaTeX Warning: Reference `tab:pi-region-runtime' on page 1 undefined on input l
+ine 617.
+
+
+LaTeX Warning: Reference `fig:pi-runtime' on page 1 undefined on input line 617
+.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[37]
+File: Figures/PI_07_runtime_by_region.png Graphic file (type bmp)
+<Figures/PI_07_runtime_by_region.png>
+
+Underfull \hbox (badness 10000) in alignment at lines 643--643
+[][][][] 
+ []
+
+
+Underfull \vbox (badness 1533) has occurred while \output is active []
+
+
+
+[38]
+
+LaTeX Warning: Reference `chap:integration-platform-design' on page 1 undefined
+ on input line 675.
+
+)
+
+[39]
 \openout2 = `Chapters/Integration_and_Platform_Design.aux'.
 
  (Chapters/Integration_and_Platform_Design.tex
 
-[22
+[40
 
 
 
@@ -1614,7 +1934,7 @@ Chapter 3.
 Chapter 4.
 )
 
-[23] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
+[41] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
 (Chapters/Planning_Intelligence.aux)
 (Chapters/Integration_and_Platform_Design.aux))
  ***********
@@ -1629,15 +1949,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1B10782ADD1A712D0CBDC7CC1B85B1DB;6686.
+(rerunfilecheck)             Checksum: 45CEB687DDBAC0B9BEC9FAFC2DFF2626;11060.
  ) 
 Here is how much of TeX's memory you used:
- 40185 strings out of 403341
- 834642 string characters out of 5463328
- 1285424 words of memory out of 5000000
- 67957 multiletter control sequences out of 15000+600000
- 697165 words of font info for 79 fonts, out of 8000000 for 9000
+ 40397 strings out of 403341
+ 840590 string characters out of 5463328
+ 1286424 words of memory out of 5000000
+ 68151 multiletter control sequences out of 15000+600000
+ 722233 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 107i,13n,109p,1195b,1037s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 107i,15n,109p,1195b,1122s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (28 pages).
+Output written on main.pdf (48 pages).

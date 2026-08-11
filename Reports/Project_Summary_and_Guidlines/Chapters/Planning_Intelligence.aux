@@ -4,11 +4,134 @@
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{Chapter3}{{3}{21}{Planning Intelligence}{chapter.3}{}}
-\newlabel{Chapter3@cref}{{[chapter][3][]3}{[1][21][]21}{}{}{}}
+\newlabel{chap:planning-intelligence}{{3}{21}{Planning Intelligence}{chapter.3}{}}
+\newlabel{chap:planning-intelligence@cref}{{[chapter][3][]3}{[1][21][]21}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview and Scope}{21}{section.3.1}\protected@file@percent }
+\newlabel{sec:pi-overview}{{3.1}{21}{Overview and Scope}{section.3.1}{}}
+\newlabel{sec:pi-overview@cref}{{[section][1][3]3.1}{[1][21][]21}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}The Three Assigned Parameters}{21}{subsection.3.1.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Radio identity parameters assigned by the planning engine}}{22}{table.caption.16}\protected@file@percent }
+\newlabel{t}{{3.1}{22}{Radio identity parameters assigned by the planning engine}{table.caption.16}{}}
+\newlabel{t@cref}{{[table][1][3]3.1}{[1][21][]22}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Architecture Pivot: Full Reset vs. Incremental Planning}{22}{subsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}System Architecture}{23}{section.3.2}\protected@file@percent }
+\newlabel{sec:pi-architecture}{{3.2}{23}{System Architecture}{section.3.2}{}}
+\newlabel{sec:pi-architecture@cref}{{[section][2][3]3.2}{[1][22][]23}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Pipeline modules and their responsibilities}}{23}{table.caption.17}\protected@file@percent }
+\newlabel{t}{{3.2}{23}{Pipeline modules and their responsibilities}{table.caption.17}{}}
+\newlabel{t@cref}{{[table][2][3]3.2}{[1][23][]23}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Why Regions Can Be Planned Independently}{23}{subsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces End-to-end planning pipeline. Geometry (Stage~3) is shared between the assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing both agree on what ``facing'' means.}}{24}{figure.caption.18}\protected@file@percent }
+\newlabel{f}{{3.1}{24}{End-to-end planning pipeline. Geometry (Stage~3) is shared between the assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing both agree on what ``facing'' means}{figure.caption.18}{}}
+\newlabel{f@cref}{{[figure][1][3]3.1}{[1][23][]24}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Pipeline Stages in Detail}{25}{section.3.3}\protected@file@percent }
+\newlabel{sec:pi-stages}{{3.3}{25}{Pipeline Stages in Detail}{section.3.3}{}}
+\newlabel{sec:pi-stages@cref}{{[section][3][3]3.3}{[1][23][]25}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Stage 1: Data Loading}{25}{subsection.3.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Sector record structure (loader.py)}}{25}{table.caption.19}\protected@file@percent }
+\newlabel{t}{{3.3}{25}{Sector record structure (loader.py)}{table.caption.19}{}}
+\newlabel{t@cref}{{[table][3][3]3.3}{[1][25][]25}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Stage 2: Neighbor Graph Construction}{25}{subsection.3.3.2}\protected@file@percent }
+\newlabel{sec:pi-neighbor-graph}{{3.3.2}{25}{Stage 2: Neighbor Graph Construction}{subsection.3.3.2}{}}
+\newlabel{sec:pi-neighbor-graph@cref}{{[subsection][2][3,3]3.3.2}{[1][25][]25}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Measured neighbor graph statistics, full dataset}}{26}{table.caption.20}\protected@file@percent }
+\newlabel{t}{{3.4}{26}{Measured neighbor graph statistics, full dataset}{table.caption.20}{}}
+\newlabel{t@cref}{{[table][4][3]3.4}{[1][26][]26}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Stage 3: Geometry Engine}{26}{subsection.3.3.3}\protected@file@percent }
+\newlabel{sec:pi-geometry}{{3.3.3}{26}{Stage 3: Geometry Engine}{subsection.3.3.3}{}}
+\newlabel{sec:pi-geometry@cref}{{[subsection][3][3,3]3.3.3}{[1][26][]26}{}{}{}}
+\newlabel{eq:alignment}{{3.4}{26}{Stage 3: Geometry Engine}{equation.3.4}{}}
+\newlabel{eq:alignment@cref}{{[equation][4][3]3.4}{[1][26][]26}{}{}{}}
+\newlabel{eq:interference}{{3.5}{26}{Stage 3: Geometry Engine}{equation.3.5}{}}
+\newlabel{eq:interference@cref}{{[equation][5][3]3.5}{[1][26][]26}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Cosine alignment model: alignment vs. angular offset from boresight. Key points: $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$.}}{27}{figure.caption.21}\protected@file@percent }
+\newlabel{f}{{3.2}{27}{Cosine alignment model: alignment vs. angular offset from boresight. Key points: $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$}{figure.caption.21}{}}
+\newlabel{f@cref}{{[figure][2][3]3.2}{[1][27][]27}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Stage 4: Constraint Generation}{27}{subsection.3.3.4}\protected@file@percent }
+\newlabel{sec:pi-constraints}{{3.3.4}{27}{Stage 4: Constraint Generation}{subsection.3.3.4}{}}
+\newlabel{sec:pi-constraints@cref}{{[subsection][4][3,3]3.3.4}{[1][27][]27}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Ring adjacency.}{27}{paragraph*.23}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Interference potential vs. distance for a fully-facing pair (both alignments $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and Tier-2 (14\,km) boundaries are marked for reference.}}{28}{figure.caption.22}\protected@file@percent }
+\newlabel{f}{{3.3}{28}{Interference potential vs. distance for a fully-facing pair (both alignments $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and Tier-2 (14\,km) boundaries are marked for reference}{figure.caption.22}{}}
+\newlabel{f@cref}{{[figure][3][3]3.3}{[1][27][]28}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Site-size-aware Mod3 rule.}{28}{paragraph*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Mod3 rule by site size}}{28}{table.caption.25}\protected@file@percent }
+\newlabel{t}{{3.5}{28}{Mod3 rule by site size}{table.caption.25}{}}
+\newlabel{t@cref}{{[table][5][3]3.5}{[1][27][]28}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measured site-size distribution.}{28}{paragraph*.27}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Ring adjacency for a 4-sector site at $0^\circ /90^\circ /180^\circ /270^\circ $. Ring pairs (solid) must differ under the hard rule; the two non-adjacent diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole principle forces it.}}{29}{figure.caption.26}\protected@file@percent }
+\newlabel{f}{{3.4}{29}{Ring adjacency for a 4-sector site at $0^\circ /90^\circ /180^\circ /270^\circ $. Ring pairs (solid) must differ under the hard rule; the two non-adjacent diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole principle forces it}{figure.caption.26}{}}
+\newlabel{f@cref}{{[figure][4][3]3.4}{[1][28][]29}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Measured site-size distribution, full dataset. $431+2=433$ sites fall under the 4--5-sector ring-adjacent-only rule.}}{29}{figure.caption.28}\protected@file@percent }
+\newlabel{f}{{3.5}{29}{Measured site-size distribution, full dataset. $431+2=433$ sites fall under the 4--5-sector ring-adjacent-only rule}{figure.caption.28}{}}
+\newlabel{f@cref}{{[figure][5][3]3.5}{[1][28][]29}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Stage 5: The Assignment Engine}{30}{section.3.4}\protected@file@percent }
+\newlabel{sec:pi-assignment}{{3.4}{30}{Stage 5: The Assignment Engine}{section.3.4}{}}
+\newlabel{sec:pi-assignment@cref}{{[section][4][3]3.4}{[1][28][]30}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Sub-stage 5.1: Mod4 Assignment}{30}{subsection.3.4.1}\protected@file@percent }
+\newlabel{sec:pi-mod4}{{3.4.1}{30}{Sub-stage 5.1: Mod4 Assignment}{subsection.3.4.1}{}}
+\newlabel{sec:pi-mod4@cref}{{[subsection][1][3,4]3.4.1}{[1][30][]30}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Co-site Mod4 rule.}{30}{paragraph*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 1 --- DSATUR initial coloring.}{30}{paragraph*.30}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Weighted DSATUR coloring for Mod4}}{30}{algocf.1}\protected@file@percent }
+\newlabel{a}{{1}{30}{Step 1 --- DSATUR initial coloring}{algocf.1}{}}
+\newlabel{a@cref}{{[algorithm][1][]1}{[1][30][]30}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Step 2 --- Local search repair.}{30}{paragraph*.31}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Weighted local search repair (recolor + swap)}}{31}{algocf.2}\protected@file@percent }
+\newlabel{a}{{2}{31}{Step 2 --- Local search repair}{algocf.2}{}}
+\newlabel{a@cref}{{[algorithm][2][]2}{[1][30][]31}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Sub-stage 5.2: PCI Assignment}{31}{subsection.3.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces PCI layered preference funnel}}{31}{table.caption.32}\protected@file@percent }
+\newlabel{t}{{3.6}{31}{PCI layered preference funnel}{table.caption.32}{}}
+\newlabel{t@cref}{{[table][6][3]3.6}{[1][31][]31}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Sub-stage 5.3: RSI Assignment}{32}{subsection.3.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Stage 6: Independent Validation}{32}{section.3.5}\protected@file@percent }
+\newlabel{sec:pi-validation}{{3.5}{32}{Stage 6: Independent Validation}{section.3.5}{}}
+\newlabel{sec:pi-validation@cref}{{[section][5][3]3.5}{[1][32][]32}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces Rules checked by the independent validator}}{33}{table.caption.33}\protected@file@percent }
+\newlabel{t}{{3.7}{33}{Rules checked by the independent validator}{table.caption.33}{}}
+\newlabel{t@cref}{{[table][7][3]3.7}{[1][32][]33}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Stage 7: Export}{33}{section.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Planning Modes}{34}{section.3.7}\protected@file@percent }
+\newlabel{sec:pi-modes}{{3.7}{34}{Planning Modes}{section.3.7}{}}
+\newlabel{sec:pi-modes@cref}{{[section][7][3]3.7}{[1][33][]34}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.8}{\ignorespaces Bulk planning vs. single-site planning}}{34}{table.caption.34}\protected@file@percent }
+\newlabel{t}{{3.8}{34}{Bulk planning vs. single-site planning}{table.caption.34}{}}
+\newlabel{t@cref}{{[table][8][3]3.8}{[1][33][]34}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Hard Rules Reference}{35}{section.3.8}\protected@file@percent }
+\newlabel{sec:pi-hard-rules}{{3.8}{35}{Hard Rules Reference}{section.3.8}{}}
+\newlabel{sec:pi-hard-rules@cref}{{[section][8][3]3.8}{[1][34][]35}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.9}{\ignorespaces Hard rules enforced by the planning engine (all must equal zero)}}{35}{table.caption.35}\protected@file@percent }
+\newlabel{t}{{3.9}{35}{Hard rules enforced by the planning engine (all must equal zero)}{table.caption.35}{}}
+\newlabel{t@cref}{{[table][9][3]3.9}{[1][34][]35}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Soft Rules Reference}{35}{section.3.9}\protected@file@percent }
+\newlabel{sec:pi-soft-rules}{{3.9}{35}{Soft Rules Reference}{section.3.9}{}}
+\newlabel{sec:pi-soft-rules@cref}{{[section][9][3]3.9}{[1][35][]35}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.10}{\ignorespaces Soft rules, structural cause, and measured results}}{36}{table.caption.36}\protected@file@percent }
+\newlabel{t}{{3.10}{36}{Soft rules, structural cause, and measured results}{table.caption.36}{}}
+\newlabel{t@cref}{{[table][10][3]3.10}{[1][35][]36}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.10}Measured Results and Performance}{36}{section.3.10}\protected@file@percent }
+\newlabel{sec:pi-results}{{3.10}{36}{Measured Results and Performance}{section.3.10}{}}
+\newlabel{sec:pi-results@cref}{{[section][10][3]3.10}{[1][36][]36}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Measured KPI results, full dataset, single full-reset run. Green bars are hard rules (all zero); amber bars are soft, structurally-expected counts.}}{37}{figure.caption.37}\protected@file@percent }
+\newlabel{f}{{3.6}{37}{Measured KPI results, full dataset, single full-reset run. Green bars are hard rules (all zero); amber bars are soft, structurally-expected counts}{figure.caption.37}{}}
+\newlabel{f@cref}{{[figure][6][3]3.6}{[1][36][]37}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.11}{\ignorespaces Full measured results summary}}{37}{table.caption.38}\protected@file@percent }
+\newlabel{t}{{3.11}{37}{Full measured results summary}{table.caption.38}{}}
+\newlabel{t@cref}{{[table][11][3]3.11}{[1][36][]37}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{38}{subsection.3.10.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces \texttt  {bulk\_plan()} wall-clock time per region, measured on the full dataset.}}{38}{figure.caption.39}\protected@file@percent }
+\newlabel{f}{{3.7}{38}{\fname {bulk\_plan()} wall-clock time per region, measured on the full dataset}{figure.caption.39}{}}
+\newlabel{f@cref}{{[figure][7][3]3.7}{[1][38][]38}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.12}{\ignorespaces Measured per-region runtime}}{38}{table.caption.40}\protected@file@percent }
+\newlabel{t}{{3.12}{38}{Measured per-region runtime}{table.caption.40}{}}
+\newlabel{t@cref}{{[table][12][3]3.12}{[1][38][]38}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.11}Chapter Summary}{39}{section.3.11}\protected@file@percent }
+\newlabel{sec:pi-summary}{{3.11}{39}{Chapter Summary}{section.3.11}{}}
+\newlabel{sec:pi-summary@cref}{{[section][11][3]3.11}{[1][39][]39}{}{}{}}
 \@setckpt{Chapters/Planning_Intelligence}{
-\setcounter{page}{22}
-\setcounter{equation}{0}
+\setcounter{page}{40}
+\setcounter{equation}{5}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -17,13 +140,13 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{3}
-\setcounter{section}{0}
+\setcounter{section}{11}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\setcounter{figure}{7}
+\setcounter{table}{12}
 \setcounter{parentequation}{0}
 \setcounter{float@type}{16}
 \setcounter{caption@flags}{2}
@@ -34,15 +157,15 @@
 \setcounter{LT@chunks}{0}
 \setcounter{nlinenum}{0}
 \setcounter{lstnumber}{1}
-\setcounter{AlgoLine}{0}
-\setcounter{algocfline}{0}
-\setcounter{algocfproc}{0}
-\setcounter{algocf}{0}
+\setcounter{AlgoLine}{8}
+\setcounter{algocfline}{2}
+\setcounter{algocfproc}{2}
+\setcounter{algocf}{2}
 \setcounter{lofdepth}{1}
 \setcounter{lotdepth}{1}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{4}
+\setcounter{tcolorbox@number}{12}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}
@@ -53,6 +176,6 @@
 \setcounter{Item}{3}
 \setcounter{Hfootnote}{0}
 \setcounter{Hy@AnnotLevel}{0}
-\setcounter{bookmark@seq@number}{29}
+\setcounter{bookmark@seq@number}{51}
 \setcounter{lstlisting}{0}
 }
