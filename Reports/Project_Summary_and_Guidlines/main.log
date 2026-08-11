@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 12:29
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 13:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1403,7 +1403,19 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 67.
 
 
 [3] (main.lof
-Underfull \vbox (badness 6110) has occurred while \output is active []
+Underfull \hbox (badness 1024) in paragraph at lines 4--4
+ [][] [][][]\T1/lmr/m/n/12 Representative statistical-only anomaly con-text win
+-dow. The high- 
+ []
+
+
+Underfull \hbox (badness 2368) in paragraph at lines 4--4
+ \T1/lmr/m/n/12 pre-serve expected-throughput ref-er-ences, radio-signal ev-i-d
+ence, and 
+ []
+
+
+Underfull \vbox (badness 8132) has occurred while \output is active []
 
 
 
@@ -1411,7 +1423,7 @@ Underfull \vbox (badness 6110) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-7.
+9.
  (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1464,66 +1476,96 @@ File: Figures/01_pre_anomaly_throughput_distribution.png Graphic file (type bmp
 [6]
 
 [7]
-Underfull \hbox (badness 1077) in paragraph at lines 260--260
-[]|\T1/lmr/m/n/12 HGB resource- 
- []
+File: Figures/10b_anomaly_score_distribution_flagged_only.png Graphic file (typ
+e bmp)
+<Figures/10b_anomaly_score_distribution_flagged_only.png>
+File: Figures/18_top_anomaly_episode_context_rank_2_plotly_context.png Graphic 
+file (type bmp)
+<Figures/18_top_anomaly_episode_context_rank_2_plotly_context.png>
 
-
-Underfull \vbox (badness 1708) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [8]
+Underfull \vbox (badness 3547) has occurred while \output is active []
+
+
 
 [9]
-File: Figures/50_final_fused_row_priority_distribution.png Graphic file (type b
-mp)
-<Figures/50_final_fused_row_priority_distribution.png>
+Underfull \hbox (badness 1077) in paragraph at lines 297--297
+[]|\T1/lmr/m/n/12 HGB resource- 
+ []
+
 
 
 [10]
-File: Figures/54_final_episode_priority_distribution.png Graphic file (type bmp
-)
-<Figures/54_final_episode_priority_distribution.png>
-
-Underfull \vbox (badness 5133) has occurred while \output is active []
+Underfull \vbox (badness 1210) has occurred while \output is active []
 
 
 
 [11]
+Underfull \vbox (badness 2293) has occurred while \output is active []
+
+
 
 [12]
+File: Figures/50_final_fused_row_priority_distribution.png Graphic file (type b
+mp)
+<Figures/50_final_fused_row_priority_distribution.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[13]
+File: Figures/54_final_episode_priority_distribution.png Graphic file (type bmp
+)
+<Figures/54_final_episode_priority_distribution.png>
+
+Underfull \vbox (badness 5147) has occurred while \output is active []
+
+
+
+[14]
 File: Figures/58_operational_incident_priority_distribution.png Graphic file (t
 ype bmp)
 <Figures/58_operational_incident_priority_distribution.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[15]
 File: Figures/56_final_detection_funnel.png Graphic file (type bmp)
 <Figures/56_final_detection_funnel.png>
 
 
-[13]
+[16]
 File: Figures/57_top_fused_episode_context_01.png Graphic file (type bmp)
 <Figures/57_top_fused_episode_context_01.png>
 
 
-[14]
-
-[15]
+[17]
 File: Figures/14b_worst_performing_cells_ranked.png Graphic file (type bmp)
 <Figures/14b_worst_performing_cells_ranked.png>
 
 
-[16])
-
-[17]
-
 [18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[19])
+
+[20]
 \openout2 = `Chapters/RCA.aux'.
 
  (Chapters/RCA.tex
 Chapter 2.
 )
 
-[19
+[21
 
 
 
@@ -1533,7 +1575,7 @@ Chapter 2.
 
  (Chapters/Planning_Intelligence.tex
 
-[20
+[22
 
 
 
@@ -1550,12 +1592,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[21]
+[23]
 Underfull \vbox (badness 2903) has occurred while \output is active []
 
 
 
-[22]
+[24]
 File: Figures/PI_01_pipeline_architecture.png Graphic file (type bmp)
 <Figures/PI_01_pipeline_architecture.png>
 
@@ -1564,11 +1606,11 @@ LaTeX Warning: Float too large for page by 0.19112pt on input line 114.
 
 
 
-[23]
-
-[24]
-
 [25]
+
+[26]
+
+[27]
 Overfull \hbox (34.99748pt too wide) detected at line 228
 []
  []
@@ -1582,9 +1624,9 @@ mp)
 <Figures/PI_03_interference_potential_vs_distance.png>
 
 
-[26]
+[28]
 
-[27]
+[29]
 Underfull \hbox (badness 1122) in paragraph at lines 270--274
 [] []\T1/lmr/m/sl/12 Ring ad-ja-cency.[] \T1/lmr/m/n/12 Co-site sec-tors are or
 -dered by az-imuth and treated as a ring;
@@ -1596,21 +1638,21 @@ File: Figures/PI_05_site_size_distribution.png Graphic file (type bmp)
 <Figures/PI_05_site_size_distribution.png>
 
 
-[28]
+[30]
 
-[29]
+[31]
 Underfull \vbox (badness 6236) has occurred while \output is active []
 
 
 
-[30]
+[32]
 
-[31]
+[33]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[32]
+[34]
 Underfull \hbox (badness 3557) in paragraph at lines 515--515
 []|\T1/lmr/bx/n/12 Bulk plan-ning 
  []
@@ -1620,17 +1662,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 [35]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[36]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[37]
 File: Figures/PI_06_kpi_summary.png Graphic file (type bmp)
 <Figures/PI_06_kpi_summary.png>
 
@@ -1638,9 +1680,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[36]
+[38]
 
-[37]
+[39]
 File: Figures/PI_07_runtime_by_region.png Graphic file (type bmp)
 <Figures/PI_07_runtime_by_region.png>
 
@@ -1653,14 +1695,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[38])
+[40])
 
-[39]
+[41]
 \openout2 = `Chapters/Integration_and_Platform_Design.aux'.
 
  (Chapters/Integration_and_Platform_Design.tex
 
-[40
+[42
 
 
 
@@ -1669,7 +1711,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Chapter 4.
 )
 
-[41] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
+[43] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
 (Chapters/Planning_Intelligence.aux)
 (Chapters/Integration_and_Platform_Design.aux))
  ***********
@@ -1677,15 +1719,15 @@ LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 45CEB687DDBAC0B9BEC9FAFC2DFF2626;11060.
+(rerunfilecheck)             Checksum: 5FFF223C90B6BA8096D5C8650C476073;11711.
  ) 
 Here is how much of TeX's memory you used:
- 40439 strings out of 403341
- 841375 string characters out of 5463328
+ 40466 strings out of 403341
+ 842870 string characters out of 5463328
  1289427 words of memory out of 5000000
- 68193 multiletter control sequences out of 15000+600000
+ 68218 multiletter control sequences out of 15000+600000
  725231 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,15n,109p,1195b,1122s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (48 pages).
+Output written on main.pdf (50 pages).

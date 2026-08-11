@@ -227,6 +227,28 @@ Low-RB observations without strong radio or temporal explanation are smoothly co
 
 The contribution audit confirms that the score is driven mainly by anomaly seriousness rather than bonuses. Among final statistical anomaly rows, the mean strongest-trigger base was 44.47 and the mean continuous magnitude was 55.74, whereas the mean family and context bonuses were only 1.31 and 3.85 respectively. Candidate-score quality control also showed a median score of 58.70, P90 of 87.55, P95 of 92.90, and no artificial pile-up at either compression boundary.
 
+\subsection{Statistical-only score distribution and detected-anomaly context}
+
+Before introducing machine-learning evidence, it is useful to inspect the behavior of the \emph{statistical layer by itself}. Figure~\ref{stat-score-distribution} shows the anomaly-score distribution only for samples already flagged by the statistical logic. The dashed lines at 35, 60, and 80 indicate the configured severity bands used to interpret the statistical score as Medium, High, and Critical. They are severity boundaries rather than additional anomaly detectors. The broad spread of scores is desirable: it shows that the statistical layer does not collapse all flagged rows into one binary class, and that the continuous gap, ratio, absolute-low, and temporal-drop terms preserve meaningful ranking among detected samples.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{10b_anomaly_score_distribution_flagged_only.png}
+  \caption{Statistical anomaly-score distribution for flagged samples only. The score spans multiple severity bands rather than behaving as a binary flag, allowing the statistical layer to rank detected samples by the strength of the observed degradation.}
+  \label[fig]{stat-score-distribution}
+\end{figure}
+\FloatBarrier
+
+Figure~\ref{stat-context-example} gives a representative \textbf{statistics-only} anomaly context window. The selected anomaly is centered at zero seconds. The top panel compares actual throughput with the statistical radio-conditioned P75, RB-conditioned P75, and rolling-median references; the sharp instantaneous throughput collapse is visible against substantially higher local opportunity references. The middle panel shows the contemporaneous radio evidence (RSRP, RSRQ, and SINR), while the lower panel shows link-adaptation and decoding indicators (CQI, MCS, and BLER). Reading the panels together is important: the detector is not simply reacting to a low throughput number, but preserving the surrounding radio, temporal, and link-adaptation evidence needed to explain why the sample is abnormal and to support later RCA reasoning.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth,height=0.72\textheight,keepaspectratio]{18_top_anomaly_episode_context_rank_2_plotly_context.png}
+  \caption{Representative statistical-only anomaly context window. The highlighted interval shows the selected anomaly, while the surrounding panels preserve expected-throughput references, radio-signal evidence, and link-adaptation/decoding KPIs for interpretation.}
+  \label[fig]{stat-context-example}
+\end{figure}
+\FloatBarrier
+
 \section{Session-Safe Machine-Learning Evidence}
 \label[section]{sec:ml-evidence}
 
@@ -237,6 +259,21 @@ Machine learning is a supporting evidence source rather than the primary detecto
   \item calibrated resource-conditioned Q75 predictor.
 \end{enumerate}
 A sequence LSTM-Q50 model and Isolation Forest remain validation/context methods and do not become additional production evidence families.
+
+\subsection{How the machine-learning models work}
+
+The models answer complementary engineering questions rather than acting as five interchangeable anomaly detectors:
+\begin{itemize}
+  \item \textbf{HGB strict-causal temporal central predictor.} A histogram-based gradient-boosted tree ensemble predicts the central expected throughput from causal, past-only temporal features. Gradient boosting adds shallow decision trees sequentially to correct the residual errors of the current ensemble; histogram binning makes the training efficient. This model asks whether the present throughput is unexpectedly poor relative to the recent behavior available before that instant.
+
+  \item \textbf{HGB resource-conditioned central predictor.} The same histogram-gradient-boosting mechanism is trained on current radio, resource-demand, and link-adaptation context. It estimates the expected central throughput for conditions such as RB demand, CQI/MCS, radio quality, and other available technical features, providing a complementary resource-oriented view of underperformance.
+
+  \item \textbf{Gradient-Boosting resource-conditioned Q75 predictor.} Instead of estimating the conditional mean or median, this model is trained with quantile loss at the 75th percentile. It therefore estimates an upper, realistically achievable throughput opportunity under comparable resource conditions. A large gap between this Q75 reference and the measured throughput is interpreted as opportunity loss rather than simply prediction error.
+
+  \item \textbf{LSTM-Q50 validation comparator.} A recurrent Long Short-Term Memory network consumes ordered sequences of causal observations and uses gated memory states to retain information across time. It predicts a Q50/central temporal reference and is used to test whether explicit sequence learning adds stable held-out-session information beyond the simpler boosted-tree temporal model. It is validation-only in the final production fusion.
+
+  \item \textbf{Isolation Forest context model.} This unsupervised model repeatedly partitions the multivariate feature space using random feature/split selections. Unusual observations require fewer random splits to isolate and therefore receive higher outlier scores. Because rarity is not the same as confirmed throughput degradation, Isolation Forest is retained only as contextual validation and does not contribute an independent production evidence family.
+\end{itemize}
 
 \subsection{Group-aware out-of-fold prediction}
 

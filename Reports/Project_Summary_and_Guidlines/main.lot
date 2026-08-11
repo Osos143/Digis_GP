@@ -1,19 +1,19 @@
 \addvspace {10pt}
 \contentsline {table}{\numberline {1.1}{\ignorespaces Final-run data scale used by the anomaly-detection pipeline.}}{2}{table.caption.2}%
 \contentsline {table}{\numberline {1.2}{\ignorespaces Independent statistical families in the final run.}}{6}{table.caption.8}%
-\contentsline {table}{\numberline {1.3}{\ignorespaces Predictive-model quality from the final validation run.}}{8}{table.caption.9}%
+\contentsline {table}{\numberline {1.3}{\ignorespaces Predictive-model quality from the final validation run.}}{11}{table.caption.11}%
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {table}{\numberline {3.1}{\ignorespaces Radio identity parameters assigned by the planning engine}}{22}{table.caption.16}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Pipeline modules and their responsibilities}}{23}{table.caption.17}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Sector record structure (loader.py)}}{25}{table.caption.19}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Measured neighbor graph statistics, full dataset}}{26}{table.caption.20}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces Mod3 rule by site size}}{28}{table.caption.25}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces PCI layered preference funnel}}{31}{table.caption.32}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces Rules checked by the independent validator}}{33}{table.caption.33}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces Bulk planning vs. single-site planning}}{34}{table.caption.34}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces Hard rules enforced by the planning engine (all must equal zero)}}{35}{table.caption.35}%
-\contentsline {table}{\numberline {3.10}{\ignorespaces Soft rules, structural cause, and measured results}}{36}{table.caption.36}%
-\contentsline {table}{\numberline {3.11}{\ignorespaces Full measured results summary}}{37}{table.caption.38}%
-\contentsline {table}{\numberline {3.12}{\ignorespaces Measured per-region runtime}}{38}{table.caption.40}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Radio identity parameters assigned by the planning engine}}{24}{table.caption.18}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Pipeline modules and their responsibilities}}{25}{table.caption.19}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Sector record structure (loader.py)}}{27}{table.caption.21}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Measured neighbor graph statistics, full dataset}}{28}{table.caption.22}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Mod3 rule by site size}}{30}{table.caption.27}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces PCI layered preference funnel}}{33}{table.caption.34}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Rules checked by the independent validator}}{35}{table.caption.35}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Bulk planning vs. single-site planning}}{36}{table.caption.36}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces Hard rules enforced by the planning engine (all must equal zero)}}{37}{table.caption.37}%
+\contentsline {table}{\numberline {3.10}{\ignorespaces Soft rules, structural cause, and measured results}}{38}{table.caption.38}%
+\contentsline {table}{\numberline {3.11}{\ignorespaces Full measured results summary}}{39}{table.caption.40}%
+\contentsline {table}{\numberline {3.12}{\ignorespaces Measured per-region runtime}}{40}{table.caption.42}%
 \addvspace {10pt}

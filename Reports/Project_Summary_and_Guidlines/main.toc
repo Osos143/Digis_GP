@@ -16,47 +16,49 @@
 \contentsline {subsection}{\numberline {1.4.1}Strongest-trigger floor}{6}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Continuous magnitude}{6}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Independent-family and context bonuses}{7}{subsection.1.4.3}%
-\contentsline {section}{\numberline {1.5}Session-Safe Machine-Learning Evidence}{7}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Group-aware out-of-fold prediction}{8}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Per-model anomaly evidence}{8}{subsection.1.5.2}%
-\contentsline {section}{\numberline {1.6}Row-Level Statistical--ML Fusion}{9}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Evidence confidence}{9}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Mechanism-aware impact and priority}{10}{subsection.1.6.2}%
-\contentsline {section}{\numberline {1.7}Episode Construction and Persistence}{10}{section.1.7}%
-\contentsline {section}{\numberline {1.8}Operational Incident Consolidation}{12}{section.1.8}%
-\contentsline {section}{\numberline {1.9}End-to-End Reduction and Final Handoff}{13}{section.1.9}%
-\contentsline {section}{\numberline {1.10}Representative Detected Degradation}{13}{section.1.10}%
-\contentsline {section}{\numberline {1.11}Serving-Cell Prioritization Derived from Detected Behavior}{14}{section.1.11}%
-\contentsline {section}{\numberline {1.12}Validation, Governance, and Limitations}{16}{section.1.12}%
-\contentsline {section}{\numberline {1.13}Chapter Summary}{17}{section.1.13}%
-\contentsline {chapter}{\numberline {2.}Root Cause Analysis}{19}{chapter.2}%
-\contentsline {chapter}{\numberline {3.}Planning Intelligence}{21}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Overview and Scope}{21}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}The Three Assigned Parameters}{21}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Architecture Pivot: Full Reset vs. Incremental Planning}{22}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}System Architecture}{23}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Why Regions Can Be Planned Independently}{23}{subsection.3.2.1}%
-\contentsline {section}{\numberline {3.3}Pipeline Stages in Detail}{25}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Stage 1: Data Loading}{25}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Stage 2: Neighbor Graph Construction}{25}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Stage 3: Geometry Engine}{26}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Stage 4: Constraint Generation}{28}{subsection.3.3.4}%
-\contentsline {paragraph}{Ring adjacency.}{28}{paragraph*.23}%
-\contentsline {paragraph}{Site-size-aware Mod3 rule.}{28}{paragraph*.24}%
-\contentsline {paragraph}{Measured site-size distribution.}{28}{paragraph*.27}%
-\contentsline {section}{\numberline {3.4}Stage 5: The Assignment Engine}{30}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Sub-stage 5.1: Mod4 Assignment}{30}{subsection.3.4.1}%
-\contentsline {paragraph}{Co-site Mod4 rule.}{30}{paragraph*.29}%
-\contentsline {paragraph}{Step 1 --- DSATUR initial coloring.}{30}{paragraph*.30}%
-\contentsline {paragraph}{Step 2 --- Local search repair.}{30}{paragraph*.31}%
-\contentsline {subsection}{\numberline {3.4.2}Sub-stage 5.2: PCI Assignment}{31}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Sub-stage 5.3: RSI Assignment}{32}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Stage 6: Independent Validation}{32}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Stage 7: Export}{33}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Planning Modes}{34}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Hard Rules Reference}{35}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Soft Rules Reference}{35}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Measured Results and Performance}{36}{section.3.10}%
-\contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{37}{subsection.3.10.1}%
-\contentsline {section}{\numberline {3.11}Chapter Summary}{39}{section.3.11}%
-\contentsline {chapter}{\numberline {4.}Integration and Platform}{41}{chapter.4}%
+\contentsline {subsection}{\numberline {1.4.4}Statistical-only score distribution and detected-anomaly context}{7}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Session-Safe Machine-Learning Evidence}{9}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}How the machine-learning models work}{10}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Group-aware out-of-fold prediction}{10}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Per-model anomaly evidence}{11}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}Row-Level Statistical--ML Fusion}{12}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Evidence confidence}{12}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Mechanism-aware impact and priority}{13}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Episode Construction and Persistence}{14}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Operational Incident Consolidation}{14}{section.1.8}%
+\contentsline {section}{\numberline {1.9}End-to-End Reduction and Final Handoff}{16}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Representative Detected Degradation}{17}{section.1.10}%
+\contentsline {section}{\numberline {1.11}Serving-Cell Prioritization Derived from Detected Behavior}{18}{section.1.11}%
+\contentsline {section}{\numberline {1.12}Validation, Governance, and Limitations}{18}{section.1.12}%
+\contentsline {section}{\numberline {1.13}Chapter Summary}{20}{section.1.13}%
+\contentsline {chapter}{\numberline {2.}Root Cause Analysis}{21}{chapter.2}%
+\contentsline {chapter}{\numberline {3.}Planning Intelligence}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Overview and Scope}{23}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}The Three Assigned Parameters}{23}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Architecture Pivot: Full Reset vs. Incremental Planning}{24}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}System Architecture}{25}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Why Regions Can Be Planned Independently}{25}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Pipeline Stages in Detail}{27}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Stage 1: Data Loading}{27}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Stage 2: Neighbor Graph Construction}{27}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Stage 3: Geometry Engine}{28}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Stage 4: Constraint Generation}{30}{subsection.3.3.4}%
+\contentsline {paragraph}{Ring adjacency.}{30}{paragraph*.25}%
+\contentsline {paragraph}{Site-size-aware Mod3 rule.}{30}{paragraph*.26}%
+\contentsline {paragraph}{Measured site-size distribution.}{30}{paragraph*.29}%
+\contentsline {section}{\numberline {3.4}Stage 5: The Assignment Engine}{32}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Sub-stage 5.1: Mod4 Assignment}{32}{subsection.3.4.1}%
+\contentsline {paragraph}{Co-site Mod4 rule.}{32}{paragraph*.31}%
+\contentsline {paragraph}{Step 1 --- DSATUR initial coloring.}{32}{paragraph*.32}%
+\contentsline {paragraph}{Step 2 --- Local search repair.}{32}{paragraph*.33}%
+\contentsline {subsection}{\numberline {3.4.2}Sub-stage 5.2: PCI Assignment}{33}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Sub-stage 5.3: RSI Assignment}{34}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Stage 6: Independent Validation}{34}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Stage 7: Export}{35}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Planning Modes}{36}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Hard Rules Reference}{37}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Soft Rules Reference}{37}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Measured Results and Performance}{38}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{39}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}Chapter Summary}{41}{section.3.11}%
+\contentsline {chapter}{\numberline {4.}Integration and Platform}{43}{chapter.4}%
