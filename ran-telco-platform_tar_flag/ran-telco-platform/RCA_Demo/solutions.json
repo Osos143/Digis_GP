@@ -1,0 +1,306 @@
+{
+  "knowledge_base": "LTE DL Throughput Degradation -- Recommended Solutions",
+  "version": "8.0",
+  "linked_files": [
+    "causes.json",
+    "kpi_rules.json"
+  ],
+  "id_scheme": "Each solution's id matches a subcategory parent_id in causes.json. Actions with no 'applies_if' always show. Actions with 'applies_if' only show if that specific supporting-evidence id also matched.",
+  "solutions": [
+    {
+      "id": "C01",
+      "recommended_actions": [
+        {
+          "action": "Run a capacity audit on the specific eNodeBs where true congestion concentrates."
+        },
+        {
+          "action": "Check PRB scheduler fairness/weights and consider Mobility Load Balancing (MLB) toward underutilized neighbor cells."
+        },
+        {
+          "action": "This co-occurs with Low Rank -- check C10 (MIMO Rank Fallback) before committing to a pure capacity fix.",
+          "applies_if": "C01_b"
+        },
+        {
+          "action": "This co-occurs with No CA -- check C13 (CA Inactive) before committing to a pure capacity fix.",
+          "applies_if": "C01_d"
+        },
+        {
+          "action": "Prioritize capacity expansion (new carrier, small cell) over scheduler tuning -- this cell is genuinely out of room.",
+          "applies_if": "C01_a"
+        },
+        {
+          "action": "Low operational bandwidth is the bottleneck -- evaluate a bandwidth upgrade or refarming before any scheduler tuning.",
+          "applies_if": "C01_e"
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP SON framework (Mobility Load Balancing use case)",
+          "note": "MLB is one of the standard 3GPP SON functions for redistributing load between cells to relieve congestion."
+        },
+        {
+          "source": "LTE PRB utilization congestion-forecasting literature",
+          "note": "An 80% PRB-utilization breakpoint is commonly used as the point above which a cell is considered congested."
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "recommended_actions": [
+        {
+          "action": "Investigate scheduler configuration (proportional-fair weights, QCI/5QI prioritization) at the affected cells rather than assuming a capacity ceiling."
+        },
+        {
+          "action": "Confirm CQI/MCS reporting is not being under-utilized due to an overly conservative outer-loop link-adaptation offset."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.213 (link adaptation / CQI-to-MCS mapping)",
+          "note": "Defines how reported CQI maps to MCS selection, the basis for checking whether the scheduler is under-using an available link quality."
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "recommended_actions": [
+        {
+          "action": "Site/antenna audit: check tilt, azimuth, and transmit power at the serving site."
+        },
+        {
+          "action": "Consider a new site, small cell, or repeater if the coverage hole is confirmed across multiple drive passes.",
+          "applies_if": "C03_f"
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.133 (RRM requirements, RSRP/RSRQ measurement definitions)",
+          "note": "Defines the RSRP/RSRQ measurement basis used to quantify and act on weak-coverage conditions."
+        },
+        {
+          "source": "HiCellTek RF field guide",
+          "note": "Below -110 dBm RSRP is treated as weak coverage in this project's threshold table."
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "recommended_actions": [
+        {
+          "action": "RF/interference hunt on the specific eNodeB (check for external interferers, PIM, or uncoordinated small-cell deployments)."
+        },
+        {
+          "action": "Verify this isn't actually a coverage issue misclassified as interference -- confirm RSRP genuinely sits above -110 dBm on repeated passes before committing budget to an interference hunt."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.133 (SINR/RSRQ measurement definitions)",
+          "note": "Defines the RSRQ/SINR measurements used to distinguish interference from weak coverage."
+        },
+        {
+          "source": "HiCellTek RF field guide",
+          "note": "Good RSRP with degraded SINR is explicitly identified as an interference signature, not a coverage issue."
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "recommended_actions": [
+        {
+          "action": "Check OSS alarms/counters for the serving site during this exact time window -- Radio Link Failure with normal own-radio conditions is the classic signature of a site/hardware fault, not an RF problem."
+        },
+        {
+          "action": "Review Mobility Robustness Optimization (MRO) counters for too-late or too-early handover contributing to this failure type."
+        },
+        {
+          "action": "No RF tuning action is appropriate here until an outage/alarm event is confirmed or ruled out."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.331 clause 5.3.11.3 (RLF), cross-referenced with SON Mobility Robustness Optimization",
+          "note": "RLF with normal radio conditions at failure time is a classic MRO/hardware-fault diagnostic signature, not an RF issue."
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "recommended_actions": [
+        {
+          "action": "Check OSS alarms/counters for both the serving site AND its immediate neighbors during this exact time window -- this pattern (throughput/session collapse with no radio explanation) cannot on its own tell you which site is at fault."
+        },
+        {
+          "action": "Cross-reference against site maintenance, reset, or transport-link logs for the same window before dispatching an RF team."
+        },
+        {
+          "action": "If Serving Cell RB Utilization Increase is present, check this cell's own capacity was adequate for the observed load before assuming a neighbor failure -- rising utilization alone doesn't confirm a neighbor went down.",
+          "applies_if": "C06_d"
+        },
+        {
+          "action": "If Neighbor Cell Availability Drop is present, prioritize checking that specific neighbor's OSS status first -- but treat this as a lead to investigate, not a confirmed cause.",
+          "applies_if": "C06_e"
+        },
+        {
+          "action": "No RF tuning action is appropriate here until an outage/alarm event is confirmed or ruled out on either site."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 32.111 (Fault Management)",
+          "note": "Standard practice is to correlate a throughput/traffic collapse signature against OSS alarms before pursuing an RF explanation -- and to check neighboring sites, not just the serving cell, before attributing fault."
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "recommended_actions": [
+        {
+          "action": "Increase both Event A3 hysteresis and Time-to-Trigger (TTT) at the affected boundary -- an increase from TTT=100ms to TTT=320ms with A3 offset/hysteresis raised from 2dB to 4dB has been shown to stabilize ping-pong behavior.",
+          "applies_if": "C08_a"
+        },
+        {
+          "action": "This is a recurring site-level pattern across multiple episodes -- run an ANR (Automatic Neighbor Relation) audit at this eNodeB rather than tuning a single boundary.",
+          "applies_if": "C08_b"
+        },
+        {
+          "action": "Increase Event A3 hysteresis/offset or reduce TTT at this boundary; this is a one-off so far, not yet a confirmed site-level pattern.",
+          "applies_if": "C08_c"
+        },
+        {
+          "action": "Investigate target-cell admission handling -- the handover attempt itself was rejected/unprepared, a different fault than a timing/threshold issue.",
+          "applies_if": "C08_d"
+        },
+        {
+          "action": "Consider a speed-dependent handover parameter set (faster TTT/lower hysteresis) rather than treating this as a stationary-UE tuning problem.",
+          "applies_if": "C08_e"
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.331 Event A3 (offset, hysteresis, Time-to-Trigger)",
+          "note": "The standard parameter family governing handover sensitivity; the same three parameters trade off ping-pong, late-HO, and early-HO risk against each other."
+        },
+        {
+          "source": "3GPP TS 32.511 (ANR management)",
+          "note": "Specifies the management requirements for Automatic Neighbor Relations, the standard mechanism for diagnosing a persistent wrong-neighbor-relation pattern."
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "recommended_actions": [
+        {
+          "action": "Check RACH configuration (preamble format, power ramping step, max preamble transmissions) at the affected cells."
+        },
+        {
+          "action": "Investigate uplink coverage/interference at the affected site if RACH access delay is elevated."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP SON RACH optimization use case",
+          "note": "3GPP defines RACH parameter self-optimization as a standard SON function to reduce access/handoff time and RACH failures."
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "recommended_actions": [
+        {
+          "action": "Antenna/RF-path check at the concentrated eNodeBs: verify cross-polarization discrimination and antenna spacing/correlation."
+        },
+        {
+          "action": "Check UE-side MIMO capability/reporting if the pattern is UE-specific rather than site-specific."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.213 (Rank Indication reporting, closed-loop spatial multiplexing)",
+          "note": "Defines how the UE derives and reports Rank Indication (RI), the basis for confirming a persistent Rank-1 report is a genuine link-adaptation output rather than a reporting error."
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "recommended_actions": [
+        {
+          "action": "RF/coverage check specifically on the secondary carrier's frequency/band at the affected site."
+        },
+        {
+          "action": "Do not disable CA as a fix -- the issue is the secondary carrier's radio quality, not CA logic itself."
+        },
+        {
+          "action": "SCell is being scheduled almost nothing despite being active -- check scheduler weighting on the secondary carrier before assuming a pure RF cause.",
+          "applies_if": "C11_d"
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.321 / 36.213 (SCell activation/deactivation MAC procedures)",
+          "note": "Confirms SCell activation is a MAC-layer procedure separate from RF quality -- supporting that a weak-secondary-cell fault sits in the RF domain, not the CA control logic."
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "recommended_actions": [
+        {
+          "action": "Investigate why the SCell deactivation timer (sCellDeactivationTimer) is expiring or being triggered mid-episode."
+        },
+        {
+          "action": "High SCell BLER preceded the release -- treat this as a C11 (Weak Secondary Cell) RF problem first; the release may be a correct network response, not the root fault.",
+          "applies_if": "C12_a"
+        },
+        {
+          "action": "SCell CQI was also degraded before release -- corroborates a radio-quality-driven release; prioritize the RF check over scheduler/timer tuning.",
+          "applies_if": "C12_b"
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.321 (sCellDeactivationTimer, Activation/Deactivation MAC Control Element)",
+          "note": "Specifies that the UE deactivates an SCell either on receipt of a deactivation MAC CE or automatically upon sCellDeactivationTimer expiry."
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "recommended_actions": [
+        {
+          "action": "Confirm the UE/device is CA-capable and a secondary carrier is actually deployed/in-range at this location before treating this as a fault."
+        },
+        {
+          "action": "Check CA feature licensing/activation at the site and CA-capability flags in the UE context."
+        }
+      ],
+      "standards_and_vendor_references": []
+    },
+    {
+      "id": "C14",
+      "recommended_actions": [
+        {
+          "action": "Investigate outer-loop link adaptation (OLLA) tuning at the affected cells if BLER sits persistently away from the ~10% target band regardless of SINR/MCS."
+        },
+        {
+          "action": "Treat this as a lower-priority bucket relative to Congestion/Coverage/Interference -- revisit after those are addressed, since it often shrinks once upstream causes are fixed."
+        }
+      ],
+      "standards_and_vendor_references": [
+        {
+          "source": "3GPP TS 36.213-aligned CQI design assumption and industry OLLA practice",
+          "note": "CQI reporting assumes a ~10% initial-transmission BLER target; Outer-Loop Link Adaptation adjusts the SINR-to-CQI offset to converge BLER toward that target."
+        }
+      ]
+    },
+    {
+      "id": "C15",
+      "recommended_actions": [
+        {
+          "action": "No action needed -- confirm this bucket stays excluded from all root-cause totals and dashboards, since these are idle-radio or unclassifiable samples, not confirmed network faults."
+        }
+      ],
+      "standards_and_vendor_references": []
+    }
+  ]
+}

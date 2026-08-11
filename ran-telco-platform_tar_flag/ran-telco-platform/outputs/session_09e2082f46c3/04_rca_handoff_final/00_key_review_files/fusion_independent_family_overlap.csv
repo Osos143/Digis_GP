@@ -1,0 +1,17 @@
+﻿family_a,family_b,intersection_rows,union_rows,jaccard
+low_tp_family_flag,low_tp_family_flag,45,45,1.0
+low_tp_family_flag,temporal_drop_family_flag,30,66,0.45454545454545453
+low_tp_family_flag,expected_tp_family_flag,10,49,0.20408163265306123
+low_tp_family_flag,rb_efficiency_family_flag,5,45,0.1111111111111111
+temporal_drop_family_flag,low_tp_family_flag,30,66,0.45454545454545453
+temporal_drop_family_flag,temporal_drop_family_flag,51,51,1.0
+temporal_drop_family_flag,expected_tp_family_flag,10,55,0.18181818181818182
+temporal_drop_family_flag,rb_efficiency_family_flag,5,51,0.09803921568627451
+expected_tp_family_flag,low_tp_family_flag,10,49,0.20408163265306123
+expected_tp_family_flag,temporal_drop_family_flag,10,55,0.18181818181818182
+expected_tp_family_flag,expected_tp_family_flag,14,14,1.0
+expected_tp_family_flag,rb_efficiency_family_flag,5,14,0.35714285714285715
+rb_efficiency_family_flag,low_tp_family_flag,5,45,0.1111111111111111
+rb_efficiency_family_flag,temporal_drop_family_flag,5,51,0.09803921568627451
+rb_efficiency_family_flag,expected_tp_family_flag,5,14,0.35714285714285715
+rb_efficiency_family_flag,rb_efficiency_family_flag,5,5,1.0

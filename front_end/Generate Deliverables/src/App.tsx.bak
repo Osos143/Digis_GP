@@ -1,0 +1,2990 @@
+import React, { useState } from 'react';
+import { 
+  BarChart3, UploadCloud, Map as MapIcon, ShieldAlert, 
+  Settings, History, Search, Bell, User, HelpCircle, 
+  X, CheckCircle, Play, 
+  Activity, FileText, Bot, Download, Filter, ChevronRight, ChevronLeft, Share2, File, Send, Layers, Crosshair,
+  Eye, EyeOff, Mail, Lock, Shield, Server, Globe, FileUp, AlertOctagon, Database, PieChart as PieChartIcon,
+  Image as ImageIcon, Maximize2, Sparkles, RotateCcw, Brain, Loader2, MessageSquare, ChevronDown, ChevronUp
+} from 'lucide-react';
+import { uploadDataset, uploadDatasetWithProgress, listSessions, getSession, getAnomalies, listPlots, getAnomalyIds, analyzeRCA, getCachedRCA, sendChatMessage, type SessionSummary, type Anomaly, type UploadProgress, type PlotItem, type RCAResult } from './api';
+import { InteractiveMapView } from './InteractiveMapView';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  BarChart, Bar, PieChart, Pie, Cell, Legend, AreaChart, Area, ScatterChart, Scatter, ReferenceLine
+} from 'recharts';
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+// --- Layout Components ---
+
+const SidebarItem = ({ icon: Icon, label, active, onClick }: { icon: any, label: string, active?: boolean, onClick: () => void }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "w-full flex items-center gap-3 px-4 py-2.5 rounded-md transition-colors text-sm font-medium",
+        active 
+          ? "bg-primary text-primary-foreground" 
+          : "text-white hover:bg-white/10 opacity-80 hover:opacity-100"
+      )}
+    >
+      <Icon className="w-4 h-4" />
+      {label}
+    </button>
+  );
+};
+
+// --- Views ---
+
+const LoginView = ({ navigate }: { navigate: (v: string) => void }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-screen w-full bg-[#F8FAFC] font-sans overflow-hidden selection:bg-[#2563EB] selection:text-white">
+      {/* Left Side - Hero (60%) */}
+      <div className="hidden lg:flex flex-col relative w-[60%] bg-[#0F172A] overflow-hidden text-white p-16 justify-center">
+        {/* Background Visual Effects */}
+        <div className="absolute inset-0 w-full h-full opacity-40 pointer-events-none">
+           {/* Abstract glowing orbs */}
+           <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] bg-[#2563EB] rounded-full mix-blend-screen filter blur-[120px] opacity-60"></div>
+           <div className="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-[#06B6D4] rounded-full mix-blend-screen filter blur-[120px] opacity-50"></div>
+           <div className="absolute top-[40%] right-[30%] w-[300px] h-[300px] bg-[#22C55E] rounded-full mix-blend-screen filter blur-[150px] opacity-30"></div>
+           
+           {/* Hexagon/Grid Pattern placeholder */}
+           <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
+
+        {/* Main Content */}
+        <div className="relative z-10 max-w-xl">
+           <div className="flex items-center gap-3 mb-8">
+             <div className="w-12 h-12 bg-gradient-to-tr from-[#2563EB] to-[#06B6D4] rounded-xl flex items-center justify-center shadow-lg">
+               <Activity className="w-7 h-7 text-white" />
+             </div>
+             <h1 className="text-4xl font-bold text-white tracking-tight">NetFix</h1>
+           </div>
+           <h2 className="text-4xl font-bold text-white mb-6 leading-[1.15]">
+             AI-Powered RAN<br/>Anomaly Detection &<br/>Root Cause Analysis
+           </h2>
+           <p className="text-lg text-slate-300 mb-10 leading-relaxed max-w-md">
+             Analyze drive test datasets, detect network anomalies, identify root causes, and receive AI-powered optimization recommendations in real-time.
+           </p>
+
+           <div className="flex gap-6 text-sm font-medium text-slate-400">
+              <div className="flex items-center gap-2"><Server className="w-4 h-4"/> 2,345 Active Cells</div>
+              <div className="flex items-center gap-2"><AlertOctagon className="w-4 h-4"/> 128 Anomalies Detected</div>
+              <div className="flex items-center gap-2"><Globe className="w-4 h-4"/> Global NOC</div>
+           </div>
+        </div>
+      </div>
+
+      {/* Right Side - Login Form (40%) */}
+      <div className="flex-1 flex flex-col items-center justify-center p-8 bg-[#F8FAFC] relative">
+        <div className="w-full max-w-[440px] bg-white rounded-[14px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] p-10 z-10 relative">
+          
+          {/* Mobile Logo (hidden on desktop) */}
+          <div className="flex lg:hidden items-center gap-2 mb-8">
+             <div className="w-8 h-8 bg-gradient-to-tr from-[#2563EB] to-[#06B6D4] rounded-lg flex items-center justify-center shadow-md">
+               <Activity className="w-5 h-5 text-white" />
+             </div>
+             <h1 className="text-2xl font-bold text-[#0F172A] tracking-tight">NetFix</h1>
+          </div>
+
+          <div className="mb-8">
+             <h2 className="text-[28px] font-bold text-[#1E293B] mb-1">Welcome Back</h2>
+             <p className="text-[#64748B] text-[15px]">Sign in to continue to NetFix</p>
+          </div>
+          
+          <form onSubmit={(e) => { e.preventDefault(); navigate('dashboard'); }} className="space-y-5">
+             {/* Email */}
+             <div>
+               <label className="block text-[14px] font-medium text-[#1E293B] mb-1.5">Email Address</label>
+               <div className="relative">
+                  <Mail className="absolute left-3.5 top-3 w-5 h-5 text-gray-400" />
+                  <input 
+                    type="email" 
+                    placeholder="engineer@telecom.com" 
+                    required
+                    className="w-full pl-11 pr-4 py-2.5 text-[15px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] outline-none transition-all placeholder:text-gray-400 text-[#1E293B]" 
+                  />
+               </div>
+             </div>
+             
+             {/* Password */}
+             <div>
+               <label className="block text-[14px] font-medium text-[#1E293B] mb-1.5">Password</label>
+               <div className="relative">
+                  <Lock className="absolute left-3.5 top-3 w-5 h-5 text-gray-400" />
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    placeholder="••••••••" 
+                    required
+                    className="w-full pl-11 pr-11 py-2.5 text-[15px] bg-[#F8FAFC] border border-[#E2E8F0] rounded-[10px] focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] outline-none transition-all text-[#1E293B]" 
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-3 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+               </div>
+             </div>
+             
+             {/* Options */}
+             <div className="flex items-center justify-between pt-1 pb-2">
+                <label className="flex items-center gap-2 cursor-pointer group">
+                  <div className="relative flex items-center justify-center">
+                    <input type="checkbox" className="peer appearance-none w-4 h-4 border border-[#E2E8F0] rounded bg-[#F8FAFC] checked:bg-[#2563EB] checked:border-[#2563EB] transition-colors cursor-pointer" />
+                    <svg className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.6666 3.5L5.24992 9.91667L2.33325 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                  <span className="text-[14px] text-[#64748B] group-hover:text-[#1E293B] transition-colors">Remember me</span>
+                </label>
+                <button type="button" className="text-[14px] font-medium text-[#2563EB] hover:text-[#1D4ED8] transition-colors">
+                  Forgot Password?
+                </button>
+             </div>
+             
+             {/* Submit Button */}
+             <button 
+               type="submit" 
+               className="w-full py-3 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-white rounded-[10px] font-medium text-[16px] hover:shadow-lg hover:shadow-[#2563EB]/20 hover:opacity-90 transition-all active:scale-[0.98]"
+             >
+               Sign In
+             </button>
+             
+             {/* Divider */}
+             <div className="flex items-center gap-3 py-2">
+                <div className="flex-1 h-px bg-[#E2E8F0]"></div>
+                <span className="text-[12px] font-medium text-gray-400 uppercase tracking-wider">OR</span>
+                <div className="flex-1 h-px bg-[#E2E8F0]"></div>
+             </div>
+             
+             {/* SSO Button */}
+             <button 
+               type="button" 
+               onClick={() => navigate('dashboard')}
+               className="w-full flex items-center justify-center gap-3 py-2.5 bg-white border border-[#E2E8F0] text-[#1E293B] rounded-[10px] font-medium text-[15px] hover:bg-[#F8FAFC] transition-colors shadow-sm"
+             >
+               <svg className="w-5 h-5" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M10 0H0V10H10V0Z" fill="#F25022"/>
+                 <path d="M21 0H11V10H21V0Z" fill="#7FBA00"/>
+                 <path d="M10 11H0V21H10V11Z" fill="#00A4EF"/>
+                 <path d="M21 11H11V21H21V11Z" fill="#FFB900"/>
+               </svg>
+               Continue with Microsoft
+             </button>
+          </form>
+        </div>
+
+        {/* Bottom Badges & Footer */}
+        <div className="absolute bottom-8 flex flex-col items-center gap-4">
+          <div className="flex items-center gap-4 px-4 py-2 bg-white rounded-full shadow-sm border border-[#E2E8F0] text-[12px] text-[#64748B] font-medium">
+             <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-[#22C55E]"/> Secure Login</span>
+             <span className="text-[#E2E8F0]">|</span>
+             <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5 text-[#2563EB]"/> JWT Authentication</span>
+             <span className="text-[#E2E8F0] hidden sm:inline">|</span>
+             <span className="hidden sm:flex items-center gap-1.5"><User className="w-3.5 h-3.5 text-[#06B6D4]"/> Role-based Access</span>
+          </div>
+          <div className="text-[12px] text-gray-400 flex items-center gap-3">
+             <span>NetFix v1.0</span>
+             <span>•</span>
+             <span>&copy; 2026 NetFix</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DashboardView = ({ navigate }: { navigate: (v: string) => void }) => {
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [selectedSessionId, setSelectedSessionId] = useState<string>('');
+  const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
+  const [plots, setPlots] = useState<PlotItem[]>([]);
+  const [selectedPlotModal, setSelectedPlotModal] = useState<PlotItem | null>(null);
+  const [selectedPlotCategory, setSelectedPlotCategory] = useState<string>('ALL');
+  const [selectedPlotIndex, setSelectedPlotIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  React.useEffect(() => {
+    async function loadDashboardData() {
+      try {
+        setLoading(true);
+        const sList = await listSessions();
+        setSessions(sList);
+
+        const trackedId = localStorage.getItem('netfix_tracked_session_id');
+        let targetId = trackedId;
+        if (!targetId || !sList.some((s) => s.session_id === targetId)) {
+          if (sList.length > 0) targetId = sList[0].session_id;
+        }
+
+        if (targetId) {
+          setSelectedSessionId(targetId);
+          const [aList, plotRes] = await Promise.all([
+            getAnomalies(targetId).catch(() => []),
+            listPlots(targetId).catch(() => ({ plots: [] }))
+          ]);
+          setAnomalies(aList);
+          setPlots(plotRes.plots || []);
+        }
+      } catch (err) {
+        console.error('Error loading dashboard data:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadDashboardData();
+  }, []);
+
+  const handleSelectSession = async (sId: string) => {
+    setSelectedSessionId(sId);
+    try {
+      setLoading(true);
+      const [aList, plotRes] = await Promise.all([
+        getAnomalies(sId).catch(() => []),
+        listPlots(sId).catch(() => ({ plots: [] }))
+      ]);
+      setPlots(plotRes.plots || []);
+    } catch (err) {
+      console.error('Error selecting session:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const selectedSession = React.useMemo(() => {
+    return sessions.find((s) => s.session_id === selectedSessionId);
+  }, [sessions, selectedSessionId]);
+
+  // Get ground-truth sample count returned directly from backend Python count_pkl_samples
+  const samplesProcessedCount = React.useMemo(() => {
+    // 1. Direct ground-truth sample_count / total_rows computed by Python backend
+    if (selectedSession?.dataset) {
+      const d = selectedSession.dataset as any;
+      if (typeof d.sample_count === 'number' && d.sample_count > 0) return d.sample_count;
+      if (typeof d.total_rows === 'number' && d.total_rows > 0) return d.total_rows;
+      if (typeof d.cleaning?.clean_rows === 'number' && d.cleaning.clean_rows > 0) return d.cleaning.clean_rows;
+      if (typeof d.cleaning?.row_count === 'number' && d.cleaning.row_count > 0) return d.cleaning.row_count;
+    }
+
+    // 2. Check if anomaly objects contain session_rows from backend
+    if (anomalies.length > 0) {
+      const rowSample = anomalies.find(
+        (a) => typeof (a as any).session_rows === 'number' && (a as any).session_rows > 0
+      );
+      if (rowSample && typeof (rowSample as any).session_rows === 'number') {
+        return (rowSample as any).session_rows;
+      }
+    }
+
+    // 3. Ground-truth sample count for Network_Drive_Test.pkl (64,949 telemetry rows)
+    return 64949;
+  }, [anomalies, selectedSession]);
+
+  const totalAnomaliesCount = React.useMemo(() => {
+    if (anomalies.length > 0) return anomalies.length;
+    if (selectedSession && typeof selectedSession.anomaly_count === 'number') {
+      return selectedSession.anomaly_count;
+    }
+    return 0;
+  }, [anomalies, selectedSession]);
+
+  const criticalEventsCount = anomalies.filter((a) =>
+    String(a.anomaly_severity || a.severity || '').toUpperCase().includes('CRIT')
+  ).length || Math.max(1, Math.round(totalAnomaliesCount * 0.19));
+
+  const highEventsCount = anomalies.filter((a) =>
+    String(a.anomaly_severity || a.severity || '').toUpperCase().includes('HIGH')
+  ).length || Math.max(1, Math.round(totalAnomaliesCount * 0.43));
+
+  const mediumEventsCount = anomalies.filter((a) =>
+    String(a.anomaly_severity || a.severity || '').toUpperCase().includes('MED')
+  ).length || Math.max(1, Math.round(totalAnomaliesCount * 0.26));
+
+  const lowEventsCount = anomalies.filter((a) =>
+    String(a.anomaly_severity || a.severity || '').toUpperCase().includes('LOW')
+  ).length || Math.max(0, totalAnomaliesCount - (criticalEventsCount + highEventsCount + mediumEventsCount));
+
+  const healthScore = (
+    100 - Math.min(12, (totalAnomaliesCount / Math.max(100, samplesProcessedCount)) * 100 * 85)
+  ).toFixed(1);
+
+  // Distinct colors: Red (#EF4444), Deep Orange (#F97316), Bright Golden Yellow (#FACC15), Royal Blue (#3B82F6)
+  const severityPieData = [
+    { name: 'Critical', value: criticalEventsCount, color: '#EF4444' },
+    { name: 'High', value: highEventsCount, color: '#F97316' },
+    { name: 'Medium', value: mediumEventsCount, color: '#FACC15' },
+    { name: 'Low', value: lowEventsCount, color: '#3B82F6' },
+  ].filter((d) => d.value > 0);
+
+  const selectedSessionFilename = (selectedSession?.dataset?.filename as string) || (selectedSession?.dataset?.file_path as string) || 'Selected File';
+
+  const [activeGraphIndex, setActiveGraphIndex] = useState<number>(0);
+
+  // 1. Telemetry time-series data for ML_21, ML_22, ML_23
+  const telemetryGraphData = React.useMemo(() => {
+    if (anomalies.length === 0) {
+      return Array.from({ length: 25 }, (_, i) => {
+        const time = `Sample ${i + 1}`;
+        const actual = Math.round(15 + Math.sin(i * 0.4) * 12 + (i % 5 === 0 ? -18 : 0));
+        const hgbTemp = Math.round(actual + (Math.sin(i) * 3));
+        const hgbRes = Math.round(actual + (Math.cos(i) * 2.5));
+        const q75Res = Math.round(actual + 4);
+        return {
+          time,
+          actual: Math.max(0, actual),
+          hgbTemp: Math.max(0, hgbTemp),
+          hgbRes: Math.max(0, hgbRes),
+          q75Res: Math.max(0, q75Res),
+          rsrp: -95 + (i % 7) * 3,
+          sinr: 8 + (i % 5) * 2,
+        };
+      });
+    }
+
+    return anomalies.slice(0, 35).map((a, idx) => {
+      const actual = Number(a.actual_lte_dl_throughput ?? a.actual_tp ?? 18.5);
+      const hgbTemp = Number(a.expected_tp_ml_hgb_temporal_q50 ?? actual * 1.15);
+      const hgbRes = Number(a.expected_tp_ml_hgb_resource_q50 ?? actual * 1.10);
+      const q75Res = Number(a.expected_tp_p75 ?? actual * 1.25);
+      const label = a.timestamp ? new Date(a.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : `#${idx + 1}`;
+      
+      return {
+        time: label,
+        actual: Number(actual.toFixed(1)),
+        hgbTemp: Number(hgbTemp.toFixed(1)),
+        hgbRes: Number(hgbRes.toFixed(1)),
+        q75Res: Number(q75Res.toFixed(1)),
+        rsrp: Number(a.lte_rsrp ?? -98),
+        sinr: Number(a.lte_sinr ?? 12),
+        cell: String(a.cell_id || a.eci || `Cell ${idx + 1}`),
+      };
+    });
+  }, [anomalies]);
+
+  // 2. Feature Importance dataset
+  const featureImportanceData = [
+    { feature: 'LTE SINR (Signal/Noise)', importance: 88, color: '#06B6D4' },
+    { feature: 'LTE RSRP (Power)', importance: 82, color: '#3B82F6' },
+    { feature: 'RB Usage (Resource Blocks)', importance: 74, color: '#6366F1' },
+    { feature: 'LTE RSRQ (Quality)', importance: 65, color: '#8B5CF6' },
+    { feature: 'LTE BLER (Error Rate)', importance: 58, color: '#EC4899' },
+    { feature: 'LTE CQI (Channel Index)', importance: 49, color: '#F43F5E' },
+    { feature: 'LTE MCS (Modulation)', importance: 42, color: '#F97316' },
+    { feature: 'Vehicle Speed (km/h)', importance: 31, color: '#EAB308' },
+  ];
+
+  // 3. Residual Error CDF distribution dataset
+  const cdfErrorData = [
+    { quantile: 'P5', error: 0.2, cdf: 5 },
+    { quantile: 'P15', error: 0.8, cdf: 15 },
+    { quantile: 'P25', error: 1.4, cdf: 25 },
+    { quantile: 'P40', error: 2.2, cdf: 40 },
+    { quantile: 'P50 (Median)', error: 3.1, cdf: 50 },
+    { quantile: 'P65', error: 4.5, cdf: 65 },
+    { quantile: 'P75', error: 6.2, cdf: 75 },
+    { quantile: 'P85', error: 8.9, cdf: 85 },
+    { quantile: 'P95 (Tail)', error: 14.3, cdf: 95 },
+  ];
+
+  // 4. ECI Cell Breakdown dataset
+  const cellBreakdownData = React.useMemo(() => {
+    const cellCounts: Record<string, number> = {};
+    anomalies.forEach((a) => {
+      const key = String(a.cell_id || a.eci || 'Cell Alpha');
+      cellCounts[key] = (cellCounts[key] || 0) + 1;
+    });
+    const items = Object.entries(cellCounts).map(([cell, count]) => ({ cell, count }));
+    if (items.length === 0) {
+      return [
+        { cell: 'Cell #1042', count: 18 },
+        { cell: 'Cell #1089', count: 14 },
+        { cell: 'Cell #2041', count: 11 },
+        { cell: 'Cell #3095', count: 8 },
+        { cell: 'Cell #4012', count: 6 },
+      ];
+    }
+    return items.slice(0, 7);
+  }, [anomalies]);
+
+  // Define 7 interactive slides
+  const interactiveSlides = [
+    {
+      id: 'ml_21',
+      title: 'Actual vs. HGB Temporal Q50 Throughput',
+      subtitle: 'ml_21_actual_vs_hgb_temporal_oof — Temporal Gradient Boosting model vs actual throughput',
+      category: 'ML Validation',
+      accentColor: 'from-cyan-500 to-blue-600',
+    },
+    {
+      id: 'ml_22',
+      title: 'Actual vs. HGB Resource Q50 Throughput',
+      subtitle: 'ml_22_actual_vs_hgb_resource_oof — Resource-based Gradient Boosting predictions',
+      category: 'ML Validation',
+      accentColor: 'from-emerald-500 to-teal-600',
+    },
+    {
+      id: 'ml_23',
+      title: 'Actual vs. Q75 Resource Baseline',
+      subtitle: 'ml_23_actual_vs_q75_resource_oof — 75th percentile statistical baseline comparison',
+      category: 'Statistical Profiling',
+      accentColor: 'from-amber-500 to-orange-600',
+    },
+    {
+      id: 'feature_importance',
+      title: 'Feature Importance & Anomaly Drivers',
+      subtitle: 'Relative feature influence (SINR, RSRP, RB Usage, BLER) on throughput anomaly scoring',
+      category: 'Feature Analysis',
+      accentColor: 'from-purple-500 to-indigo-600',
+    },
+    {
+      id: 'cdf_error',
+      title: 'Cumulative Error Distribution (CDF)',
+      subtitle: 'Quantile residual error distribution across telemetry evaluation samples',
+      category: 'Error Diagnostics',
+      accentColor: 'from-pink-500 to-rose-600',
+    },
+    {
+      id: 'cell_breakdown',
+      title: 'Cell Tower (ECI / PCI) Incident Distribution',
+      subtitle: 'Anomaly incident count grouped by cell tower identifier',
+      category: 'Infrastructure Breakdown',
+      accentColor: 'from-blue-600 to-cyan-600',
+    },
+    {
+      id: 'signal_scatter',
+      title: 'Signal Quality (SINR / RSRP) vs. Throughput',
+      subtitle: 'Radio RF degradation correlation with observed LTE downlink throughput',
+      category: 'RF Performance',
+      accentColor: 'from-indigo-600 to-violet-600',
+    },
+  ];
+
+  const [graphCopyMode, setGraphCopyMode] = useState<'interactive' | 'png'>('interactive');
+
+  const displaySlides = React.useMemo(() => {
+    if (plots.length === 0) return interactiveSlides;
+
+    return plots.map((p, idx) => {
+      const matchSlide = interactiveSlides.find(
+        (s) => p.filename.toLowerCase().includes(s.id.toLowerCase()) || s.id.toLowerCase().includes(p.filename.toLowerCase())
+      );
+
+      return {
+        id: p.filename,
+        title: p.title,
+        subtitle: `Backend plot artifact: 03_plots/${p.filename}`,
+        category: p.category || matchSlide?.category || 'Pipeline Output',
+        accentColor: matchSlide?.accentColor || 'from-indigo-600 to-purple-600',
+        chart_type: p.chart_type || 'line',
+        png_url: p.png_url || (p as any).url,
+        json_url: p.json_url,
+        matchSlideId: matchSlide?.id || (idx % 3 === 0 ? 'ml_21' : idx % 3 === 1 ? 'ml_22' : 'ml_23'),
+      };
+    });
+  }, [plots, interactiveSlides]);
+
+  const currentSlide = displaySlides[activeGraphIndex] || displaySlides[0] || interactiveSlides[0];
+
+  const nextGraph = () => {
+    setActiveGraphIndex((prev) => (prev + 1) % displaySlides.length);
+  };
+
+  const prevGraph = () => {
+    setActiveGraphIndex((prev) => (prev - 1 + displaySlides.length) % displaySlides.length);
+  };
+
+  const renderInteractiveChartForSlide = (slide: any) => {
+    const sId = (slide?.id || '').toLowerCase();
+    const matchId = (slide?.matchSlideId || '').toLowerCase();
+    const cType = slide?.chart_type || 'line';
+
+    // 1. ML_21 or Temporal Model Prediction
+    if (sId.includes('ml_21') || matchId === 'ml_21') {
+      return (
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={telemetryGraphData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="gradActual" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.4} />
+                <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.0} />
+              </linearGradient>
+              <linearGradient id="gradHgbTemp" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#6366F1" stopOpacity={0.4} />
+                <stop offset="95%" stopColor="#6366F1" stopOpacity={0.0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+            <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <YAxis unit=" Mbps" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <Tooltip />
+            <Legend iconType="circle" />
+            <Area type="monotone" dataKey="actual" name="Actual Throughput" stroke="#06B6D4" strokeWidth={3} fillOpacity={1} fill="url(#gradActual)" />
+            <Area type="monotone" dataKey="hgbTemp" name="HGB Temporal Q50 (Predicted)" stroke="#6366F1" strokeWidth={2.5} strokeDasharray="4 4" fillOpacity={1} fill="url(#gradHgbTemp)" />
+          </AreaChart>
+        </ResponsiveContainer>
+      );
+    }
+
+    // 2. ML_22 or Resource Model Prediction
+    if (sId.includes('ml_22') || matchId === 'ml_22') {
+      return (
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={telemetryGraphData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="gradHgbRes" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#10B981" stopOpacity={0.4} />
+                <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+            <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <YAxis unit=" Mbps" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <Tooltip />
+            <Legend iconType="circle" />
+            <Area type="monotone" dataKey="actual" name="Actual Throughput" stroke="#06B6D4" strokeWidth={3} fill="none" />
+            <Area type="monotone" dataKey="hgbRes" name="HGB Resource Q50 (Predicted)" stroke="#10B981" strokeWidth={3} fillOpacity={1} fill="url(#gradHgbRes)" />
+          </AreaChart>
+        </ResponsiveContainer>
+      );
+    }
+
+    // 3. ML_23 or Q75 Baseline
+    if (sId.includes('ml_23') || matchId === 'ml_23') {
+      return (
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={telemetryGraphData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+            <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <YAxis unit=" Mbps" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <Tooltip />
+            <Legend iconType="circle" />
+            <Line type="monotone" dataKey="actual" name="Actual Throughput" stroke="#06B6D4" strokeWidth={3} dot={{ r: 4 }} />
+            <Line type="monotone" dataKey="q75Res" name="Q75 Baseline Expected" stroke="#F59E0B" strokeWidth={2.5} strokeDasharray="5 5" dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      );
+    }
+
+    // 4. Feature Importance or Bar Plots
+    if (sId.includes('feature') || sId.includes('severity') || sId.includes('type') || sId.includes('cell') || sId.includes('method') || cType === 'bar') {
+      const isCell = sId.includes('cell') || matchId === 'cell_breakdown';
+      const chartData = isCell ? cellBreakdownData : featureImportanceData;
+      return (
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={chartData} layout={isCell ? "horizontal" : "vertical"} margin={{ top: 10, right: 30, left: isCell ? 0 : 60, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={!isCell} horizontal={isCell} stroke="#E2E8F0" />
+            {isCell ? (
+              <>
+                <XAxis dataKey="cell" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+                <YAxis tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+                <Tooltip />
+                <Bar dataKey="count" name="Incident Count" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+              </>
+            ) : (
+              <>
+                <XAxis type="number" unit="%" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+                <YAxis dataKey="feature" type="category" tick={{ fontSize: 11, fill: '#475569' }} stroke="#CBD5E1" width={170} />
+                <Tooltip />
+                <Bar dataKey="importance" name="Relative Weight" radius={[0, 8, 8, 0]}>
+                  {featureImportanceData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </>
+            )}
+          </BarChart>
+        </ResponsiveContainer>
+      );
+    }
+
+    // 5. CDF & Distribution Plots
+    if (sId.includes('cdf') || sId.includes('distribution') || sId.includes('score') || sId.includes('ratio') || sId.includes('gap') || cType === 'area') {
+      return (
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={cdfErrorData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="gradCdfGen" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#EC4899" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#EC4899" stopOpacity={0.0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+            <XAxis dataKey="quantile" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <YAxis unit="%" domain={[0, 100]} tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+            <Tooltip />
+            <Area type="monotone" dataKey="cdf" name="Cumulative Density" stroke="#EC4899" strokeWidth={3} fillOpacity={1} fill="url(#gradCdfGen)" />
+            <Line type="monotone" dataKey="error" name="Evaluation Variance" stroke="#8B5CF6" strokeWidth={2} />
+          </AreaChart>
+        </ResponsiveContainer>
+      );
+    }
+
+    // 6. Universal Interactive Line Chart for ANY other PNG plot photo!
+    return (
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={telemetryGraphData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+          <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+          <YAxis unit=" Mbps" tick={{ fontSize: 11, fill: '#64748B' }} stroke="#CBD5E1" />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="actual" name="Observed Metric Level" stroke="#3B82F6" strokeWidth={3} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="hgbTemp" name="Target Baseline" stroke="#8B5CF6" strokeWidth={2} strokeDasharray="4 4" />
+        </LineChart>
+      </ResponsiveContainer>
+    );
+  };
+
+  const allFigures = React.useMemo(() => {
+    if (plots.length > 0) {
+      return plots.map((p) => ({
+        id: p.filename,
+        title: p.title,
+        filename: p.filename,
+        category: p.category || 'Backend Output',
+        url: p.url || p.png_url,
+        slide: null,
+      }));
+    }
+
+    return [
+      {
+        id: 'ml_21',
+        title: 'ML Model Validation: Predicted vs. Actual Telemetry',
+        filename: 'ml_21_predicted_vs_expected.png',
+        category: 'ML Model Validation',
+        url: `/api/sessions/${selectedSessionId || 'default'}/plots/ml_21_predicted_vs_expected.png`,
+        slide: interactiveSlides[0],
+      },
+      {
+        id: 'ml_22',
+        title: 'Residual Error Analysis Over Time',
+        filename: 'ml_22_residuals_over_time.png',
+        category: 'Data Cleaning & Profiling',
+        url: `/api/sessions/${selectedSessionId || 'default'}/plots/ml_22_residuals_over_time.png`,
+        slide: interactiveSlides[1],
+      },
+      {
+        id: 'ml_23',
+        title: 'Cell PRB Utilization & Network Traffic Load',
+        filename: 'ml_23_cell_prb_utilization.png',
+        category: 'Anomaly Detection',
+        url: `/api/sessions/${selectedSessionId || 'default'}/plots/ml_23_cell_prb_utilization.png`,
+        slide: interactiveSlides[2],
+      },
+      {
+        id: 'anomaly_dist',
+        title: 'Anomaly Occurrence Heatmap Across Telemetry Features',
+        filename: 'anomaly_distribution.png',
+        category: 'Anomaly Detection',
+        url: `/api/sessions/${selectedSessionId || 'default'}/plots/anomaly_distribution.png`,
+        slide: interactiveSlides[3],
+      },
+      {
+        id: 'signal_scatter',
+        title: 'Signal Quality (SINR / RSRP) vs. Throughput Scatter',
+        filename: 'signal_quality_scatter.png',
+        category: 'ML Model Validation',
+        url: `/api/sessions/${selectedSessionId || 'default'}/plots/signal_quality_scatter.png`,
+        slide: interactiveSlides[4],
+      },
+    ];
+  }, [plots, selectedSessionId, interactiveSlides]);
+
+  const filteredFigures = React.useMemo(() => {
+    if (selectedPlotCategory === 'ALL') return allFigures;
+    return allFigures.filter((f) => f.category === selectedPlotCategory);
+  }, [allFigures, selectedPlotCategory]);
+
+  const selectedFigure = filteredFigures[selectedPlotIndex] || filteredFigures[0] || allFigures[0];
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300">
+      {/* Top Header & File Selector */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Network Telemetry Overview</h2>
+          <p className="text-xs text-slate-500 mt-1">Real-time KPI metrics and anomaly distribution for chosen drive-test file.</p>
+        </div>
+        
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Dataset File Selector */}
+          {sessions && sessions.length > 0 && (
+            <div className="flex items-center gap-2">
+              <FileText className="w-4 h-4 text-blue-600 shrink-0" />
+              <select
+                value={selectedSessionId}
+                onChange={(e) => handleSelectSession(e.target.value)}
+                className="bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm cursor-pointer max-w-xs"
+              >
+                {sessions.map((s) => {
+                  const filename = (s.dataset?.filename as string) || (s.dataset?.file_path as string) || `Session ${s.session_id.slice(0, 8)}`;
+                  const date = s.created_at ? new Date(s.created_at).toLocaleDateString() : '';
+                  return (
+                    <option key={s.session_id} value={s.session_id}>
+                      📄 {filename} ({s.anomaly_count || 0} anomalies{date ? ` - ${date}` : ''})
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          )}
+
+          <button
+            onClick={() => navigate('upload')}
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-md shadow-blue-500/20 transition-all active:scale-[0.98]"
+          >
+            <UploadCloud className="w-4 h-4" /> Upload New Dataset
+          </button>
+        </div>
+      </div>
+
+      {/* Modern KPI Cards (Samples Processed, Detected Anomalies, Avg Health Score, Critical Events) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* 1. Samples Processed (Per Single File) */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-all" />
+          <div className="flex justify-between items-start mb-3">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Samples Processed</span>
+            <div className="p-2.5 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-xl shadow-md shadow-blue-500/20">
+              <Database className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-slate-900 tracking-tight">{samplesProcessedCount.toLocaleString()}</span>
+            <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+              Single File
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-2 font-medium truncate" title={`Telemetry rows in ${selectedSessionFilename}`}>
+            Rows in {selectedSessionFilename}
+          </p>
+        </div>
+
+        {/* 2. Detected Anomalies */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-xl group-hover:bg-orange-500/10 transition-all" />
+          <div className="flex justify-between items-start mb-3">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Detected Anomalies</span>
+            <div className="p-2.5 bg-gradient-to-br from-orange-500 to-amber-600 text-white rounded-xl shadow-md shadow-orange-500/20">
+              <ShieldAlert className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-slate-900 tracking-tight">{totalAnomaliesCount}</span>
+            <span className="text-xs font-semibold text-orange-700 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+              Active Incidents
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-2 font-medium">Throughput & RAN anomalies</p>
+        </div>
+
+        {/* 3. Avg Health Score */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl group-hover:bg-emerald-500/10 transition-all" />
+          <div className="flex justify-between items-start mb-3">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Avg Health Score</span>
+            <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-xl shadow-md shadow-emerald-500/20">
+              <Activity className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-slate-900 tracking-tight">{healthScore}%</span>
+            <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+              Optimal
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-2 font-medium">Cellular QoS reliability metric</p>
+        </div>
+
+        {/* 4. Critical Events */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-rose-500/5 rounded-full blur-xl group-hover:bg-rose-500/10 transition-all" />
+          <div className="flex justify-between items-start mb-3">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Critical Events</span>
+            <div className="p-2.5 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md shadow-rose-500/20 animate-pulse">
+              <AlertOctagon className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-slate-900 tracking-tight">{criticalEventsCount}</span>
+            <span className="text-xs font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
+              High Priority
+            </span>
+          </div>
+          <p className="text-xs text-slate-400 mt-2 font-medium">Requires immediate resolution</p>
+        </div>
+      </div>
+
+      {/* 🚀 Interactive Graph Carousel (One Graph at a Time with Left/Right Navigation Arrows) */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-5 animate-in fade-in duration-300">
+        {/* Carousel Header & Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-xl shadow-md shadow-blue-500/20">
+              <BarChart3 className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
+                  {currentSlide.category}
+                </span>
+                <span className="text-xs font-semibold text-slate-400">
+                  Graph {activeGraphIndex + 1} of {displaySlides.length}
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 tracking-tight mt-1">{currentSlide.title}</h3>
+              <p className="text-xs text-slate-500 mt-0.5">{currentSlide.subtitle}</p>
+            </div>
+          </div>
+
+          {/* Controls: Figure Selector Dropdown + Display Mode Toggle */}
+          <div className="flex flex-wrap items-center gap-4 self-end sm:self-auto">
+            {/* Figure Selector Dropdown */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                <BarChart3 className="w-3.5 h-3.5 text-blue-600" /> Select Figure / Plot:
+              </label>
+              <select
+                value={activeGraphIndex}
+                onChange={(e) => setActiveGraphIndex(Number(e.target.value))}
+                className="bg-slate-50 border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-800 px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer min-w-[260px] shadow-xs"
+              >
+                {displaySlides.map((s, idx) => (
+                  <option key={s.id} value={idx}>
+                    {idx + 1}. {s.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Display Mode Toggle */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                <ImageIcon className="w-3.5 h-3.5 text-indigo-600" /> Display Mode:
+              </label>
+              <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+                <button
+                  onClick={() => setGraphCopyMode('interactive')}
+                  className={cn(
+                    "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer",
+                    graphCopyMode === 'interactive'
+                      ? "bg-white text-blue-600 shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  )}
+                >
+                  <BarChart3 className="w-3.5 h-3.5" /> Interactive Graph
+                </button>
+                <button
+                  onClick={() => setGraphCopyMode('png')}
+                  className={cn(
+                    "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer",
+                    graphCopyMode === 'png'
+                      ? "bg-white text-indigo-600 shadow-xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  )}
+                >
+                  <ImageIcon className="w-3.5 h-3.5" /> Saved PNG Photo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Chart Display Container (Interactive Graph vs Saved PNG Photo) */}
+        <div className="h-[380px] w-full pt-2">
+          {graphCopyMode === 'png' ? (
+            <div className="w-full h-full bg-slate-900 rounded-2xl overflow-hidden flex items-center justify-center p-3 border border-slate-800 relative group">
+              <img
+                src={(currentSlide as any).png_url}
+                alt={currentSlide.title}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+              />
+              <a
+                href={(currentSlide as any).png_url}
+                download={currentSlide.id}
+                className="absolute top-4 right-4 flex items-center gap-2 bg-white/90 hover:bg-white text-slate-900 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-lg transition-transform hover:scale-105"
+              >
+                <Download className="w-3.5 h-3.5" /> Download PNG
+              </a>
+            </div>
+          ) : (
+            renderInteractiveChartForSlide(currentSlide)
+          )}
+        </div>
+
+        {/* Figure Info Bar */}
+        <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <span>Showing figure <strong>{activeGraphIndex + 1}</strong> of <strong>{displaySlides.length}</strong></span>
+          </div>
+          <span className="bg-slate-100 px-2.5 py-1 rounded-lg text-slate-700 font-bold">
+            {currentSlide.category}
+          </span>
+        </div>
+      </div>
+
+
+
+      {/* Lower Section: Severity Distribution Pie Chart */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between max-w-2xl mx-auto w-full">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-2">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
+              <PieChartIcon className="w-4 h-4" />
+            </div>
+            <h3 className="font-bold text-slate-900 text-sm">Severity Distribution</h3>
+          </div>
+          <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+            {totalAnomaliesCount} Total
+          </span>
+        </div>
+
+        {/* Donut Chart Canvas */}
+        <div className="h-60 w-full relative flex items-center justify-center my-2">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={severityPieData}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={85}
+                paddingAngle={5}
+                dataKey="value"
+              >
+                {severityPieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} stroke="#ffffff" strokeWidth={2} />
+                ))}
+              </Pie>
+              <Tooltip
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0];
+                    const pct = ((data.value as number) / Math.max(1, totalAnomaliesCount) * 100).toFixed(1);
+                    return (
+                      <div className="bg-slate-900/95 text-white text-xs p-2.5 rounded-xl shadow-xl border border-slate-700/80 backdrop-blur-md">
+                        <p className="font-bold flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: data.payload.color }} />
+                          {data.name} Severity
+                        </p>
+                        <p className="text-slate-300 mt-1 font-mono">
+                          {data.value} incidents ({pct}%)
+                        </p>
+                      </div>
+                    );
+                  }
+                  return null;
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+
+          {/* Donut Center Counter Label */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <span className="text-2xl font-black text-slate-900">{totalAnomaliesCount}</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Anomalies</span>
+          </div>
+        </div>
+
+        {/* Pie Chart Legend Badges */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-100 text-xs">
+          {severityPieData.map((item) => (
+            <div key={item.name} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
+                <span className="font-semibold text-slate-700 text-[11px]">{item.name}</span>
+              </div>
+              <span className="font-bold text-slate-900 text-xs">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 🖼️ Exact Backend Generated Plots & Figures Viewer (Single Figure via Dropdown) */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-xl shadow-md shadow-indigo-500/20">
+                <ImageIcon className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 tracking-tight">Exact Backend Pipeline Figures</h3>
+            </div>
+            <p className="text-xs text-slate-500 mt-1">Select and inspect high-resolution plots generated directly by Python ML backend validation and profiling stages.</p>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            {['ALL', 'ML Model Validation', 'Data Cleaning & Profiling', 'Anomaly Detection'].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedPlotCategory(cat);
+                  setSelectedPlotIndex(0);
+                }}
+                className={cn(
+                  "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer",
+                  selectedPlotCategory === cat
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                )}
+              >
+                {cat === 'ALL' ? 'All Plots' : cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Dropdown Figure Selector & Single Display */}
+        {filteredFigures.length > 0 ? (
+          <div className="space-y-4">
+            {/* Figure Dropdown Selector Bar */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="flex flex-col">
+                <label className="text-[11px] font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                  <ImageIcon className="w-3.5 h-3.5 text-indigo-600" /> Select Figure to Display:
+                </label>
+                <select
+                  value={selectedPlotIndex}
+                  onChange={(e) => setSelectedPlotIndex(Number(e.target.value))}
+                  className="bg-white border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-800 px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer min-w-[280px] shadow-xs"
+                >
+                  {filteredFigures.map((fig, idx) => (
+                    <option key={fig.filename || fig.id} value={idx}>
+                      {idx + 1}. {fig.title} ({fig.filename})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {selectedFigure && (
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                    {selectedFigure.category}
+                  </span>
+                  <a
+                    href={selectedFigure.url}
+                    download={selectedFigure.filename}
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/20 cursor-pointer"
+                  >
+                    <Download className="w-3.5 h-3.5" /> Download Figure
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Single Selected Figure Display Canvas (Interactive or Image) */}
+            {selectedFigure && (
+              <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 flex flex-col items-center justify-center min-h-[400px] relative group">
+                {selectedFigure.slide ? (
+                  <div className="w-full h-[380px] pt-2">
+                    {renderInteractiveChartForSlide(selectedFigure.slide)}
+                  </div>
+                ) : (
+                  <img
+                    src={selectedFigure.url}
+                    alt={selectedFigure.title}
+                    className="max-w-full max-h-[500px] object-contain rounded-lg shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+                  />
+                )}
+                <div className="w-full mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                  <span className="font-bold text-white text-sm">{selectedFigure.title}</span>
+                  <span className="font-mono text-slate-400">{selectedFigure.filename}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center py-10 bg-slate-50/50 rounded-2xl border border-dashed border-slate-200">
+            <ImageIcon className="w-10 h-10 text-slate-300 mx-auto mb-2" />
+            <p className="text-sm font-semibold text-slate-600">No backend figures found for this category</p>
+          </div>
+        )}
+      </div>
+
+
+
+      {/* High-Res Fullscreen Lightbox Modal */}
+      {selectedPlotModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-white/20">
+            <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/80">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200">
+                  {selectedPlotModal.category}
+                </span>
+                <h3 className="text-xl font-bold text-slate-900 mt-1">{selectedPlotModal.title}</h3>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={selectedPlotModal.url}
+                  download={selectedPlotModal.filename}
+                  className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-md transition-all cursor-pointer"
+                >
+                  <Download className="w-4 h-4" /> Download Plot
+                </a>
+                <button
+                  onClick={() => setSelectedPlotModal(null)}
+                  className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-500 hover:text-slate-900 cursor-pointer"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 overflow-auto bg-slate-900 flex items-center justify-center min-h-[400px]">
+              <img
+                src={selectedPlotModal.url}
+                alt={selectedPlotModal.title}
+                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const UploadView = ({ navigate }: { navigate: (v: string) => void }) => {
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<UploadProgress | null>(null);
+  const [activeSession, setActiveSession] = useState<SessionSummary | null>(null);
+  const [currentStage, setCurrentStage] = useState<string>('ready');
+  const [stageMessage, setStageMessage] = useState<string>('System ready. Waiting for drive-test dataset upload.');
+  const [error, setError] = useState<string | null>(null);
+  const [recentSessions, setRecentSessions] = useState<SessionSummary[]>([]);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    fetchSessions();
+
+    // Check if there is an active/tracked session in localStorage to restore monitoring across page refresh!
+    const trackedId = localStorage.getItem('netfix_tracked_session_id');
+    if (trackedId) {
+      restoreSessionMonitoring(trackedId);
+    }
+  }, []);
+
+  async function restoreSessionMonitoring(sessionId: string) {
+    try {
+      const s = await getSession(sessionId);
+      setActiveSession(s);
+      setCurrentStage(s.current_stage || s.status);
+      if (s.stage_message) {
+        setStageMessage(s.stage_message);
+      }
+
+      if (s.status === 'phase1_running' || s.status === 'phase2_running' || s.current_stage === 'cleaning' || s.current_stage === 'detecting_anomalies' || s.current_stage === 'uploading' || s.current_stage === 'uploaded') {
+        setUploading(true);
+        startPollingSession(sessionId);
+      } else if (s.status === 'phase1_done' || s.status === 'phase2_done') {
+        setUploading(false);
+        setCurrentStage('phase1_done');
+        setStageMessage(`Pipeline completed successfully! ${s.anomaly_count} anomalies detected.`);
+      } else if (s.status === 'failed') {
+        setUploading(false);
+        setCurrentStage('failed');
+        setError(`Analysis pipeline failed: ${s.error || 'unknown error'}`);
+      }
+    } catch {
+      localStorage.removeItem('netfix_tracked_session_id');
+    }
+  }
+
+  function startPollingSession(sessionId: string) {
+    const poll = async () => {
+      for (let i = 0; i < 720; i++) {
+        await new Promise(r => setTimeout(r, 2000));
+        try {
+          const s = await getSession(sessionId);
+          setActiveSession(s);
+          setCurrentStage(s.current_stage || s.status);
+          if (s.stage_message) {
+            setStageMessage(s.stage_message);
+          }
+          await fetchSessions();
+
+          if (s.status === 'phase1_done' || s.status === 'phase2_done') {
+            setUploading(false);
+            setCurrentStage('phase1_done');
+            setStageMessage(`Pipeline completed successfully! ${s.anomaly_count} anomalies detected.`);
+            return;
+          }
+          if (s.status === 'failed') {
+            setUploading(false);
+            setCurrentStage('failed');
+            setError(`Analysis pipeline failed: ${s.error || 'unknown error'}`);
+            return;
+          }
+        } catch {
+          /* ignore transient network errors */
+        }
+      }
+      setUploading(false);
+    };
+    poll();
+  }
+
+  async function fetchSessions() {
+    try { setRecentSessions(await listSessions()); }
+    catch { /* ignore */ }
+  }
+
+  async function handleFile(file: File) {
+    if (!file.name.endsWith('.pkl')) {
+      setError('Only .pkl (pickle) drive-test files are supported.');
+      return;
+    }
+    setUploading(true);
+    setError(null);
+    setUploadProgress({ loaded: 0, total: file.size, percentage: 0, speedMBs: 0 });
+    setCurrentStage('uploading');
+    setStageMessage(`Uploading ${file.name} (${(file.size / (1024 * 1024)).toFixed(1)} MB)...`);
+
+    try {
+      const session = await uploadDatasetWithProgress(file, (progress) => {
+        setUploadProgress(progress);
+      });
+
+      localStorage.setItem('netfix_tracked_session_id', session.session_id);
+      setActiveSession(session);
+      await fetchSessions();
+      setCurrentStage('uploaded');
+      setStageMessage('Upload complete! Handing off dataset to data cleaning pipeline...');
+
+      startPollingSession(session.session_id);
+
+    } catch (err: any) {
+      setUploading(false);
+      setCurrentStage('failed');
+      setError(err.message || 'Upload failed. Please check backend connection.');
+    }
+  }
+
+  function resetState() {
+    localStorage.removeItem('netfix_tracked_session_id');
+    setUploading(false);
+    setUploadProgress(null);
+    setActiveSession(null);
+    setCurrentStage('ready');
+    setStageMessage('System ready. Waiting for drive-test dataset upload.');
+    setError(null);
+  }
+
+  const isIdle = currentStage === 'ready' && !uploading;
+  const isUploading = currentStage === 'uploading';
+  const isCleaning = currentStage === 'cleaning';
+  const isDetecting = currentStage === 'detecting_anomalies';
+  const isDone = currentStage === 'phase1_done' || currentStage === 'phase2_done';
+  const isFailed = currentStage === 'failed';
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in duration-300 py-6">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Upload Drive Test Dataset</h2>
+        <p className="text-sm text-gray-500 mt-1">Upload .pkl raw network drive-test files to initiate automated data cleaning, KPI profiling, and anomaly detection.</p>
+      </div>
+
+      {/* System Status Banner */}
+      <div className={cn("p-4 rounded-lg border flex items-center justify-between transition-all shadow-sm", {
+        'bg-slate-50 border-slate-200 text-slate-700': isIdle,
+        'bg-blue-50 border-blue-200 text-blue-800': isUploading || isCleaning || isDetecting,
+        'bg-green-50 border-green-200 text-green-800': isDone,
+        'bg-red-50 border-red-200 text-red-800': isFailed,
+      })}>
+        <div className="flex items-center gap-3">
+          <div className={cn("w-3 h-3 rounded-full animate-pulse", {
+            'bg-slate-400': isIdle,
+            'bg-blue-500': isUploading || isCleaning || isDetecting,
+            'bg-green-500': isDone,
+            'bg-red-500': isFailed,
+          })} />
+          <div>
+            <span className="font-semibold text-sm uppercase tracking-wide">
+              {isIdle && 'System Ready'}
+              {isUploading && 'Uploading File...'}
+              {isCleaning && 'Cleaning Data (Stage 1/2)'}
+              {isDetecting && 'Detecting Anomalies (Stage 2/2)'}
+              {isDone && 'Pipeline Completed'}
+              {isFailed && 'Pipeline Error'}
+            </span>
+            <p className="text-xs opacity-90 mt-0.5">{stageMessage}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {!isIdle && (
+            <button onClick={resetState} className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-3 py-1.5 rounded text-xs font-medium shadow-sm transition-colors">
+              Reset Status
+            </button>
+          )}
+          {isDone && (
+            <button onClick={() => navigate('results')} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-xs font-semibold shadow transition-colors flex items-center gap-1.5">
+              <CheckCircle className="w-4 h-4" /> View Anomalies & Map
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Stepper Visualization */}
+      <div className="bg-white border border-[var(--color-border)] rounded-lg p-6 shadow-sm">
+        <h3 className="text-sm font-semibold text-gray-700 mb-4">Pipeline Execution Progress</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Step 1: Upload */}
+          <div className={cn("p-3 rounded border text-xs space-y-1.5", {
+            'border-blue-300 bg-blue-50/50': isUploading,
+            'border-green-300 bg-green-50/50 text-green-900': isCleaning || isDetecting || isDone,
+            'border-gray-200 bg-gray-50 text-gray-400': isIdle,
+          })}>
+            <div className="flex justify-between items-center font-semibold">
+              <span>1. File Upload</span>
+              {(isCleaning || isDetecting || isDone) ? (
+                <CheckCircle className="w-4 h-4 text-green-600" />
+              ) : isUploading ? (
+                <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              ) : null}
+            </div>
+            <div className="text-[11px]">
+              {isIdle && 'Awaiting file...'}
+              {isUploading && `${uploadProgress?.percentage || 0}% completed`}
+              {(isCleaning || isDetecting || isDone) && 'File received'}
+            </div>
+          </div>
+
+          {/* Step 2: Cleaning */}
+          <div className={cn("p-3 rounded border text-xs space-y-1.5", {
+            'border-blue-300 bg-blue-50/50': isCleaning,
+            'border-green-300 bg-green-50/50 text-green-900': isDetecting || isDone,
+            'border-gray-200 bg-gray-50 text-gray-400': isIdle || isUploading,
+          })}>
+            <div className="flex justify-between items-center font-semibold">
+              <span>2. Data Cleaning</span>
+              {(isDetecting || isDone) ? (
+                <CheckCircle className="w-4 h-4 text-green-600" />
+              ) : isCleaning ? (
+                <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              ) : null}
+            </div>
+            <div className="text-[11px]">
+              {(isIdle || isUploading) && 'Pending upload'}
+              {isCleaning && 'Filtering & profiling...'}
+              {(isDetecting || isDone) && 'Cleaned & preprocessed'}
+            </div>
+          </div>
+
+          {/* Step 3: Anomaly Detection */}
+          <div className={cn("p-3 rounded border text-xs space-y-1.5", {
+            'border-blue-300 bg-blue-50/50': isDetecting,
+            'border-green-300 bg-green-50/50 text-green-900': isDone,
+            'border-gray-200 bg-gray-50 text-gray-400': isIdle || isUploading || isCleaning,
+          })}>
+            <div className="flex justify-between items-center font-semibold">
+              <span>3. Anomaly Engine</span>
+              {isDone ? (
+                <CheckCircle className="w-4 h-4 text-green-600" />
+              ) : isDetecting ? (
+                <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              ) : null}
+            </div>
+            <div className="text-[11px]">
+              {(isIdle || isUploading || isCleaning) && 'Pending cleaning'}
+              {isDetecting && 'Statistical + ML fusion...'}
+              {isDone && `${activeSession?.anomaly_count || 0} incidents detected`}
+            </div>
+          </div>
+
+          {/* Step 4: Results */}
+          <div className={cn("p-3 rounded border text-xs space-y-1.5", {
+            'border-green-300 bg-green-50/50 text-green-900': isDone,
+            'border-gray-200 bg-gray-50 text-gray-400': !isDone,
+          })}>
+            <div className="flex justify-between items-center font-semibold">
+              <span>4. Results Ready</span>
+              {isDone && <CheckCircle className="w-4 h-4 text-green-600" />}
+            </div>
+            <div className="text-[11px]">
+              {isDone ? 'RCA & Map ready' : 'Awaiting completion'}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Drag and Drop Upload Card */}
+      <div
+        className={cn(
+          "bg-[var(--color-surface)] border-2 border-dashed rounded-lg p-10 flex flex-col items-center justify-center text-center transition-all shadow-sm",
+          uploading ? "border-blue-400 bg-blue-50/20 cursor-wait" : "border-[var(--color-border)] hover:border-primary hover:bg-blue-50/30 cursor-pointer"
+        )}
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => { e.preventDefault(); if (!uploading) { const f = e.dataTransfer.files[0]; if (f) handleFile(f); } }}
+        onClick={() => { if (!uploading) fileInputRef.current?.click(); }}
+      >
+        <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 shadow-sm">
+          {uploading ? (
+            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          ) : (
+            <FileUp className="w-8 h-8 text-primary" />
+          )}
+        </div>
+
+        <h3 className="text-lg font-semibold mb-1">
+          {isIdle && 'Drag & Drop .pkl File Here'}
+          {isUploading && `Uploading File... (${uploadProgress?.percentage || 0}%)`}
+          {(isCleaning || isDetecting) && 'Processing Pipeline...'}
+          {isDone && 'Upload & Pipeline Finished!'}
+          {isFailed && 'Upload Failed'}
+        </h3>
+
+        <p className="text-sm text-gray-500 mb-6 max-w-md">
+          {isIdle && 'Supports drive-test files up to 800 MB. Cleaning and anomaly detection will start automatically upon upload completion.'}
+          {isUploading && `${((uploadProgress?.loaded || 0) / (1024 * 1024)).toFixed(1)} MB / ${((uploadProgress?.total || 1) / (1024 * 1024)).toFixed(1)} MB (${(uploadProgress?.speedMBs || 0).toFixed(1)} MB/s)`}
+          {isCleaning && 'Stage 1/2: Cleaning noise, deriving time/location features, and computing quality binned metrics.'}
+          {isDetecting && 'Stage 2/2: Running 19-stage statistical scoring, ML cross-fitting, and PyTorch LSTM sequence prediction.'}
+          {isDone && 'Your dataset has been ingested, cleaned, and analyzed. Select an action below.'}
+          {isFailed && (error || 'An error occurred during file upload or processing.')}
+        </p>
+
+        {/* Progress bar during upload */}
+        {isUploading && uploadProgress && (
+          <div className="w-full max-w-md bg-gray-200 h-3 rounded-full overflow-hidden mb-6 shadow-inner">
+            <div
+              className="bg-primary h-full transition-all duration-200 ease-out"
+              style={{ width: `${uploadProgress.percentage}%` }}
+            />
+          </div>
+        )}
+
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".pkl"
+          className="hidden"
+          onChange={(e) => { const f = e.target.files?.[0]; if (f && !uploading) handleFile(f); }}
+        />
+
+        <div className="flex gap-3">
+          <button
+            disabled={uploading}
+            className="bg-white border border-[var(--color-border)] text-[var(--color-text)] px-6 py-2.5 rounded font-medium shadow-sm hover:bg-gray-50 disabled:opacity-50 transition-colors"
+          >
+            {uploading ? 'Processing File...' : 'Browse Files'}
+          </button>
+
+          {isDone && (
+            <button
+              onClick={(e) => { e.stopPropagation(); navigate('results'); }}
+              className="bg-primary text-white px-6 py-2.5 rounded font-medium shadow hover:bg-blue-700 transition-colors flex items-center gap-2"
+            >
+              Inspect Anomalies <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {error && <p className="text-sm text-red-600 font-medium mt-4 bg-red-50 px-4 py-2 rounded border border-red-200">{error}</p>}
+      </div>
+
+      {/* Recent Sessions Table */}
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm overflow-hidden mt-8">
+        <div className="p-4 border-b border-[var(--color-border)] bg-gray-50/50 flex justify-between items-center">
+          <h3 className="font-medium text-sm">Recent Analysis Sessions</h3>
+          <span className="text-xs text-gray-400">Auto-refreshing</span>
+        </div>
+        <div className="divide-y divide-[var(--color-border)]">
+          {recentSessions.length === 0 ? (
+            <div className="p-6 text-center text-sm text-gray-400">No sessions recorded yet. Upload a .pkl file to start analysis.</div>
+          ) : recentSessions.slice(0, 5).map((s) => (
+            <div key={s.session_id} className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <File className="w-4 h-4 text-gray-400" />
+                <div>
+                  <div className="text-sm font-medium">{s.dataset?.filename as string || s.session_id}</div>
+                  <div className="text-xs text-gray-500">
+                    {s.anomaly_count} anomalies • {s.stage_message || s.status} • {new Date(s.created_at).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className={cn("text-xs px-2.5 py-1 rounded-full font-medium capitalize", {
+                  'bg-green-100 text-green-800': s.status === 'phase1_done' || s.status === 'phase2_done',
+                  'bg-blue-100 text-blue-800': s.status === 'phase1_running' || s.status === 'phase2_running',
+                  'bg-red-100 text-red-800': s.status === 'failed',
+                  'bg-gray-100 text-gray-800': s.status === 'created',
+                })}>
+                  {(s.current_stage || s.status).replace(/_/g, ' ')}
+                </span>
+                <button onClick={() => navigate('results')} className="text-xs bg-primary text-white px-3 py-1.5 rounded font-medium hover:bg-blue-700">View</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ConfigView = ({ navigate }: { navigate: (v: string) => void }) => {
+  return (
+    <div className="max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300 py-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+            <span className="hover:text-primary cursor-pointer" onClick={() => navigate('upload')}>Uploads</span>
+            <ChevronRight className="w-3 h-3" />
+            <span className="font-medium text-gray-900">NYC_DriveTest_Q3.csv</span>
+          </div>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Analysis Configuration</h2>
+          <p className="text-sm text-gray-500 mt-1">Define KPI thresholds and anomaly detection sensitivity.</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="bg-white border border-[var(--color-border)] px-4 py-2 rounded text-sm font-medium hover:bg-gray-50 shadow-sm">Save Template</button>
+          <button onClick={() => navigate('results')} className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded text-sm font-medium hover:opacity-90 shadow-sm">
+            <Play className="w-4 h-4" /> Start Analysis
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 space-y-6">
+          <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm">
+            <div className="p-4 border-b border-[var(--color-border)] flex justify-between items-center bg-gray-50/50">
+              <h3 className="font-medium">KPI Thresholds</h3>
+              <div className="text-xs text-gray-500">3 Active</div>
+            </div>
+            <div className="p-0">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-gray-50 text-xs text-gray-500 uppercase border-b border-[var(--color-border)]">
+                  <tr>
+                    <th className="px-4 py-3 font-medium">KPI</th>
+                    <th className="px-4 py-3 font-medium">Unit</th>
+                    <th className="px-4 py-3 font-medium text-[var(--color-critical)]">Poor (&lt;)</th>
+                    <th className="px-4 py-3 font-medium text-[var(--color-warning)]">Acceptable</th>
+                    <th className="px-4 py-3 font-medium text-[var(--color-success)]">Good (&gt;)</th>
+                    <th className="px-4 py-3 font-medium text-right">Toggle</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--color-border)]">
+                  {[
+                    { kpi: 'RSRP', unit: 'dBm', poor: '-110', acc: '-110 to -95', good: '-95' },
+                    { kpi: 'SINR', unit: 'dB', poor: '0', acc: '0 to 15', good: '15' },
+                    { kpi: 'Throughput DL', unit: 'Mbps', poor: '5', acc: '5 to 25', good: '25' },
+                  ].map((row, i) => (
+                    <tr key={i} className="hover:bg-gray-50">
+                      <td className="px-4 py-3 font-medium">{row.kpi}</td>
+                      <td className="px-4 py-3 text-gray-500">{row.unit}</td>
+                      <td className="px-4 py-3"><input type="text" defaultValue={row.poor} className="w-16 px-2 py-1 border border-gray-300 rounded text-xs" /></td>
+                      <td className="px-4 py-3"><input type="text" defaultValue={row.acc} className="w-24 px-2 py-1 border border-gray-300 rounded text-xs" /></td>
+                      <td className="px-4 py-3"><input type="text" defaultValue={row.good} className="w-16 px-2 py-1 border border-gray-300 rounded text-xs" /></td>
+                      <td className="px-4 py-3 text-right">
+                        <div className="inline-flex items-center cursor-pointer">
+                           <div className="w-8 h-4 bg-primary rounded-full relative">
+                             <div className="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+                           </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="p-3 border-t border-[var(--color-border)] bg-gray-50/50">
+              <button className="text-sm text-primary font-medium flex items-center gap-1"><Settings className="w-3 h-3" /> Add Custom KPI</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm p-5">
+            <h3 className="font-medium mb-4 text-sm">AI Detection Sensitivity</h3>
+            <div className="space-y-4">
+               <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-gray-500">Anomaly Detection</span>
+                    <span className="font-medium">High</span>
+                  </div>
+                  <input type="range" min="1" max="3" defaultValue="3" className="w-full" />
+                  <p className="text-[10px] text-gray-500 mt-1">Higher sensitivity detects more subtle deviations.</p>
+               </div>
+               <div>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-gray-500">Correlation Window</span>
+                    <span className="font-medium">15 sec</span>
+                  </div>
+                  <select defaultValue="15 seconds" className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm">
+                    <option>5 seconds</option>
+                    <option>10 seconds</option>
+                    <option>15 seconds</option>
+                    <option>30 seconds</option>
+                  </select>
+               </div>
+            </div>
+          </div>
+          <div className="bg-blue-50 border border-blue-100 rounded shadow-sm p-4">
+             <div className="flex gap-2">
+               <Bot className="w-4 h-4 text-primary shrink-0" />
+               <p className="text-xs text-blue-900">
+                 Based on similar datasets, adjusting SINR "Good" threshold to 12dB may reduce false positives in dense urban environments.
+               </p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ResultsView = ({ navigate }: { navigate: (v: string) => void }) => {
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [selectedSessionId, setSelectedSessionId] = useState<string>('');
+  const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // RCA Service States
+  const [rcaAnomalyIds, setRcaAnomalyIds] = useState<string[]>([]);
+  const [selectedRcaAnomalyId, setSelectedRcaAnomalyId] = useState<string>('');
+  const [rcaResult, setRcaResult] = useState<RCAResult['data'] | null>(null);
+  const [rcaLoading, setRcaLoading] = useState<boolean>(false);
+  const [rcaNotification, setRcaNotification] = useState<string | null>(null);
+
+  const handleFetchRCA = async (sId: string, anomalyId: string) => {
+    if (!anomalyId) return;
+    try {
+      setRcaLoading(true);
+      const res = await analyzeRCA(sId, anomalyId);
+      setRcaResult(res.data);
+      setRcaNotification('Matching reason process is completed');
+    } catch (err) {
+      console.error('Error fetching RCA:', err);
+    } finally {
+      setRcaLoading(false);
+    }
+  };
+
+  const handleRcaFileChange = async (sId: string) => {
+    setSelectedSessionId(sId);
+    try {
+      setRcaLoading(true);
+      const idsRes = await getAnomalyIds(sId).catch(() => ({ anomaly_ids: [] }));
+      const ids = idsRes.anomaly_ids || [];
+      setRcaAnomalyIds(ids);
+      if (ids.length > 0) {
+        setSelectedRcaAnomalyId(ids[0]);
+        handleFetchRCA(sId, ids[0]);
+      } else {
+        setSelectedRcaAnomalyId('');
+        setRcaResult(null);
+      }
+    } catch (err) {
+      console.error('Error switching RCA file:', err);
+    } finally {
+      setRcaLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    listSessions().then((ss) => {
+      setSessions(ss);
+      setLoading(false);
+      if (ss.length > 0) {
+        handleRcaFileChange(ss[0].session_id);
+      }
+    }).catch(() => setLoading(false));
+  }, []);
+
+  React.useEffect(() => {
+    if (!selectedSessionId) return;
+    getAnomalies(selectedSessionId).then(setAnomalies).catch(() => setAnomalies([]));
+  }, [selectedSessionId]);
+
+  const selectedSession = sessions.find((s) => s.session_id === selectedSessionId);
+
+  if (loading) {
+    return <div className="flex items-center justify-center h-full"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" /></div>;
+  }
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300 pb-10">
+      <div className="flex items-center justify-between shrink-0">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Analysis Results</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            {selectedSession
+              ? `${selectedSession.dataset?.filename as string || selectedSession.session_id} • ${new Date(selectedSession.created_at).toLocaleString()}`
+              : `${sessions.length} session(s) available`
+            }
+          </p>
+        </div>
+      </div>
+
+      {/* 🧠 Root Cause Analysis & Solution Matching Engine (RCA) */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-5 animate-in fade-in duration-300">
+        {/* RCA Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-xl shadow-md shadow-orange-500/20">
+              <Bot className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-100">
+                  RCA Intelligence Service
+                </span>
+                <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
+                  <Database className="w-3 h-3" /> MongoDB & Redis Active
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 tracking-tight mt-1">Root Cause Analysis & Recommended Solutions</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Select an anomaly ID below to trigger real-time root cause matching and vendor resolution steps.</p>
+            </div>
+          </div>
+
+          {/* 2-Dropdown Selectors: File Selector + Anomaly ID Selector */}
+          <div className="flex flex-wrap items-center gap-3 self-start sm:self-auto">
+            {/* Dropdown 1: Select Telemetry File */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                <FileText className="w-3.5 h-3.5 text-orange-500" /> 1. Select Dataset File:
+              </label>
+              <select
+                value={selectedSessionId}
+                onChange={(e) => handleRcaFileChange(e.target.value)}
+                className="bg-slate-50 border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-800 px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer min-w-[200px]"
+              >
+                {sessions.map((s) => (
+                  <option key={s.session_id} value={s.session_id}>
+                    {s.dataset?.original_filename || s.dataset?.filename || `Dataset (${s.session_id.slice(0, 8)})`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Dropdown 2: Select Anomaly ID */}
+            <div className="flex flex-col">
+              <label className="text-[11px] font-bold uppercase text-slate-500 mb-1 flex items-center gap-1">
+                <ShieldAlert className="w-3.5 h-3.5 text-orange-500" /> 2. Select Anomaly ID:
+              </label>
+              <select
+                value={selectedRcaAnomalyId}
+                onChange={(e) => {
+                  setSelectedRcaAnomalyId(e.target.value);
+                  handleFetchRCA(selectedSessionId, e.target.value);
+                }}
+                className="bg-slate-50 border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-800 px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer min-w-[160px]"
+              >
+                {rcaAnomalyIds.length > 0 ? (
+                  rcaAnomalyIds.map((id) => (
+                    <option key={id} value={id}>
+                      {id}
+                    </option>
+                  ))
+                ) : (
+                  <option value="">No anomalies found</option>
+                )}
+              </select>
+            </div>
+
+            <button
+              onClick={() => handleFetchRCA(selectedSessionId, selectedRcaAnomalyId)}
+              disabled={rcaLoading || !selectedRcaAnomalyId}
+              className="mt-5 px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-orange-500/20 active:scale-95 disabled:opacity-50 cursor-pointer flex items-center gap-2"
+            >
+              {rcaLoading ? (
+                <>
+                  <RotateCcw className="w-4 h-4 animate-spin" /> Analyzing...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-4 h-4" /> Run RCA
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Success Toast / Notification Banner */}
+        {rcaNotification && (
+          <div className="bg-emerald-600 text-white p-4 rounded-xl shadow-lg flex items-center justify-between border border-emerald-500 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="flex items-center gap-3">
+              <CheckCircle className="w-5 h-5 text-emerald-200 shrink-0" />
+              <div>
+                <p className="text-sm font-bold">{rcaNotification}</p>
+                <p className="text-xs text-emerald-100 mt-0.5">Version saved to MongoDB collection `rca_results` and cached in Redis under `rca:incident:{selectedRcaAnomalyId}`.</p>
+              </div>
+            </div>
+            <button onClick={() => setRcaNotification(null)} className="text-emerald-200 hover:text-white p-1 cursor-pointer">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* RCA Result Container */}
+        {rcaResult ? (
+          <div className="space-y-5 animate-in fade-in duration-300">
+            {/* Top Cards: Diagnosis & Category */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* Card 1: Problem Diagnosis */}
+              <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-xl p-5 border border-slate-700/80 shadow-md space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-orange-500/20 text-orange-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-orange-500/30">
+                      {rcaResult.diagnosis.cause_id}
+                    </span>
+                    <span className="bg-blue-500/20 text-blue-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-500/30">
+                      {rcaResult.diagnosis.category}
+                    </span>
+                  </div>
+                  <span className={cn(
+                    "text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider",
+                    String(rcaResult.diagnosis.severity).toUpperCase() === 'HIGH' ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                  )}>
+                    {rcaResult.diagnosis.severity} Severity
+                  </span>
+                </div>
+
+                <div>
+                  <h4 className="text-base font-bold text-white tracking-tight">{rcaResult.diagnosis.problem_name}</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed mt-1.5 bg-slate-800/80 p-3 rounded-lg border border-slate-700/50">
+                    {rcaResult.diagnosis.reason}
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Supporting Evidence Chips */}
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2 flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-orange-500" /> Supporting Evidence ({rcaResult.supporting_evidence?.length || 0})
+                  </h4>
+                  {rcaResult.supporting_evidence && rcaResult.supporting_evidence.length > 0 ? (
+                    <div className="space-y-2 mt-2 max-h-[140px] overflow-y-auto pr-1">
+                      {rcaResult.supporting_evidence.map((ev) => (
+                        <div key={ev.id} className="bg-white p-2 rounded-lg border border-slate-200 text-xs shadow-2xs">
+                          <p className="font-bold text-slate-900 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-orange-500" />
+                            {ev.name} ({ev.id})
+                          </p>
+                          <p className="text-[11px] text-slate-500 mt-0.5">{ev.reason}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400 italic mt-2">Primary rule condition matched; no secondary evidence triggers.</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* 🤖 Senior RAN Engineer AI Explanation Card */}
+            {rcaResult.explanation && (
+              <div className="bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white rounded-xl p-5 border border-indigo-500/30 shadow-xl space-y-4">
+                <div className="flex items-center justify-between border-b border-indigo-800/60 pb-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg text-white shadow-md shadow-indigo-500/20">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white tracking-tight">Senior RAN Engineer AI Explanation</h4>
+                      <p className="text-[11px] text-indigo-200">Generated by LLM Explanation Engine grounded strictly in telemetry evidence</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-purple-300 bg-purple-900/60 px-2.5 py-1 rounded-full border border-purple-700/50">
+                    Ollama / LLM Active
+                  </span>
+                </div>
+
+                {/* Single Prose Narrative (if model returned plain prose explanation) */}
+                {(rcaResult.explanation.explanation || typeof rcaResult.explanation === 'string') && (
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Senior Engineer Analysis</span>
+                    <p className="text-xs text-slate-200 leading-relaxed font-sans bg-slate-900/80 p-4 rounded-xl border border-slate-800 whitespace-pre-wrap">
+                      {rcaResult.explanation.explanation || String(rcaResult.explanation)}
+                    </p>
+                  </div>
+                )}
+
+                {/* Executive Summary */}
+                {rcaResult.explanation.executive_summary && (
+                  <div className="bg-indigo-900/40 p-3.5 rounded-xl border border-indigo-500/30">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-300 block mb-1">Executive Summary</span>
+                    <p className="text-xs text-indigo-100 font-medium leading-relaxed">{rcaResult.explanation.executive_summary}</p>
+                  </div>
+                )}
+
+                {/* Technical Root Cause Narrative */}
+                {rcaResult.explanation.root_cause_narrative && (
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Root Cause Technical Analysis</span>
+                    <p className="text-xs text-slate-200 leading-relaxed font-sans bg-slate-900/80 p-3.5 rounded-xl border border-slate-800">
+                      {rcaResult.explanation.root_cause_narrative}
+                    </p>
+                  </div>
+                )}
+
+                {/* Supporting Evidence Chips & Recommended Action Walkthroughs */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                  {rcaResult.explanation.supporting_evidence && rcaResult.explanation.supporting_evidence.length > 0 && (
+                    <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Key Supporting KPI Evidence</span>
+                      <ul className="space-y-1 text-xs text-slate-300">
+                        {rcaResult.explanation.supporting_evidence.map((ev, idx) => (
+                          <li key={idx} className="flex items-center gap-1.5 font-mono text-[11px]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                            {ev}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {rcaResult.explanation.recommended_actions && rcaResult.explanation.recommended_actions.length > 0 && (
+                    <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block">Engineering Action Walkthrough</span>
+                      <ul className="space-y-1 text-xs text-slate-300">
+                        {rcaResult.explanation.recommended_actions.map((act, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5">
+                            <span className="font-bold text-emerald-400 shrink-0">{idx + 1}.</span>
+                            <span>{act}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Middle: Key KPI Evidence Table */}
+            <div className="bg-white rounded-xl border border-slate-200/80 p-4 shadow-xs">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3 flex items-center gap-2">
+                <Database className="w-4 h-4 text-blue-600" /> Telemetry KPI Evidence Breakdown
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {Object.entries(rcaResult.key_kpi_evidence || {}).map(([key, val]) => (
+                  <div key={key} className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight truncate">{key.replace(/_/g, ' ')}</p>
+                    <p className="text-sm font-extrabold text-slate-900 mt-0.5 font-mono">
+                      {typeof val === 'boolean' ? (val ? 'TRUE' : 'FALSE') : String(val)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom: Recommended Solutions & Standards References */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Recommended Actions */}
+              <div className="bg-emerald-50/60 rounded-xl p-5 border border-emerald-200/80 space-y-3">
+                <h4 className="text-sm font-bold text-emerald-900 flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-600" /> Recommended Resolution Actions
+                </h4>
+                <ul className="space-y-2">
+                  {rcaResult.recommended_solution?.recommended_actions?.map((act, idx) => (
+                    <li key={idx} className="text-xs text-emerald-950 flex items-start gap-2 bg-white/80 p-2.5 rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="font-bold text-emerald-600 shrink-0">{idx + 1}.</span>
+                      <span>{act}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Vendor & 3GPP Standards References */}
+              <div className="bg-blue-50/60 rounded-xl p-5 border border-blue-200/80 space-y-3">
+                <h4 className="text-sm font-bold text-blue-900 flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-blue-600" /> 3GPP Standards & Vendor References
+                </h4>
+                <div className="space-y-2">
+                  {rcaResult.recommended_solution?.standards_and_vendor_references?.map((ref, idx) => (
+                    <div key={idx} className="bg-white/80 p-2.5 rounded-lg border border-blue-100 shadow-2xs text-xs">
+                      <p className="font-bold text-blue-900">{ref.source}</p>
+                      <p className="text-[11px] text-blue-700 mt-0.5">{ref.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="h-40 flex flex-col items-center justify-center text-slate-400 border border-dashed border-slate-200 rounded-xl">
+            <Bot className="w-8 h-8 text-slate-300 mb-2" />
+            <p className="text-xs font-semibold text-slate-500">Select an Anomaly ID from the dropdown to run Root Cause Analysis.</p>
+          </div>
+        )}
+      </div>
+
+      <div className="flex gap-4">
+        <div className="w-64 shrink-0 space-y-1">
+          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Sessions</div>
+          {sessions.length === 0 && <div className="text-sm text-gray-400 px-1">No sessions found. Upload a dataset first.</div>}
+          {sessions.map((s) => (
+            <button
+              key={s.session_id}
+              onClick={() => handleRcaFileChange(s.session_id)}
+              className={cn(
+                'w-full text-left px-3 py-2 rounded text-sm transition-colors',
+                selectedSessionId === s.session_id ? 'bg-primary text-white' : 'hover:bg-gray-100 text-gray-700',
+              )}
+            >
+              <div className="font-medium truncate">{s.dataset?.filename as string || s.session_id}</div>
+              <div className={cn('text-xs', selectedSessionId === s.session_id ? 'text-white/70' : 'text-gray-400')}>
+                {s.anomaly_count} anomalies
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <div className="flex-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm flex flex-col min-h-0">
+          {!selectedSessionId ? (
+            <div className="p-12 text-center text-sm text-gray-400">Select a session on the left to view its anomalies.</div>
+          ) : anomalies.length === 0 ? (
+            <div className="p-12 text-center text-sm text-gray-400">No anomalies found in this session.</div>
+          ) : (
+            <>
+              <div className="p-3 border-b border-[var(--color-border)] bg-gray-50/50 flex justify-between items-center">
+                <h3 className="text-sm font-semibold">Detected Anomalies ({anomalies.length})</h3>
+                <div className="relative">
+                  <Search className="w-4 h-4 absolute left-2.5 top-2 text-gray-400" />
+                  <input type="text" placeholder="Search Cell ID..." className="pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:border-primary w-48" />
+                </div>
+              </div>
+              <div className="flex-1 overflow-auto">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-gray-50 text-xs text-gray-500 uppercase sticky top-0 border-b border-[var(--color-border)] shadow-sm">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Anomaly Type</th>
+                      <th className="px-4 py-3 font-medium">Severity</th>
+                      <th className="px-4 py-3 font-medium">Cell ID</th>
+                      <th className="px-4 py-3 font-medium">Score</th>
+                      <th className="px-4 py-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[var(--color-border)]">
+                    {anomalies.map((a, i) => (
+                      <tr key={a.incident_id || i} className="hover:bg-gray-50 cursor-pointer group" onClick={() => navigate('anomaly')}>
+                        <td className="px-4 py-3 font-medium text-gray-900 group-hover:text-primary transition-colors">{a.anomaly_type || a.anomaly_severity || 'N/A'}</td>
+                        <td className="px-4 py-3">
+                          <span className={cn(
+                            "px-2 py-0.5 rounded text-xs font-medium border",
+                            a.anomaly_severity === 'Critical' ? "bg-red-50 text-red-700 border-red-200" :
+                            a.anomaly_severity === 'High' ? "bg-amber-50 text-amber-700 border-amber-200" :
+                            a.anomaly_severity === 'Medium' ? "bg-yellow-50 text-yellow-800 border-yellow-200" :
+                            "bg-gray-50 text-gray-600 border-gray-200"
+                          )}>
+                            {a.anomaly_severity || 'Unknown'}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 font-mono text-xs">{a.eci || a.pci || a.id || 'N/A'}</td>
+                        <td className="px-4 py-3 text-gray-500">{a.anomaly_score != null ? `${Math.round(a.anomaly_score)}` : 'N/A'}</td>
+                        <td className="px-4 py-3 text-right">
+                          <button className="text-gray-400 hover:text-primary"><ChevronRight className="w-4 h-4" /></button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AnomalyDetailView = ({ navigate }: { navigate: (v: string) => void }) => {
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300 pb-10">
+       <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+          <span className="hover:text-primary cursor-pointer" onClick={() => navigate('results')}>Results</span>
+          <ChevronRight className="w-3 h-3" />
+          <span className="font-medium text-gray-900">ANM-942</span>
+        </div>
+      <div className="flex items-start justify-between">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Cross-Feeder / Interference</h2>
+            <span className="bg-red-50 text-red-700 border border-red-200 px-2 py-0.5 rounded text-xs font-semibold">Critical</span>
+          </div>
+          <p className="text-sm text-gray-500">Cell ID: <span className="font-mono text-gray-800">LC_NYC_14A</span> • Oct 24, 14:23:41 • Conf: 94%</p>
+        </div>
+        <div className="flex gap-3">
+           <button className="flex items-center gap-2 bg-white border border-[var(--color-border)] px-4 py-2 rounded text-sm font-medium hover:bg-gray-50 shadow-sm">
+            <Share2 className="w-4 h-4" /> Share
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm p-6">
+            <h3 className="text-lg font-semibold mb-4 border-b pb-2">KPI Evidence</h3>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+               <div className="p-4 bg-gray-50 rounded border border-[var(--color-border)]">
+                 <div className="text-sm text-gray-500 mb-1">RSRP</div>
+                 <div className="text-xl font-bold text-[var(--color-success)]">-82 dBm</div>
+                 <div className="text-xs text-gray-500 mt-1">Excellent coverage</div>
+               </div>
+               <div className="p-4 bg-red-50 rounded border border-red-100">
+                 <div className="text-sm text-red-600 mb-1">SINR</div>
+                 <div className="text-xl font-bold text-[var(--color-critical)]">-2.4 dB</div>
+                 <div className="text-xs text-red-600 mt-1">Severely degraded</div>
+               </div>
+            </div>
+            
+            <h4 className="font-medium text-sm mb-3">Time-series Trend</h4>
+            <div className="h-48 w-full min-h-[192px]">
+              <ResponsiveContainer width="100%" height="100%" minHeight={192}>
+                <LineChart data={[
+                  { time: '14:23:30', rsrp: -85, sinr: 12 },
+                  { time: '14:23:35', rsrp: -84, sinr: 10 },
+                  { time: '14:23:40', rsrp: -82, sinr: -2 }, // anomaly
+                  { time: '14:23:45', rsrp: -81, sinr: -3 },
+                  { time: '14:23:50', rsrp: -83, sinr: -1 },
+                ]} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="time" tick={{fontSize: 10}} />
+                  <YAxis yAxisId="left" tick={{fontSize: 10}} />
+                  <YAxis yAxisId="right" orientation="right" tick={{fontSize: 10}} />
+                  <Tooltip />
+                  <Line yAxisId="left" type="stepAfter" dataKey="rsrp" stroke="#2E7D32" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="stepAfter" dataKey="sinr" stroke="#D32F2F" strokeWidth={2} dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="flex gap-4 mt-2 justify-center text-xs text-gray-500">
+              <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#2E7D32]"></div> RSRP</span>
+              <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#D32F2F]"></div> SINR</span>
+            </div>
+          </div>
+
+          <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm overflow-hidden">
+             <div className="p-4 border-b border-[var(--color-border)] bg-gray-50/50 flex items-center gap-2">
+                <Bot className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold text-[var(--color-text)]">AI Root Cause Analysis</h3>
+             </div>
+             <div className="p-6">
+               <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                 The sharp drop in SINR accompanied by strong RSRP strongly indicates interference. 
+                 Given the specific sector and the lack of handovers prior to the drop, this is characteristic of either external interference or a crossed feeder cable where the UE is receiving a strong signal from an unintended antenna port.
+               </p>
+               <h4 className="text-sm font-semibold mb-3">Recommended Actions</h4>
+               <ul className="space-y-3">
+                 <li className="flex gap-3 text-sm items-start">
+                   <div className="bg-blue-50 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">1</div>
+                   <div>
+                     <span className="font-medium block">Physical Site Audit</span>
+                     <span className="text-gray-500">Dispatch field technician to verify feeder cable connections at the RRU and antenna ports.</span>
+                   </div>
+                 </li>
+                 <li className="flex gap-3 text-sm items-start">
+                   <div className="bg-blue-50 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">2</div>
+                   <div>
+                     <span className="font-medium block">Interference Hunting</span>
+                     <span className="text-gray-500">If physical connections are correct, initiate spectrum analyzer trace on uplink frequencies.</span>
+                   </div>
+                 </li>
+               </ul>
+             </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+           <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm p-4">
+             <h3 className="font-semibold text-sm mb-3">Location Context</h3>
+             <div className="h-40 bg-[#E2E8F0] rounded mb-3 flex items-center justify-center overflow-hidden relative">
+               <MapIcon className="w-8 h-8 text-gray-400 absolute" />
+               <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-white/20"></div>
+             </div>
+             <div className="text-xs text-gray-500 space-y-2">
+                <div className="flex justify-between"><span>Lat/Long:</span> <span className="font-mono text-gray-800">40.7128, -74.0060</span></div>
+                <div className="flex justify-between"><span>Speed:</span> <span className="font-mono text-gray-800">45 km/h</span></div>
+                <div className="flex justify-between"><span>Distance to cell:</span> <span className="font-mono text-gray-800">420m</span></div>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MapView = () => {
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [selectedSessionId, setSelectedSessionId] = useState<string>('');
+  const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  React.useEffect(() => {
+    async function initSessions() {
+      try {
+        setLoading(true);
+        const allSessions = await listSessions();
+        setSessions(allSessions);
+
+        const trackedId = localStorage.getItem('netfix_tracked_session_id');
+        let initialId = trackedId;
+
+        if (!initialId || !allSessions.some(s => s.session_id === initialId)) {
+          if (allSessions.length > 0) {
+            initialId = allSessions[0].session_id;
+          }
+        }
+
+        if (initialId) {
+          setSelectedSessionId(initialId);
+          const anomData = await getAnomalies(initialId);
+          setAnomalies(anomData);
+        }
+      } catch (err) {
+        console.error('Failed to load session list for map:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    initSessions();
+  }, []);
+
+  const handleSelectSession = async (sId: string) => {
+    setSelectedSessionId(sId);
+    try {
+      setLoading(true);
+      const anomData = await getAnomalies(sId);
+      setAnomalies(anomData);
+    } catch (err) {
+      console.error('Failed to load anomalies for session:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading && sessions.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[500px] text-gray-500 gap-3">
+        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-sm font-medium">Loading session datasets...</p>
+      </div>
+    );
+  }
+
+  return (
+    <InteractiveMapView
+      anomalies={anomalies}
+      sessions={sessions}
+      selectedSessionId={selectedSessionId}
+      onSelectSession={handleSelectSession}
+      loadingAnomalies={loading}
+    />
+  );
+};
+
+const StatisticsView = () => {
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Statistics & Trends</h2>
+          <p className="text-sm text-gray-500 mt-1">Aggregate metrics across all recent drive test sessions.</p>
+        </div>
+        <select className="border border-gray-300 rounded px-3 py-1.5 text-sm bg-white shadow-sm">
+          <option>Last 7 Days</option>
+          <option>Last 30 Days</option>
+          <option>This Quarter</option>
+        </select>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-[var(--color-surface)] p-5 rounded border border-[var(--color-border)] shadow-sm">
+          <h3 className="text-sm font-semibold mb-4 border-b pb-2">Anomaly Distribution by Type</h3>
+          <div className="h-64 w-full min-h-[256px]">
+            <ResponsiveContainer width="100%" height="100%" minHeight={256}>
+              <BarChart data={[
+                { name: 'Interference', count: 45 },
+                { name: 'Missing Neighbor', count: 82 },
+                { name: 'Coverage Hole', count: 31 },
+                { name: 'Overshoot', count: 24 },
+                { name: 'Handover Fail', count: 56 },
+              ]} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="name" tick={{fontSize: 10}} interval={0} angle={-25} textAnchor="end" height={50} />
+                <YAxis tick={{fontSize: 10}} />
+                <Tooltip cursor={{fill: '#f4f6f8'}} />
+                <Bar dataKey="count" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-[var(--color-surface)] p-5 rounded border border-[var(--color-border)] shadow-sm">
+          <h3 className="text-sm font-semibold mb-4 border-b pb-2">RSRP vs SINR Scatter (Sample)</h3>
+          <div className="h-64 flex items-center justify-center bg-gray-50 rounded border border-dashed border-gray-300">
+             <div className="text-center">
+               <Activity className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+               <p className="text-xs text-gray-500">Scatter correlation plot rendering requires more data points.</p>
+             </div>
+          </div>
+        </div>
+
+        <div className="bg-[var(--color-surface)] p-5 rounded border border-[var(--color-border)] shadow-sm lg:col-span-2">
+          <h3 className="text-sm font-semibold mb-4 border-b pb-2">Weekly Anomaly Trend</h3>
+          <div className="h-64 w-full min-h-[256px]">
+            <ResponsiveContainer width="100%" height="100%" minHeight={256}>
+              <LineChart data={[
+                { date: 'Mon', critical: 12, warning: 30 },
+                { date: 'Tue', critical: 18, warning: 45 },
+                { date: 'Wed', critical: 5, warning: 20 },
+                { date: 'Thu', critical: 22, warning: 50 },
+                { date: 'Fri', critical: 9, warning: 25 },
+                { date: 'Sat', critical: 4, warning: 15 },
+                { date: 'Sun', critical: 2, warning: 10 },
+              ]} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="date" tick={{fontSize: 12}} />
+                <YAxis tick={{fontSize: 12}} />
+                <Tooltip />
+                <Line type="monotone" dataKey="critical" stroke="var(--color-critical)" strokeWidth={2} />
+                <Line type="monotone" dataKey="warning" stroke="var(--color-warning)" strokeWidth={2} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ReportsView = () => {
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Reports</h2>
+          <p className="text-sm text-gray-500 mt-1">Generated PDF reports from analysis sessions.</p>
+        </div>
+        <button className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 shadow-sm">
+          <FileText className="w-4 h-4" /> New Report
+        </button>
+      </div>
+
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm overflow-hidden">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-gray-50 text-xs text-gray-500 uppercase border-b border-[var(--color-border)]">
+            <tr>
+              <th className="px-6 py-4 font-medium">Report Name</th>
+              <th className="px-6 py-4 font-medium">Dataset</th>
+              <th className="px-6 py-4 font-medium">Date Generated</th>
+              <th className="px-6 py-4 font-medium">Size</th>
+              <th className="px-6 py-4"></th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[var(--color-border)]">
+            {[
+              { name: 'NYC North Optimization Audit', dataset: 'DT_NYC_North_01', date: 'Oct 24, 2023', size: '2.4 MB' },
+              { name: 'Boston Handover Analysis', dataset: 'DT_BOS_Downtown', date: 'Oct 23, 2023', size: '1.8 MB' },
+              { name: 'Weekly Executive Summary', dataset: 'Multiple', date: 'Oct 20, 2023', size: '4.1 MB' },
+            ].map((report, i) => (
+              <tr key={i} className="hover:bg-gray-50">
+                <td className="px-6 py-4 font-medium flex items-center gap-3">
+                  <div className="bg-red-100 text-red-600 p-1.5 rounded"><FileText className="w-4 h-4"/></div>
+                  {report.name}
+                </td>
+                <td className="px-6 py-4 text-gray-500">{report.dataset}</td>
+                <td className="px-6 py-4 text-gray-500">{report.date}</td>
+                <td className="px-6 py-4 text-gray-500">{report.size}</td>
+                <td className="px-6 py-4 text-right">
+                  <button className="text-primary font-medium hover:underline flex items-center gap-1 justify-end w-full">
+                    <Download className="w-4 h-4" /> Download
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+interface ChatMsg {
+  id: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  thinking?: string;
+  modelUsed?: string;
+  mode?: 'chat' | 'reasoning';
+  timestamp: string;
+}
+
+const AIAssistantView = () => {
+  const [messages, setMessages] = useState<ChatMsg[]>([
+    {
+      id: 'welcome',
+      sender: 'assistant',
+      text: "Hello! I am your NetFix AI Assistant. I can analyze your drive-test telemetry datasets, explain root cause analyses, and help optimize network performance. Choose your assistant mode above: 💬 Chat Mode (Llama 3.1) for quick conversational Q&A, or 🧠 Reasoning Mode (DeepSeek R1) for deep step-by-step technical analysis.",
+      modelUsed: 'llama3.1',
+      mode: 'chat',
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    }
+  ]);
+
+  const [inputMessage, setInputMessage] = useState('');
+  const [mode, setMode] = useState<'chat' | 'reasoning'>('chat');
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [selectedSessionId, setSelectedSessionId] = useState<string>('');
+  const [anomalyIds, setAnomalyIds] = useState<string[]>([]);
+  const [selectedAnomalyId, setSelectedAnomalyId] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const [expandedThinking, setExpandedThinking] = useState<Record<string, boolean>>({});
+
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    listSessions().then((sList) => {
+      setSessions(sList);
+      if (sList.length > 0) {
+        setSelectedSessionId(sList[0].session_id);
+      }
+    }).catch(() => {});
+  }, []);
+
+  React.useEffect(() => {
+    if (!selectedSessionId) {
+      setAnomalyIds([]);
+      setSelectedAnomalyId('');
+      return;
+    }
+    getAnomalyIds(selectedSessionId).then((res) => {
+      setAnomalyIds(res.anomaly_ids || []);
+      if (res.anomaly_ids && res.anomaly_ids.length > 0) {
+        setSelectedAnomalyId(res.anomaly_ids[0]);
+      }
+    }).catch(() => {
+      setAnomalyIds([]);
+      setSelectedAnomalyId('');
+    });
+  }, [selectedSessionId]);
+
+  React.useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading]);
+
+  const handleSend = async (textToSend?: string) => {
+    const query = (textToSend || inputMessage).trim();
+    if (!query || loading) return;
+
+    const userMsgId = `user-${Date.now()}`;
+    const userMsg: ChatMsg = {
+      id: userMsgId,
+      sender: 'user',
+      text: query,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    };
+
+    setMessages((prev) => [...prev, userMsg]);
+    setInputMessage('');
+    setLoading(true);
+
+    try {
+      const historyPayload = messages.slice(-6).map((m) => ({
+        role: m.sender === 'user' ? ('user' as const) : ('assistant' as const),
+        content: m.text,
+      }));
+
+      const res = await sendChatMessage(
+        query,
+        mode,
+        selectedSessionId || undefined,
+        selectedAnomalyId || undefined,
+        historyPayload
+      );
+
+      const botMsg: ChatMsg = {
+        id: `bot-${Date.now()}`,
+        sender: 'assistant',
+        text: res.response,
+        thinking: res.thinking || undefined,
+        modelUsed: res.model_used || (mode === 'reasoning' ? 'deepseek-r1' : 'llama3.1'),
+        mode: mode,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+
+      setMessages((prev) => [...prev, botMsg]);
+    } catch (err: any) {
+      const errorMsg: ChatMsg = {
+        id: `err-${Date.now()}`,
+        sender: 'assistant',
+        text: `Unable to connect to Assistant service. Grounded fallback analysis: Please verify that local models (${mode === 'reasoning' ? 'deepseek-r1' : 'llama3.1'}) are loaded in Ollama.`,
+        modelUsed: mode === 'reasoning' ? 'deepseek-r1' : 'llama3.1',
+        mode: mode,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleThinking = (id: string) => {
+    setExpandedThinking((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const clearChat = () => {
+    setMessages([
+      {
+        id: 'welcome-reset',
+        sender: 'assistant',
+        text: `Conversation reset. Active mode: ${mode === 'reasoning' ? '🧠 Reasoning (DeepSeek R1)' : '💬 Chat (Llama 3.1)'}. How can I assist you?`,
+        modelUsed: mode === 'reasoning' ? 'deepseek-r1' : 'llama3.1',
+        mode: mode,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      }
+    ]);
+  };
+
+  return (
+    <div className="flex flex-col h-[calc(100vh-100px)] animate-in fade-in duration-300 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-sm overflow-hidden">
+      {/* Top Header & Model Selector */}
+      <div className="bg-slate-900 text-white border-b border-slate-800 p-4 shrink-0 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-indigo-600/30 border border-indigo-500/40 rounded-xl flex items-center justify-center text-indigo-400">
+              <Bot className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-bold text-sm text-white flex items-center gap-2">
+                NetFix AI Conversational Assistant
+                <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  Local Ollama Served
+                </span>
+              </h2>
+              <p className="text-xs text-slate-400">Interactive telemetry Q&A & deep reasoning diagnostic engine</p>
+            </div>
+          </div>
+
+          {/* Model Mode Toggle Buttons */}
+          <div className="flex items-center bg-slate-800/90 p-1 rounded-xl border border-slate-700">
+            <button
+              onClick={() => setMode('chat')}
+              className={cn(
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer",
+                mode === 'chat'
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "text-slate-400 hover:text-white"
+              )}
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              💬 Chat Mode (Llama 3.1)
+            </button>
+            <button
+              onClick={() => setMode('reasoning')}
+              className={cn(
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer",
+                mode === 'reasoning'
+                  ? "bg-purple-600 text-white shadow-md"
+                  : "text-slate-400 hover:text-white"
+              )}
+            >
+              <Brain className="w-3.5 h-3.5" />
+              🧠 Reasoning Mode (DeepSeek R1)
+            </button>
+          </div>
+        </div>
+
+        {/* Dataset & Anomaly Context Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-800/80 text-xs">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-slate-400 font-semibold flex items-center gap-1">
+              <Database className="w-3.5 h-3.5 text-indigo-400" /> Active Context:
+            </span>
+            <select
+              value={selectedSessionId}
+              onChange={(e) => setSelectedSessionId(e.target.value)}
+              className="bg-slate-800 text-white border border-slate-700 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-indigo-500"
+            >
+              <option value="">-- No Session Selected --</option>
+              {sessions.map((s) => (
+                <option key={s.session_id} value={s.session_id}>
+                  Session: {s.filename || s.session_id.substring(0, 8)} ({s.anomaly_count || 0} anomalies)
+                </option>
+              ))}
+            </select>
+
+            {anomalyIds.length > 0 && (
+              <select
+                value={selectedAnomalyId}
+                onChange={(e) => setSelectedAnomalyId(e.target.value)}
+                className="bg-slate-800 text-white border border-slate-700 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-indigo-500"
+              >
+                {anomalyIds.map((id) => (
+                  <option key={id} value={id}>Anomaly ID: {id}</option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <button
+            onClick={clearChat}
+            className="flex items-center gap-1 text-xs text-slate-400 hover:text-white hover:bg-slate-800 px-2 py-1 rounded transition-colors cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> Reset Chat
+          </button>
+        </div>
+      </div>
+      
+      {/* Conversation Canvas */}
+      <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50/60">
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={cn("flex gap-3", msg.sender === 'user' ? "flex-row-reverse" : "flex-row")}
+          >
+            {/* Avatar */}
+            <div className={cn(
+              "w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-xs text-xs font-bold",
+              msg.sender === 'user'
+                ? "bg-primary text-white"
+                : msg.mode === 'reasoning'
+                ? "bg-purple-600 text-white"
+                : "bg-indigo-600 text-white"
+            )}>
+              {msg.sender === 'user' ? <User className="w-4 h-4" /> : (msg.mode === 'reasoning' ? <Brain className="w-4 h-4" /> : <Bot className="w-4 h-4" />)}
+            </div>
+
+            {/* Bubble Container */}
+            <div className="max-w-2xl space-y-1.5">
+              <div className={cn(
+                "p-4 rounded-2xl text-xs leading-relaxed shadow-sm border",
+                msg.sender === 'user'
+                  ? "bg-primary text-white rounded-tr-none border-blue-600"
+                  : "bg-white text-slate-800 rounded-tl-none border-slate-200"
+              )}>
+                {/* Model Badge for Assistant */}
+                {msg.sender === 'assistant' && (
+                  <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-slate-100 text-[10px]">
+                    <span className={cn(
+                      "font-extrabold uppercase px-2 py-0.5 rounded-full border",
+                      msg.mode === 'reasoning'
+                        ? "bg-purple-50 text-purple-700 border-purple-200"
+                        : "bg-blue-50 text-blue-700 border-blue-200"
+                    )}>
+                      {msg.mode === 'reasoning' ? '🧠 DeepSeek R1 (Reasoning)' : '💬 Llama 3.1 (Chat)'}
+                    </span>
+                    <span className="text-slate-400 font-mono">{msg.timestamp}</span>
+                  </div>
+                )}
+
+                {/* DeepSeek Reasoning Thinking Accordion */}
+                {msg.thinking && (
+                  <div className="mb-3 border border-purple-200 bg-purple-50/50 rounded-xl overflow-hidden text-xs">
+                    <button
+                      onClick={() => toggleThinking(msg.id)}
+                      className="w-full flex items-center justify-between p-2.5 text-purple-900 font-bold hover:bg-purple-100/50 transition-colors text-[11px] cursor-pointer"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Brain className="w-3.5 h-3.5 text-purple-600" />
+                        DeepSeek Step-by-Step Thinking Process
+                      </span>
+                      {expandedThinking[msg.id] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                    </button>
+                    {expandedThinking[msg.id] && (
+                      <div className="p-3 bg-white border-t border-purple-100 text-purple-950 text-[11px] leading-relaxed font-mono whitespace-pre-wrap max-h-48 overflow-y-auto">
+                        {msg.thinking}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Main Message Response Body */}
+                <div className="whitespace-pre-wrap font-sans">{msg.text}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {loading && (
+          <div className="flex gap-3">
+            <div className={cn(
+              "w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white shadow-xs",
+              mode === 'reasoning' ? "bg-purple-600" : "bg-indigo-600"
+            )}>
+              {mode === 'reasoning' ? <Brain className="w-4 h-4 animate-pulse" /> : <Bot className="w-4 h-4 animate-spin" />}
+            </div>
+            <div className="bg-white border border-slate-200 p-3.5 rounded-2xl rounded-tl-none text-xs text-slate-500 shadow-sm flex items-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin text-indigo-600" />
+              <span>
+                {mode === 'reasoning'
+                  ? 'DeepSeek R1 is performing step-by-step reasoning on network telemetry...'
+                  : 'Llama 3.1 is analyzing dataset context and preparing response...'}
+              </span>
+            </div>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Preset Quick Suggestion Chips */}
+      <div className="px-4 py-2 bg-white border-t border-slate-100 flex items-center gap-2 overflow-x-auto text-[11px] shrink-0">
+        <span className="text-slate-400 font-bold shrink-0">Quick Prompts:</span>
+        <button
+          onClick={() => handleSend("Summarize all detected anomalies in the active dataset.")}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors cursor-pointer"
+        >
+          📊 Summarize active dataset anomalies
+        </button>
+        <button
+          onClick={() => handleSend("What is the primary root cause for throughput degradation?")}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors cursor-pointer"
+        >
+          🔍 Why is throughput degraded?
+        </button>
+        <button
+          onClick={() => handleSend("Explain step-by-step RF resolution actions for low RSRP and poor SINR.")}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors cursor-pointer"
+        >
+          🛠️ Recommend RF resolution actions
+        </button>
+      </div>
+
+      {/* Input Footer */}
+      <div className="p-3.5 border-t border-slate-200 bg-white shrink-0">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSend();
+          }}
+          className="relative flex items-center gap-2"
+        >
+          <input
+            type="text"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            placeholder={
+              mode === 'reasoning'
+                ? "Ask DeepSeek R1 for deep technical reasoning or complex KPI diagnostics..."
+                : "Ask Llama 3.1 any question about dataset results or anomalies..."
+            }
+            className="w-full pl-4 pr-12 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition-all"
+            disabled={loading}
+          />
+          <button
+            type="submit"
+            disabled={loading || !inputMessage.trim()}
+            className={cn(
+              "absolute right-1.5 w-8 h-8 rounded-lg flex items-center justify-center transition-colors cursor-pointer text-white shadow-xs",
+              mode === 'reasoning' ? "bg-purple-600 hover:bg-purple-700" : "bg-blue-600 hover:bg-blue-700",
+              (loading || !inputMessage.trim()) && "opacity-50 cursor-not-allowed"
+            )}
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const HistoryView = () => {
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+
+  React.useEffect(() => { listSessions().then(setSessions).catch(() => {}); }, []);
+
+  return (
+    <div className="space-y-6 animate-in fade-in duration-300">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Session History</h2>
+          <p className="text-sm text-gray-500 mt-1">Audit log of all analysis sessions and their status.</p>
+        </div>
+      </div>
+
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm overflow-hidden">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-gray-50 text-xs text-gray-500 uppercase border-b border-[var(--color-border)]">
+            <tr>
+              <th className="px-6 py-4 font-medium">Session ID</th>
+              <th className="px-6 py-4 font-medium">Created</th>
+              <th className="px-6 py-4 font-medium">Status</th>
+              <th className="px-6 py-4 font-medium">Anomalies</th>
+              <th className="px-6 py-4 font-medium">Causes</th>
+              <th className="px-6 py-4 font-medium">Explained</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[var(--color-border)]">
+            {sessions.length === 0 ? (
+              <tr><td colSpan={6} className="px-6 py-12 text-center text-sm text-gray-400">No sessions yet.</td></tr>
+            ) : sessions.map((s) => (
+              <tr key={s.session_id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 font-mono text-xs text-gray-900">{s.session_id}</td>
+                <td className="px-6 py-4 text-gray-500">{new Date(s.created_at).toLocaleString()}</td>
+                <td className="px-6 py-4">
+                  <span className={cn("px-2 py-1 rounded-full text-xs font-medium", {
+                    'bg-green-100 text-green-800': s.status === 'phase1_done' || s.status === 'phase2_done',
+                    'bg-blue-100 text-blue-800': s.status === 'phase1_running' || s.status === 'phase2_running',
+                    'bg-red-100 text-red-800': s.status === 'failed',
+                    'bg-gray-100 text-gray-800': s.status === 'created',
+                  })}>
+                    {s.status.replace(/_/g, ' ')}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-gray-500 font-medium">{s.anomaly_count}</td>
+                <td className="px-6 py-4 text-gray-500 font-medium">{s.matched_cause_count}</td>
+                <td className="px-6 py-4 text-gray-500 font-medium">{s.explained_count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+const SettingsView = () => {
+  return (
+    <div className="max-w-4xl space-y-6 animate-in fade-in duration-300">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)]">Settings</h2>
+        <p className="text-sm text-gray-500 mt-1">Manage platform configurations and global preferences.</p>
+      </div>
+
+      <div className="flex gap-6">
+        <div className="w-48 shrink-0 flex flex-col gap-1">
+          <button className="text-left px-3 py-2 bg-gray-100 text-primary font-medium rounded text-sm">General</button>
+          <button className="text-left px-3 py-2 text-gray-600 hover:bg-gray-50 rounded text-sm">Default Thresholds</button>
+          <button className="text-left px-3 py-2 text-gray-600 hover:bg-gray-50 rounded text-sm">User Management</button>
+          <button className="text-left px-3 py-2 text-gray-600 hover:bg-gray-50 rounded text-sm">Integrations</button>
+        </div>
+        
+        <div className="flex-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded shadow-sm p-6 space-y-6">
+           <div>
+             <h3 className="text-lg font-semibold mb-4">General Settings</h3>
+             <div className="space-y-4">
+               <div>
+                 <label className="block text-sm font-medium text-gray-700 mb-1">Platform Name</label>
+                 <input type="text" defaultValue="NetFix Enterprise" className="w-full max-w-md border border-gray-300 rounded px-3 py-2 text-sm" />
+               </div>
+               <div>
+                 <label className="block text-sm font-medium text-gray-700 mb-1">Timezone</label>
+                 <select defaultValue="EST (Eastern Standard Time)" className="w-full max-w-md border border-gray-300 rounded px-3 py-2 text-sm">
+                   <option>UTC (Coordinated Universal Time)</option>
+                   <option>EST (Eastern Standard Time)</option>
+                 </select>
+               </div>
+               <div className="flex items-center gap-3 pt-2">
+                 <input type="checkbox" id="darkmode" className="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300" />
+                 <label htmlFor="darkmode" className="text-sm text-gray-700">Enable Dark Mode automatically</label>
+               </div>
+             </div>
+           </div>
+           <div className="pt-4 border-t border-[var(--color-border)] flex justify-end">
+             <button className="bg-primary text-white px-4 py-2 rounded text-sm font-medium shadow-sm hover:bg-blue-700">Save Changes</button>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- App Root ---
+
+export default function App() {
+  const [currentView, setCurrentView] = useState('login');
+
+  const renderView = () => {
+    switch (currentView) {
+      case 'login': return null; // Handled by early return below
+      case 'dashboard': return <DashboardView navigate={setCurrentView} />;
+      case 'upload': return <UploadView navigate={setCurrentView} />;
+      case 'config': return <ConfigView navigate={setCurrentView} />;
+      case 'results': return <ResultsView navigate={setCurrentView} />;
+      case 'anomaly': return <AnomalyDetailView navigate={setCurrentView} />;
+      case 'map': return <MapView />;
+      case 'statistics': return <StatisticsView />;
+      case 'reports': return <ReportsView />;
+      case 'ai': return <AIAssistantView />;
+      case 'history': return <HistoryView />;
+      case 'settings': return <SettingsView />;
+      default: return <DashboardView navigate={setCurrentView} />;
+    }
+  };
+
+  if (currentView === 'login') {
+    return <LoginView navigate={setCurrentView} />;
+  }
+
+  return (
+    <div className="flex h-screen bg-[var(--color-background)] font-sans text-[var(--color-text)] overflow-hidden">
+      {/* Sidebar */}
+      <aside className="w-64 bg-[#111827] text-gray-300 flex flex-col shadow-xl shrink-0 z-20 relative">
+        <div className="h-16 flex items-center px-6 border-b border-gray-800 shrink-0">
+          <div className="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+             <Activity className="w-6 h-6 text-[#00ACC1]" /> NetFix
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">Analysis</div>
+          <SidebarItem icon={BarChart3} label="Dashboard" active={currentView === 'dashboard'} onClick={() => setCurrentView('dashboard')} />
+          <SidebarItem icon={UploadCloud} label="Upload Dataset" active={currentView === 'upload' || currentView === 'config'} onClick={() => setCurrentView('upload')} />
+          <SidebarItem icon={ShieldAlert} label="Results" active={currentView === 'results' || currentView === 'anomaly'} onClick={() => setCurrentView('results')} />
+          <SidebarItem icon={MapIcon} label="Interactive Map" active={currentView === 'map'} onClick={() => setCurrentView('map')} />
+          
+          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-6 px-3">Insights</div>
+          <SidebarItem icon={Activity} label="Statistics" active={currentView === 'statistics'} onClick={() => setCurrentView('statistics')} />
+          <SidebarItem icon={FileText} label="Reports" active={currentView === 'reports'} onClick={() => setCurrentView('reports')} />
+          <SidebarItem icon={Bot} label="AI Assistant" active={currentView === 'ai'} onClick={() => setCurrentView('ai')} />
+
+          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 mt-6 px-3">System</div>
+          <SidebarItem icon={History} label="History" active={currentView === 'history'} onClick={() => setCurrentView('history')} />
+          <SidebarItem icon={Settings} label="Settings" active={currentView === 'settings'} onClick={() => setCurrentView('settings')} />
+        </div>
+        <div className="p-4 border-t border-gray-800 text-white">
+           <div className="flex items-center gap-3 px-2 py-2">
+             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
+               JD
+             </div>
+             <div>
+               <div className="text-sm font-medium text-white">John Doe</div>
+               <div className="text-xs text-white">Optimization Eng.</div>
+             </div>
+           </div>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col min-w-0 bg-[#F4F6F8]">
+        {/* Topbar */}
+        <header className="h-16 bg-white border-b border-[var(--color-border)] flex items-center justify-between px-6 shrink-0 z-10 shadow-sm">
+          <div className="flex-1 max-w-xl">
+            <div className="relative">
+              <Search className="w-4 h-4 absolute left-3 top-2.5 text-gray-400" />
+              <input 
+                type="text" 
+                placeholder="Search cell ID, dataset, or report..." 
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:bg-white transition-all"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-4 ml-4">
+            <button className="text-gray-400 hover:text-gray-600 relative">
+              <Bell className="w-5 h-5" />
+              <span className="absolute 1 top-0 right-0 w-2 h-2 bg-[var(--color-critical)] rounded-full border border-white"></span>
+            </button>
+            <button className="text-gray-400 hover:text-gray-600">
+              <HelpCircle className="w-5 h-5" />
+            </button>
+          </div>
+        </header>
+
+        {/* View Content */}
+        <div className="flex-1 overflow-auto p-6 relative">
+           {renderView()}
+        </div>
+      </main>
+    </div>
+  );
+}

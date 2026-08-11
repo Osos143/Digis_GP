@@ -1,0 +1,12 @@
+{
+  "id": "05e_throughput_by_rb_usage_bucket",
+  "filename": "05e_throughput_by_rb_usage_bucket.png",
+  "title": "05E Throughput By Rb Usage Bucket",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_71bd2e8e4f1d/plots/05e_throughput_by_rb_usage_bucket.png",
+  "json_url": "/api/sessions/session_71bd2e8e4f1d/plots/05e_throughput_by_rb_usage_bucket.json",
+  "size_bytes": 51112
+}

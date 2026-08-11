@@ -1,0 +1,5 @@
+﻿rb_reference_column,rb_usage_bucket,rows,median_rb,median_tp,p25_tp,p75_tp,pct_below_10
+lte_agg_rb_dl,below_median_rb_usage,103,90.917,32.09,27.658,39.888,0.971
+lte_agg_rb_dl,high_rb_usage,103,175.763,63.6,43.155,89.441,1.942
+lte_agg_rb_dl,low_rb_usage,103,78.131,21.995,13.963,28.812,18.447
+lte_agg_rb_dl,medium_rb_usage,103,106.09,38.761,28.294,50.473,2.913

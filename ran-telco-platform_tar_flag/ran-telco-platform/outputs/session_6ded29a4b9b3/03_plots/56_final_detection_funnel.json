@@ -1,0 +1,12 @@
+{
+  "id": "56_final_detection_funnel",
+  "filename": "56_final_detection_funnel.png",
+  "title": "56 Final Detection Funnel",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_6ded29a4b9b3/plots/56_final_detection_funnel.png",
+  "json_url": "/api/sessions/session_6ded29a4b9b3/plots/56_final_detection_funnel.json",
+  "size_bytes": 63797
+}

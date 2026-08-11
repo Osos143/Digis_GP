@@ -1,0 +1,5 @@
+﻿expected_tp_rb_source_level,expected_tp_rb_confidence,rows,median_expected_rb_p75,median_actual_tp,underperform_context_pct,strict_underperform_pct
+3.0,high,237,39.811,31.495,3.0,2.5
+4.0,high,34,116.727,96.526,2.9000000000000004,2.9000000000000004
+5.0,medium,133,42.896,33.942,18.0,0.0
+6.0,not_available_or_sparse,8,50.825,1.413,100.0,0.0

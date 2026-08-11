@@ -1,0 +1,296 @@
+{
+  "graph_name": "Throughput Degradation Root Cause Reasoning Graph",
+  "root": "Throughput Degradation",
+  "categories": [
+    "Interference",
+    "Coverage",
+    "MIMO",
+    "Congestion",
+    "Carrier Aggregation",
+    "Mobility"
+  ],
+  "tree": {
+    "id": "throughput_degradation",
+    "label": "Throughput Degradation",
+    "children": [
+      {
+        "id": "interference",
+        "label": "Interference",
+        "children": [
+          {
+            "id": "radio_quality_degradation",
+            "label": "Radio Quality Degradation",
+            "children": [
+              {
+                "id": "low_sinr",
+                "label": "Low SINR",
+                "children": [
+                  {
+                    "id": "low_cqi",
+                    "label": "Low CQI",
+                    "children": [
+                      {
+                        "id": "low_mcs",
+                        "label": "Low MCS",
+                        "children": [
+                          {
+                            "id": "high_bler",
+                            "label": "High BLER",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "low_rsrq",
+                "label": "Low RSRQ",
+                "children": [
+                  {
+                    "id": "low_cqi_ref",
+                    "label": "Low CQI",
+                    "ref": "low_cqi",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coverage",
+        "label": "Coverage",
+        "children": [
+          {
+            "id": "wrong_serving_cell",
+            "label": "Wrong Serving Cell",
+            "children": [
+              {
+                "id": "neighbor_rsrp_gt_serving_rsrp",
+                "label": "Neighbor RSRP > Serving RSRP",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "weak_scell",
+            "label": "Weak SCell",
+            "children": [
+              {
+                "id": "low_scell_rsrp_coverage",
+                "label": "Low SCell RSRP",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "weak_serving_cell",
+            "label": "Weak Serving Cell",
+            "children": [
+              {
+                "id": "low_rsrp",
+                "label": "Low RSRP",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mimo",
+        "label": "MIMO",
+        "children": [
+          {
+            "id": "low_rank_indicator",
+            "label": "Low Rank Indicator Rank=1",
+            "children": []
+          },
+          {
+            "id": "poor_spatial_multiplexing",
+            "label": "Poor Spatial Multiplexing",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "congestion",
+        "label": "Congestion",
+        "children": [
+          {
+            "id": "low_rb_efficiency",
+            "label": "Low RB Efficiency",
+            "children": []
+          },
+          {
+            "id": "low_rb_allocation",
+            "label": "Low RB Allocation",
+            "children": []
+          },
+          {
+            "id": "high_rb_utilization",
+            "label": "High RB Utilization",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "carrier_aggregation",
+        "label": "Carrier Aggregation",
+        "children": [
+          {
+            "id": "scell_release",
+            "label": "SCell Release",
+            "children": [
+              {
+                "id": "high_scell_bler",
+                "label": "High SCell BLER",
+                "children": []
+              },
+              {
+                "id": "low_scell_sinr",
+                "label": "Low SCell SINR",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "weak_secondary_cell",
+            "label": "Weak Secondary Cell",
+            "children": [
+              {
+                "id": "low_scell_rsrp",
+                "label": "Low SCell RSRP",
+                "children": []
+              },
+              {
+                "id": "low_scell_cqi",
+                "label": "Low SCell CQI",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "ca_inactive",
+            "label": "CA Inactive",
+            "children": [
+              {
+                "id": "low_scell_rb_count",
+                "label": "Low SCell RB Count",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mobility",
+        "label": "Mobility",
+        "children": [
+          {
+            "id": "rach_issues",
+            "label": "RACH Issues",
+            "children": [
+              {
+                "id": "rach_access_delay",
+                "label": "RACH Access Delay",
+                "children": []
+              },
+              {
+                "id": "high_rach_attempts",
+                "label": "High RACH Attempts",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "radio_link_failure",
+            "label": "Radio Link Failure",
+            "children": []
+          },
+          {
+            "id": "handover_issues",
+            "label": "Handover Issues",
+            "children": [
+              {
+                "id": "early_ho",
+                "label": "Early HO",
+                "children": []
+              },
+              {
+                "id": "late_ho",
+                "label": "Late HO",
+                "children": []
+              },
+              {
+                "id": "ping_pong_ho",
+                "label": "Ping-Pong HO",
+                "children": []
+              },
+              {
+                "id": "wrong_neighbor_relation",
+                "label": "Wrong Neighbor Relation",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "edges": [
+    { "from": "high_bler", "to": "low_mcs" },
+    { "from": "low_mcs", "to": "low_cqi" },
+    { "from": "low_cqi", "to": "low_sinr" },
+    { "from": "low_cqi", "to": "low_rsrq" },
+    { "from": "low_sinr", "to": "radio_quality_degradation" },
+    { "from": "low_rsrq", "to": "radio_quality_degradation" },
+    { "from": "radio_quality_degradation", "to": "interference" },
+    { "from": "interference", "to": "throughput_degradation" },
+
+    { "from": "neighbor_rsrp_gt_serving_rsrp", "to": "wrong_serving_cell" },
+    { "from": "low_scell_rsrp_coverage", "to": "weak_scell" },
+    { "from": "low_rsrp", "to": "weak_serving_cell" },
+    { "from": "wrong_serving_cell", "to": "coverage" },
+    { "from": "weak_scell", "to": "coverage" },
+    { "from": "weak_serving_cell", "to": "coverage" },
+    { "from": "coverage", "to": "throughput_degradation" },
+
+    { "from": "low_rank_indicator", "to": "mimo" },
+    { "from": "poor_spatial_multiplexing", "to": "mimo" },
+    { "from": "throughput_degradation", "to": "mimo" },
+
+    { "from": "throughput_degradation", "to": "congestion" },
+    { "from": "congestion", "to": "low_rb_efficiency" },
+    { "from": "congestion", "to": "low_rb_allocation" },
+    { "from": "congestion", "to": "high_rb_utilization" },
+
+    { "from": "throughput_degradation", "to": "carrier_aggregation" },
+    { "from": "carrier_aggregation", "to": "scell_release" },
+    { "from": "carrier_aggregation", "to": "weak_secondary_cell" },
+    { "from": "carrier_aggregation", "to": "ca_inactive" },
+    { "from": "scell_release", "to": "high_scell_bler" },
+    { "from": "scell_release", "to": "low_scell_sinr" },
+    { "from": "weak_secondary_cell", "to": "low_scell_rsrp" },
+    { "from": "weak_secondary_cell", "to": "low_scell_cqi" },
+    { "from": "ca_inactive", "to": "low_scell_rb_count" },
+
+    { "from": "throughput_degradation", "to": "mobility" },
+    { "from": "mobility", "to": "rach_issues" },
+    { "from": "mobility", "to": "radio_link_failure" },
+    { "from": "mobility", "to": "handover_issues" },
+    { "from": "rach_issues", "to": "rach_access_delay" },
+    { "from": "rach_issues", "to": "high_rach_attempts" },
+    { "from": "handover_issues", "to": "early_ho" },
+    { "from": "handover_issues", "to": "late_ho" },
+    { "from": "handover_issues", "to": "ping_pong_ho" },
+    { "from": "handover_issues", "to": "wrong_neighbor_relation" }
+  ],
+  "notes": {
+    "direction_convention": "In the original diagram, arrows point from lower-level evidence/leaf KPIs upward toward the higher-level cause category and ultimately toward 'Throughput Degradation'. The `edges` array preserves that literal arrow direction (from -> to as drawn). The `tree` structure instead nests each category as a parent of its contributing evidence, which is the more common way to read a root-cause taxonomy (root symptom at top, contributing factors as children).",
+    "shared_node": "Low CQI is pointed to by both 'Low SINR' and 'Low RSRQ' in the diagram (it is a shared/merge node, not two separate boxes). Represented once under 'low_sinr' in the tree, with a reference stub under 'low_rsrq' (id: low_cqi_ref) pointing at the same underlying node via the 'ref' field.",
+    "radio_link_failure": "Shown in the diagram as a bucket under Mobility with no further leaf nodes/sub-causes."
+  }
+}

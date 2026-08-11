@@ -1,0 +1,115 @@
+﻿Events.titles,event_count
+UMTS AS Update Attempt,4102
+UMTS AS Update Complete,4102
+Event 1A,3445
+Event 1B,2287
+Event 2F,2103
+HTTP/HTTPS Upload,1827
+Event A1,1558
+LTE RACH Msg1,1274
+Event 1E,953
+LTE RACH Msg2,938
+LTE RACH Msg3,938
+LTE RACH Attempt,927
+LTE CA Init,921
+LTE CA Complete,921
+LTE RACH Complete,912
+Event 1D,848
+Dedicated Mode,816
+Event 1C,812
+MO Call,807
+Idle Mode,793
+Event A3,749
+Event A5,628
+RAT Change,573
+LTE RACH Msg4,560
+Event 1F,533
+Save,532
+Wait,528
+RRC RB Setup,523
+PDP Context Modify Complete,522
+ERRC Connection Attempt,520
+ERRC Connection Setup Complete,520
+ERRC Connection Complete,514
+LTE MeasGap Setup,398
+LTE Handover Attempt,389
+TAU Attempt,383
+LTE Handover Complete,377
+LTE RACH Failure,369
+UMTS Cell Reselection,304
+RRC Connection Attempt,295
+ANR Report,274
+RRC Connection Established,271
+Outgoing Call Attempt,270
+RAU Attempt,268
+RAU Complete,267
+Outgoing Call Setup,267
+PDP Context Modify Attempt,261
+Event A6,260
+LTE Cell Redirection,258
+Outgoing Call Alerting,254
+Attach Attempt,254
+TAU Failure,253
+Attach Complete,253
+Default EPS Bearer Activation Attempt,252
+Default EPS Bearer Activation Complete,252
+Outgoing Call Connected,249
+Outgoing Call Complete,248
+LTE Intra-Freq Handover Attempt,220
+RRC Connection Abnormal Release,211
+Event A2,210
+LTE Intra-Freq Handover Complete,195
+UMTS Fast Return to LTE,190
+LTE Inter-Freq Handover Complete,182
+LTE Inter-Freq Handover Attempt,169
+LTE CA Activation,151
+HS ServCell Handoff,135
+LTE CA Deactivation,130
+TAU Complete,129
+Event 2D,126
+GSM Handover Attempt,126
+GSM Handover Complete,118
+GSM Cell Reselection,116
+LTE MeasGap Release,95
+Event 1J,80
+UMTS Handover To GSM Attempt,56
+UMTS Handover To GSM Complete,51
+Event A4,43
+RRC RB Setup Failure,42
+HTTP DL Link,35
+RRC Connection Reestablishment Request,34
+LTE Cell Selection,24
+RRC Connection Reestablishment Failure,23
+Outgoing Call Failure,21
+Time,20
+LAU Attempt,20
+LAU Complete,19
+Lock RAT,16
+Outgoing Call Block,14
+LTE Radio Link Failure,13
+GSM Fast Return to LTE,13
+LTE Handover Failure,12
+No Service Mode,11
+ERRC Connection Reestablishment Complete,10
+EPS Bearer Modify Attempt,10
+EPS Bearer Modify Complete,10
+RRC Connection Reestablishment Complete,9
+Start,8
+Loop Start,8
+Loop End,7
+HTTP/HTTPS Download,7
+UMTS Handover To GSM Failure,5
+RRC Connection Normal Release,5
+LTE Cell Reselection,4
+LTE Cell Reselection Attempt,3
+Call Reestablishment Request,3
+Event 3C,3
+ERRC Connection Reestablishment Failure,3
+GSM Handover Failure,3
+Call Reestablishment Complete,2
+Call Reestablishment Failure,1
+Outgoing Call Drop,1
+PDP Context Activation Attempt,1
+PDP Context Activation Complete,1
+GSM Handover to UTRAN Attempt,1
+GSM Handover to UTRAN Complete,1

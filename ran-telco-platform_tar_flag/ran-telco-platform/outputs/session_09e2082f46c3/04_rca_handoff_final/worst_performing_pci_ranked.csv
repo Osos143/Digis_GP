@@ -1,0 +1,1 @@
+﻿serving_pci,rows,sessions,median_tp_mbps,p10_tp_mbps,mean_tp_mbps,low_tp_pct,stat_anomaly_pct,rca_handoff_pct,median_p75_gap_mbps,p90_p75_gap_mbps,median_rsrp_dbm,median_rsrq_db,median_sinr_db,median_cqi,median_mcs,median_bler_pct,p90_bler_pct,median_rb_usage,median_tp_per_rb

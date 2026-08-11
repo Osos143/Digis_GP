@@ -1,0 +1,2 @@
+﻿rows,ml_candidate_rows,ml_final_anomaly_rows,ml_final_anomaly_pct,single_family_final_rows,lstm_oof_available_pct,lstm_context_overlap_with_final_pct,iforest_context_overlap_with_final_pct
+412,10,2,0.48543689320388345,0,0.0,0.0,50.0

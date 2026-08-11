@@ -1,0 +1,379 @@
+=== Executing: ran-clean --output-dir /data/outputs/session_09e2082f46c3 ===
+RAN throughput cleaning service
+--------------------------------
+Input file : /data/raw/Network_Drive_Test.pkl
+Data dir   : Raw_Data
+Output dir : /data/outputs/session_09e2082f46c3
+
+
+======================================================================
+Running stage: 01_imports_and_settings.py
+======================================================================
+Notebook configured.
+Raw drive-test path: /data/raw/Network_Drive_Test.pkl
+Output root: /data/outputs/session_09e2082f46c3
+Preprocessing/cleaning folder: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning
+Anomaly-detection folder: /data/outputs/session_09e2082f46c3/02_anomaly_detection
+Plots folder: /data/outputs/session_09e2082f46c3/03_plots
+Final RCA handoff folder: /data/outputs/session_09e2082f46c3/04_rca_handoff_final
+Missing threshold: 70.0 %
+
+======================================================================
+Running stage: 02_utility_functions.py
+======================================================================
+
+======================================================================
+Running stage: 03_data_profiling_cleaning_helpers.py
+======================================================================
+
+======================================================================
+Running stage: 04_time_id_event_geo_helpers.py
+======================================================================
+
+======================================================================
+Running stage: 05_load_raw_pickle.py
+======================================================================
+===== Raw drive-test data =====
+Shape: (32474, 1365)
+Rows: 32,474
+Columns: 1,365
+Memory: 488.15 MB
+                                          column                      dtype  non_null  missing  missing_pct
+0                                             id                     object     32474        0        0.000
+1                                      timestamp  datetime64[ns, UTC+02:00]     32474        0        0.000
+2                                           imsi                    float64     32474        0        0.000
+3                  LTE - PrimaryCell - PCell_CQI                    float64      5556    26918       82.891
+4                  LTE - PrimaryCell - PCell_PCI                    float64      5682    26792       82.503
+..                                           ...                        ...       ...      ...          ...
+245    Extra_KPIs.LTE Handover Interruption Time                    float64       371    32103       98.858
+246   Extra_KPIs.UMTS Handover Interruption Time                    float64      3748    28726       88.458
+247  Extra_KPIs.MO Call Setup Time Until Connect                    float64       249    32225       99.233
+248                         LTE.RACH.RACH_Reason                     object      4138    28336       87.257
+249                         LTE.RACH.RACH_Result                     object      4132    28342       87.276
+
+[250 rows x 5 columns]
+
+======================================================================
+Running stage: 06_profile_raw_data_cleaning_plan.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/raw_data_dictionary.csv  shape=(1365, 15)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/column_family_summary_before_cleaning.csv  shape=(17, 8)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/missing_threshold_impact.csv  shape=(8, 4)
+Raw family summary:
+           family  columns  avg_missing_pct  min_missing_pct  max_missing_pct  zero_missing_columns  fully_missing_columns  above_threshold_missing
+5             LTE      440           95.750           82.029          100.000                     0                     57                      440
+7            NR5G      302          100.000          100.000          100.000                     0                    302                      302
+4             GSM      271           96.951           90.713          100.000                     0                    119                      271
+12          WCDMA      230           76.784           22.868          100.000                     0                     40                      160
+0        Activity       35           99.428           99.165          100.000                     0                      4                       35
+9       SpeedTest       21          100.000          100.000          100.000                     0                     21                       21
+3      Extra_KPIs       20           92.355           31.508          100.000                     0                      8                       18
+8            PCAP       10            0.000            0.000            0.000                    10                      0                        0
+13        YouTube        9          100.000          100.000          100.000                     0                      9                        9
+2          Events        6           59.497           55.192           68.242                     0                      0                        0
+1        Browsing        5          100.000          100.000          100.000                     0                      5                        5
+10     Throughput        5           99.771           99.430          100.000                     0                      2                        5
+6        Location        5            0.000            0.000            0.000                     5                      0                        0
+11  Voice_Quality        3          100.000          100.000          100.000                     0                      3                        3
+14             id        1            0.000            0.000            0.000                     1                      0                        0
+15           imsi        1            0.000            0.000            0.000                     1                      0                        0
+16      timestamp        1            0.000            0.000            0.000                     1                      0                        0
+Missing-threshold impact:
+   missing_threshold_pct  columns_removed_if_not_protected  columns_kept_if_not_protected  removed_pct_of_all_columns
+0                     50                              1283                             82                       93.99
+1                     60                              1271                             94                       93.11
+2                     70                              1269                             96                       92.97
+3                     75                              1261                            104                       92.38
+4                     80                              1261                            104                       92.38
+5                     90                              1154                            211                       84.54
+6                     95                              1033                            332                       75.68
+7                     99                               919                            446                       67.33
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/removed_columns_report.csv  shape=(1134, 17)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/kept_columns_after_cleaning.csv  shape=(231, 17)
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/protected_columns_report.csv  shape=(154, 17)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/removed_columns_reason_summary.csv  shape=(3, 2)
+                    remove_reason  columns_removed
+0                    100% missing              570
+1                    >70% missing              563
+2  constant / single unique value                1
+Kept columns: 231
+Removed columns: 1134
+Protected columns kept or reviewed: 154
+
+======================================================================
+Running stage: 07_apply_cleaning_derive_features.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/cleaned_throughput_data_dictionary.csv  shape=(251, 15)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/column_family_summary_after_cleaning.csv  shape=(29, 8)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/cleaning_summary.csv  shape=(7, 2)
+Parquet export failed. Falling back to compressed CSV.
+Reason: ("Could not convert '8' with type str: tried to convert to double", 'Conversion failed for column Activity.Band with type object')
+Saved compressed CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/drive_clean_throughput_base.csv.gz  shape=(32474, 251)
+===== Cleaned throughput base =====
+Shape: (32474, 251)
+Rows: 32,474
+Columns: 251
+Memory: 105.99 MB
+                                        column                      dtype  non_null  missing  missing_pct
+0                 Activity.DNS Resolution Time                    float64         2    32472       99.994
+1                      Activity.Remote Address                     object         2    32472       99.994
+2                          Activity.Remote IPs                     object         2    32472       99.994
+3                        Activity.Source Ports                     object         2    32472       99.994
+4                        Activity.Sub Activity                     object         2    32472       99.994
+..                                         ...                        ...       ...      ...          ...
+245              Activity.End TimeStamp_parsed  datetime64[us, UTC+02:00]       271    32203       99.165
+246  activity_duration_seconds_from_timestamps                    float64       271    32203       99.165
+247                         has_valid_location                       bool     32474        0        0.000
+248                                   prev_lat                    float64     32200      274        0.844
+249                                   prev_lon                    float64     32200      274        0.844
+
+[250 rows x 5 columns]
+                  metric    value
+0               raw_rows  32474.0
+1            raw_columns   1365.0
+2             clean_rows  32474.0
+3          clean_columns    251.0
+4  columns_removed_total   1134.0
+5     columns_kept_total    231.0
+6  missing_threshold_pct     70.0
+
+======================================================================
+Running stage: 08_throughput_kpi_column_detection.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/canonical_column_mapping.csv  shape=(36, 2)
+          canonical_name                                    source_column
+0       target_lte_dl_tp               LTE.LTE_Data_KPI.Agg_Throughput_DL
+1    duplicate_lte_dl_tp           LTE.DownlinkMeasurements.Throughput_DL
+2               pcell_tp             LTE - PrimaryCell - PCell_Throughput
+3              scell1_tp        LTE - SecondaryCell 1 - SCell1_Throughput
+4             http_dl_tp                               Throughput.HTTP_DL
+5         physical_dl_tp                           Throughput.Physical_DL
+6            activity_tp                              Activity.Throughput
+7            serving_pci                              LTE - Serving - PCI
+8         serving_earfcn                        LTE - Serving - EARFCN_DL
+9           serving_band                             LTE - Serving - Band
+10           serving_eci                              LTE - Serving - ECI
+11      serving_enodebid                         LTE - Serving - EnodeBID
+12           serving_lci                              LTE - Serving - LCI
+13              lte_rsrp                   LTE - PrimaryCell Radio - RSRP
+14              lte_rsrq             LTE - PrimaryCell Radio - PCell_RSRQ
+15              lte_sinr             LTE - PrimaryCell Radio - PCell_SINR
+16              lte_rssi             LTE - PrimaryCell Radio - PCell_RSSI
+17               lte_cqi                    LTE - PrimaryCell - PCell_CQI
+18               lte_mcs                LTE - PrimaryCell - PCell_MCS_CW0
+19              lte_bler                   LTE - PrimaryCell - PCell_BLER
+20              lte_rank            LTE - PrimaryCell - PCell_SpatialRank
+21          lte_rb_count       LTE - PrimaryCell - PCell_ResourceBlockNum
+22         lte_agg_rb_dl                       LTE.LTE_Data_KPI.Agg_RB_DL
+23      lte_bandwidth_dl                     LTE - Serving - BandWidth_DL
+24  lte_agg_bandwidth_dl                LTE.LTE_Data_KPI.Agg_Bandwidth_DL
+25         carrier_count              LTE.DedicatedRadioLink.CarrierCount
+26           scell1_rsrp        LTE - SecondaryCell 1 Radio - SCell1_RSRP
+27           scell1_rsrq        LTE - SecondaryCell 1 Radio - SCell1_RSRQ
+28           scell1_sinr        LTE - SecondaryCell 1 Radio - SCell1_SINR
+29            scell1_cqi               LTE - SecondaryCell 1 - SCell1_CQI
+30            scell1_mcs           LTE - SecondaryCell 1 - SCell1_MCS_CW0
+31           scell1_bler              LTE - SecondaryCell 1 - SCell1_BLER
+32       scell1_rb_count  LTE - SecondaryCell 1 - SCell1_ResourceBlockNum
+33           rach_result                             LTE.RACH.RACH_Result
+34           rach_reason                             LTE.RACH.RACH_Reason
+35          rach_latency                            LTE.RACH.RACH_Latency
+
+======================================================================
+Running stage: 09_expand_event_activity_tables.py
+======================================================================
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/events_long.csv  shape=(48068, 13)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_category.csv  shape=(3, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_Tech.csv  shape=(3, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_titles.csv  shape=(114, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_subject.csv  shape=(10, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_event_family.csv  shape=(8, 2)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/activity_table.csv  shape=(271, 37)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/activity_type_summary.csv  shape=(2, 2)
+Events long shape: (48068, 13)
+Activity table shape: (271, 37)
+
+======================================================================
+Running stage: 10_canonical_aliases_lte_dl_filtering.py
+======================================================================
+LTE-DL modeling table shape: (412, 290)
+Throughput target source column: LTE.LTE_Data_KPI.Agg_Throughput_DL
+Throughput stats in Mbps:
+       actual_lte_dl_throughput
+count                412.000000
+mean                  41.199398
+std                   27.040188
+min                    0.011639
+1%                     0.610106
+5%                     6.512774
+10%                   15.873317
+25%                   24.578992
+50%                   33.453560
+75%                   50.824613
+90%                   80.773797
+95%                   99.190218
+99%                  122.611581
+max                  153.522698
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/download_activity_window_summary.csv  shape=(3, 3)
+            download_context_label  rows  pct_of_lte_dl_rows
+0        outside_download_activity   239              58.010
+1  active_download_analysis_window   169              41.019
+2      download_warmup_or_cooldown     4               0.971
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/download_activity_intervals_used.csv  shape=(2, 10)
+
+======================================================================
+Running stage: 11_quality_bins_flags_neighbor_features.py
+======================================================================
+Radio-quality bin distribution (% of LTE-DL samples):
+            RSRP   RSRQ   SINR
+Excellent   0.00  24.76  20.15
+Fair       94.42   0.00  54.37
+Good        5.58  75.24  25.00
+Poor        0.00   0.00   0.49
+Feature-enriched LTE-DL table shape: (412, 347)
+    actual_lte_dl_throughput    lte_rsrp   lte_rsrq   lte_sinr    lte_cqi   lte_bler  carrier_count  neighbor_count  best_neighbor_rsrp  near_any_event_flag  near_handover_mobility_flag  near_rach_failure_flag  near_ca_change_flag
+0                   0.834178 -100.928458  -8.511306  10.303266        NaN  -0.311740       0.986708               0                 NaN                False                        False                   False                False
+1                   0.011639 -106.095228  -9.579760   7.264514   7.875039   0.143966       1.006146               0                 NaN                False                        False                   False                False
+2                   1.929366 -109.146571 -10.091375   3.709712   7.960772   0.862079       2.005774               0                 NaN                False                        False                   False                False
+3                   0.688379 -111.646301 -10.511397   2.184578   7.815848  -0.166053       0.992494               0                 NaN                False                        False                   False                False
+4                   0.605321 -112.429966 -10.918031   2.948216   5.999440   0.558560       0.995757               0                 NaN                False                        False                   False                False
+5                  10.159955 -109.516442 -10.663102   8.037698   9.059868   9.519833       1.011827               0                 NaN                False                        False                   False                False
+6                  25.660861 -110.884179 -11.625182   9.821185   7.903970   6.584121       0.946300               0                 NaN                False                        False                   False                False
+7                  26.338702 -111.459284 -11.909672   9.388161   8.954054   3.684142       1.001812               0                 NaN                False                        False                   False                False
+8                  27.702913 -110.591825 -12.009921   7.929890   7.729479   4.757751       1.012599               0                 NaN                False                        False                   False                False
+9                  27.659589 -110.902998 -11.751640   8.510899   8.824110   6.295486       1.007651               0                 NaN                False                        False                   False                False
+10                 29.310579 -111.333456 -11.990783   8.683327   8.099128   6.413081       0.955656               0                 NaN                False                        False                   False                False
+11                 18.478066 -111.152712 -12.523355   7.305178   6.101304   6.417372       0.990409               0                 NaN                False                        False                   False                False
+12                 27.541865 -111.914753 -12.042478   9.524556   8.814872   6.397632       1.014093               0                 NaN                False                        False                   False                False
+13                 34.930166 -111.145779 -11.254492  11.144568  10.878824   6.911258       0.986890               0                 NaN                False                        False                   False                False
+14                 20.066377 -110.425956 -11.555217  10.382521   8.824587   5.881260       1.053074               0                 NaN                False                        False                   False                False
+15                 25.672929 -110.702510 -11.330678   9.055205   7.857776   7.200550       1.007747               0                 NaN                False                        False                   False                False
+16                  6.029151 -107.881278  -9.818103  11.200307   7.819039   3.680078       1.013175               0                 NaN                False                        False                   False                False
+17                  5.095872 -109.344985  -9.858199  10.849210   7.969297  11.721671       1.010542               0                 NaN                False                        False                   False                False
+18                  3.236115 -112.129987 -11.962365   7.649593   6.070673   9.837891       0.985915               0                 NaN                False                        False                   False                False
+19                 17.220702 -111.119961 -11.530980   9.723868   8.738060   3.437771       1.037042               0                 NaN                False                        False                   False                False
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_feature_causality_audit.csv  shape=(38, 2)
+Causal event features: 16
+Symmetric offline-only event context features: 22
+Saved CSV: /data/outputs/session_09e2082f46c3/02_anomaly_detection/throughput_threshold_sanity.csv  shape=(15, 2)
+               metric    value
+0                rows  412.000
+1      throughput_p01    0.610
+2      throughput_p05    6.513
+3      throughput_p10   15.873
+4      throughput_p17   20.314
+5      throughput_p25   24.579
+6   throughput_median   33.454
+7      throughput_p75   50.825
+8      throughput_p90   80.774
+9      throughput_p95   99.190
+10     throughput_p99  122.612
+11   pct_below_5_mbps    4.369
+12  pct_below_10_mbps    6.068
+13  pct_below_15_mbps    9.709
+14  pct_below_20_mbps   16.505
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/02b_sample_gap_seconds_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/02c_throughput_by_download_activity_context.png
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_download_context_summary.csv  shape=(3, 8)
+            download_context_label  rows    mean     p10     p25  median     p75  pct_below_10
+0  active_download_analysis_window   169  37.050  15.848  23.223  31.999  44.911         4.734
+1      download_warmup_or_cooldown     4  65.721  30.422  37.016  65.257  93.962         0.000
+2        outside_download_activity   239  43.723  15.609  25.667  35.145  54.864         7.113
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/01_pre_anomaly_throughput_distribution.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/02_throughput_by_rsrp_bin.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/03_throughput_by_rsrq_bin.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/04_throughput_by_sinr_bin.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/05_throughput_by_carrier_count.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/05b_throughput_by_ca_condition.png
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_ca_condition_summary.csv  shape=(412, 10)
+        ca_condition_label  carrier_count  rows     mean      p10      p25   median      p75      p90  pct_below_10
+0    unknown_carrier_count       0.914802     1   43.315   43.315   43.315   43.315   43.315   43.315           0.0
+1    unknown_carrier_count       0.914804     1   30.082   30.082   30.082   30.082   30.082   30.082           0.0
+2    unknown_carrier_count       0.941563     1   25.661   25.661   25.661   25.661   25.661   25.661           0.0
+3    unknown_carrier_count       0.942879     1   32.686   32.686   32.686   32.686   32.686   32.686           0.0
+4    unknown_carrier_count       0.943581     1    2.021    2.021    2.021    2.021    2.021    2.021         100.0
+..                     ...            ...   ...      ...      ...      ...      ...      ...      ...           ...
+407  unknown_carrier_count       2.060069     1   87.504   87.504   87.504   87.504   87.504   87.504           0.0
+408  unknown_carrier_count       2.060690     1   39.739   39.739   39.739   39.739   39.739   39.739           0.0
+409  unknown_carrier_count       2.061583     1   31.999   31.999   31.999   31.999   31.999   31.999           0.0
+410  unknown_carrier_count       2.063055     1   33.292   33.292   33.292   33.292   33.292   33.292           0.0
+411  unknown_carrier_count       2.063716     1  122.687  122.687  122.687  122.687  122.687  122.687           0.0
+
+[412 rows x 10 columns]
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/rb_usage_quality_summary.csv  shape=(3, 12)
+         rb_column  non_null_rows  non_null_pct  unique_values     min     p10     p25  median      p75      p90      max  reliable_for_anomaly_evidence
+0     lte_rb_count            412        100.00            412  -0.168  64.560  77.449  87.761   92.555   95.031   99.137                           True
+1    lte_agg_rb_dl            412        100.00            412  -0.035  76.830  86.745  93.780  160.644  177.711  194.774                           True
+2  scell1_rb_count            158         38.35            158  19.773  60.289  73.585  84.268   93.856   96.570  100.160                          False
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_rb_demand_summary.csv  shape=(4, 8)
+  rb_reference_column        rb_usage_bucket  rows  median_rb  median_tp  p25_tp  p75_tp  pct_below_10
+0       lte_agg_rb_dl  below_median_rb_usage   103     90.917     32.090  27.658  39.888         0.971
+1       lte_agg_rb_dl          high_rb_usage   103    175.763     63.600  43.155  89.441         1.942
+2       lte_agg_rb_dl           low_rb_usage   103     78.131     21.995  13.963  28.812        18.447
+3       lte_agg_rb_dl        medium_rb_usage   103    106.090     38.761  28.294  50.473         2.913
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/05e_throughput_by_rb_usage_bucket.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/05c_throughput_by_agg_rb_bin.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/05d_tp_vs_agg_rb.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/06_tp_vs_rsrp.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/07_tp_vs_rsrq.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/08_tp_vs_sinr.png
+Saved plot: /data/outputs/session_09e2082f46c3/03_plots/09_route_by_throughput.png
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/pre_anomaly_feature_table_leakage_guard.csv  shape=(0, 2)
+Saved Parquet: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet  shape=(412, 364)
+Saved Parquet: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_modeling_table.parquet  shape=(412, 364)
+Saved leakage-safe clean pre-anomaly feature table: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+Clean pre-anomaly shape: (412, 364)
+Saved CSV: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/output_index.csv  shape=(47, 4)
+                                               file                     folder       size                                                                                                         path
+0                                activity_table.csv  01_preprocessing_cleaning  164.53 KB                              /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/activity_table.csv
+1                         activity_type_summary.csv  01_preprocessing_cleaning    51.00 B                       /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/activity_type_summary.csv
+2                      canonical_column_mapping.csv  01_preprocessing_cleaning    1.58 KB                    /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/canonical_column_mapping.csv
+3            cleaned_throughput_data_dictionary.csv  01_preprocessing_cleaning   74.22 KB          /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/cleaned_throughput_data_dictionary.csv
+4                              cleaning_summary.csv  01_preprocessing_cleaning   172.00 B                            /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/cleaning_summary.csv
+5          column_family_summary_after_cleaning.csv  01_preprocessing_cleaning    1.14 KB        /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/column_family_summary_after_cleaning.csv
+6         column_family_summary_before_cleaning.csv  01_preprocessing_cleaning   719.00 B       /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/column_family_summary_before_cleaning.csv
+7              download_activity_intervals_used.csv  01_preprocessing_cleaning   695.00 B            /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/download_activity_intervals_used.csv
+8              download_activity_window_summary.csv  01_preprocessing_cleaning   165.00 B            /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/download_activity_window_summary.csv
+9                drive_clean_throughput_base.csv.gz  01_preprocessing_cleaning   21.76 MB              /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/drive_clean_throughput_base.csv.gz
+10                event_feature_causality_audit.csv  01_preprocessing_cleaning    2.31 KB               /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_feature_causality_audit.csv
+11                    event_summary_Events_Tech.csv  01_preprocessing_cleaning    57.00 B                   /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_Tech.csv
+12                event_summary_Events_category.csv  01_preprocessing_cleaning    67.00 B               /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_category.csv
+13                 event_summary_Events_subject.csv  01_preprocessing_cleaning   171.00 B                /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_subject.csv
+14                  event_summary_Events_titles.csv  01_preprocessing_cleaning    2.62 KB                 /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_Events_titles.csv
+15                   event_summary_event_family.csv  01_preprocessing_cleaning   194.00 B                  /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/event_summary_event_family.csv
+16                                  events_long.csv  01_preprocessing_cleaning   12.66 MB                                 /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/events_long.csv
+17                  kept_columns_after_cleaning.csv  01_preprocessing_cleaning   65.87 KB                 /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/kept_columns_after_cleaning.csv
+18   lte_dl_feature_table_clean_pre_anomaly.parquet  01_preprocessing_cleaning  696.34 KB  /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+19                    lte_dl_modeling_table.parquet  01_preprocessing_cleaning  696.34 KB                   /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_modeling_table.parquet
+20                     missing_threshold_impact.csv  01_preprocessing_cleaning   255.00 B                    /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/missing_threshold_impact.csv
+21      pre_anomaly_feature_table_leakage_guard.csv  01_preprocessing_cleaning    29.00 B     /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/pre_anomaly_feature_table_leakage_guard.csv
+22                          raw_data_dictionary.csv  01_preprocessing_cleaning  251.40 KB                         /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/raw_data_dictionary.csv
+23                     rb_usage_quality_summary.csv  01_preprocessing_cleaning   362.00 B                    /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/rb_usage_quality_summary.csv
+24               removed_columns_reason_summary.csv  01_preprocessing_cleaning   100.00 B              /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/removed_columns_reason_summary.csv
+25                       removed_columns_report.csv  01_preprocessing_cleaning  208.27 KB                      /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/removed_columns_report.csv
+26           throughput_by_ca_condition_summary.csv  01_preprocessing_cleaning   35.46 KB          /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_ca_condition_summary.csv
+27       throughput_by_download_context_summary.csv  01_preprocessing_cleaning   284.00 B      /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_download_context_summary.csv
+28              throughput_by_rb_demand_summary.csv  01_preprocessing_cleaning   363.00 B             /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/throughput_by_rb_demand_summary.csv
+29                     protected_columns_report.csv       02_anomaly_detection   43.98 KB                         /data/outputs/session_09e2082f46c3/02_anomaly_detection/protected_columns_report.csv
+30                  throughput_threshold_sanity.csv       02_anomaly_detection   343.00 B                      /data/outputs/session_09e2082f46c3/02_anomaly_detection/throughput_threshold_sanity.csv
+31       01_pre_anomaly_throughput_distribution.png                   03_plots   57.33 KB                       /data/outputs/session_09e2082f46c3/03_plots/01_pre_anomaly_throughput_distribution.png
+32                    02_throughput_by_rsrp_bin.png                   03_plots   28.63 KB                                    /data/outputs/session_09e2082f46c3/03_plots/02_throughput_by_rsrp_bin.png
+33          02b_sample_gap_seconds_distribution.png                   03_plots   43.93 KB                          /data/outputs/session_09e2082f46c3/03_plots/02b_sample_gap_seconds_distribution.png
+34  02c_throughput_by_download_activity_context.png                   03_plots   59.44 KB                  /data/outputs/session_09e2082f46c3/03_plots/02c_throughput_by_download_activity_context.png
+35                    03_throughput_by_rsrq_bin.png                   03_plots   30.89 KB                                    /data/outputs/session_09e2082f46c3/03_plots/03_throughput_by_rsrq_bin.png
+36                    04_throughput_by_sinr_bin.png                   03_plots   33.23 KB                                    /data/outputs/session_09e2082f46c3/03_plots/04_throughput_by_sinr_bin.png
+37               05_throughput_by_carrier_count.png                   03_plots  165.00 KB                               /data/outputs/session_09e2082f46c3/03_plots/05_throughput_by_carrier_count.png
+38               05b_throughput_by_ca_condition.png                   03_plots   31.36 KB                               /data/outputs/session_09e2082f46c3/03_plots/05b_throughput_by_ca_condition.png
+39                 05c_throughput_by_agg_rb_bin.png                   03_plots   41.96 KB                                 /data/outputs/session_09e2082f46c3/03_plots/05c_throughput_by_agg_rb_bin.png
+40                             05d_tp_vs_agg_rb.png                   03_plots   58.71 KB                                             /data/outputs/session_09e2082f46c3/03_plots/05d_tp_vs_agg_rb.png
+41            05e_throughput_by_rb_usage_bucket.png                   03_plots   51.77 KB                            /data/outputs/session_09e2082f46c3/03_plots/05e_throughput_by_rb_usage_bucket.png
+42                                06_tp_vs_rsrp.png                   03_plots   50.34 KB                                                /data/outputs/session_09e2082f46c3/03_plots/06_tp_vs_rsrp.png
+43                                07_tp_vs_rsrq.png                   03_plots   51.92 KB                                                /data/outputs/session_09e2082f46c3/03_plots/07_tp_vs_rsrq.png
+44                                08_tp_vs_sinr.png                   03_plots   49.04 KB                                                /data/outputs/session_09e2082f46c3/03_plots/08_tp_vs_sinr.png
+45                       09_route_by_throughput.png                   03_plots  139.32 KB                                       /data/outputs/session_09e2082f46c3/03_plots/09_route_by_throughput.png
+46                                    ran_clean.log                          .   26.83 KB                                                             /data/outputs/session_09e2082f46c3/ran_clean.log
+Notebook 01 complete.
+Clean pre-anomaly table: /data/outputs/session_09e2082f46c3/01_preprocessing_cleaning/lte_dl_feature_table_clean_pre_anomaly.parquet
+Next step: run Notebook 02 using this table.
+
+All stages completed successfully.

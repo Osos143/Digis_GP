@@ -1,0 +1,12 @@
+{
+  "id": "52_final_handoff_by_fusion_source",
+  "filename": "52_final_handoff_by_fusion_source.png",
+  "title": "52 Final Handoff By Fusion Source",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_6ded29a4b9b3/plots/52_final_handoff_by_fusion_source.png",
+  "json_url": "/api/sessions/session_6ded29a4b9b3/plots/52_final_handoff_by_fusion_source.json",
+  "size_bytes": 40796
+}

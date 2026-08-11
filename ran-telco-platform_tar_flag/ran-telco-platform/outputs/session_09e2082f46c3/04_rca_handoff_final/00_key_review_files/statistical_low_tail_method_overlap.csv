@@ -1,0 +1,10 @@
+﻿method_a,method_b,intersection_rows,union_rows,jaccard
+global_p10,global_p10,42,42,1.0
+global_p10,iqr,23,42,0.5476190476190477
+global_p10,robust_mad,21,42,0.5
+iqr,global_p10,23,42,0.5476190476190477
+iqr,iqr,23,23,1.0
+iqr,robust_mad,21,23,0.9130434782608695
+robust_mad,global_p10,21,42,0.5
+robust_mad,iqr,21,23,0.9130434782608695
+robust_mad,robust_mad,21,21,1.0
