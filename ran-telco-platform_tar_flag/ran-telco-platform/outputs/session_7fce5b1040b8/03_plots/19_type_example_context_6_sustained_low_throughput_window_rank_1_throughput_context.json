@@ -1,0 +1,13 @@
+{
+  "id": "19_type_example_context_6_sustained_low_throughput_window_rank_1_throughput_context",
+  "filename": "19_type_example_context_6_sustained_low_throughput_window_rank_1_throughput_context.png",
+  "title": "19 Type Example Context 6 Sustained Low Throughput Window Rank 1 Throughput Context",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "bar",
+  "x_label": "Category / Identifier",
+  "y_label": "Incident Count",
+  "png_url": "/api/sessions/session_7fce5b1040b8/plots/19_type_example_context_6_sustained_low_throughput_window_rank_1_throughput_context.png",
+  "json_url": "/api/sessions/session_7fce5b1040b8/plots/19_type_example_context_6_sustained_low_throughput_window_rank_1_throughput_context.json",
+  "size_bytes": 217279,
+  "html_url": "/api/sessions/session_7fce5b1040b8/plots/19_type_example_context_6_sustained_low_throughput_window_rank_1_throughput_context.html"
+}

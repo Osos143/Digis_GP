@@ -1,0 +1,13 @@
+{
+  "id": "05b_throughput_by_ca_condition",
+  "filename": "05b_throughput_by_ca_condition.png",
+  "title": "05B Throughput By Ca Condition",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_e7a5e808bf80/plots/05b_throughput_by_ca_condition.png",
+  "json_url": "/api/sessions/session_e7a5e808bf80/plots/05b_throughput_by_ca_condition.json",
+  "size_bytes": 37199,
+  "html_url": "/api/sessions/session_e7a5e808bf80/plots/05b_throughput_by_ca_condition.html"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "01_pre_anomaly_throughput_distribution",
+  "filename": "01_pre_anomaly_throughput_distribution.png",
+  "title": "01 Pre Anomaly Throughput Distribution",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "area",
+  "x_label": "Metric Value / Quantile",
+  "y_label": "Sample Frequency Density",
+  "png_url": "/api/sessions/session_7fce5b1040b8/plots/01_pre_anomaly_throughput_distribution.png",
+  "json_url": "/api/sessions/session_7fce5b1040b8/plots/01_pre_anomaly_throughput_distribution.json",
+  "size_bytes": 60461,
+  "html_url": "/api/sessions/session_7fce5b1040b8/plots/01_pre_anomaly_throughput_distribution.html"
+}

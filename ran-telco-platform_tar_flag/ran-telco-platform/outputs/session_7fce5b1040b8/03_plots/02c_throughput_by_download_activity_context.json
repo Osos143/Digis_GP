@@ -1,0 +1,13 @@
+{
+  "id": "02c_throughput_by_download_activity_context",
+  "filename": "02c_throughput_by_download_activity_context.png",
+  "title": "02C Throughput By Download Activity Context",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_7fce5b1040b8/plots/02c_throughput_by_download_activity_context.png",
+  "json_url": "/api/sessions/session_7fce5b1040b8/plots/02c_throughput_by_download_activity_context.json",
+  "size_bytes": 61848,
+  "html_url": "/api/sessions/session_7fce5b1040b8/plots/02c_throughput_by_download_activity_context.html"
+}
