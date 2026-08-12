@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  11 AUG 2026 13:54
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  12 AUG 2026 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1709,9 +1709,51 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 4.
+
+
+[43]
+
+[44]
+Underfull \vbox (badness 2617) has occurred while \output is active []
+
+
+
+[45]
+File: Figures/Screenshot from 2026-08-12 14-38-38.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-38-38.png>
+File: Figures/Screenshot from 2026-08-12 14-38-48.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-38-48.png>
+
+
+[46]
+File: Figures/Screenshot from 2026-08-12 14-39-04.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-39-04.png>
+File: Figures/Screenshot from 2026-08-12 14-39-08.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-39-08.png>
+
+
+[47]
+File: Figures/Screenshot from 2026-08-12 14-39-17.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-39-17.png>
+
+
+[48]
+File: Figures/Screenshot from 2026-08-11 20-52-29.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-11 20-52-29.png>
+File: Figures/Screenshot from 2026-08-11 20-52-46.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-11 20-52-46.png>
+
+
+[49]
+
+[50]
+File: Figures/Screenshot from 2026-08-12 14-39-40.png Graphic file (type bmp)
+<Figures/Screenshot from 2026-08-12 14-39-40.png>
 )
 
-[43] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
+[51]
+
+[52] (main.aux (Chapters/Anomaly_Detection.aux) (Chapters/RCA.aux)
 (Chapters/Planning_Intelligence.aux)
 (Chapters/Integration_and_Platform_Design.aux))
  ***********
@@ -1719,15 +1761,15 @@ LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5FFF223C90B6BA8096D5C8650C476073;11711.
+(rerunfilecheck)             Checksum: B4ABC1C47B614A77978DC1CFAFA61B31;15234.
  ) 
 Here is how much of TeX's memory you used:
- 40466 strings out of 403341
- 842870 string characters out of 5463328
- 1289427 words of memory out of 5000000
- 68218 multiletter control sequences out of 15000+600000
- 725231 words of font info for 97 fonts, out of 8000000 for 9000
+ 40611 strings out of 403341
+ 848583 string characters out of 5463328
+ 1292917 words of memory out of 5000000
+ 68355 multiletter control sequences out of 15000+600000
+ 731216 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  107i,15n,109p,1195b,1122s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (50 pages).
+Output written on main.pdf (59 pages).

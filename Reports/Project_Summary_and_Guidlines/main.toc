@@ -61,4 +61,19 @@
 \contentsline {section}{\numberline {3.10}Measured Results and Performance}{38}{section.3.10}%
 \contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{39}{subsection.3.10.1}%
 \contentsline {section}{\numberline {3.11}Chapter Summary}{41}{section.3.11}%
-\contentsline {chapter}{\numberline {4.}Integration and Platform}{43}{chapter.4}%
+\contentsline {chapter}{\numberline {4.}System Integration and Platform Design}{43}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Chapter Scope and Integration Objective}{43}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Platform Architecture}{43}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Logical Layers}{43}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Module Interface Contracts}{45}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Drive-Test Workspace Integration}{45}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Session-Oriented Execution}{45}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Dashboard and Backend-Figure Inspection}{46}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Dataset Upload and Pipeline Progress}{46}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}RCA Evidence and Engineer Decision Support}{47}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Spatial Context and Interactive Map}{48}{section.4.5}%
+\contentsline {section}{\numberline {4.6}AI Assistant and Report Generation}{49}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Planning Intelligence Integration}{50}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Role-Based Workspace Routing and Navigation}{50}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Auditability, Reproducibility, and Operational Safeguards}{51}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Chapter Summary}{51}{section.4.10}%
