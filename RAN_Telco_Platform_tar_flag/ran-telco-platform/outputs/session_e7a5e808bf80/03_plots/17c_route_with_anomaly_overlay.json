@@ -1,0 +1,13 @@
+{
+  "id": "17c_route_with_anomaly_overlay",
+  "filename": "17c_route_with_anomaly_overlay.png",
+  "title": "17C Route With Anomaly Overlay",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_e7a5e808bf80/plots/17c_route_with_anomaly_overlay.png",
+  "json_url": "/api/sessions/session_e7a5e808bf80/plots/17c_route_with_anomaly_overlay.json",
+  "size_bytes": 227507,
+  "html_url": "/api/sessions/session_e7a5e808bf80/plots/17c_route_with_anomaly_overlay.html"
+}

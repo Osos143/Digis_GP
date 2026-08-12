@@ -1,0 +1,4 @@
+﻿scope,rows,mean_actual_tp,median_actual_tp,mean_expected_p75,median_expected_p75,underperform_context_pct,strict_underperform_pct
+all_lte_dl_rows_radio_p75,32238,50.86,38.801,71.068,62.15,19.924,3.884
+analysis_rows_all_valid_lte_dl_radio_p75,32238,50.86,38.801,71.068,62.15,19.924,3.884
+all_lte_dl_rows_rb_conditioned_p75,32238,50.86,38.801,65.151,53.399,10.649,4.001

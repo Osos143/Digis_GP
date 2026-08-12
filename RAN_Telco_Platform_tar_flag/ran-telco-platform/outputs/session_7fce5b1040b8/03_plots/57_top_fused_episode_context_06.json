@@ -1,0 +1,13 @@
+{
+  "id": "57_top_fused_episode_context_06",
+  "filename": "57_top_fused_episode_context_06.png",
+  "title": "57 Top Fused Episode Context 06",
+  "category": "Data Cleaning & Profiling",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_7fce5b1040b8/plots/57_top_fused_episode_context_06.png",
+  "json_url": "/api/sessions/session_7fce5b1040b8/plots/57_top_fused_episode_context_06.json",
+  "size_bytes": 249053,
+  "html_url": "/api/sessions/session_7fce5b1040b8/plots/57_top_fused_episode_context_06.html"
+}

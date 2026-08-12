@@ -1,0 +1,13 @@
+{
+  "id": "51_statistical_vs_ml_score_fusion",
+  "filename": "51_statistical_vs_ml_score_fusion.png",
+  "title": "51 Statistical Vs Ml Score Fusion",
+  "category": "ML Model Validation",
+  "chart_type": "area",
+  "x_label": "Metric Value / Quantile",
+  "y_label": "Sample Frequency Density",
+  "png_url": "/api/sessions/session_7fce5b1040b8/plots/51_statistical_vs_ml_score_fusion.png",
+  "json_url": "/api/sessions/session_7fce5b1040b8/plots/51_statistical_vs_ml_score_fusion.json",
+  "size_bytes": 83173,
+  "html_url": "/api/sessions/session_7fce5b1040b8/plots/51_statistical_vs_ml_score_fusion.html"
+}

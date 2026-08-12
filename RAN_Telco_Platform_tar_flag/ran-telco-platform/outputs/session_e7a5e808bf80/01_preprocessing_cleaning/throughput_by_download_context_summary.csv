@@ -1,0 +1,4 @@
+﻿download_context_label,rows,mean,p10,p25,median,p75,pct_below_10
+active_download_analysis_window,11372,48.788,4.991,14.582,36.217,70.36,17.912
+download_warmup_or_cooldown,391,47.84,4.298,14.074,35.202,70.813,19.693
+outside_download_activity,20475,52.068,5.002,16.139,40.286,76.991,16.777

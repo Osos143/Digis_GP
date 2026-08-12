@@ -1,3 +1,290 @@
-\chapter{Integration and Platform}
+% ================================================================
+% NetFix AI - Integration and Platform Design
+% This file is a chapter fragment only. It is intended to be loaded by
+% main.tex using: \include{Chapters/Integration_and_Platform_Design}
+% It relies only on packages/macros already defined in thesis_setup.tex.
+% ================================================================
 
-\label{Chapter4} 
+\chapter{System Integration and Platform Design}
+\label[chapter]{chap-integration-platform}
+
+\section{Chapter Scope and Integration Objective}
+\label[section]{sec-integration-scope}
+
+NetFix AI is delivered as one engineering portal with two independent intelligence workspaces: \textbf{Drive Test Intelligence} and \textbf{Planning Intelligence}. The integration objective is not to merge the two engineering datasets. Instead, the platform provides a common application shell, consistent navigation, shared interaction patterns, and module-specific analysis services so that optimization and planning engineers can work from one product while preserving the assumptions of each workflow.
+
+\begin{infobox}{Important data-boundary rule}
+The drive-test and planning datasets are currently \textbf{independent}. A drive-test incident is not validated using planning records, and a planning decision is not inferred from drive-test measurements. Integration occurs at the \textbf{platform and workflow level}, not through cross-dataset analytical fusion.
+\end{infobox}
+
+The resulting platform therefore has two responsibilities. First, it exposes the outputs of the anomaly-detection and RCA pipeline as engineer-facing incidents, figures, maps, rankings, and reports. Second, it exposes planning workflows for workbook ingestion, visualization, conflict validation, replanning, and export. The analytical logic of each workspace is documented in its dedicated thesis chapter; this chapter focuses on how those engines are packaged, connected, and presented to the user.
+
+\section{Platform Architecture}
+\label[section]{sec-platform-architecture}
+
+\subsection{Logical Layers}
+
+The implementation is organized into a small set of logical layers. This separation keeps the user interface responsive while allowing the compute-heavy engineering logic to evolve independently.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{0.96\textwidth}{L{2.7cm} L{3.3cm} Y}
+\toprule
+\textbf{Layer} & \textbf{Main implementation} & \textbf{Responsibility} \\
+\midrule
+Presentation & React / TypeScript / Vite & Unified portal shell, dashboards, forms, interactive charts, maps, role-based workspace navigation, and report views \\
+API and orchestration & FastAPI / Python & Upload handling, session state, execution requests, result retrieval, tool endpoints, and service coordination \\
+Drive-test intelligence & Python analytics services & Preprocessing, statistical and ML anomaly evidence, row/episode/incident consolidation, RCA handoff artifacts, and cell ranking \\
+Planning intelligence & Python planning backend & Workbook parsing, geometry, conflict validation, assignment/replanning logic, site workflows, and workbook export \\
+Visualization & Plotly / static PNG / Leaflet & Interactive engineering plots, backend-generated validation figures, route display, and anomaly-location context \\
+Persistence and cache & Structured files plus database/cache services & Session metadata, compact incident objects, exported reports, generated figures, planning workbooks, and frequently accessed results \\
+AI assistance & Module-grounded assistant layer & Explains selected evidence and invokes approved module tools; engineering calculations remain in deterministic backend functions \\
+\bottomrule
+\end{tabularx}
+\caption{Logical architecture of the NetFix AI platform}
+\label[tab]{platform-layers}
+\end{table}
+
+The platform uses the same visual shell for both workspaces, but each workspace talks to its own backend logic. This is a deliberate design choice: it provides a unified experience without forcing unrelated data models into a single analytical schema.
+
+\subsection{Module Interface Contracts}
+
+Each intelligence module has a clear input/output contract. The frontend does not need to reproduce engineering calculations; it requests structured results and renders them consistently.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{0.96\textwidth}{L{2.3cm} L{2.4cm} Y Y}
+\toprule
+\textbf{Workspace} & \textbf{Primary input} & \textbf{Backend outputs} & \textbf{Engineer-facing result} \\
+\midrule
+Drive Test Intelligence & Drive-test \texttt{.pkl} data & Session metadata, anomaly rows, strict episodes, operational incidents, RCA handoff JSON/CSV, cell rankings, static/interactive figures & Ranked incidents, supporting KPI evidence, RCA view, route/map context, reports, and backend validation plots \\
+Planning Intelligence & Planning \texttt{.xlsx} workbook & Parsed site/sector data, geometry, conflict lists, proposed assignments, validation summaries, updated workbook & Interactive map, clash explorer, add-site/replan workflows, assignment tables, validation results, and export \\
+\bottomrule
+\end{tabularx}
+\caption{Independent input/output contracts exposed through the unified portal}
+\label[tab]{module-contracts}
+\end{table}
+
+\section{Drive-Test Workspace Integration}
+\label[section]{sec-drive-test-platform}
+
+\subsection{Session-Oriented Execution}
+
+A drive-test upload is treated as an analysis session rather than as a stateless request. The session object links the uploaded dataset to generated figures, anomaly outputs, RCA records, map context, and report artifacts. This design prevents the user interface from having to rerun the complete analytical pipeline every time the engineer moves between pages.
+
+The practical workflow is:
+\begin{enumerate}
+    \item upload a drive-test file and create an analysis session;
+    \item execute preprocessing and anomaly detection once for that session;
+    \item persist the generated row-, episode-, incident-, and ranking-level artifacts;
+    \item inspect the same session through the dashboard, RCA, map, and assistant views;
+    \item export or revisit the session later through the history view.
+\end{enumerate}
+
+\begin{successbox}{Final analytical handoff used by the thesis}
+	The anomaly-detection and fusion pipeline produces \textbf{3,574 fused row-level handoff records}, \textbf{1,429 strict fused episodes}, and \textbf{1,382 operational RCA incidents}. After the subsequent RCA filtering and analysis stage, \textbf{1,064 incidents} are retained and presented through the platform for engineer review, diagnosis, and reporting.
+\end{successbox}
+
+\subsection{Dashboard and Backend-Figure Inspection}
+
+The dashboard acts as the first engineering summary after a session is selected. It combines dataset-level cards with incident/severity summaries and, importantly, exposes the exact figures generated by the Python backend. This makes the portal a viewing layer over the validated analytical artifacts rather than a separate reimplementation of the scoring logic.
+
+\begin{figure}[htbp]
+\centering
+\IfFileExists{Figures/Screenshot from 2026-08-12 14-38-38.png}{%
+  \includegraphics[width=0.96\linewidth]{Screenshot from 2026-08-12 14-38-38.png}%
+}{%
+  \fbox{\parbox[c][5cm][c]{0.88\linewidth}{\centering Missing figure: \texttt{Screenshot from 2026-08-12 14-38-38.png}}}%
+}
+\caption{Drive-Test Intelligence dashboard showing session-level KPIs, severity information, and direct inspection of backend-generated analytical figures}
+\label[fig]{platform-dashboard}
+\end{figure}
+
+The backend-figure panel is useful during engineering review because the same plots used for model validation and final handoff can be inspected in the portal as static PNGs or interactive HTML views. The engineer can therefore move from a high-level incident count to the original throughput/reference curves without leaving the application.
+
+\FloatBarrier
+
+\subsection{Dataset Upload and Pipeline Progress}
+
+The upload page provides execution feedback through a compact progress sequence. It separates file receipt, preprocessing, anomaly execution, and result readiness so that long-running analytical work is visible to the user rather than appearing as a blocked browser request.
+
+\begin{figure}[htbp]
+\centering
+\IfFileExists{Figures/Screenshot from 2026-08-12 14-38-48.png}{%
+  \includegraphics[width=0.94\linewidth]{Screenshot from 2026-08-12 14-38-48.png}%
+}{%
+  \fbox{\parbox[c][5cm][c]{0.88\linewidth}{\centering Missing figure: \texttt{Screenshot from 2026-08-12 14-38-48.png}}}%
+}
+\caption{Dataset-ingestion view with execution progress, current session status, and recent analysis sessions}
+\label[fig]{platform-upload}
+\end{figure}
+
+This session-oriented interface is especially important for the original drive-test export, which is too large and sparse for practical manual inspection. Once preprocessing and feature generation finish, the portal works with compact session artifacts instead of forcing the user to repeatedly reopen the full raw dataset.
+
+\FloatBarrier
+
+\section{RCA Evidence and Engineer Decision Support}
+\label[section]{sec-platform-rca}
+
+The Results workspace connects a selected operational incident to its evidence package. The interface is intentionally structured around three questions: \textit{what happened}, \textit{why is this explanation plausible}, and \textit{what should the engineer inspect next}. The portal presents the anomaly context, the matched RCA family, the supporting KPI snapshot, and recommended validation actions in the same view.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \IfFileExists{Figures/Screenshot from 2026-08-12 14-39-04.png}{%
+    \includegraphics[width=\linewidth]{Screenshot from 2026-08-12 14-39-04.png}%
+  }{%
+    \fbox{\parbox[c][4.4cm][c]{0.92\linewidth}{\centering Missing RCA evidence screenshot}}%
+  }
+  \caption{Incident evidence and matched RCA context}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \IfFileExists{Figures/Screenshot from 2026-08-12 14-39-08.png}{%
+    \includegraphics[width=\linewidth]{Screenshot from 2026-08-12 14-39-08.png}%
+  }{%
+    \fbox{\parbox[c][4.4cm][c]{0.92\linewidth}{\centering Missing recommendation screenshot}}%
+  }
+  \caption{Recommended actions and engineering reference material}
+\end{subfigure}
+\caption{RCA workspace: evidence is kept beside the explanation and recommended engineering follow-up}
+\label[fig]{platform-rca-results}
+\end{figure}
+
+The RCA view does not require the language model to calculate anomaly scores or derive radio metrics. Those values are produced upstream by the analytical pipeline and passed to the platform as structured evidence. This separation gives the user a clear audit trail from measured KPIs to the final explanation.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{0.94\textwidth}{L{3.0cm} Y}
+\toprule
+\textbf{Evidence block} & \textbf{Purpose in the interface} \\
+\midrule
+Incident identity and priority & Selects the operational case and preserves the final handoff ranking \\
+Actual vs. expected throughput & Shows the size of the detected performance opportunity or degradation \\
+Radio/link KPIs & Provides RSRP, RSRQ, SINR, CQI, MCS, BLER and related link context \\
+Resource and event context & Adds RB/resource state, CA, mobility, RACH, and other available supporting evidence \\
+RCA family and explanation & States the most plausible mechanism supported by the available evidence \\
+Recommended checks & Converts the diagnosis into concrete engineer validation or optimization actions \\
+\bottomrule
+\end{tabularx}
+\caption{Main evidence groups presented to the optimization engineer}
+\label[tab]{platform-rca-evidence}
+\end{table}
+
+\FloatBarrier
+
+\section{Spatial Context and Interactive Map}
+\label[section]{sec-platform-map}
+
+The map workspace places anomaly observations back on the drive-test trajectory. This is useful for identifying whether high-priority incidents are isolated points or repeated along a route segment. The location is treated as an \textbf{observation location}, not as a verified cell-site coordinate, because the final incident data contains varying location reliability.
+
+\begin{figure}[htbp]
+\centering
+\IfFileExists{Figures/Screenshot from 2026-08-12 14-39-17.png}{%
+  \includegraphics[width=0.94\linewidth]{Screenshot from 2026-08-12 14-39-17.png}%
+}{%
+  \fbox{\parbox[c][5cm][c]{0.88\linewidth}{\centering Missing figure: \texttt{Screenshot from 2026-08-12 14-39-17.png}}}%
+}
+\caption{Interactive map linking drive-test trajectory observations to selectable anomaly incidents and their KPI context}
+\label[fig]{platform-map}
+\end{figure}
+
+The map is therefore a navigation and spatial-context tool. It does not infer a tower location from a drive-test point, and the displayed markers should be interpreted as approximate anomaly observation positions.
+
+\FloatBarrier
+
+\section{AI Assistant and Report Generation}
+\label[section]{sec-platform-assistant}
+
+The assistant layer is designed as a grounded interface over the selected module. In the Drive Test workspace, it receives compact incident evidence and RCA results; in Planning Intelligence, it can invoke approved planning tools. In both cases, engineering calculations remain in backend functions rather than being invented by the language model.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \IfFileExists{Figures/Screenshot from 2026-08-11 20-52-29.png}{%
+    \includegraphics[width=\linewidth]{Screenshot from 2026-08-11 20-52-29.png}%
+  }{%
+    \fbox{\parbox[c][4.2cm][c]{0.92\linewidth}{\centering Missing assistant screenshot}}%
+  }
+  \caption{Conversational incident/KPI explanation}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \IfFileExists{Figures/Screenshot from 2026-08-11 20-52-46.png}{%
+    \includegraphics[width=\linewidth]{Screenshot from 2026-08-11 20-52-46.png}%
+  }{%
+    \fbox{\parbox[c][4.2cm][c]{0.92\linewidth}{\centering Missing report-generation screenshot}}%
+  }
+  \caption{Structured report generation from the selected evidence}
+\end{subfigure}
+\caption{AI assistant views for explanation and engineer-oriented report generation}
+\label[fig]{platform-assistant}
+\end{figure}
+
+The assistant can summarize evidence, explain KPI relationships, describe why a rule or RCA family matched, and generate a structured report. A typical report contains the incident identity, detected problem, key evidence, probable cause, confidence/context notes, and recommended follow-up. This makes the language model a presentation and interaction layer around governed outputs rather than the source of the anomaly decision itself.
+
+\begin{infobox}{Grounding principle}
+The assistant is given the \textbf{selected session, incident, KPI evidence, RCA output, and approved tool results}. It is not given permission to silently alter anomaly scores, rewrite planning assignments, or replace deterministic validation rules. Any action that changes engineering data is performed through an explicit backend tool or workflow.
+\end{infobox}
+
+\FloatBarrier
+
+\section{Planning Intelligence Integration}
+\label[section]{sec-platform-planning}
+
+Planning Intelligence is exposed through the same product shell but keeps its own data model and execution path. The planning workspace accepts an Excel planning workbook, parses site and sector information, visualizes the network on an interactive map, applies deterministic validation rules, supports replanning or new-site workflows, and exports the resulting assignments.
+
+The platform-level flow is intentionally simple:
+\begin{enumerate}
+    \item \textbf{Load}: select or upload a planning workbook;
+    \item \textbf{Inspect}: visualize sites/sectors and inspect current assignments;
+    \item \textbf{Validate}: identify PCI/RSI/modulo and other configured planning conflicts;
+    \item \textbf{Modify}: add a site, replan selected sectors, or run a broader assignment workflow;
+    \item \textbf{Compare}: review old versus proposed assignments and KPI/validation summaries;
+    \item \textbf{Export}: download the updated planning workbook and supporting reports.
+\end{enumerate}
+
+The detailed graph construction, geometric weighting, PCI/RSI rules, Mod3/Mod4 logic, and repair algorithms are intentionally left to the dedicated Planning Intelligence chapter. The integration layer only exposes their validated inputs and outputs through consistent UI controls.
+
+\section{Role-Based Workspace Routing and Navigation}
+\label[section]{sec-platform-routing}
+
+Users enter the product through a common authentication flow and are routed to the workspace most relevant to their engineering role. Optimization-oriented users land in Drive Test Intelligence, while planning-oriented users land in Planning Intelligence. A workspace switcher keeps both modules available without forcing a second login.
+
+This routing improves usability, but it does not imply that the two workspaces share analytical state. Each module maintains its own active dataset, session context, backend requests, and exports. The shared elements are the application shell, authentication context, visual language, and assistant interaction pattern.
+
+\section{Auditability, Reproducibility, and Operational Safeguards}
+\label[section]{sec-platform-governance}
+
+The platform design includes several safeguards that are important for an engineering decision-support system:
+\begin{itemize}
+    \item \textbf{Artifact traceability}: backend-generated figures and structured handoff files remain accessible from the portal;
+    \item \textbf{Session persistence}: users can return to previously processed datasets without recomputing every stage;
+    \item \textbf{Separation of evidence and narrative}: deterministic/ML outputs are stored before the assistant creates prose explanations;
+    \item \textbf{Human-in-the-loop decisions}: the system recommends investigation and planning actions but does not silently change the live network;
+    \item \textbf{Module isolation}: planning and drive-test evidence remain independent unless a future version introduces an explicit, validated cross-domain integration layer;
+    \item \textbf{Uncertainty visibility}: location reliability, human-review flags, model roles, and validation-only outputs can be retained in the handoff instead of being hidden by the UI.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\IfFileExists{Figures/Screenshot from 2026-08-12 14-39-40.png}{%
+  \includegraphics[width=0.90\linewidth]{Screenshot from 2026-08-12 14-39-40.png}%
+}{%
+  \fbox{\parbox[c][4.5cm][c]{0.84\linewidth}{\centering Missing figure: \texttt{Screenshot from 2026-08-12 14-39-40.png}}}%
+}
+\caption{Session-history view used to revisit completed analyses and preserve an operational audit trail}
+\label[fig]{platform-history}
+\end{figure}
+
+\FloatBarrier
+
+\section{Chapter Summary}
+\label[section]{sec-integration-summary}
+
+NetFix AI integrates two independent telecom engineering workflows into one coherent portal without conflating their datasets. The platform packages the Drive Test Intelligence pipeline as session-based dashboards, RCA evidence views, route context, rankings, and reports, while exposing Planning Intelligence through workbook-driven visualization, validation, replanning, and export workflows. A shared web application, backend orchestration layer, persistent artifacts, and grounded AI assistant provide a consistent user experience while the underlying statistical, ML, RCA, and planning calculations remain in their dedicated engineering services. This separation is central to the system design: the portal unifies the \textbf{workflow}, while each intelligence module preserves its own technical assumptions and evidence chain.

@@ -18,3 +18,9 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Measured KPI results, full dataset, single full-reset run. Green bars are hard rules (all zero); amber bars are soft, structurally-expected counts.}}{39}{figure.caption.39}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces \texttt {bulk\_plan()} wall-clock time per region, measured on the full dataset.}}{40}{figure.caption.41}%
 \addvspace {10pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Drive-Test Intelligence dashboard showing session-level KPIs, severity information, and direct inspection of backend-generated analytical figures}}{46}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Dataset-ingestion view with execution progress, current session status, and recent analysis sessions}}{47}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces RCA workspace: evidence is kept beside the explanation and recommended engineering follow-up}}{47}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Interactive map linking drive-test trajectory observations to selectable anomaly incidents and their KPI context}}{49}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces AI assistant views for explanation and engineer-oriented report generation}}{49}{figure.caption.50}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Session-history view used to revisit completed analyses and preserve an operational audit trail}}{51}{figure.caption.51}%

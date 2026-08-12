@@ -1,0 +1,13 @@
+{
+  "id": "50_final_fused_row_priority_distribution",
+  "filename": "50_final_fused_row_priority_distribution.png",
+  "title": "50 Final Fused Row Priority Distribution",
+  "category": "Anomaly Detection",
+  "chart_type": "area",
+  "x_label": "Metric Value / Quantile",
+  "y_label": "Sample Frequency Density",
+  "png_url": "/api/sessions/session_e7a5e808bf80/plots/50_final_fused_row_priority_distribution.png",
+  "json_url": "/api/sessions/session_e7a5e808bf80/plots/50_final_fused_row_priority_distribution.json",
+  "size_bytes": 46338,
+  "html_url": "/api/sessions/session_e7a5e808bf80/plots/50_final_fused_row_priority_distribution.html"
+}

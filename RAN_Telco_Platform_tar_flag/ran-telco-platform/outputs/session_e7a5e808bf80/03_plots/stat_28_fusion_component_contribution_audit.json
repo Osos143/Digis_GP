@@ -1,0 +1,13 @@
+{
+  "id": "stat_28_fusion_component_contribution_audit",
+  "filename": "stat_28_fusion_component_contribution_audit.png",
+  "title": "Stat 28 Fusion Component Contribution Audit",
+  "category": "Anomaly Detection",
+  "chart_type": "line",
+  "x_label": "Telemetry Sample Index",
+  "y_label": "Value",
+  "png_url": "/api/sessions/session_e7a5e808bf80/plots/stat_28_fusion_component_contribution_audit.png",
+  "json_url": "/api/sessions/session_e7a5e808bf80/plots/stat_28_fusion_component_contribution_audit.json",
+  "size_bytes": 63723,
+  "html_url": "/api/sessions/session_e7a5e808bf80/plots/stat_28_fusion_component_contribution_audit.html"
+}
