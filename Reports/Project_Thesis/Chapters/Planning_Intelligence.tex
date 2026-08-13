@@ -9,11 +9,11 @@ Drive Test Intelligence workspace turns raw
 throughput measurements into prioritized incidents, Planning Intelligence solves a
 different engineering problem: assigning radio identity parameters to every sector
 of a live 5G NR network so that neighboring cells cannot be confused with one
-another, while respecting the physical and combinatorial constraints imposed by
-3GPP identity ranges.
+another, while respecting the configured identity ranges and the engineering constraints used by
+this planning workflow.
 
 \begin{infobox}{Scope of this chapter}
-This chapter documents the NR5G PCI/RSI planning engine end to end: the
+This chapter documents the 5G NR PCI/RSI planning engine end to end: the
 seven-stage pipeline, the deterministic assignment algorithms, the independent
 validator, and the measured results of running the engine on a live Egyptian
 Band~N41 deployment spanning \textbf{2{,}554 sectors} across \textbf{725 sites}
@@ -26,26 +26,28 @@ dataset and the drive-test dataset are independent: planning output is never use
 to prove or correct a drive-test anomaly, and drive-test observations are never
 treated as ground truth for planning decisions.
 
-\subsection{The Three Assigned Parameters}
+\subsection{Assigned Parameters and Derived Groups}
 
-Every sector requires three interrelated identity values, summarized in
+Every sector is described by two assigned identity values, PCI and RSI, together with the derived Mod3 and Mod4 groups summarized in
 Table~\ref{pi-parameters}.
 
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{l c Y}
     \toprule
-    \textbf{Parameter} & \textbf{3GPP range} & \textbf{Role} \\
+    \textbf{Parameter} & \textbf{Implemented range} & \textbf{Role} \\
     \midrule
-    PCI (Physical Cell Identity) & $0$--$1007$ & Primary identity broadcast by the cell; must not collide or be confused with nearby cells. Defined as $N_{ID}=3N_{ID}^{(2)}+N_{ID}^{(1)}$. \\
-    RSI (Root Sequence Index) & $0$--$830$ & Determines the PRACH root sequence set; must not repeat within the reuse distance or random-access preambles collide. \\
-    Mod4 $= \mathrm{PCI}\bmod 4$ & $0$--$3$ & Groups PCIs for SRS/DMRS orthogonality; four possible groups drive inter-site interference planning. \\
-    Mod3 $= \mathrm{PCI}\bmod 3$ & $0$--$2$ & Groups PCIs for PSS/SSS synchronization-signal separation; enforced ring-adjacently on co-site sectors. \\
+    PCI (Physical Cell Identity) & $0$--$1007$ & Primary physical-layer cell identity. In NR, $N_{ID}^{\mathrm{cell}}=3N_{ID}^{(1)}+N_{ID}^{(2)}$, yielding 1008 identities \cite{3gpp38211}. \\
+    RSI (Root Sequence Index) & $0$--$830$ & Project planning range used for PRACH root-sequence assignment and reuse control. NR permits a wider long-sequence index range; the implemented range is therefore a conservative subset \cite{3gpp38331}. \\
+    Mod4 $= \mathrm{PCI}\bmod 4$ & $0$--$3$ & Project-defined derived group used by the planner to spread potentially interfering sectors across four groups. \\
+    Mod3 $= \mathrm{PCI}\bmod 3$ & $0$--$2$ & Derived three-way PCI group, equivalent to the PSS identity component in NR; the planner uses it for co-site separation \cite{3gpp38211}. \\
     \bottomrule
   \end{tabularx}
   \caption{Radio identity parameters assigned by the planning engine}
   \label[tab]{pi-parameters}
 \end{table}
+
+The ranges and reuse distances enforced by the planning engine are implementation choices for this project unless explicitly identified as standard-defined. In particular, NR RRC defines \texttt{prach-RootSequenceIndex} as $0$--$837$ for $L=839$ and $0$--$137$ for $L=139$; the engine intentionally uses the narrower $0$--$830$ long-sequence planning pool \cite{3gpp38331}.
 
 Mod3 and Mod4 are not independently assigned --- they are algebraic consequences
 of the chosen PCI. However, the engine plans Mod4 \emph{before} PCI
@@ -534,10 +536,10 @@ prefix rule that \fname{bulk\_plan.py} uses.
     \midrule
     PCI Collision & \SI{7}{\kilo\meter} (tier-1) & Two sectors this close sharing a PCI are indistinguishable to a UE. \\
     PCI Confusion & \SI{14}{\kilo\meter} (tier-2) & Sharing a PCI this far apart still confuses which physical cell a UE actually saw, disrupting handover and measurement reporting. \\
-    RSI Reuse & \SI{14}{\kilo\meter} (tier-2) & Shared PRACH root sequence causes random-access preamble collisions between UEs on different cells. \\
+    RSI Reuse & \SI{14}{\kilo\meter} (tier-2) & Reusing the same PRACH root sequence in overlapping neighborhoods can increase random-access interference or ambiguity; the engine therefore enforces conservative reuse separation. \\
     Mod3 Adjacent & Co-site, ring-adjacent & Ring-adjacent sectors sharing Mod3 share a PSS group, degrading synchronization-signal separation at the sector boundary. \\
     Mod3 Rule (strict) & Co-site, 4--5 sectors & All 3 Mod3 values must appear on the site; unavoidable reuse must land only on non-adjacent pairs. \\
-    Mod4 Intra-site & Co-site, ring-adjacent & Ring-adjacent sectors sharing Mod4 share SRS/DMRS resource allocation, degrading uplink channel estimation at the boundary. \\
+    Mod4 Intra-site & Co-site, ring-adjacent & Ring-adjacent sectors sharing the same project-defined Mod4 group violate the planner's co-site separation rule. \\
     \bottomrule
   \end{tabularx}
   \caption{Hard rules enforced by the planning engine (all must equal zero)}
@@ -577,7 +579,7 @@ behaves as designed. The third has no simple closed-form floor: it is the
 outcome of the DSATUR-plus-local-search process in \cref{sec:pi-mod4},
 minimized as far as that local search can reach rather than eliminated outright.
 
-\begin{warningbox}{Mod4 inter-site is a structural ceiling --- not an algorithm limitation}
+\begin{warningbox}{Mod4 inter-site clashes are density-driven}
 Single-sector tabu-style local search plateaus almost immediately at
 $\sim$7\,km neighborhood density: with $\sim$100 tier-1 neighbors competing for
 only 4 colors, there are simply not enough degrees of freedom for any
@@ -680,7 +682,7 @@ reproducible rather than dependent on iteration order or randomness.
 \section{Chapter Summary}
 \label[section]{sec:pi-summary}
 
-The Planning Intelligence engine assigns PCI, RSI, and Mod4/Mod3 to every
+The Planning Intelligence engine assigns PCI and RSI while explicitly planning the PCI-derived Mod4/Mod3 groups for every
 sector of a 2{,}554-sector, 725-site live network through a seven-stage,
 flat-function pipeline. Mod4 is solved as a weighted graph-coloring problem
 (DSATUR plus guaranteed-terminating local search repair); PCI is chosen through

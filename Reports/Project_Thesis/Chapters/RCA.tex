@@ -33,7 +33,7 @@ The core design philosophy rests on two strict operational principles:
 \item \textbf{Deterministic Rules Over Generative Hallucination:} The root-cause decision is made by a priority-ordered, deterministic rule engine grounded in LTE engineering knowledge and 3GPP-defined radio procedures. The Large Language Model (LLM) is positioned strictly downstream as a diagnostic narrative layer to explain the structured verdict; it never independently invents or overrides a root cause.
 \end{enumerate}
 
-The LTE procedure and KPI semantics used by the rule base are consistent with the E-UTRA RRC, physical-layer, and MAC specifications \cite{3gpp36331,3gpp36213,3gpp36321}. The numerical diagnosis gates used in this project are engineering rules calibrated for the project workflow; they should not be interpreted as universal 3GPP optimization thresholds.
+The LTE procedures and KPI semantics used by the rule base are consistent with the E-UTRA RRC, physical-layer, and MAC specifications \cite{3gpp36331,3gpp36213,3gpp36321}. The numerical diagnosis gates used in this project are engineering rules calibrated for the project workflow; they should not be interpreted as universal 3GPP optimization thresholds.
 
 \begin{infobox}{RCA processing chain}
 \centering
@@ -63,7 +63,7 @@ Primary Problem Scope & LTE DL Throughput Degradation & Focus on QoE degradation
 Analysis Unit & Incident-Level Aggregate & Aggregated anomaly episodes with median KPI state\\
 Total Incident Population & 1,382 & Analyzed incident cases\\
 Underlying Drive-Test Rows & 2,824 & Raw observation samples represented\\
-Unique Serving Cells (ECIs) & 423 & Distinct eNodeB sectors monitored\\
+Unique Serving Cell Keys & 423 & Distinct serving-cell identities represented in the RCA handoff\\
 Unique Test Sessions & 254 & Distinct drive-test runs\\
 Observation Window & Aug. 26, 2025 (23:37) $\rightarrow$ Aug. 29, 2025 (00:36) & Approximately 3-day monitoring period\\
 Decision Layer & Deterministic, Priority-Ordered, KPI-Driven & Knowledge base via \texttt{causes.json} and \texttt{kpi\_rules.json}\\
@@ -74,7 +74,7 @@ Explanation Layer & LLM-Assisted Narrative Generation & Converts structured JSON
 \label[tab]{rca-scope}
 \end{table}
 
-The descriptive profiling artifact in Figure~\ref{rca-dataset-overview} is retained exactly as produced during RCA exploration and therefore displays the counts embedded in that profiling snapshot. The complete deterministic evaluation totals used throughout this chapter remain those reported in Table~\ref{rca-scope} and in the empirical-results section.
+Figure~\ref{rca-dataset-overview} provides a compact descriptive view of the incident-level RCA data. The deterministic evaluation population used throughout this chapter contains \textbf{1,382 incidents} and \textbf{2,824 underlying drive-test rows}, as summarized in Table~\ref{rca-scope}.
 
 \begin{figure}[htbp]
 \centering
@@ -113,7 +113,7 @@ LLM Diagnostic Layer & Prompts the LLM to render structured RCA JSON into natura
 
 \section{Data and KPI Taxonomy}
 
-The RCA engine evaluates multi-dimensional drive-test telemetry grouped into distinct functional groups.
+The RCA engine evaluates multi-dimensional drive-test telemetry organized into distinct functional KPI categories.
 
 \begin{table}[htbp]
 \centering
@@ -163,7 +163,7 @@ Figure~\ref{rca-cause-taxonomy} summarizes the engineering cause tree around the
 
 \subsection{Priority 1: Resource Limitation}
 
-\textbf{Cell Congestion (C01):} Triggered when user demand is confirmed, RB usage is saturated ($\ge80\%$), and actual throughput falls significantly below expected baselines ($<75\%$).
+\textbf{Cell Congestion (C01):} Triggered when user demand is confirmed, RB usage is saturated ($\ge80\%$), and the actual-to-expected throughput ratio falls below 0.75.
 
 \textbf{Poor Spectral Efficiency (C02):} Triggered when demand exists and RB allocation is low ($<40\%$), but throughput per RB is degraded while radio quality remains acceptable.
 
@@ -251,56 +251,58 @@ The classification script (\texttt{classify\_incidents.py}) executes a rule-driv
 \item \textbf{Emit Structured Output:} Writes the final JSON payload.
 \end{enumerate}
 
-\subsection{Standardized RCA Output Schema Example}
+\subsection{Real RCA Output Example}
 
-\begin{lstlisting}[language=json,caption={Example standardized RCA output.}]
+To avoid mixing values from different incidents, the thesis uses a real record from the final RCA output rather than a synthetic example. The listing below reproduces one complete incident as emitted by the RCA pipeline; its diagnosis, KPI values, and recommendations all belong to the same case.
+
+\begin{lstlisting}[language=json,caption={Real RCA incident output for INC-000001.}]
 {
-  "incident_id": "INC-2025-08-28-1066034",
+  "incident_id": "INC-000001",
   "diagnosis": {
-    "category": "Resource Limitation",
-    "cause_name": "PRB Allocation / Capacity-Limited",
-    "cause_id": "C01",
-    "severity": "High",
-    "reason": "This anomaly is capacity-limited: the UE had confirmed download demand, was using 96.0% of available RB capacity across 1.0 carrier(s), falling 13.68 Mbps below expected throughput."
+    "category": "Outage / eNodeB Fault",
+    "problem_name": "Outage",
+    "reason": "A throughput/session collapse occurred while this UE's own radio conditions (RSRP -104.58 dBm, SINR 8.44 dB) remained normal -- pointing to a network-side service disruption rather than a radio-quality issue.",
+    "cause_id": "C06",
+    "severity": "Medium"
   },
   "key_kpi_evidence": {
+    "rlf_event_present": false,
     "actual_throughput_mbps": 0.03,
     "expected_throughput_mbps": 0.47,
     "rsrp_dbm": -104.58,
+    "rsrq_db": -9.48,
     "sinr_db": 8.44,
     "cqi": 8.0,
     "mcs": 10.0,
     "bler_pct": 11.76,
-    "rb_usage_pct": 96.0
-  },
-  "evaluation_trace": {
-    "priority_1_to_4": {
-      "C01": {
-        "matched": true,
-        "sub_evidence": {
-          "C01_a": true,
-          "C01_b": "NOT_COMPUTABLE",
-          "C01_e": false
-        }
-      }
-    }
+    "rb_usage_pct": 11.0,
+    "cell_prb_utilization_pct": 11.0,
+    "carrier_count": 1.0,
+    "lte_rank": 1.0,
+    "near_handover_mobility_flag": false,
+    "ue_speed_kmh": 0.0,
+    "serving_minus_best_neighbor_rsrp": 9.79,
+    "handover_count_pm5s": 0.0,
+    "near_rach_failure_flag": false,
+    "neighbor_cell_availability_pct": 100.0
   },
   "recommended_solution": {
-    "solution_id": "SOL_C01",
     "recommended_actions": [
-      "Check cell-level PRB utilization counters in OSS to confirm macro-level sector congestion.",
-      "Evaluate carrier aggregation configuration and secondary carrier availability to offload traffic.",
-      "Consider physical layer expansion or active load-balancing parameter tuning."
+      "Check OSS alarms/counters for both the serving site AND its immediate neighbors during this exact time window -- this pattern (throughput/session collapse with no radio explanation) cannot on its own tell you which site is at fault.",
+      "Cross-reference against site maintenance, reset, or transport-link logs for the same window before dispatching an RF team.",
+      "No RF tuning action is appropriate here until an outage/alarm event is confirmed or ruled out on either site."
     ],
     "standards_and_vendor_references": [
       {
-        "source": "3GPP TS 36.331 / Vendor PRB Optimization Guide",
-        "note": "Reference material used by the engineering knowledge base."
+        "source": "3GPP TS 32.111 (Fault Management)",
+        "note": "Standard practice is to correlate a throughput/traffic collapse signature against OSS alarms before pursuing an RF explanation -- and to check neighboring sites, not just the serving cell, before attributing fault."
       }
     ]
   }
 }
 \end{lstlisting}
+
+The fault-management reference stored in the incident is interpreted conservatively in this thesis. 3GPP TS 32.111 is a multipart Fault Management family; the Alarm Integration Reference Point information service is specified in TS 32.111-2 \cite{3gpp32111-2}. The recommendation to inspect both the serving site and nearby sites is an engineering investigation step used by this project, not a verbatim normative requirement of TS 32.111-2. The emitted \texttt{cause\_id} and category labels are reproduced from the same final RCA artifact and are not re-derived inside the thesis.
 
 \section{Incident-Level Empirical Results (1,382 Incidents)}
 
@@ -418,7 +420,7 @@ Can thresholds be updated? & Yes. Modifying values in \texttt{kpi\_rules.json} c
 Can remedies be customized? & Yes. Updating \texttt{solutions.json} updates engineering recommendations system-wide.\\
 How are data gaps handled? & Missing fields are flagged as \texttt{NOT\_COMPUTABLE}, preventing false conclusions.\\
 Can an engineer override the output? & Yes. The structured JSON retains full evaluation traces (\texttt{evaluation\_trace}) for manual review.\\
-Does the LLM introduce hallucinated causes? & No. The cause decision is finalized before the LLM prompt is constructed.\\
+Can the LLM alter the deterministic cause? & The cause decision is finalized before the LLM prompt is constructed, and the LLM is instructed not to alter the assigned cause.\\
 \bottomrule
 \end{tabularx}
 \caption{Explainability and auditability mechanisms.}
@@ -485,5 +487,3 @@ standards\_references & Array of Objects & 3GPP and vendor documentation citatio
 \caption{Suggested downstream integration schema.}
 \label[tab]{rca-downstream-schema}
 \end{table}
-
-\FloatBarrier

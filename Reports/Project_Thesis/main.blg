@@ -15,44 +15,55 @@ Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: unsrtnat.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 11 entries,
+Warning--empty year in 3gpp36331
+Warning--empty year in 3gpp36213
+Warning--empty year in 3gpp36321
+Warning--empty year in 3gpp32111-2
+Warning--empty year in 3gpp38211
+Warning--empty year in 3gpp38331
+Warning--empty year in infovista_tems
+Warning--empty year in infovista_planet
+Warning--empty year in ericsson_cognitive
+Warning--empty year in nokia_mantaray
+You've used 14 entries,
             2481 wiz_defined-function locations,
-            607 strings with 6845 characters,
-and the built_in function-call counts, 3397 in all, are:
-= -- 276
-> -- 187
-< -- 10
-+ -- 81
-- -- 56
-* -- 218
-:= -- 579
-add.period$ -- 43
-call.type$ -- 11
-change.case$ -- 22
+            619 strings with 7301 characters,
+and the built_in function-call counts, 4220 in all, are:
+= -- 358
+> -- 208
+< -- 16
++ -- 96
+- -- 62
+* -- 274
+:= -- 721
+add.period$ -- 58
+call.type$ -- 14
+change.case$ -- 28
 chr.to.int$ -- 8
-cite$ -- 11
-duplicate$ -- 157
-empty$ -- 304
-format.name$ -- 67
-if$ -- 707
-int.to.chr$ -- 4
-int.to.str$ -- 12
+cite$ -- 24
+duplicate$ -- 202
+empty$ -- 367
+format.name$ -- 76
+if$ -- 867
+int.to.chr$ -- 7
+int.to.str$ -- 15
 missing$ -- 0
-newline$ -- 73
-num.names$ -- 33
-pop$ -- 108
+newline$ -- 94
+num.names$ -- 42
+pop$ -- 142
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 14
 quote$ -- 0
-skip$ -- 105
+skip$ -- 109
 stack$ -- 0
-substring$ -- 22
-swap$ -- 27
-text.length$ -- 3
+substring$ -- 28
+swap$ -- 36
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 77
-warning$ -- 0
-while$ -- 22
+type$ -- 98
+warning$ -- 10
+while$ -- 28
 width$ -- 0
-write$ -- 162
+write$ -- 211
+(There were 10 warnings)

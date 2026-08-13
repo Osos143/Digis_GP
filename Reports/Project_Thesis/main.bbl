@@ -1,66 +1,91 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[{3GPP}(2026{\natexlab{a}})]{3gpp36331}
+\bibitem[{3GPP}({\natexlab{a}})]{3gpp36331}
 {3GPP}.
 \newblock {TS 36.331: Evolved Universal Terrestrial Radio Access (E-UTRA);
   Radio Resource Control (RRC); Protocol specification}.
 \newblock Technical Report TS 36.331, 3rd Generation Partnership Project,
-  2026{\natexlab{a}}.
+  {\natexlab{a}}.
 \newblock URL \url{https://www.3gpp.org/dynareport/36331.htm}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{3GPP}(2026{\natexlab{b}})]{3gpp36213}
+\bibitem[{3GPP}({\natexlab{b}})]{3gpp36213}
 {3GPP}.
 \newblock {TS 36.213: Evolved Universal Terrestrial Radio Access (E-UTRA);
   Physical layer procedures}.
 \newblock Technical Report TS 36.213, 3rd Generation Partnership Project,
-  2026{\natexlab{b}}.
+  {\natexlab{b}}.
 \newblock URL \url{https://www.3gpp.org/dynareport/36213.htm}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{3GPP}(2026{\natexlab{c}})]{3gpp36321}
+\bibitem[{3GPP}({\natexlab{c}})]{3gpp36321}
 {3GPP}.
 \newblock {TS 36.321: Evolved Universal Terrestrial Radio Access (E-UTRA);
   Medium Access Control (MAC) protocol specification}.
 \newblock Technical Report TS 36.321, 3rd Generation Partnership Project,
-  2026{\natexlab{c}}.
+  {\natexlab{c}}.
 \newblock URL \url{https://www.3gpp.org/dynareport/36321.htm}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{Infovista}(2026{\natexlab{a}})]{infovista_tems}
+\bibitem[{3GPP}({\natexlab{d}})]{3gpp32111-2}
+{3GPP}.
+\newblock {TS 32.111-2: Telecommunication management; Fault Management; Part 2:
+  Alarm Integration Reference Point (IRP): Information Service (IS)}.
+\newblock Technical Report TS 32.111-2, 3rd Generation Partnership Project,
+  {\natexlab{d}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/32111-2.htm}.
+\newblock Accessed 14 August 2026.
+
+\bibitem[{3GPP}({\natexlab{e}})]{3gpp38211}
+{3GPP}.
+\newblock {TS 38.211: NR; Physical channels and modulation}.
+\newblock Technical Report TS 38.211, 3rd Generation Partnership Project,
+  {\natexlab{e}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/38211.htm}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{3GPP}({\natexlab{f}})]{3gpp38331}
+{3GPP}.
+\newblock {TS 38.331: NR; Radio Resource Control (RRC); Protocol
+  specification}.
+\newblock Technical Report TS 38.331, 3rd Generation Partnership Project,
+  {\natexlab{f}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/38331.htm}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{Infovista}({\natexlab{a}})]{infovista_tems}
 {Infovista}.
 \newblock {TEMS Investigation: Mobile Network Drive Testing, Network Testing
   and Troubleshooting}.
 \newblock
   \url{https://www.infovista.com/products/tems-investigation/network-testing-and-troubleshooting},
-  2026{\natexlab{a}}.
+  {\natexlab{a}}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{Infovista}(2026{\natexlab{b}})]{infovista_planet}
+\bibitem[{Infovista}({\natexlab{b}})]{infovista_planet}
 {Infovista}.
 \newblock {Planet: RF Planning and Optimization}.
 \newblock \url{https://www.infovista.com/products/planet/rf-planning-software},
-  2026{\natexlab{b}}.
+  {\natexlab{b}}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{Ericsson}(2026)]{ericsson_cognitive}
+\bibitem[{Ericsson}()]{ericsson_cognitive}
 {Ericsson}.
 \newblock {Transforming Planning and Optimization with AI: Cognitive Software}.
 \newblock
-  \url{https://www.ericsson.com/en/ai/ai-in-networks/cognitive-software}, 2026.
+  \url{https://www.ericsson.com/en/ai/ai-in-networks/cognitive-software}.
 \newblock Accessed 13 August 2026.
 
-\bibitem[{Nokia}(2026)]{nokia_mantaray}
+\bibitem[{Nokia}()]{nokia_mantaray}
 {Nokia}.
 \newblock {MantaRay SON: AI-Powered Radio Network Optimization and Automation}.
 \newblock
-  \url{https://www.nokia.com/mobile-networks/ran-operations/network-management-son/},
-  2026.
+  \url{https://www.nokia.com/mobile-networks/ran-operations/network-management-son/}.
 \newblock Accessed 13 August 2026.
 
 \bibitem[Tanhatalab et~al.(2019)Tanhatalab, Yousefi, Hosseini, Bonab,

@@ -67,7 +67,7 @@ The throughput distribution is strongly right-skewed, which is important because
 
 \subsection{Session boundaries and leakage control}
 
-Drive-test samples are temporally correlated. A random row split would allow neighboring observations from the same route and session to appear in both model training and validation, artificially improving predictive metrics. The pipeline therefore assigns a session identifier and treats the session as the minimum independence unit for machine-learning validation. Temporal features used by production models are constructed from current or past information only; future samples are not allowed to leak into the prediction of the present row.
+Drive-test samples are temporally correlated. A random row split would allow neighboring observations from the same route and session to appear in both model training and validation, artificially improving predictive metrics. The pipeline therefore assigns a session identifier and treats the session as the minimum unit of independence for machine-learning validation. Temporal features used by production models are constructed from current or past information only; future samples are not allowed to leak into the prediction of the present row.
 
 \section{Statistical Detection Layer}
 \label[section]{sec:statistical-layer}
@@ -225,7 +225,7 @@ S_{\mathrm{stat,pre}}=\max(B_{\mathrm{stat}},M_{\mathrm{stat}})+B_{\mathrm{famil
 
 Low-RB observations without strong radio or temporal explanation are smoothly compressed toward a lower ceiling because low throughput under low resource demand can represent low offered load rather than network limitation. Non-catastrophic scores above 85 are also softly compressed toward 95, preserving ranking without creating an artificial score pile-up. A value of 100 is reserved for a strict catastrophic override requiring very low actual throughput, a high expected reference, credible medium/high RB demand, and support from at least two independent statistical families.
 
-The contribution audit confirms that the score is driven mainly by anomaly seriousness rather than bonuses. Among final statistical anomaly rows, the mean strongest-trigger base was 44.47 and the mean continuous magnitude was 55.74, whereas the mean family and context bonuses were only 1.31 and 3.85 respectively. Candidate-score quality control also showed a median score of 58.70, P90 of 87.55, P95 of 92.90, and no artificial pile-up at either compression boundary.
+The contribution audit confirms that the score is driven mainly by anomaly seriousness rather than bonuses. Among final statistical anomaly rows, the mean strongest-trigger base score was 44.47 and the mean continuous magnitude was 55.74, whereas the mean family and context bonuses were only 1.31 and 3.85 respectively. Candidate-score quality control also showed a median score of 58.70, P90 of 87.55, P95 of 92.90, and no artificial pile-up at either compression boundary.
 
 \subsection{Statistical-only score distribution and detected-anomaly context}
 
@@ -239,7 +239,7 @@ Before introducing machine-learning evidence, it is useful to inspect the behavi
 \end{figure}
 \FloatBarrier
 
-Figure~\ref{stat-context-example} gives a representative \textbf{statistics-only} anomaly context window. The selected anomaly is centered at zero seconds. The top panel compares actual throughput with the statistical radio-conditioned P75, RB-conditioned P75, and rolling-median references; the sharp instantaneous throughput collapse is visible against substantially higher local opportunity references. The middle panel shows the contemporaneous radio evidence (RSRP, RSRQ, and SINR), while the lower panel shows link-adaptation and decoding indicators (CQI, MCS, and BLER). Reading the panels together is important: the detector is not simply reacting to a low throughput number, but preserving the surrounding radio, temporal, and link-adaptation evidence needed to explain why the sample is abnormal and to support later RCA reasoning.
+Figure~\ref{stat-context-example} gives a representative \textbf{statistics-only} anomaly context window. The selected anomaly is centered at zero seconds. The top panel compares actual throughput with the statistical radio-conditioned P75, RB-conditioned P75, and rolling-median references; the sharp instantaneous throughput collapse is visible against substantially higher local opportunity references. The middle panel shows the contemporaneous radio evidence (RSRP, RSRQ, and SINR), while the lower panel shows link-adaptation and decoding indicators (CQI, MCS, and BLER). Reading the panels together is important: the detector does not simply react to a low-throughput value; it preserves the surrounding radio, temporal, and link-adaptation evidence needed to explain why the sample is abnormal and to support later RCA reasoning.
 
 \begin{figure}[H]
   \centering
@@ -466,7 +466,7 @@ The compact handoff contains \num{1382} unique incident IDs and matching canonic
 \section{Representative Detected Degradation}
 \label[section]{sec:representative-case}
 
-Figure~\ref{top-episode-context} shows a high-priority final episode around the selected anomaly instant. The figure overlays actual throughput, statistical opportunity references, resource and temporal model predictions, and the rolling baseline. The selected episode has priority approximately 87.0, impact 76.4, confidence 100, and persistence 22.2. At the anomaly instant the actual throughput is approximately \SI{3.18}{\mega\bit\per\second}, while the radio-conditioned P75 opportunity reference is approximately \SI{118.45}{\mega\bit\per\second} and the RB-conditioned P75 reference is approximately \SI{107.87}{\mega\bit\per\second}.
+Figure~\ref{top-episode-context} shows a high-priority final episode around the selected anomaly instant. The figure overlays actual throughput, statistical opportunity references, resource and temporal model predictions, and the rolling baseline. The selected episode has a priority of approximately 87.0, an impact of 76.4, a confidence of 100, and a persistence score of 22.2. At the anomaly instant the actual throughput is approximately \SI{3.18}{\mega\bit\per\second}, while the radio-conditioned P75 opportunity reference is approximately \SI{118.45}{\mega\bit\per\second} and the RB-conditioned P75 reference is approximately \SI{107.87}{\mega\bit\per\second}.
 
 The important point is not simply that throughput is low. Multiple independent views agree that the row is far below a credible opportunity: the statistical P75 references are high, the production predictive families also expect substantially higher throughput, and the local temporal context indicates a sharp collapse. This produces high confidence without relying on a single threshold.
 

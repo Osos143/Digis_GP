@@ -38,74 +38,74 @@
 \contentsline {section}{\numberline {2.3}Data and KPI Taxonomy}{24}{section.2.3}%
 \contentsline {section}{\numberline {2.4}RCA Reasoning Framework and Taxonomy}{26}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Priority 1: Resource Limitation}{26}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Priority 2: Coverage and Radio Quality}{27}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.2}Priority 2: Coverage and Radio Quality}{26}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}Priority 3: Outage and Cell Health}{27}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Priority 4: Mobility and Access}{27}{subsection.2.4.4}%
 \contentsline {subsection}{\numberline {2.4.5}Priority 5: MIMO Performance}{27}{subsection.2.4.5}%
 \contentsline {subsection}{\numberline {2.4.6}Priority 6: Carrier Aggregation}{27}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}Priority 7: Fallback / Inconclusive}{28}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.7}Priority 7: Fallback / Inconclusive}{27}{subsection.2.4.7}%
 \contentsline {section}{\numberline {2.5}Knowledge Base Architecture: The Three-JSON System}{28}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Deterministic RCA Engine Execution Flow}{29}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Standardized RCA Output Schema Example}{29}{subsection.2.6.1}%
-\contentsline {section}{\numberline {2.7}Incident-Level Empirical Results (1,382 Incidents)}{30}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Root-Cause Distribution Summary}{30}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Key Engineering Findings}{32}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.6.1}Real RCA Output Example}{29}{subsection.2.6.1}%
+\contentsline {section}{\numberline {2.7}Incident-Level Empirical Results (1,382 Incidents)}{31}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Root-Cause Distribution Summary}{31}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Key Engineering Findings}{31}{subsection.2.7.2}%
 \contentsline {section}{\numberline {2.8}Remediation Mapping Engine}{32}{section.2.8}%
 \contentsline {section}{\numberline {2.9}Downstream LLM Diagnostic Narration}{32}{section.2.9}%
-\contentsline {subsection}{\numberline {2.9.1}Recommended Prompting Structure}{33}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.1}Recommended Prompting Structure}{32}{subsection.2.9.1}%
 \contentsline {section}{\numberline {2.10}System Validation and Explainability Audit}{33}{section.2.10}%
 \contentsline {section}{\numberline {2.11}Future Work and Enhancements}{33}{section.2.11}%
 \contentsline {section}{\numberline {2.12}RCA Chapter Conclusion}{34}{section.2.12}%
 \contentsline {section}{\numberline {2.13}Suggested Schema for Downstream Integration}{34}{section.2.13}%
-\contentsline {chapter}{\numberline {3.}Planning Intelligence}{37}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Overview and Scope}{37}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}The Three Assigned Parameters}{37}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Architecture Pivot: Full Reset vs. Incremental Planning}{38}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}System Architecture}{39}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Why Regions Can Be Planned Independently}{39}{subsection.3.2.1}%
-\contentsline {section}{\numberline {3.3}Pipeline Stages in Detail}{41}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Stage 1: Data Loading}{41}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Stage 2: Neighbor Graph Construction}{41}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Stage 3: Geometry Engine}{42}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Stage 4: Constraint Generation}{44}{subsection.3.3.4}%
-\contentsline {paragraph}{Ring adjacency.}{44}{paragraph*.38}%
-\contentsline {paragraph}{Site-size-aware Mod3 rule.}{44}{paragraph*.39}%
-\contentsline {paragraph}{Measured site-size distribution.}{44}{paragraph*.42}%
-\contentsline {section}{\numberline {3.4}Stage 5: The Assignment Engine}{46}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Sub-stage 5.1: Mod4 Assignment}{46}{subsection.3.4.1}%
-\contentsline {paragraph}{Co-site Mod4 rule.}{46}{paragraph*.44}%
-\contentsline {paragraph}{Step 1 --- DSATUR initial coloring.}{46}{paragraph*.45}%
-\contentsline {paragraph}{Step 2 --- Local search repair.}{46}{paragraph*.46}%
-\contentsline {subsection}{\numberline {3.4.2}Sub-stage 5.2: PCI Assignment}{47}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Sub-stage 5.3: RSI Assignment}{48}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Stage 6: Independent Validation}{48}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Stage 7: Export}{49}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Planning Modes}{50}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Hard Rules Reference}{51}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Soft Rules Reference}{51}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Measured Results and Performance}{52}{section.3.10}%
-\contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{53}{subsection.3.10.1}%
-\contentsline {section}{\numberline {3.11}Chapter Summary}{55}{section.3.11}%
-\contentsline {chapter}{\numberline {4.}System Integration and Platform Design}{57}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Chapter Scope and Integration Objective}{57}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Platform Architecture}{57}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Logical Layers}{57}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Module Interface Contracts}{59}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Drive-Test Workspace Integration}{59}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Session-Oriented Execution}{59}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Dashboard and Backend-Figure Inspection}{60}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Dataset Upload and Pipeline Progress}{60}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}RCA Evidence and Engineer Decision Support}{61}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Spatial Context and Interactive Map}{62}{section.4.5}%
-\contentsline {section}{\numberline {4.6}AI Assistant and Report Generation}{63}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Planning Intelligence Integration}{64}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Role-Based Workspace Routing and Navigation}{64}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Auditability, Reproducibility, and Operational Safeguards}{65}{section.4.9}%
-\contentsline {section}{\numberline {4.10}Chapter Summary}{65}{section.4.10}%
-\contentsline {chapter}{\numberline {5.}Project Synthesis, Related Work, and Conclusion}{67}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Project Synthesis}{67}{section.5.1}%
-\contentsline {section}{\numberline {5.2}End-to-End Outcomes}{67}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Positioning Against Related Telecom Work}{67}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Limitations and Future Directions}{68}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Final Conclusion}{69}{section.5.5}%
-\contentsline {chapter}{References}{71}{section*.67}%
+\contentsline {chapter}{\numberline {3.}Planning Intelligence}{36}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Overview and Scope}{36}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Assigned Parameters and Derived Groups}{36}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Architecture Pivot: Full Reset vs. Incremental Planning}{37}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}System Architecture}{38}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Why Regions Can Be Planned Independently}{38}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Pipeline Stages in Detail}{40}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Stage 1: Data Loading}{40}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Stage 2: Neighbor Graph Construction}{40}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Stage 3: Geometry Engine}{41}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Stage 4: Constraint Generation}{42}{subsection.3.3.4}%
+\contentsline {paragraph}{Ring adjacency.}{42}{paragraph*.38}%
+\contentsline {paragraph}{Site-size-aware Mod3 rule.}{43}{paragraph*.39}%
+\contentsline {paragraph}{Measured site-size distribution.}{43}{paragraph*.42}%
+\contentsline {section}{\numberline {3.4}Stage 5: The Assignment Engine}{45}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Sub-stage 5.1: Mod4 Assignment}{45}{subsection.3.4.1}%
+\contentsline {paragraph}{Co-site Mod4 rule.}{45}{paragraph*.44}%
+\contentsline {paragraph}{Step 1 --- DSATUR initial coloring.}{45}{paragraph*.45}%
+\contentsline {paragraph}{Step 2 --- Local search repair.}{45}{paragraph*.46}%
+\contentsline {subsection}{\numberline {3.4.2}Sub-stage 5.2: PCI Assignment}{46}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Sub-stage 5.3: RSI Assignment}{47}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Stage 6: Independent Validation}{47}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Stage 7: Export}{48}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Planning Modes}{49}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Hard Rules Reference}{50}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Soft Rules Reference}{50}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Measured Results and Performance}{51}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Runtime Benchmarks}{52}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}Chapter Summary}{54}{section.3.11}%
+\contentsline {chapter}{\numberline {4.}System Integration and Platform Design}{55}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Chapter Scope and Integration Objective}{55}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Platform Architecture}{55}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Logical Layers}{55}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Module Interface Contracts}{57}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Drive-Test Workspace Integration}{57}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Session-Oriented Execution}{57}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Dashboard and Backend-Figure Inspection}{58}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Dataset Upload and Pipeline Progress}{58}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}RCA Evidence and Engineer Decision Support}{59}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Spatial Context and Interactive Map}{60}{section.4.5}%
+\contentsline {section}{\numberline {4.6}AI Assistant and Report Generation}{61}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Planning Intelligence Integration}{62}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Role-Based Workspace Routing and Navigation}{62}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Auditability, Reproducibility, and Operational Safeguards}{63}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Chapter Summary}{63}{section.4.10}%
+\contentsline {chapter}{\numberline {5.}Project Synthesis, Related Work, and Conclusion}{65}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Project Synthesis}{65}{section.5.1}%
+\contentsline {section}{\numberline {5.2}End-to-End Outcomes}{65}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Positioning Against Related Telecom Work}{65}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Limitations and Future Directions}{66}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Final Conclusion}{67}{section.5.5}%
+\contentsline {chapter}{References}{69}{section*.67}%

@@ -7,7 +7,7 @@
 % ----------------------------------------------------------------
 \providecommand*\showkeyslabelformat[1]{}
 
-\documentclass[12pt,twoside,openright]{thesis}
+\documentclass[12pt,twoside,openany]{thesis}
 
 % Shared formatting lives in one file so chapter authors rarely need to edit main.tex.
 \input{thesis_setup.tex}
@@ -92,8 +92,9 @@
 
 % Shared bibliography.
 \IfFileExists{references.bib}{%
-  \cleardoublepage
+  \clearpage
   \phantomsection
+  \renewcommand{\bibname}{References}
   \addcontentsline{toc}{chapter}{References}
   \bibliographystyle{unsrtnat}
   \bibliography{references}
