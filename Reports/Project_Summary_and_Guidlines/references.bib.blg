@@ -1,0 +1,14 @@
+[0] Config.pm:308> INFO - This is Biber 2.20 running in TOOL mode
+[0] Config.pm:311> INFO - Logfile is '/mnt/data/netfix_rca_thesis_final/references.bib.blg'
+[53] biber:340> INFO - === Thu Aug 13, 2026, 10:08:59
+[70] Biber.pm:4650> INFO - Looking for bibtex file '/mnt/data/netfix_rca_thesis_final/references.bib'
+[71] bibtex.pm:1713> INFO - LaTeX decoding ...
+[76] bibtex.pm:1519> INFO - Found BibTeX data source '/mnt/data/netfix_rca_thesis_final/references.bib'
+[136] Biber.pm:1692> INFO - Datamodel validation starting
+[137] Biber.pm:1742> INFO - Datamodel validation complete
+[142] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[142] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[143] Biber.pm:4283> INFO - Sorting list 'tool/global//global/global/global' of type 'entry' with template 'tool' and locale 'en_US'
+[143] Biber.pm:4289> INFO - No sort tailoring available for locale 'en_US'
+[146] bibtex.pm:440> INFO - Writing '/mnt/data/netfix_rca_thesis_final/_qa/references_checked.bib' with encoding 'UTF-8'
+[147] bibtex.pm:481> INFO - Output to /mnt/data/netfix_rca_thesis_final/_qa/references_checked.bib

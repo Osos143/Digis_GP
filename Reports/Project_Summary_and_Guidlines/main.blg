@@ -9,48 +9,50 @@ Reallocating 'name_of_file' (item size: 1) to 35 items.
 A level-1 auxiliary file: Chapters/Planning_Intelligence.aux
 Reallocating 'name_of_file' (item size: 1) to 45 items.
 A level-1 auxiliary file: Chapters/Integration_and_Platform_Design.aux
-I found no \citation commands---while reading file main.aux
-I found no \bibdata command---while reading file main.aux
-I found no \bibstyle command---while reading file main.aux
-You've used 0 entries,
-            0 wiz_defined-function locations,
-            87 strings with 606 characters,
-and the built_in function-call counts, 0 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 0
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 0
-format.name$ -- 0
-if$ -- 0
-int.to.chr$ -- 0
-int.to.str$ -- 0
+Reallocating 'name_of_file' (item size: 1) to 41 items.
+A level-1 auxiliary file: Chapters/Conclusion_and_Related_Work.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: unsrtnat.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+You've used 11 entries,
+            2481 wiz_defined-function locations,
+            607 strings with 6845 characters,
+and the built_in function-call counts, 3397 in all, are:
+= -- 276
+> -- 187
+< -- 10
++ -- 81
+- -- 56
+* -- 218
+:= -- 579
+add.period$ -- 43
+call.type$ -- 11
+change.case$ -- 22
+chr.to.int$ -- 8
+cite$ -- 11
+duplicate$ -- 157
+empty$ -- 304
+format.name$ -- 67
+if$ -- 707
+int.to.chr$ -- 4
+int.to.str$ -- 12
 missing$ -- 0
-newline$ -- 0
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 0
-purify$ -- 0
+newline$ -- 73
+num.names$ -- 33
+pop$ -- 108
+preamble$ -- 1
+purify$ -- 11
 quote$ -- 0
-skip$ -- 0
+skip$ -- 105
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 22
+swap$ -- 27
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 77
 warning$ -- 0
-while$ -- 0
+while$ -- 22
 width$ -- 0
-write$ -- 0
-(There were 3 error messages)
+write$ -- 162

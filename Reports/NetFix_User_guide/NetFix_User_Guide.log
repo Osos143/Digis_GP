@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  12 AUG 2026 18:28
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.6.18)  13 AUG 2026 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1132,27 +1132,86 @@ File: Figures/Screenshot from 2026-08-12 14-39-40.png Graphic file (type bmp)
 [9]
 
 [10]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 598.
+File: Figures/login_page.jpeg Graphic file (type bmp)
+<Figures/login_page.jpeg>
+File: Figures/sidebar_overview.jpeg Graphic file (type bmp)
+<Figures/sidebar_overview.jpeg>
 
 
 [11]
+File: Figures/upload_tab.jpeg Graphic file (type bmp)
+<Figures/upload_tab.jpeg>
 
-[12] (NetFix_User_Guide.aux)
+
+[12]
+File: Figures/planning_kpi_summary.jpeg Graphic file (type bmp)
+<Figures/planning_kpi_summary.jpeg>
+
+
+[13]
+File: Figures/planning_network_map.jpeg Graphic file (type bmp)
+<Figures/planning_network_map.jpeg>
+File: Figures/planning_region_breakdown.jpeg Graphic file (type bmp)
+<Figures/planning_region_breakdown.jpeg>
+
+
+[14]
+File: Figures/clashes_tab.jpeg Graphic file (type bmp)
+<Figures/clashes_tab.jpeg>
+
+
+[15]
+File: Figures/assignment_tab.jpeg Graphic file (type bmp)
+<Figures/assignment_tab.jpeg>
+
+
+[16]
+File: Figures/addsite_replan.jpeg Graphic file (type bmp)
+<Figures/addsite_replan.jpeg>
+File: Figures/addsite_replan_map_review.jpeg Graphic file (type bmp)
+<Figures/addsite_replan_map_review.jpeg>
+
+
+[17]
+File: Figures/addsite_new_map_picker.jpeg Graphic file (type bmp)
+<Figures/addsite_new_map_picker.jpeg>
+File: Figures/addsite_new_preview_result.jpeg Graphic file (type bmp)
+<Figures/addsite_new_preview_result.jpeg>
+File: Figures/octo_chat_conversation.jpeg Graphic file (type bmp)
+<Figures/octo_chat_conversation.jpeg>
+
+
+[18]
+File: Figures/octo_toolset_panel.jpeg Graphic file (type bmp)
+<Figures/octo_toolset_panel.jpeg>
+
+
+[19]
+File: Figures/voronoi_site_picker.jpeg Graphic file (type bmp)
+<Figures/voronoi_site_picker.jpeg>
+File: Figures/voronoi_diagram_before_after.jpeg Graphic file (type bmp)
+<Figures/voronoi_diagram_before_after.jpeg>
+File: Figures/voronoi_real_map_before_after.jpeg Graphic file (type bmp)
+<Figures/voronoi_real_map_before_after.jpeg>
+
+
+[20]
+
+[21] (NetFix_User_Guide.aux)
  ***********
 LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
  ***********
 Package rerunfilecheck Info: File `NetFix_User_Guide.out' has not changed.
-(rerunfilecheck)             Checksum: 6117A1D73C4BB78E6126EA046258B234;7808.
+(rerunfilecheck)             Checksum: C74ED57A664CD2696DC34C577AD5E680;9387.
  ) 
 Here is how much of TeX's memory you used:
- 31620 strings out of 403341
- 624761 string characters out of 5463328
- 1098765 words of memory out of 5000000
- 59511 multiletter control sequences out of 15000+600000
- 683206 words of font info for 89 fonts, out of 8000000 for 9000
+ 31841 strings out of 403341
+ 632102 string characters out of 5463328
+ 1103012 words of memory out of 5000000
+ 59714 multiletter control sequences out of 15000+600000
+ 687151 words of font info for 89 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  98i,12n,101p,1208b,1228s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on NetFix_User_Guide.pdf (13 pages).
+Output written on NetFix_User_Guide.pdf (22 pages).

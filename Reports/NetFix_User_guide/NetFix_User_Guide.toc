@@ -21,11 +21,17 @@
 \contentsline {subsubsection}{\numberline {2.6.2}Supported workflows}{8}{subsubsection.2.6.2}%
 \contentsline {subsubsection}{\numberline {2.6.3}Context and telemetry sidebar}{9}{subsubsection.2.6.3}%
 \contentsline {subsection}{\numberline {2.7}Module 6: Session History and Audit Trail}{9}{subsection.2.7}%
-\contentsline {section}{\numberline {3}5G Parameter Planning Portal (NetPulse)}{11}{section.3}%
+\contentsline {section}{\numberline {3}5G Network Planning Portal}{11}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Step 1: Sign in and open the Planning workspace}{11}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Step 2: Load a network-planning workbook}{11}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Step 3: Audit modulo conflicts and inspect the map}{11}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Step 4: Run automated bulk replanning}{11}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Step 5: Add a new site interactively}{11}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Step 6: Review and export the engineering plan}{11}{subsection.3.6}%
-\contentsline {section}{\numberline {4}Operational Notes}{12}{section.4}%
+\contentsline {subsection}{\numberline {3.2}Step 2: Load a network-planning workbook (Upload \& Plan)}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Step 3: Review the network dashboard (Planning)}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Step 4: Investigate conflicts (Clashes)}{15}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Step 5: Review assignments as a data table (Assignments)}{16}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Step 6: Add a new site or replan an existing one (Add Site)}{17}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Re-plan an existing site}{17}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Add a brand-new site}{17}{subsubsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.7}Step 7: Ask the OCTO copilot}{18}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Step 8: Compare planning revisions (Voronoi Compare)}{20}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Step 9: Export the deployment-ready workbook}{21}{subsection.3.9}%
+\contentsline {subsection}{\numberline {3.10}Quick reference}{21}{subsection.3.10}%
+\contentsline {section}{\numberline {4}Operational Notes}{21}{section.4}%

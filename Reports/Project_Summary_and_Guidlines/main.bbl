@@ -1,0 +1,97 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{3GPP}(2026{\natexlab{a}})]{3gpp36331}
+{3GPP}.
+\newblock {TS 36.331: Evolved Universal Terrestrial Radio Access (E-UTRA);
+  Radio Resource Control (RRC); Protocol specification}.
+\newblock Technical Report TS 36.331, 3rd Generation Partnership Project,
+  2026{\natexlab{a}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/36331.htm}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{3GPP}(2026{\natexlab{b}})]{3gpp36213}
+{3GPP}.
+\newblock {TS 36.213: Evolved Universal Terrestrial Radio Access (E-UTRA);
+  Physical layer procedures}.
+\newblock Technical Report TS 36.213, 3rd Generation Partnership Project,
+  2026{\natexlab{b}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/36213.htm}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{3GPP}(2026{\natexlab{c}})]{3gpp36321}
+{3GPP}.
+\newblock {TS 36.321: Evolved Universal Terrestrial Radio Access (E-UTRA);
+  Medium Access Control (MAC) protocol specification}.
+\newblock Technical Report TS 36.321, 3rd Generation Partnership Project,
+  2026{\natexlab{c}}.
+\newblock URL \url{https://www.3gpp.org/dynareport/36321.htm}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{Infovista}(2026{\natexlab{a}})]{infovista_tems}
+{Infovista}.
+\newblock {TEMS Investigation: Mobile Network Drive Testing, Network Testing
+  and Troubleshooting}.
+\newblock
+  \url{https://www.infovista.com/products/tems-investigation/network-testing-and-troubleshooting},
+  2026{\natexlab{a}}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{Infovista}(2026{\natexlab{b}})]{infovista_planet}
+{Infovista}.
+\newblock {Planet: RF Planning and Optimization}.
+\newblock \url{https://www.infovista.com/products/planet/rf-planning-software},
+  2026{\natexlab{b}}.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{Ericsson}(2026)]{ericsson_cognitive}
+{Ericsson}.
+\newblock {Transforming Planning and Optimization with AI: Cognitive Software}.
+\newblock
+  \url{https://www.ericsson.com/en/ai/ai-in-networks/cognitive-software}, 2026.
+\newblock Accessed 13 August 2026.
+
+\bibitem[{Nokia}(2026)]{nokia_mantaray}
+{Nokia}.
+\newblock {MantaRay SON: AI-Powered Radio Network Optimization and Automation}.
+\newblock
+  \url{https://www.nokia.com/mobile-networks/ran-operations/network-management-son/},
+  2026.
+\newblock Accessed 13 August 2026.
+
+\bibitem[Tanhatalab et~al.(2019)Tanhatalab, Yousefi, Hosseini, Bonab,
+  Fakharian, and Abarghouei]{tanhatalab2019deepran}
+Mohammad~Rasoul Tanhatalab, Hossein Yousefi, Hesam~Mohammad Hosseini,
+  Mostafa~Mofarah Bonab, Vahid Fakharian, and Hadis Abarghouei.
+\newblock {Deep RAN: A Scalable Data-driven Platform to Detect Anomalies in
+  Live Cellular Network Using Recurrent Convolutional Neural Network}, 2019.
+\newblock URL \url{https://arxiv.org/abs/1911.04472}.
+
+\bibitem[Bordeau-Aubert et~al.(2023)Bordeau-Aubert, Whatley, Nadeau, Glatard,
+  and Jaumard]{bordeau2023classification}
+Korantin Bordeau-Aubert, Justin Whatley, Sylvain Nadeau, Tristan Glatard, and
+  Brigitte Jaumard.
+\newblock {Classification of Anomalies in Telecommunication Network KPI Time
+  Series}, 2023.
+\newblock URL \url{https://arxiv.org/abs/2308.16279}.
+
+\bibitem[Moysen et~al.(2020)Moysen, Ahmed, Garc{\'i}a-Lozano, and
+  Niemel{\"a}]{moysen2020bigdata}
+Jessica Moysen, Furqan Ahmed, Mario Garc{\'i}a-Lozano, and Jarno Niemel{\"a}.
+\newblock {Big Data-driven Automated Anomaly Detection and Performance
+  Forecasting in Mobile Networks}, 2020.
+\newblock URL \url{https://arxiv.org/abs/2011.14968}.
+
+\bibitem[Hasan et~al.(2024)Hasan, Boeira, Papry, Ju, Zhu, and
+  Haque]{hasan2024simba}
+Antor Hasan, Conrado Boeira, Khaleda Papry, Yue Ju, Zhongwen Zhu, and Israat
+  Haque.
+\newblock {Root Cause Analysis of Anomalies in 5G RAN Using Graph Neural
+  Network and Transformer}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.15638}.
+
+\end{thebibliography}

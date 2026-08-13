@@ -1,29 +1,14 @@
-\documentclass[11pt,a4paper]{article}
+% ================================================================
+% NetFix AI — Root Cause Analysis chapter
+% Drop-in chapter for the shared thesis main.tex / thesis_setup.tex.
+% No document class or package imports are intentionally included here.
+% ================================================================
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[left=1.7cm,right=1.7cm,top=1.6cm,bottom=1.6cm]{geometry}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs,tabularx,array}
-\usepackage{float}
-\usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{caption}
-\usepackage{titlesec}
+\chapter{Root Cause Analysis and Diagnostic Intelligence}
+\label[chapter]{chap-rca}
 
-\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
-\setlist{itemsep=2pt,topsep=3pt}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
-\titleformat{\section}{\Large\bfseries}{\thesection}{0.6em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.6em}{}
-
+% Local JSON language definition. The listings package is loaded globally
+% by thesis_setup.tex.
 \lstdefinelanguage{json}{
   basicstyle=\ttfamily\scriptsize,
   numbers=left,
@@ -35,63 +20,39 @@
   frame=single,
   columns=fullflexible
 }
-\lstset{breaklines=true,breakatwhitespace=false,columns=fullflexible}
-
-\begin{document}
-
-\begin{titlepage}
-\centering
-\vspace*{1.2cm}
-{\Huge\bfseries DRIVE-TEST QoE RCA\par}
-\vspace{0.5cm}
-\begin{tcolorbox}[width=0.9\textwidth,colback=gray!5,colframe=gray!50]
-
-\textbf{Focus:} Anomaly Monitoring, Repeated-Pattern Analysis, KPI-Based Root-Cause Reasoning, RCA Knowledge-Base Design, Deterministic Cause Matching, Evidence Extraction, Remediation Mapping, and LLM-Assisted Diagnostic Narration.
-\end{tcolorbox}
-\vfill
-{\large August 2026\par}
-\end{titlepage}
-
-\tableofcontents
-\newpage
 
 \section{Executive Summary and System Architecture}
 
-This report details the reasoning and explanation layer developed by Eman Tarek for the Drive-Test QoE Anomaly Detection \& Root Cause Analysis (RCA) system. While upstream modules convert raw, second-by-second LTE drive-test observations into statistical and machine-learning anomaly candidates, this contribution provides the engineering intelligence that transforms detected anomalies into actionable, explainable, and auditable network diagnoses.
+This chapter details the reasoning and explanation layer of the Drive-Test QoE Anomaly Detection \& Root Cause Analysis (RCA) system. While the upstream anomaly-detection pipeline converts raw, second-by-second LTE drive-test observations into consolidated engineer-facing incidents, the RCA layer provides the engineering intelligence that transforms those incidents into actionable, explainable, and auditable network diagnoses.
 
 The core design philosophy rests on two strict operational principles:
 
 \begin{enumerate}
 \item \textbf{KPI as Evidence, Not Cause:} Low RSRP or high Resource Block (RB) utilization are physical measurements, not root causes. The system maps measured evidence to explicit physical mechanisms such as \textit{Weak Serving Cell} or \textit{Cell Congestion}.
 
-\item \textbf{Deterministic Rules Over Generative Hallucination:} The root-cause decision is made by a priority-ordered, deterministic rule engine grounded in 3GPP standards and telecom domain knowledge. The Large Language Model (LLM) is positioned strictly downstream as a diagnostic narrative layer to explain the structured verdict---it never independently invents or overrides a root cause.
+\item \textbf{Deterministic Rules Over Generative Hallucination:} The root-cause decision is made by a priority-ordered, deterministic rule engine grounded in LTE engineering knowledge and 3GPP-defined radio procedures. The Large Language Model (LLM) is positioned strictly downstream as a diagnostic narrative layer to explain the structured verdict; it never independently invents or overrides a root cause.
 \end{enumerate}
 
-\begin{figure}[H]
+The LTE procedure and KPI semantics used by the rule base are consistent with the E-UTRA RRC, physical-layer, and MAC specifications \cite{3gpp36331,3gpp36213,3gpp36321}. The numerical diagnosis gates used in this project are engineering rules calibrated for the project workflow; they should not be interpreted as universal 3GPP optimization thresholds.
+
+\begin{infobox}{RCA processing chain}
 \centering
-\begin{tikzpicture}[
-box/.style={rectangle,rounded corners,draw,align=center,minimum width=4.0cm,minimum height=0.8cm},
-arrow/.style={-{Latex},thick}
-]
-\node[box] (kpi) {Drive-Test KPIs};
-\node[box,right=1.0cm of kpi] (anom) {Upstream Anomaly\\Detection};
-\node[box,right=1.0cm of anom] (inc) {Incident\\Consolidation};
-\node[box,below=1.0cm of inc] (eng) {Deterministic Engine\\(JSON Knowledge Base)};
-\node[box,left=1.0cm of eng] (sol) {Solution\\Mapping};
-\node[box,left=1.0cm of sol] (llm) {LLM Diagnostic\\Narrative};
-\draw[arrow] (kpi)--(anom);
-\draw[arrow] (anom)--(inc);
-\draw[arrow] (inc)--(eng);
-\draw[arrow] (eng)--(sol);
-\draw[arrow] (sol)--(llm);
-\end{tikzpicture}
-\caption{Overall RCA and diagnostic architecture.}
-\label{fig:architecture}
-\end{figure}
+\textbf{Drive-Test KPIs}
+$\rightarrow$
+\textbf{Upstream Anomaly Detection}
+$\rightarrow$
+\textbf{Incident Consolidation}
+$\rightarrow$
+\textbf{Deterministic RCA Engine}
+$\rightarrow$
+\textbf{Solution Mapping}
+$\rightarrow$
+\textbf{LLM Diagnostic Narrative}
+\end{infobox}
 
 \subsection{Scope and Population Metadata}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabularx}{\textwidth}{>{\bfseries}p{4.0cm} p{3.2cm} X}
@@ -109,14 +70,26 @@ Decision Layer & Deterministic, Priority-Ordered, KPI-Driven & Knowledge base vi
 Explanation Layer & LLM-Assisted Narrative Generation & Converts structured JSON verdict into engineer reports\\
 \bottomrule
 \end{tabularx}
-\caption{Scope and population metadata.}
+\caption{Scope and population metadata for the complete RCA evaluation.}
+\label[tab]{rca-scope}
 \end{table}
+
+The descriptive profiling artifact in Figure~\ref{rca-dataset-overview} is retained exactly as produced during RCA exploration and therefore displays the counts embedded in that profiling snapshot. The complete deterministic evaluation totals used throughout this chapter remain those reported in Table~\ref{rca-scope} and in the empirical-results section.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\linewidth]{RCA_01_dataset_overview.png}
+\caption{Incident-level RCA dataset overview used for descriptive profiling, including anomaly severity, anomaly-type composition, serving bands, route distribution, and median KPI context.}
+\label[fig]{rca-dataset-overview}
+\end{figure}
+
+\FloatBarrier
 
 \section{Contributor Responsibilities and Boundary Definition}
 
-Within the project work plan, Eman Tarek owns the complete pipeline between upstream anomaly detection handoff and final downstream diagnostic representation.
+The RCA work package covers the complete pipeline between the upstream anomaly-detection handoff and the final downstream diagnostic representation.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabularx}{\textwidth}{>{\bfseries}p{3.4cm} p{6.0cm} X}
@@ -129,19 +102,20 @@ Knowledge Base Architecture & Designs the decoupled three-JSON system (\texttt{c
 KPI Reasoning Engine & Implements rule evaluation logic (\texttt{MATCH\_ALL}/\texttt{MATCH\_ANY}) against evidence. & Primary Cause ID + Evidence Trace\\
 Evidence Extraction & Extracts and formats exact KPI values supporting the selected cause. & \texttt{key\_kpi\_evidence} Payload\\
 Remediation Mapping & Links confirmed cause IDs to standardized telecom remediation actions. & \texttt{recommended\_solution} Entry\\
-LLM Diagnostic Layer & Prompts LLM to render structured RCA JSON into natural diagnostic prose. & Human-Readable Diagnostic Narrative\\
+LLM Diagnostic Layer & Prompts the LLM to render structured RCA JSON into natural diagnostic prose. & Human-Readable Diagnostic Narrative\\
 \bottomrule
 \end{tabularx}
-\caption{Contributor responsibilities and technical outputs.}
+\caption{RCA responsibilities and technical outputs.}
+\label[tab]{rca-responsibilities}
 \end{table}
 
-\textbf{Scope Boundary:} Upstream anomaly detection (flagging a drop) is treated as an input. This contribution explains \textit{why} the degradation occurred, \textit{how confident} the system is, and \textit{what actions} engineers should take. Planning data is treated as an independent stream and is never used as proof for drive-test anomalies due to spatial mismatches.
+\textbf{Scope Boundary:} Upstream anomaly detection is treated as an input. This chapter explains \textit{why} degradation occurred, \textit{what measured evidence} supports the verdict, and \textit{what actions} engineers should take. Planning Intelligence remains an independent data stream and is never used as proof for drive-test anomalies.
 
 \section{Data and KPI Taxonomy}
 
 The RCA engine evaluates multi-dimensional drive-test telemetry grouped into distinct functional groups.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm} p{5.0cm} X}
@@ -160,28 +134,31 @@ MIMO / Spatial & Rank Indicator (RI), Layer Utilization & Detects rank fallback 
 \bottomrule
 \end{tabularx}
 \caption{KPI taxonomy used by the RCA engine.}
+\label[tab]{rca-kpi-taxonomy}
 \end{table}
+
+Figure~\ref{rca-kpi-distributions} gives the empirical distribution of the principal radio and link-adaptation KPIs in the incident dataset. The broad distributions and long tails illustrate why RCA is based on combinations of evidence rather than a single degraded KPI.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\linewidth]{RCA_02_core_kpi_distributions.png}
+\caption{Core radio KPI distributions across the incident dataset: RSRP, RSRQ, SINR, CQI, MCS, and BLER.}
+\label[fig]{rca-kpi-distributions}
+\end{figure}
+
+\FloatBarrier
 
 \section{RCA Reasoning Framework and Taxonomy}
 
-To prevent a single degraded KPI, such as high BLER, from falsely triggering a diagnosis, the framework enforces a \textbf{priority-ordered evaluation hierarchy}. Causes higher in the hierarchy are evaluated first; if their defining gate conditions are met, the evaluation halts, ensuring traceable and deterministic decision-making.
+To prevent a single degraded KPI, such as high BLER, from falsely triggering a diagnosis, the framework enforces a \textbf{priority-ordered evaluation hierarchy}. Causes higher in the hierarchy are evaluated first; when their defining gate conditions are satisfied, the engine can stop at the highest-priority confirmed mechanism, preserving deterministic and traceable reasoning.
 
-\begin{figure}[H]
+Figure~\ref{rca-cause-taxonomy} summarizes the engineering cause tree around the central symptom of throughput degradation. It separates resource limitation, coverage and radio quality, cell health, mobility and access, MIMO performance, and carrier aggregation into explicit cause families supported by measurable KPI evidence.
+
+\begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=0.38cm,
-box/.style={rectangle,rounded corners,draw,align=center,minimum width=11cm,minimum height=0.62cm},
-arrow/.style={-{Latex},thick}]
-\node[box] (p1) {Priority 1: Resource Limitation --- Congestion / Spectral Efficiency};
-\node[box,below=of p1] (p2) {Priority 2: Coverage \& Radio Quality --- Weak Cell / Interference};
-\node[box,below=of p2] (p3) {Priority 3: Outage \& Cell Health --- eNodeB Fault / Service Outage};
-\node[box,below=of p3] (p4) {Priority 4: Mobility \& Access --- Handover Issues / RACH Failures};
-\node[box,below=of p4] (p5) {Priority 5: MIMO Performance --- Rank Fallback under Good Radio};
-\node[box,below=of p5] (p6) {Priority 6: Carrier Aggregation --- SCell Weakness / CA Inactive};
-\node[box,below=of p6] (p7) {Priority 7: Fallback / Inconclusive --- Radio Limited / Data Deficit};
-\draw[arrow](p1)--(p2); \draw[arrow](p2)--(p3); \draw[arrow](p3)--(p4);
-\draw[arrow](p4)--(p5); \draw[arrow](p5)--(p6); \draw[arrow](p6)--(p7);
-\end{tikzpicture}
-\caption{Priority-ordered RCA hierarchy.}
+\includegraphics[width=0.99\linewidth]{RCA_03_throughput_cause_taxonomy.png}
+\caption{Engineering RCA cause taxonomy for LTE throughput degradation and the supporting KPI/evidence branches.}
+\label[fig]{rca-cause-taxonomy}
 \end{figure}
 
 \subsection{Priority 1: Resource Limitation}
@@ -229,27 +206,20 @@ RSRP<-105\,\mathrm{dBm},\quad RSRQ<-15\,\mathrm{dB},\quad MCS<10,\quad BLER>10\%
 
 \textbf{Inconclusive (C14):} Unconfirmed user demand or insufficient evidence to assign a specific engineering cause.
 
+\FloatBarrier
+
 \section{Knowledge Base Architecture: The Three-JSON System}
 
-To prevent domain knowledge from being hardcoded inside Python scripts, the RCA architecture separates concerns across three JSON files linked by stable identifiers (\texttt{Cause ID} and \texttt{Solution ID}).
+To prevent domain knowledge from being hardcoded inside Python scripts, the RCA architecture separates concerns across three JSON files linked by stable identifiers (\texttt{Cause ID} and \texttt{Solution ID}). Figure~\ref{rca-three-json} shows how the taxonomy, KPI evaluation logic, and remediation knowledge remain independently maintainable while sharing deterministic IDs.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=1.0cm and 1.2cm,
-box/.style={rectangle,rounded corners,draw,align=center,minimum width=3.2cm,minimum height=0.9cm},
-arrow/.style={-{Latex},thick}]
-\node[box](c){\texttt{causes.json}\\Taxonomy \& Hierarchy};
-\node[box,right=of c](r){\texttt{kpi\_rules.json}\\Evaluation Logic};
-\node[box,right=of r](t){Measured\\Telemetry};
-\node[box,below=of r](s){\texttt{solutions.json}\\Remediation Knowledge};
-\draw[arrow](c)--node[above]{Cause ID}(r);
-\draw[arrow](r)--node[above]{Evaluation}(t);
-\draw[arrow](c)--node[left]{Solution ID}(s);
-\end{tikzpicture}
-\caption{Three-JSON knowledge-base architecture.}
+\includegraphics[width=0.98\linewidth]{RCA_04_three_json_architecture.png}
+\caption{Three-JSON RCA knowledge-base architecture: \texttt{causes.json} defines what is evaluated and in which order, \texttt{kpi\_rules.json} defines how evidence is tested, and \texttt{solutions.json} defines what action follows a confirmed cause.}
+\label[fig]{rca-three-json}
 \end{figure}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabularx}{\textwidth}{>{\ttfamily}p{3.0cm} >{\bfseries}p{4.0cm} X}
@@ -258,11 +228,14 @@ JSON File & Core System Role & Key Content and Schema\\
 \midrule
 causes.json & Taxonomy \& Hierarchy & Priority levels, category definitions, subcause lists, cause IDs (C01--C14), solution IDs (SOL\_C01), and string templates (\texttt{reason\_template}).\\
 kpi\_rules.json & Evaluation Logic \& Thresholds & Exact KPI JSON paths, comparison operators, numerical thresholds, evaluation modes (\texttt{MATCH\_ALL} vs. \texttt{MATCH\_ANY}), and gate conditions.\\
-solutions.json & Remediation Knowledge & Solution IDs, recommended engineering actions, investigation steps, 3GPP specification standards, and vendor documentation references.\\
+solutions.json & Remediation Knowledge & Solution IDs, recommended engineering actions, investigation steps, 3GPP specification references, and vendor-documentation references.\\
 \bottomrule
 \end{tabularx}
 \caption{Knowledge-base component summary.}
+\label[tab]{rca-json-components}
 \end{table}
+
+\FloatBarrier
 
 \section{Deterministic RCA Engine Execution Flow}
 
@@ -322,7 +295,7 @@ The classification script (\texttt{classify\_incidents.py}) executes a rule-driv
     "standards_and_vendor_references": [
       {
         "source": "3GPP TS 36.331 / Vendor PRB Optimization Guide",
-        "note": "PRB utilization exceeding 80% represents severe air-interface saturation."
+        "note": "Reference material used by the engineering knowledge base."
       }
     ]
   }
@@ -335,7 +308,7 @@ The RCA engine was executed against the dataset of 1,382 incident-level aggregat
 
 \subsection{Root-Cause Distribution Summary}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \tiny
 \begin{tabularx}{\textwidth}{c X r r X}
@@ -361,7 +334,17 @@ C02 & Poor Spectral Efficiency & 5 & 0.4\% & Resource Limitation\\
 \bottomrule
 \end{tabularx}
 \caption{Root-cause distribution across 1,382 incidents.}
+\label[tab]{rca-cause-distribution}
 \end{table}
+
+Figure~\ref{rca-severity-composition} complements the count table by showing how severity is distributed within each engineering cause. This makes it easier to distinguish frequently occurring medium-severity mechanisms from the smaller number of high-severity cases.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{RCA_05_severity_by_root_cause.png}
+\caption{Severity composition per root-cause category in the deterministic RCA results.}
+\label[fig]{rca-severity-composition}
+\end{figure}
 
 \subsection{Key Engineering Findings}
 
@@ -370,14 +353,16 @@ C02 & Poor Spectral Efficiency & 5 & 0.4\% & Resource Limitation\\
 
 \item \textbf{Coverage Limits:} Weak Serving Cell (C03) represents 17.1\% (237 incidents), confirming that RF attenuation remains a major bottleneck in the drive-test area.
 
-\item \textbf{Operational Trust via Inconclusive Classification:} Inconclusive (C14) accounts for 17.1\% (236 incidents). This is a critical feature of the system: when drive-test data lacks necessary fields, such as missing OSS alarms or unconfirmed demand, the engine defaults to Inconclusive rather than generating false diagnoses.
+\item \textbf{Operational Trust via Inconclusive Classification:} Inconclusive (C14) accounts for 17.1\% (236 incidents). When drive-test data lacks necessary fields, such as missing OSS alarms or unconfirmed demand, the engine defaults to Inconclusive rather than generating a false diagnosis.
 \end{enumerate}
+
+\FloatBarrier
 
 \section{Remediation Mapping Engine}
 
 Once a root cause is established, the engine retrieves corresponding remediation guidelines from \texttt{solutions.json}.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm} p{4.0cm} X}
@@ -395,6 +380,7 @@ Carrier Aggregation & Weak Secondary Cell (C10) & Audit SCell coverage/tilt, adj
 \bottomrule
 \end{tabularx}
 \caption{Cause-to-remediation mapping.}
+\label[tab]{rca-remediation}
 \end{table}
 
 \section{Downstream LLM Diagnostic Narration}
@@ -411,15 +397,15 @@ The Large Language Model (LLM) operates strictly as a text-generation layer down
 \item \textbf{Action Plan:} Present the recommended remediation steps from \texttt{solutions.json}.
 \end{enumerate}
 
-\begin{tcolorbox}[title=System Guardrail,colback=gray!5,colframe=black!60]
+\begin{warningbox}{System Guardrail}
 The LLM prompt strictly instructs the model to explain the deterministic verdict. It is forbidden from altering the assigned \texttt{cause\_id}, inventing unmeasured KPIs, or proposing remedies outside \texttt{solutions.json}.
-\end{tcolorbox}
+\end{warningbox}
 
 \section{System Validation and Explainability Audit}
 
 The system's architecture directly addresses key engineering auditability requirements.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabularx}{\textwidth}{>{\bfseries}p{5.0cm} X}
@@ -436,6 +422,7 @@ Does the LLM introduce hallucinated causes? & No. The cause decision is finalize
 \bottomrule
 \end{tabularx}
 \caption{Explainability and auditability mechanisms.}
+\label[tab]{rca-auditability}
 \end{table}
 
 \section{Future Work and Enhancements}
@@ -449,18 +436,16 @@ Does the LLM introduce hallucinated causes? & No. The cause decision is finalize
 
 \item \textbf{Enhanced Evidence Scoring:} Implement a multi-factor confidence score based on the number and independence of supporting KPI indicators.
 
-\item \textbf{LLM Verification Guard:} Implement an automated validation check that compares generated text against the source JSON to ensure 100\% factual alignment.
+\item \textbf{LLM Verification Guard:} Implement an automated validation check that compares generated text against the source JSON to ensure factual alignment.
 \end{enumerate}
 
-\section{Conclusion}
+\section{RCA Chapter Conclusion}
 
-This contribution establishes an auditable, rule-driven Root Cause Analysis framework for LTE drive-test throughput anomalies. By enforcing a deterministic decision layer backed by a modular three-JSON knowledge base, the system converts raw telemetry into clear engineering diagnoses linked to actionable remediation steps.
+This contribution establishes an auditable, rule-driven Root Cause Analysis framework for LTE drive-test throughput anomalies. By enforcing a deterministic decision layer backed by a modular three-JSON knowledge base, the system converts measured telemetry into clear engineering diagnoses linked to actionable remediation steps.
 
-Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by categorizing ambiguous cases as \textbf{Inconclusive} (17.1\%).
+Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by categorizing ambiguous cases as \textbf{Inconclusive} (17.1\%). The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
 
-The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
-
-\begin{tcolorbox}[title=Technical Pipeline Summary,colback=gray!5,colframe=black!60]
+\begin{successbox}{Technical Pipeline Summary}
 \centering
 \texttt{Detected Anomaly}
 $\rightarrow$
@@ -473,15 +458,14 @@ $\rightarrow$
 \texttt{Remediation Retrieval}
 $\rightarrow$
 \texttt{LLM Diagnostic Narrative}
-\end{tcolorbox}
+\end{successbox}
 
-\appendix
 \section{Suggested Schema for Downstream Integration}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \small
-\begin{tabularx}{\textwidth}{>{\ttfamily}p{4.0cm} >{\ttfamily}p{3.0cm} X}
+\begin{tabularx}{\textwidth}{>{\ttfamily}p{4.35cm} >{\ttfamily}p{2.65cm} X}
 \toprule
 Field Name & Data Type & Purpose\\
 \midrule
@@ -499,6 +483,7 @@ standards\_references & Array of Objects & 3GPP and vendor documentation citatio
 \bottomrule
 \end{tabularx}
 \caption{Suggested downstream integration schema.}
+\label[tab]{rca-downstream-schema}
 \end{table}
 
-\end{document}
+\FloatBarrier
