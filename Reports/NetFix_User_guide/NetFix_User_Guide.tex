@@ -210,7 +210,7 @@ The \textbf{NetFix Unified Telecommunication Platform} brings two independent en
 \textbf{Drive Test Intelligence / Anomaly Portal} combines statistical anomaly detection, Histogram Gradient Boosting ML, PyTorch LSTM temporal validation, a 34-reason deterministic Root Cause Analysis (RCA) engine, interactive Leaflet GIS mapping, and the local \textbf{Penguin AI} assistant.
 
 \medskip
-\textbf{5G Planning Intelligence / NetPulse} performs spatial geometry analysis, neighbor-graph validation, and constraint-based planning of 5G NR PCI, RSI, and PRACH parameters while enforcing Mod3, Mod4, and Mod30 conflict rules.
+\textbf{5G Network Planning Portal} performs spatial geometry analysis, neighbor-graph validation, and constraint-based planning of 5G NR PCI and RSI while enforcing Mod3 and Mod4 conflict rules.
 \end{guidebox}
 
 The datasets used by these workspaces are handled independently. The common platform layer provides authentication, role routing, user experience, persistence, reporting, and AI-assisted interaction.
@@ -218,7 +218,7 @@ The datasets used by these workspaces are handled independently. The common plat
 \subsection{Role-based routing}
 \begin{itemize}
   \item \textbf{Optimization Engineer} $\rightarrow$ Drive Test Intelligence dashboard at \texttt{/dashboard}.
-  \item \textbf{Planning Engineer} $\rightarrow$ NetPulse Upload \& Plan workspace at \texttt{/np-upload}.
+  \item \textbf{Planning Engineer} $\rightarrow$ 5G Network Planning Portal Upload \& Plan workspace at \texttt{/np-upload}.
 \end{itemize}
 
 \begin{workflowbox}{Quick start}
@@ -543,64 +543,316 @@ The table records \texttt{SESSION ID}, \texttt{CREATED}, \texttt{STATUS}, \textt
 \newpage
 
 % =========================================================
-\section{5G Parameter Planning Portal (NetPulse)}
+\section{5G Network Planning Portal}
 % =========================================================
 \begin{guidebox}{Target user: 5G RF Planning Engineer / Network Deployment Specialist}
-NetPulse supports workbook ingestion, clash auditing, automated bulk replanning, interactive site addition, assignment review, and export of deployment-ready planning parameters.
+The 5G Network Planning Portal supports workbook ingestion, clash auditing, automated bulk replanning, interactive site addition, assignment review, before/after Voronoi comparison, AI-assisted network Q\&A through the OCTO copilot, and export of deployment-ready planning parameters.
 \end{guidebox}
+
+Every antenna on every tower in a 5G network must be assigned a small set of unique identifiers (PCI, RSI, PRACH root sequences) so that user equipment does not confuse nearby cells. The 5G Network Planning Portal automates that assignment, renders the full network on an interactive map, flags every clash it detects, and lets the engineer replan, add sites, and export the final workbook.
 
 \subsection{Step 1: Sign in and open the Planning workspace}
 \begin{enumerate}
-  \item Open \texttt{http://localhost:5173}.
-  \item Select \textbf{Planning Engineer} on the sign-in screen.
-  \item Click \textbf{Launch Portal}. The application routes to \textbf{Upload \& Plan} at \texttt{/np-upload}.
+  \item Open the portal in the browser and enter the engineer credentials.
+  \item Select \textbf{5G Network Planning} from the workspace selector at the top of the sign-in form (the alternative \emph{Drive Test \& Anomaly} workspace routes to the Optimization dashboard covered in Section~2).
+  \item Click \textbf{Sign In}. The application routes the Planning Engineer to the \textbf{Upload \& Plan} screen.
 \end{enumerate}
 
-\subsection{Step 2: Load a network-planning workbook}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{login_page.jpeg}
+\caption{Sign-in screen with the 5G Network Planning workspace selected.}
+\label{fig:np-login}
+\end{figure}
+\FloatBarrier
+
+Once authenticated, a persistent left sidebar exposes every section of the workspace: Upload \& Plan, Planning, Clashes, Assignments, Add Site, OCTO, and Voronoi Compare.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.55\textheight,keepaspectratio]{sidebar_overview.jpeg}
+\caption{Sidebar of the 5G Network Planning Portal showing every available section.}
+\label{fig:np-sidebar}
+\end{figure}
+\FloatBarrier
+
+\subsection{Step 2: Load a network-planning workbook (Upload \& Plan)}
+The Upload \& Plan page is the mandatory entry point --- no other tab is enabled until a workbook has been loaded. Two ingestion modes are supported through separate tabs at the top of the page:
+
+\begin{itemize}
+  \item \textbf{Raw} --- for workbooks that list sites, sectors, and antennas but where PCI / RSI have not yet been assigned. After uploading, click \textbf{Run} to let the constraint solver assign all identifiers automatically. A staged progress indicator reports each phase of the pipeline. On completion, the page shows a pass/fail summary and enables the download of the completed workbook.
+  \item \textbf{Final} --- for workbooks that already contain a full set of assignments. Click \textbf{Use workbook} to load it directly for review, clash auditing, and exploration; no planning step is required.
+\end{itemize}
+
+The same page also includes a built-in \textbf{column reference guide} explaining every required column in plain language, with an example value for each, and a button to download a blank template.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{upload_tab.jpeg}
+\caption{Upload \& Plan screen showing both Raw and Final ingestion tabs along with the built-in column reference guide and template download.}
+\label{fig:np-upload}
+\end{figure}
+\FloatBarrier
+
+\begin{warningbox}{Prerequisite}
+Every other tab in the sidebar remains disabled until a workbook has been successfully loaded on this page. Switching tabs beforehand prompts the user to return to Upload \& Plan first.
+\end{warningbox}
+
+\subsection{Step 3: Review the network dashboard (Planning)}
+The \textbf{Planning} tab is the top-level health view for the loaded network. At the top of the page, a global \textbf{PASS/FAIL} status card is accompanied by a count of serious issues. Immediately below, a detailed breakdown splits every detected clash into two categories:
+
+\begin{itemize}
+  \item \textbf{Hard rules} (red) --- genuine conflicts that must be resolved (for example PCI collisions, Mod4 clashes, RSI collisions).
+  \item \textbf{Soft rules} (amber) --- minor overlaps that are expected in dense deployments and are shown for information only (for example Mod3 or Mod30 warnings).
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{planning_kpi_summary.jpeg}
+\caption{Planning dashboard showing overall PASS/FAIL status and the detailed hard-rule / soft-rule breakdown.}
+\label{fig:np-planning-kpi}
+\end{figure}
+\FloatBarrier
+
+Below the KPI cards, an interactive map renders the full network. Engineers can:
+\begin{itemize}
+  \item Search for a specific site or filter by region using the dropdowns above the map.
+  \item Switch the map colouring (by region, PCI, RSI, or Mod-group) using the row of buttons above the map.
+  \item Pan by dragging and zoom by scrolling.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{planning_network_map.jpeg}
+\caption{Interactive network map with region / site filters and colour-mode selectors.}
+\label{fig:np-planning-map}
+\end{figure}
+\FloatBarrier
+
+The bottom of the page contains a region-by-region breakdown showing the number of sites and sectors present in each region of the network.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{planning_region_breakdown.jpeg}
+\caption{Per-region breakdown cards at the bottom of the Planning tab.}
+\label{fig:np-planning-regions}
+\end{figure}
+\FloatBarrier
+
+\subsection{Step 4: Investigate conflicts (Clashes)}
+The \textbf{Clashes} tab is where every issue flagged on the Planning dashboard is investigated. The map on this tab looks similar to the Planning map, but every sector is coloured by \emph{clash type} rather than by region. Coloured filter chips above the map toggle individual clash categories on and off, and a \textbf{Colour sectors by} selector on the right switches the map shading mode.
+
+Clicking any sector on the map opens a right-hand panel with three modes:
+\begin{itemize}
+  \item \textbf{Measure} --- displays every neighbouring site inside an adjustable radius; useful for understanding why two sectors have been flagged as too close.
+  \item \textbf{Explainer} --- accepts any sector / antenna identifier and returns a short readable summary of whether the sector has an issue and exactly which neighbour is causing it.
+  \item \textbf{Clash Inspector} --- opens below the map when a sector wedge is clicked, listing every rule the sector is breaking with a plain-language justification.
+\end{itemize}
+
+A \textbf{``Show full clash reference''} link below the map expands a glossary of every clash type the engine can detect, with a short plain-English explanation of each.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{clashes_tab.jpeg}
+\caption{Clashes workspace: colour-coded conflict map, filter chips, sector inspection panel, and expandable clash reference glossary.}
+\label{fig:np-clashes}
+\end{figure}
+\FloatBarrier
+
+The four principal clash categories exposed on this page are:
+\begin{itemize}
+  \item \textbf{PCI collision (hard):} same PCI assigned to adjacent sectors within the configured reuse distance.
+  \item \textbf{Mod4 clash (hard):} same Modulo-4 index causing DMRS sequence overlap.
+  \item \textbf{Mod3 / Mod30 warnings (soft):} PSS / SSS symbol-shift conflicts.
+  \item \textbf{RSI collision (hard):} PRACH root-sequence contention.
+\end{itemize}
+
+\subsection{Step 5: Review assignments as a data table (Assignments)}
+The \textbf{Assignments} tab exposes every sector in the loaded network as rows in a searchable, sortable table --- useful when working directly with tabular data rather than the map.
+
+\begin{itemize}
+  \item Use the search box to locate a site or sector by name.
+  \item Use the dropdown filters to restrict the view by region, group index, or clash type.
+  \item Click any column heading to sort by that column.
+  \item Use the \textbf{Download CSV} button at the top right to export exactly the currently-visible view (filters included) as a spreadsheet.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{assignment_tab.jpeg}
+\caption{Assignments table with search, filters, sortable columns, and CSV export.}
+\label{fig:np-assignments}
+\end{figure}
+\FloatBarrier
+
+\subsection{Step 6: Add a new site or replan an existing one (Add Site)}
+The \textbf{Add Site} tab supports two workflows for modifying the network.
+
+\subsubsection{Re-plan an existing site}
+Use this workflow when a site already exists in the loaded network but requires re-checking or re-assignment of its identifiers.
+
 \begin{enumerate}
-  \item In \textbf{Upload \& Plan}, click \textbf{Upload Excel Workbook}.
-  \item Load the raw or partially planned \texttt{.xlsx} file, for example \texttt{NR5G\_PCI\_RSI\_Planning\_raw.xlsx}.
-  \item Alternatively, select one of the built-in system workbooks (\texttt{raw} or \texttt{final}).
-  \item The backend parses sector geometry, azimuth, and the existing parameter assignments.
+  \item Select the \textbf{Re-plan an existing site} option at the top of the page.
+  \item Choose the target site from the dropdown and click \textbf{Preview}.
+  \item Review the side-by-side comparison of current versus proposed parameter assignments, together with a small map of the site and its immediate neighbours.
+  \item Click \textbf{Commit} to persist the replanned assignment.
 \end{enumerate}
 
-\subsection{Step 3: Audit modulo conflicts and inspect the map}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{addsite_replan.jpeg}
+  \caption{Site selection and proposed replanned assignments.}
+  \label{fig:np-addsite-replan}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{addsite_replan_map_review.jpeg}
+  \caption{Map review of the replanned site and its immediate neighbours.}
+  \label{fig:np-addsite-replan-map}
+\end{subfigure}
+\caption{Re-plan an existing site workflow.}
+\label{fig:np-addsite-replan-workflow}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Add a brand-new site}
+Use this workflow when the target site does not yet exist in the network.
+
 \begin{enumerate}
-  \item Open \textbf{Planning} to render the interactive site map and sector wedges.
-  \item Open \textbf{Clashes} to inspect active conflicts:
-  \begin{itemize}
-    \item \textbf{PCI collision (hard):} same PCI assigned to adjacent sectors within the configured reuse distance.
-    \item \textbf{Mod4 clash (hard):} same Modulo-4 index causing DMRS sequence overlap.
-    \item \textbf{Mod3 / Mod30 warnings (soft):} PSS / SSS symbol-shift conflicts.
-    \item \textbf{RSI collision (hard):} PRACH root-sequence contention.
-  \end{itemize}
+  \item Select the \textbf{Add a brand-new site} option at the top of the page.
+  \item Enter a name for the new site --- the map recentres on the appropriate region as soon as the name is recognised.
+  \item Click on the map to place the new site, or drag the pin to fine-tune its position. Coordinates may also be entered manually.
+  \item Configure the number of sectors and their azimuths using the slider and numeric fields (typical trisector configuration: $0^{\circ}$, $120^{\circ}$, $240^{\circ}$).
+  \item Click \textbf{Preview} to generate valid PCI and RSI candidate assignments and to visualise how the new site fits its neighbours.
+  \item Click \textbf{Commit} to add the site to the network permanently.
 \end{enumerate}
 
-\subsection{Step 4: Run automated bulk replanning}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{addsite_new_map_picker.jpeg}
+  \caption{Placing the new site on the interactive map picker.}
+  \label{fig:np-addsite-new-map}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{addsite_new_preview_result.jpeg}
+  \caption{Preview of candidate assignments before committing.}
+  \label{fig:np-addsite-new-preview}
+\end{subfigure}
+\caption{Add a brand-new site workflow.}
+\label{fig:np-addsite-new-workflow}
+\end{figure}
+\FloatBarrier
+
+\subsection{Step 7: Ask the OCTO copilot}
+The \textbf{OCTO} tab exposes an in-workspace \textbf{AI agent} that answers plain-English questions grounded on the currently loaded network. Unlike a plain chatbot, OCTO follows an agentic loop:
+
 \begin{enumerate}
-  \item Return to \textbf{Upload \& Plan} and select \textbf{Bulk Replan Network}.
-  \item The backend constraint solver processes the sectors and reassigns non-conflicting PCI values in $[0,1007]$ and RSI values in $[0,837]$.
-  \item Verify that hard-clash counts fall to \textbf{0} before accepting the plan.
+  \item \textbf{User input} --- the engineer types a natural-language question (for example, ``How is the Sinai region doing?'').
+  \item \textbf{LLM reasoning} --- the underlying large language model interprets the question, decides which piece of network information is needed, and selects the most suitable \emph{tool} from its registered toolset.
+  \item \textbf{Tool invocation} --- the selected tool is executed against the currently loaded network (for example, a site lookup, distance query, clash inspection, or regional summary), returning structured data.
+  \item \textbf{LLM answer generation} --- the LLM takes the raw output returned by the tool and composes a plain-English, engineer-friendly answer for the user.
 \end{enumerate}
 
-\subsection{Step 5: Add a new site interactively}
+Questions typical of a planning engineer include:
+
+\begin{itemize}
+  \item ``Why does site ALX3282 have a problem?''
+  \item ``How is the Sinai region doing overall?''
+  \item ``What are the five worst sites in my network?''
+  \item ``How far apart are these two sites?''
+\end{itemize}
+
+Whenever OCTO invokes a tool to answer, it displays an expandable \emph{tool call} chip in the conversation so the engineer can inspect exactly which tool was called, what arguments were passed, and what raw data was returned --- keeping every AI-generated answer fully transparent and auditable. A right-hand \textbf{Toolset} panel lists every capability the agent can invoke, grouped by category (site lookup, clash inspection, distance queries, regional summaries, ranking, etc.).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{octo_chat_conversation.jpeg}
+\caption{OCTO conversation view with an expandable tool-call chip showing which tool the LLM invoked to answer the question.}
+\label{fig:np-octo-chat}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.55\textheight,keepaspectratio]{octo_toolset_panel.jpeg}
+\caption{OCTO Toolset panel listing every capability the AI agent can invoke.}
+\label{fig:np-octo-tools}
+\end{figure}
+\FloatBarrier
+
+\begin{warningbox}{Scope of OCTO}
+OCTO is a \emph{read-only} AI agent --- it can only invoke tools that look up and analyze the currently loaded network. It does not perform planning, modify assignments, or commit changes; all planning and commit actions remain explicit engineer operations performed on the Upload \& Plan or Add Site tabs.
+\end{warningbox}
+
+\subsection{Step 8: Compare planning revisions (Voronoi Compare)}
+The \textbf{Voronoi Compare} tab lets engineers compare an older revision of the network against the currently loaded version, focused on a specific site and its neighbourhood.
+
 \begin{enumerate}
-  \item Open \textbf{Add Site}.
-  \item Select the gNodeB location on the map or enter the coordinates manually.
-  \item Define sector azimuths, for example $0^{\circ}$, $120^{\circ}$, and $240^{\circ}$.
-  \item Click \textbf{Calculate Candidate Assignments} to generate valid PCI and RSI options.
-  \item Choose the preferred assignment and click \textbf{Commit New Site}.
+  \item Upload the older \texttt{.xlsx} revision using the upload box at the top of the tab.
+  \item Select the site of interest and choose how many neighbouring sites to include in the comparison using the dropdown and slider.
+  \item Switch between \textbf{Diagram} view (simplified, colour-coded Voronoi cells) and \textbf{Real map} view (accurate map with real sector positions) using the toggle.
+  \item A status badge at the top of the comparison reports the outcome as \textbf{Improved}, \textbf{Fully Solved}, \textbf{Unchanged}, or \textbf{Regressed}.
 \end{enumerate}
 
-\subsection{Step 6: Review and export the engineering plan}
-\begin{enumerate}
-  \item Open \textbf{Assignments} to review the complete network configuration table.
-  \item Click \textbf{Export Excel Workbook (\texttt{.xlsx})} to download the final parameters for deployment / commissioning.
-\end{enumerate}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{voronoi_site_picker.jpeg}
+\caption{Voronoi Compare: selecting the focus site and comparison scope.}
+\label{fig:np-voronoi-picker}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{voronoi_diagram_before_after.jpeg}
+  \caption{Diagram view: before / after comparison.}
+  \label{fig:np-voronoi-diagram}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{voronoi_real_map_before_after.jpeg}
+  \caption{Real map view: before / after comparison.}
+  \label{fig:np-voronoi-map}
+\end{subfigure}
+\caption{Voronoi Compare workflow visualising the impact of a replanning revision.}
+\label{fig:np-voronoi-compare}
+\end{figure}
+\FloatBarrier
+
+\subsection{Step 9: Export the deployment-ready workbook}
+At any point once the network has been loaded and validated, use the \textbf{Download} action on the Upload \& Plan tab (also available in the application footer) to export the current workbook, including every PCI / RSI assignment produced by the solver, ready for deployment and commissioning.
 
 \begin{warningbox}{Before exporting}
-Confirm that all hard validation rules pass, review any remaining soft warnings, and verify that the assignment table reflects the intended site / sector configuration.
+Confirm that all hard validation rules pass, review any remaining soft warnings on the Planning and Clashes tabs, and verify that the Assignments table reflects the intended site / sector configuration.
 \end{warningbox}
+
+\subsection{Quick reference}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{0.97\textwidth}{L{3.4cm} Y}
+\toprule
+\textbf{Tab} & \textbf{Purpose} \\
+\midrule
+Upload \& Plan     & Load a workbook (Raw = needs planning; Final = already planned) and export the final workbook. \\
+Planning           & Top-level PASS/FAIL health view, hard/soft clash counts, interactive network map, per-region breakdown. \\
+Clashes            & Colour-coded conflict map, measurement panel, sector explainer, clash inspector, and full clash reference glossary. \\
+Assignments        & Searchable / sortable data table of every sector, with CSV export of the current view. \\
+Add Site           & Re-plan an existing site or add a brand-new site interactively on the map. \\
+OCTO               & Read-only AI agent that answers plain-English questions about the loaded network via LLM reasoning and tool-calling. \\
+Voronoi Compare    & Compare an older workbook against the current one and visualise before / after around a chosen site. \\
+\bottomrule
+\end{tabularx}
+\caption{Quick reference for every section of the 5G Network Planning Portal.}
+\label{tab:np-quickref}
+\end{table}
 
 % =========================================================
 \section{Operational Notes}
