@@ -30,7 +30,7 @@ The core design philosophy rests on two strict operational principles:
 \begin{enumerate}
 \item \textbf{KPI as Evidence, Not Cause:} Low RSRP or high Resource Block (RB) utilization are physical measurements, not root causes. The system maps measured evidence to explicit physical mechanisms such as \textit{Weak Serving Cell} or \textit{Cell Congestion}.
 
-\item \textbf{Deterministic Rules Over Generative Hallucination:} The root-cause decision is made by a priority-ordered, deterministic rule engine grounded in LTE engineering knowledge and 3GPP-defined radio procedures. The Large Language Model (LLM) is positioned strictly downstream as a diagnostic narrative layer to explain the structured verdict; it never independently invents or overrides a root cause.
+\item \textbf{Deterministic Rules Over Generative Hallucination:} The root-cause decision is made by a priority-ordered, deterministic rule engine grounded in LTE engineering knowledge and 3GPP-defined radio procedures. The Large Language Model (LLM) is positioned strictly downstream as a diagnostic narrative layer; the deterministic cause is finalized before prompting, and the model is not authorized to alter the assigned cause.
 \end{enumerate}
 
 The LTE procedures and KPI semantics used by the rule base are consistent with the E-UTRA RRC, physical-layer, and MAC specifications \cite{3gpp36331,3gpp36213,3gpp36321}. The numerical diagnosis gates used in this project are engineering rules calibrated for the project workflow; they should not be interpreted as universal 3GPP optimization thresholds.
@@ -63,7 +63,7 @@ Primary Problem Scope & LTE DL Throughput Degradation & Focus on QoE degradation
 Analysis Unit & Incident-Level Aggregate & Aggregated anomaly episodes with median KPI state\\
 Total Incident Population & 1,382 & Analyzed incident cases\\
 Underlying Drive-Test Rows & 2,824 & Raw observation samples represented\\
-Unique Serving Cell Keys & 423 & Distinct serving-cell identities represented in the RCA handoff\\
+Unique Serving Cells & 423 & Distinct serving-cell identities represented in the RCA handoff\\
 Unique Test Sessions & 254 & Distinct drive-test runs\\
 Observation Window & Aug. 26, 2025 (23:37) $\rightarrow$ Aug. 29, 2025 (00:36) & Approximately 3-day monitoring period\\
 Decision Layer & Deterministic, Priority-Ordered, KPI-Driven & Knowledge base via \texttt{causes.json} and \texttt{kpi\_rules.json}\\
@@ -79,7 +79,7 @@ Figure~\ref{rca-dataset-overview} provides a compact descriptive view of the inc
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\linewidth]{RCA_01_dataset_overview.png}
-\caption{Incident-level RCA dataset overview used for descriptive profiling, including anomaly severity, anomaly-type composition, serving bands, route distribution, and median KPI context.}
+\caption{Incident-level RCA dataset overview showing final population metadata, severity distribution, dominant RCA classifications, and median KPI context.}
 \label[fig]{rca-dataset-overview}
 \end{figure}
 
@@ -163,48 +163,45 @@ Figure~\ref{rca-cause-taxonomy} summarizes the engineering cause tree around the
 
 \subsection{Priority 1: Resource Limitation}
 
-\textbf{Cell Congestion (C01):} Triggered when user demand is confirmed, RB usage is saturated ($\ge80\%$), and the actual-to-expected throughput ratio falls below 0.75.
+\textbf{Cell Congestion (C01):} Identifies capacity-limited cases under confirmed download demand, where high resource use and a substantial throughput shortfall indicate a genuine resource ceiling rather than a radio-quality limitation. Additional evidence can identify high cell load, low rank, unavailable CA, or low operational bandwidth.
 
-\textbf{Poor Spectral Efficiency (C02):} Triggered when demand exists and RB allocation is low ($<40\%$), but throughput per RB is degraded while radio quality remains acceptable.
+\textbf{Poor Spectral Efficiency (C02):} Identifies scheduler under-grant when demand is present but the available radio link is not being translated into sufficient resource allocation. Low MCS, low SINR, and high BLER are retained as supporting evidence when applicable.
 
 \subsection{Priority 2: Coverage and Radio Quality}
 
-\textbf{Weak Serving Cell (C03):} Requires \texttt{MATCH\_ALL} logic across signal parameters:
-\[
-RSRP<-105\,\mathrm{dBm},\quad RSRQ<-15\,\mathrm{dB},\quad MCS<10,\quad BLER>10\%.
-\]
+\textbf{Weak Serving Cell (C03):} Identifies poor serving-cell coverage through the configured weak-RSRP gate. Low RSRQ, low MCS, high BLER, and cell-edge context are retained as supporting evidence rather than treated as independent root causes.
 
-\textbf{Radio Link Failure / Interference (C04):} Requires acceptable coverage ($RSRP\ge-105$ dBm) combined with poor quality ($SINR<0$ dB or $RSRQ<-15$ dB) and high BLER ($>10\%$).
+\textbf{Interference (C04):} Identifies degraded radio quality despite adequate serving-signal power. Degraded SINR is the principal interference signature, while CQI, RSRQ, and BLER provide corroborating evidence when available.
 
-\subsection{Priority 3: Outage and Cell Health}
+\subsection{Priority 3: Outage / eNodeB Fault}
 
-\textbf{Serving Cell / eNodeB Fault (C05):} Identified by near-zero throughput ($<0.05$ Mbps) or joint KPI collapse while UE radio metrics remain normal, ruling out coverage/interference.
+\textbf{Serving Cell / eNodeB Fault (C05):} Reserved for a declared Radio Link Failure while the UE's own radio conditions remain normal, indicating a likely serving-cell or hardware-side fault rather than coverage or interference. Sub-causes that require OSS, RRC-release, power, or neighbor-relation data remain non-computable when those sources are unavailable.
 
-\textbf{Neighbor Cell Outage (C06):} Identified when local serving KPIs are normal ($RSRP\ge-105$ dBm, $SINR\ge0$ dB), but local RB utilization spikes sharply as the cell absorbs redirected traffic from a failed neighbor.
+\textbf{Outage (C06):} Identifies a throughput or session collapse while the UE's own radio conditions remain normal. This branch deliberately represents a general network-side service disruption: drive-test evidence alone does not determine whether the serving site, a neighboring site, transport, or another network element is at fault. Supporting evidence such as a serving-cell utilization increase or a neighbor-availability drop is retained as an investigation lead rather than treated as independent confirmation.
 
-\subsection{Priority 4: Mobility and Access}
+\subsection{Priority 4: Mobility}
 
-\textbf{Handover Problem (C08):} Evaluates late handovers ($Serving-Neighbor~RSRP<-6$ dB), ping-pong handovers (dwell $<5$ s or HO count $\ge95$th percentile), and high-speed degradation ($\ge60$ km/h).
+\textbf{Handover Problem (C08):} Captures handover-adjacent degradation through supporting patterns such as ping-pong handover, recurring wrong-neighbor behavior, late handover, and high-speed mobility context.
 
-\textbf{Access Failures (C09):} Triggered by repeated RACH attempts ($\ge3$), high access latency, or elevated RACH failure rates ($>5\%$).
+\textbf{Access Problem (C09):} Captures Random Access Channel (RACH) failure or contention signatures. More specific explanations that require uplink interference or RACH transmit-power telemetry remain non-computable when those measurements are unavailable.
 
-\subsection{Priority 5: MIMO Performance}
+\subsection{Priority 5: MIMO}
 
-\textbf{MIMO Rank Fallback (C10):} Triggered when $SINR\ge20$ dB but $RI=1$, pointing to antenna correlation, feeder cable faults, or PIM issues.
+\textbf{MIMO Rank Fallback (C10):} Identifies poor spatial multiplexing when link quality is strong but the Rank Indicator falls back to Rank 1, pointing toward antenna-path, correlation, MIMO-capability, or adaptation issues.
 
 \subsection{Priority 6: Carrier Aggregation}
 
-\textbf{Weak Secondary Cell (C11):} Active CA ($carrier\_count\ge2$), but SCell1 shows $RSRP<-105$ dBm and $SINR<0$ dB.
+\textbf{Weak Secondary Cell (C11):} Identifies active Carrier Aggregation whose secondary carrier is limited by poor SCell radio quality. Low SCell SINR, low SCell RSRP, and low or zero SCell RB allocation are retained as supporting evidence.
 
-\textbf{SCell Release / Deactivation (C12):} Secondary carrier drops mid-episode following high SCell BLER ($>10\%$).
+\textbf{SCell Release / Deactivation (C12):} Identifies secondary-carrier deactivation during an active session. High SCell BLER or low SCell CQI before the release can support a radio-quality-driven explanation.
 
-\textbf{CA Inactive / Disabled (C13):} Primary carrier operates alone ($carrier\_count=1$) despite potential CA capability.
+\textbf{CA Inactive / Disabled (C13):} Identifies sessions in which Carrier Aggregation never becomes active and the UE remains on a single carrier, leaving no aggregated bandwidth or SCell radio evidence available.
 
 \subsection{Priority 7: Fallback / Inconclusive}
 
-\textbf{Radio Limited (C14):} Unclassified moderate link degradation ($BLER>10\%$ or $CQI\le7$) without matching higher-priority gates.
+\textbf{Radio Limited (C14):} A lower-priority fallback for degraded link adaptation, such as elevated BLER or low CQI, when no higher-priority cause has already been confirmed.
 
-\textbf{Inconclusive (C15):} Unconfirmed user demand or insufficient evidence to assign a specific engineering cause.
+\textbf{Inconclusive (C15):} The definitive last-resort classification when active demand is not confirmed or no condition in the preceding hierarchy matches. It is retained for auditability but is not interpreted as a confirmed network root cause.
 
 \FloatBarrier
 
@@ -226,11 +223,11 @@ To prevent domain knowledge from being hardcoded inside Python scripts, the RCA 
 \toprule
 JSON File & Core System Role & Key Content and Schema\\
 \midrule
-causes.json & Taxonomy \& Hierarchy & Priority levels, category definitions, subcause lists, cause IDs (C01--C15, excluding C07), reason templates, and computability notes. (\texttt{reason\_template}).\\
+causes.json & Taxonomy \& Hierarchy & Priority categories, parent cause IDs (C01--C15, excluding C07), supporting-evidence IDs, evaluation modes, reason templates (\texttt{reason\_template}), and computability notes.\\
 kpi\_rules.json & Evaluation Logic \& Thresholds & gate conditions,
 supporting evidence, alternatives, and structured
 \texttt{\{field, op, value\}} condition trees.\\
-solutions.json & Remediation Knowledge & Entries keyed directly by cause ID, with recommended_actions and standards_and_vendor_references, URL fields are retained when supplied.\\
+solutions.json & Remediation Knowledge & Entries keyed directly by parent cause ID, with \texttt{recommended\_actions}, optional evidence-specific \texttt{applies\_if} conditions, and \texttt{standards\_and\_vendor\_references}.\\
 \bottomrule
 \end{tabularx}
 \caption{Knowledge-base component summary.}
@@ -247,7 +244,7 @@ The classification script (\texttt{classify\_incidents.py}) executes a rule-driv
 \item \textbf{Load Artifacts:} Parses \texttt{causes.json}, \texttt{kpi\_rules.json}, \texttt{solutions.json}, and input incident records.
 \item \textbf{Extract Telemetry:} Extracts raw and derived KPI fields using a safe extractor (\texttt{extract\_fields()}).
 \item \textbf{Evaluate Hierarchy:} Sequentially tests cause gates from Priority 1 to Priority 7.
-\item \textbf{Apply Boolean Logic:} Evaluates \texttt{MATCH\_ALL} or \texttt{MATCH\_ANY} conditions. If a gate fires, evaluation halts.
+\item \textbf{Apply Boolean Logic:} Evaluates each parent gate using its configured \texttt{MATCH\_ALL} or \texttt{MATCH\_ANY} logic. When a parent gate fires, its supporting-evidence IDs are evaluated independently and collected before the hierarchy stops at the selected root cause.
 \item \textbf{Format Reason Template:} Populates the cause's \texttt{reason\_template} with actual KPI values rounded to two decimal places.
 \item \textbf{Attach Solution:} Fetches corresponding actions and standards citations from \texttt{solutions.json}.
 \item \textbf{Emit Structured Output:} Writes the final JSON payload.
@@ -310,7 +307,7 @@ The fault-management reference stored in the incident is interpreted conservativ
 
 The RCA engine was executed against the dataset of 1,382 incident-level aggregates.
 
-\subsection{Root-Cause Distribution Summary}
+\subsection{RCA Classification Distribution Summary}
 
 \begin{table}[htbp]
 \centering
@@ -321,23 +318,22 @@ Cause ID & Engineering Cause Name & Count & Share & Dominant Category\\
 \midrule
 C01 & Cell Congestion (Capacity-Limited) & 365 & 26.4\% & Resource Limitation\\
 C03 & Weak Serving Cell & 237 & 17.1\% & Coverage \& Radio Quality\\
-C14 & Inconclusive (Insufficient Evidence) & 236 & 17.1\% & Fallback\\
-C13 & Radio Limited (Link Adaptation) & 181 & 13.1\% & Fallback\\
-C06 & Neighbor Cell Outage / Load Shift & 98 & 7.1\% & Outage \& Cell Health\\
-C12 & CA Inactive / Disabled & 92 & 6.7\% & Carrier Aggregation\\
-C10 & Weak Secondary Cell (SCell) & 40 & 2.9\% & Carrier Aggregation\\
-C07\_a & Handover Problem -- Late Handover & 35 & 2.5\% & Mobility \& Access\\
-C09 & MIMO Rank Fallback & 33 & 2.4\% & MIMO\\
+C15 & Inconclusive & 236 & 17.1\% & Fallback / Inconclusive\\
+C14 & Radio Limited (Link Adaptation) & 181 & 13.1\% & Fallback / Inconclusive\\
+C06 & Outage & 98 & 7.1\% & Outage / eNodeB Fault\\
+C13 & CA Inactive / Disabled & 92 & 6.7\% & Carrier Aggregation\\
+C08 & Handover Problem & 44 & 3.2\% & Mobility\\
+C11 & Weak Secondary Cell (SCell) & 40 & 2.9\% & Carrier Aggregation\\
+C10 & MIMO Rank Fallback & 33 & 2.4\% & MIMO\\
 C04 & Interference / Radio Link Failure & 28 & 2.0\% & Coverage \& Radio Quality\\
-C08 & Access Problem (RACH Failures) & 18 & 1.3\% & Mobility \& Access\\
-C07\_c & Handover Problem -- Ping-Pong HO & 9 & 0.7\% & Mobility \& Access\\
-C05 & Serving Cell / eNodeB Fault & 5 & 0.4\% & Outage \& Cell Health\\
+C09 & Access Problem (RACH Failures) & 18 & 1.3\% & Mobility\\
+C05 & Serving Cell / eNodeB Fault & 5 & 0.4\% & Outage / eNodeB Fault\\
 C02 & Poor Spectral Efficiency & 5 & 0.4\% & Resource Limitation\\
 \midrule
 \textbf{Total} & \textbf{All Categories} & \textbf{1,382} & \textbf{100.0\%} &\\
 \bottomrule
 \end{tabularx}
-\caption{Root-cause distribution across 1,382 incidents.}
+\caption{RCA classification distribution across 1,382 incidents.}
 \label[tab]{rca-cause-distribution}
 \end{table}
 
@@ -346,7 +342,7 @@ Figure~\ref{rca-severity-composition} complements the count table by showing how
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.86\linewidth]{RCA_05_severity_by_root_cause.png}
-\caption{Severity composition per root-cause category in the deterministic RCA results.}
+\caption{Severity composition per RCA classification in the deterministic results.}
 \label[fig]{rca-severity-composition}
 \end{figure}
 
@@ -357,7 +353,7 @@ Figure~\ref{rca-severity-composition} complements the count table by showing how
 
 \item \textbf{Coverage Limits:} Weak Serving Cell (C03) represents 17.1\% (237 incidents), confirming that RF attenuation remains a major bottleneck in the drive-test area.
 
-\item \textbf{Operational Trust via Inconclusive Classification:} Inconclusive (C14) accounts for 17.1\% (236 incidents). When drive-test data lacks necessary fields, such as missing OSS alarms or unconfirmed demand, the engine defaults to Inconclusive rather than generating a false diagnosis.
+\item \textbf{Operational Trust via Inconclusive Classification:} Inconclusive (C15) accounts for 17.1\% (236 incident classifications). When active demand is not confirmed or no higher-priority rule matches, the engine retains an explicit fallback result rather than forcing a network diagnosis. C15 is therefore not interpreted as a confirmed network root cause.
 \end{enumerate}
 
 \FloatBarrier
@@ -373,17 +369,19 @@ Once a root cause is established, the engine retrieves corresponding remediation
 \toprule
 Cause Category & Primary Engineering Root Cause & Direct Remediation Action\\
 \midrule
-Resource Limitation & Cell Congestion (C01) & Trigger carrier expansion, adjust inter-frequency load balancing (IFLB), optimize PRB scheduling, or deploy small cells.\\
-Coverage \& Radio & Weak Serving Cell (C03) & Audit antenna downtilt/azimuth, increase RS transmission power, or evaluate site placement/coverage expansion.\\
-Coverage \& Radio & Interference (C04) & Audit frequency planning, adjust antenna tilts to reduce overshoot, investigate external interference, or tune PCI/PDSCH power offsets.\\
-Outage \& Health & Serving Cell Fault (C05) & Inspect OSS alarm logs for eNodeB board failures, transmission backhaul drops, or power amplifier limits before dispatching RF teams.\\
-Mobility & Late Handover (C07\_a) & Decrease Event A3 offset/hysteresis, reduce Time-to-Trigger (TTT), or audit Neighbor Relation Tables (NRT).\\
-Mobility & Ping-Pong Handover (C07\_c) & Increase Event A3 hysteresis margin, adjust Cell Individual Offsets (CIO), or increase hysteresis timers.\\
-MIMO & Rank Fallback (C09) & Inspect physical antenna paths, feeder cables, VSWR ratios, and PIM levels; check UE transmission mode (TM) configuration.\\
-Carrier Aggregation & Weak Secondary Cell (C10) & Audit SCell coverage/tilt, adjust A5/A2 thresholds for SCell addition/release, or re-evaluate SCell frequency band choice.\\
+Resource Limitation & Cell Congestion (C01) & Run a capacity audit, review scheduler fairness/weights, and consider Mobility Load Balancing toward underutilized neighbors; prioritize expansion when the cell is genuinely capacity-exhausted.\\
+Coverage \& Radio & Weak Serving Cell (C03) & Audit serving-site tilt, azimuth, and transmit power; consider a new site, small cell, or repeater when a repeated coverage hole is confirmed.\\
+Coverage \& Radio & Interference (C04) & Perform an RF/interference investigation and first verify that repeated measurements show adequate RSRP, preventing a weak-coverage case from being treated as interference.\\
+Outage / eNodeB Fault & Serving Cell Fault (C05) & Check serving-site OSS alarms/counters and relevant mobility-failure counters for the event window; avoid RF tuning until an outage or fault is confirmed or ruled out.\\
+Outage / eNodeB Fault & Outage (C06) & Correlate the event with OSS alarms/counters for the serving site and immediate neighbors, then inspect maintenance, reset, and transport-link logs before attributing the failure to a specific site.\\
+Mobility & Handover Problem (C08) & Tune Event A3 hysteresis/offset and Time-to-Trigger according to the matched handover pattern; use an ANR audit when the problem recurs across multiple episodes.\\
+Mobility & Access Problem (C09) & Review RACH configuration, including preamble and power-ramping parameters, and investigate uplink coverage/interference when access delay is elevated.\\
+MIMO & Rank Fallback (C10) & Inspect antenna/RF paths, cross-polarization, spacing, and correlation at affected sites; check UE MIMO capability/reporting when the behavior is UE-specific.\\
+Carrier Aggregation & Weak Secondary Cell (C11) & Audit RF coverage on the secondary carrier and inspect SCell scheduler weighting when allocation remains very low; do not disable CA as a substitute for correcting the SCell limitation.\\
+Carrier Aggregation & CA Inactive / Disabled (C13) & Confirm UE CA capability and secondary-carrier availability, then check CA feature activation/licensing and UE-context capability flags.\\
 \bottomrule
 \end{tabularx}
-\caption{Cause-to-remediation mapping.}
+\caption{Representative cause-to-remediation mapping derived from \texttt{solutions.json}.}
 \label[tab]{rca-remediation}
 \end{table}
 
@@ -395,7 +393,7 @@ The Large Language Model (LLM) operates strictly as a text-generation layer down
 
 \begin{enumerate}
 \item \textbf{Context \& Symptom:} State the incident ID, timestamp, serving cell, and throughput drop.
-\item \textbf{Deterministic Verdict:} State the primary cause name and cause ID (C01--C14).
+\item \textbf{Deterministic Verdict:} State the primary cause name and cause ID (C01--C15, with C07 unused in the current taxonomy).
 \item \textbf{KPI Evidence:} Cite the exact numerical KPI values that triggered the decision rule.
 \item \textbf{Reasoning Explanation:} Explain why the KPI combination supports this physical mechanism.
 \item \textbf{Action Plan:} Present the recommended remediation steps from \texttt{solutions.json}.
@@ -436,7 +434,7 @@ Can the LLM alter the deterministic cause? & The cause decision is finalized bef
 
 \item \textbf{OSS \& Alarm Integration:} Ingest eNodeB hardware alarms, MME paging logs, and backhaul status counters to resolve C05/C06 outage sub-causes.
 
-\item \textbf{Dynamic Cell-Specific Baselines:} Replace static global thresholds ($RSRP<-105$ dBm) with cell-specific historical percentiles ($p_{10}/p_{50}$).
+\item \textbf{Dynamic Cell-Specific Baselines:} Replace selected global engineering thresholds with cell-specific historical percentiles ($p_{10}/p_{50}$) once sufficient historical data is available.
 
 \item \textbf{Enhanced Evidence Scoring:} Implement a multi-factor confidence score based on the number and independence of supporting KPI indicators.
 
@@ -448,6 +446,7 @@ Can the LLM alter the deterministic cause? & The cause decision is finalized bef
 This contribution establishes an auditable, rule-driven Root Cause Analysis framework for LTE drive-test throughput anomalies. By enforcing a deterministic decision layer backed by a modular three-JSON knowledge base, the system converts measured telemetry into clear engineering diagnoses linked to actionable remediation steps.
 
 Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by categorizing ambiguous cases as \textbf{Inconclusive} (17.1\%). The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
+Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by retaining \textbf{Inconclusive} fallback classifications (17.1\%) instead of forcing unsupported network diagnoses. The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
 
 \begin{successbox}{Technical Pipeline Summary}
 \centering
