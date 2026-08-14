@@ -13,8 +13,9 @@
       "3. Priority 3 (Outage / eNodeB Fault): Serving Cell / eNodeB Fault (C05, requires a declared RLF -- not yet reachable without rach_reason), then Outage / Unattributed (C06, a throughput-collapse proxy that does NOT distinguish serving-cell vs neighbor-cell fault).",
       "4. Priority 4 (Mobility): Handover Problem (C08), then Access Problem (C09).",
       "5. If any subcategory in steps 1-4 matched, the anomaly's root cause is that subcategory's id, plus every supporting-evidence id that also matched. Stop.",
-      "6. If nothing matched in 1-4: Priority 5 MIMO (C10), then Priority 6 Carrier Aggregation: Weak Secondary Cell (C11), SCell Release & Deactivation (C12), CA Inactive/Disable (C13). Stop at first match.",
-      "7. If nothing matched through C13, assign C14 (Radio-limited) if it holds, else C15 (Inconclusive) -- the definitive last-resort reason."
+      "6. If nothing matched in 1-4: Priority 5 MIMO (C10), then Priority 6 Carrier Aggregation: Weak Secondary Cell (C11), SCell Release & Deactivation (C12, currently unreachable -- see C12 note), CA Inactive/Disable (C13). Stop at first match.",
+      "7. If nothing matched through C13: Elevated Load (C01_f), a lower-confidence Cell Congestion tier (cell_prb_util >= 50% AND UE rb_usage >= 60%). Declared as a priority-7 rule (same bracket as C14/C15) and checked first among that tier, so a confirmed MIMO or CA signature from priority 5-6 always takes precedence over this generic probable-congestion label.",
+      "8. If nothing matched through C01_f, assign C14 (Radio-limited) if it holds, else C15 (Inconclusive) -- the definitive last-resort reason."
     ]
   },
   "evaluation_mode_definitions": {
@@ -23,7 +24,7 @@
     "note": "Regardless of mode, supporting-evidence ids are always evaluated independently once the gate has fired, and collected as supporting_evidence. They never gate the parent themselves."
   },
   "output_display_rule": {
-    "category_field": "For every cause, 'category' in the output is this cause's broad taxonomy category (e.g. 'Resource Limitation', 'Coverage & Radio Quality') -- with one deliberate exception: for C04 (Interference), 'category' is instead set to the fuller descriptive label 'Radio Link Failure (Interference)', so category and cause_name aren't near-duplicates for that one entry.",
+    "category_field": "For every cause, 'category' in the output is normally this cause's broad taxonomy category (e.g. 'Resource Limitation', 'Mobility') -- with two deliberate display-only simplifications: C03 (Weak Serving Cell, taxonomy category 'Coverage & Radio Quality') displays as the shorter 'Coverage', and C04 (Interference, taxonomy category 'Coverage & Radio Quality') displays as 'Interference' rather than the full taxonomy name, so the two subcategories that share a parent category read as distinct labels in dashboards. This is a display-layer choice only (CATEGORY_DISPLAY_OVERRIDE in classify_incidents.py) -- the underlying taxonomy category for both remains 'Coverage & Radio Quality' everywhere else in this file.",
     "cause_name_field": "The subcategory's clean short name (e.g. 'Weak Serving Cell', 'Interference', 'Cell Congestion'), not the more technical internal headline name."
   },
   "priority_categories": [
@@ -40,7 +41,7 @@
               "id": "C01",
               "name": "PRB Allocation / Capacity-Limited",
               "kpi_computable": true,
-              "reason_template": "This anomaly is capacity-limited: the UE had confirmed download demand, was using {rb_utilization_pct}% of available RB capacity across {carrier_count} carrier(s), falling {throughput_gap_p75} Mbps below expected throughput -- with link quality still healthy (CQI {lte_cqi}, MCS {lte_mcs}), confirming the shortfall is a resource ceiling, not a radio problem."
+              "reason_template": "This anomaly is capacity-limited: the UE had confirmed download demand while the serving cell's PRB utilization ({cell_prb_utilization_pct}%) was at or above the congestion threshold across {carrier_count} carrier(s), falling {throughput_gap_p75} Mbps below expected throughput -- with link quality still healthy (CQI {lte_cqi}, MCS {lte_mcs}), confirming the shortfall is a cell-level resource ceiling, not a radio problem or the UE's own allocation."
             },
             {
               "id": "C01_a",
@@ -72,8 +73,16 @@
             {
               "id": "C01_e",
               "name": "Low BW",
+              "kpi_computable": false,
+              "reason_template": "Low operational channel bandwidth ({dl_bandwidth_mhz} MHz) bottlenecking overall capacity.",
+              "note": "Not computable with current data: requires an lte_bandwidth_dl field, not present in any dataset used so far."
+            },
+            {
+              "id": "C01_f",
+              "name": "Elevated Load",
               "kpi_computable": true,
-              "reason_template": "Low operational channel bandwidth ({dl_bandwidth_mhz} MHz) bottlenecking overall capacity."
+              "note": "Lower-confidence tier, evaluated LAST -- declared as priority 7 in kpi_rules.json (same bracket as C14/C15) and checked before C14 in that file's rule order, but only after every priority 1-6 pattern (Resource, Coverage, Outage, Mobility, MIMO, Carrier Aggregation) has had a chance to match first. Cell PRB utilization sits below the 80% confirmed-congestion threshold but is still elevated (>=50%), combined with high UE RB usage (>=60%). Real resource pressure, but not confirmed saturation -- and deliberately checked last so a specific, higher-confidence signature always wins over this generic label when both are present.",
+              "reason_template": "Cell PRB utilization ({cell_prb_utilization_pct}%) was elevated though below the confirmed-congestion threshold, while the UE itself was using {rb_utilization_pct}% of available RB capacity -- pointing to probable resource pressure rather than confirmed cell saturation."
             }
           ]
         },
@@ -91,8 +100,9 @@
             {
               "id": "C02_a",
               "name": "Low Traffic / Demand / Low Buffering Status",
-              "kpi_computable": true,
-              "reason_template": "Buffer status reports indicate low user payload demand, resulting in under-scheduling."
+              "kpi_computable": false,
+              "reason_template": "Buffer status reports indicate low user payload demand, resulting in under-scheduling.",
+              "note": "Not computable with current data: requires a buffer status report field, not present in any dataset used so far."
             },
             {
               "id": "C02_b",
@@ -164,8 +174,9 @@
             {
               "id": "C03_f",
               "name": "Weak Serving Cell (Direct Coverage Hole)",
-              "kpi_computable": true,
-              "reason_template": "Direct physical coverage hole causing severe signal loss (RSRP far below threshold across repeated passes at this location)."
+              "kpi_computable": false,
+              "reason_template": "Direct physical coverage hole causing severe signal loss (RSRP far below threshold across repeated passes at this location).",
+              "note": "Not computable with current data: requires repeated drive passes at this location to confirm a physical coverage hole; not derivable from a single incident's snapshot."
             }
           ]
         },
@@ -236,7 +247,7 @@
         {
           "subcategory": "Serving Cell / eNodeB Fault",
           "parent_id": "C05",
-          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
           "causes_list": [
             {
               "id": "C05",
@@ -378,8 +389,9 @@
             {
               "id": "C08_b",
               "name": "Wrong Neighbor Relation",
-              "kpi_computable": true,
-              "reason_template": "This eNodeB has shown the 'stayed on the weaker cell during handover' pattern across multiple separate episodes -- a persistent site-level pattern, checked before a one-off Late Handover so a recurring problem gets the more specific, actionable label."
+              "kpi_computable": false,
+              "reason_template": "This eNodeB has shown the 'stayed on the weaker cell during handover' pattern across multiple separate episodes -- a persistent site-level pattern, checked before a one-off Late Handover so a recurring problem gets the more specific, actionable label.",
+              "note": "Not computable with current data: requires cross-incident aggregation (recurrence across >=5 episodes at the same site), not performed in this per-incident classification pass -- also not listed as a C08 alternative for the same reason, so it can never become the matched id either."
             },
             {
               "id": "C08_c",
@@ -530,33 +542,37 @@
             {
               "id": "C11_d",
               "name": "Low / Zero SCell Allocated RBs",
-              "kpi_computable": true,
-              "reason_template": "SCell was allocated only {scell_rb_count} RBs despite CA being active."
+              "kpi_computable": false,
+              "reason_template": "SCell was allocated only {scell_rb_count} RBs despite CA being active.",
+              "note": "Not computable with current data: requires an scell1_rb_count field, not present in any dataset used so far."
             }
           ]
         },
         {
           "subcategory": "SCell Release & Deactivation",
           "parent_id": "C12",
-          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
           "causes_list": [
             {
               "id": "C12",
               "name": "SCell Release / CA Inactive Mid-Episode",
-              "kpi_computable": true,
-              "reason_template": "Secondary carrier deactivated mid-session, forcing single-carrier fallback."
+              "kpi_computable": false,
+              "reason_template": "Secondary carrier deactivated mid-session, forcing single-carrier fallback.",
+              "note": "Not computable with current data: requires a within-episode SCell activation/deactivation timeline to distinguish 'CA was active then dropped mid-episode' from a session that never had CA. This per-incident aggregate only carries a single median carrier_count snapshot. Kept in the taxonomy for when episode-level CA timeline data becomes available."
             },
             {
               "id": "C12_a",
               "name": "High SCell BLER",
-              "kpi_computable": true,
-              "reason_template": "High SCell BLER ({scell_bler}%) before deactivation, a plausible trigger for the release."
+              "kpi_computable": false,
+              "reason_template": "High SCell BLER ({scell_bler}%) before deactivation, a plausible trigger for the release.",
+              "note": "Not computable with current data: requires a within-episode timeline (BLER trend before SCell deactivation), not present in this per-incident aggregate."
             },
             {
               "id": "C12_b",
               "name": "Low SCell CQI",
-              "kpi_computable": true,
-              "reason_template": "SCell CQI ({scell_cqi}) was also degraded before deactivation, corroborating a radio-quality-driven release rather than a scheduling artifact."
+              "kpi_computable": false,
+              "reason_template": "SCell CQI ({scell_cqi}) was also degraded before deactivation, corroborating a radio-quality-driven release rather than a scheduling artifact.",
+              "note": "Not computable with current data: requires a within-episode timeline (CQI trend before SCell deactivation), not present in this per-incident aggregate."
             },
             {
               "id": "C12_c",
@@ -570,7 +586,7 @@
         {
           "subcategory": "CA Inactive / Disable",
           "parent_id": "C13",
-          "evaluation_mode": "MATCH_ANY_KPI_CONDITION",
+          "evaluation_mode": "MATCH_ALL_KPI_CONDITIONS",
           "causes_list": [
             {
               "id": "C13",
