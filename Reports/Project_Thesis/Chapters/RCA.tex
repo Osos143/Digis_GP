@@ -445,7 +445,6 @@ Can the LLM alter the deterministic cause? & The cause decision is finalized bef
 
 This contribution establishes an auditable, rule-driven Root Cause Analysis framework for LTE drive-test throughput anomalies. By enforcing a deterministic decision layer backed by a modular three-JSON knowledge base, the system converts measured telemetry into clear engineering diagnoses linked to actionable remediation steps.
 
-Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by categorizing ambiguous cases as \textbf{Inconclusive} (17.1\%). The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
 Applied to the 1,382-incident evaluation dataset, the engine identified \textbf{Cell Congestion} (26.4\%) and \textbf{Weak Serving Cell} (17.1\%) as the primary network bottlenecks, while maintaining operational trust by retaining \textbf{Inconclusive} fallback classifications (17.1\%) instead of forcing unsupported network diagnoses. The downstream LLM layer converts these structured verdicts into clear diagnostic prose without sacrificing deterministic rigor.
 
 \begin{successbox}{Technical Pipeline Summary}
