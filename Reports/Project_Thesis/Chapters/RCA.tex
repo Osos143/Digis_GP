@@ -21,7 +21,7 @@
   columns=fullflexible
 }
 
-\section{Executive Summary and System Architecture}
+\section{System Overview and Architecture}
 
 This chapter details the reasoning and explanation layer of the Drive-Test QoE Anomaly Detection \& Root Cause Analysis (RCA) system. While the upstream anomaly-detection pipeline converts raw, second-by-second LTE drive-test observations into consolidated engineer-facing incidents, the RCA layer provides the engineering intelligence that transforms those incidents into actionable, explainable, and auditable network diagnoses.
 
@@ -184,27 +184,27 @@ RSRP<-105\,\mathrm{dBm},\quad RSRQ<-15\,\mathrm{dB},\quad MCS<10,\quad BLER>10\%
 
 \subsection{Priority 4: Mobility and Access}
 
-\textbf{Handover Problem (C07):} Evaluates late handovers ($Serving-Neighbor~RSRP<-6$ dB), ping-pong handovers (dwell $<5$ s or HO count $\ge95$th percentile), and high-speed degradation ($\ge60$ km/h).
+\textbf{Handover Problem (C08):} Evaluates late handovers ($Serving-Neighbor~RSRP<-6$ dB), ping-pong handovers (dwell $<5$ s or HO count $\ge95$th percentile), and high-speed degradation ($\ge60$ km/h).
 
-\textbf{Access Failures (C08):} Triggered by repeated RACH attempts ($\ge3$), high access latency, or elevated RACH failure rates ($>5\%$).
+\textbf{Access Failures (C09):} Triggered by repeated RACH attempts ($\ge3$), high access latency, or elevated RACH failure rates ($>5\%$).
 
 \subsection{Priority 5: MIMO Performance}
 
-\textbf{Poor Spatial Multiplexing (C09):} Triggered when $SINR\ge20$ dB but $RI=1$, pointing to antenna correlation, feeder cable faults, or PIM issues.
+\textbf{MIMO Rank Fallback (C10):} Triggered when $SINR\ge20$ dB but $RI=1$, pointing to antenna correlation, feeder cable faults, or PIM issues.
 
 \subsection{Priority 6: Carrier Aggregation}
 
-\textbf{Weak Secondary Cell (C10):} Active CA ($carrier\_count\ge2$), but SCell1 shows $RSRP<-105$ dBm and $SINR<0$ dB.
+\textbf{Weak Secondary Cell (C11):} Active CA ($carrier\_count\ge2$), but SCell1 shows $RSRP<-105$ dBm and $SINR<0$ dB.
 
-\textbf{SCell Release / Deactivation (C11):} Secondary carrier drops mid-episode following high SCell BLER ($>10\%$).
+\textbf{SCell Release / Deactivation (C12):} Secondary carrier drops mid-episode following high SCell BLER ($>10\%$).
 
-\textbf{CA Inactive / Disabled (C12):} Primary carrier operates alone ($carrier\_count=1$) despite potential CA capability.
+\textbf{CA Inactive / Disabled (C13):} Primary carrier operates alone ($carrier\_count=1$) despite potential CA capability.
 
 \subsection{Priority 7: Fallback / Inconclusive}
 
-\textbf{Radio Limited (C13):} Unclassified moderate link degradation ($BLER>10\%$ or $CQI\le7$) without matching higher-priority gates.
+\textbf{Radio Limited (C14):} Unclassified moderate link degradation ($BLER>10\%$ or $CQI\le7$) without matching higher-priority gates.
 
-\textbf{Inconclusive (C14):} Unconfirmed user demand or insufficient evidence to assign a specific engineering cause.
+\textbf{Inconclusive (C15):} Unconfirmed user demand or insufficient evidence to assign a specific engineering cause.
 
 \FloatBarrier
 
@@ -226,9 +226,11 @@ To prevent domain knowledge from being hardcoded inside Python scripts, the RCA 
 \toprule
 JSON File & Core System Role & Key Content and Schema\\
 \midrule
-causes.json & Taxonomy \& Hierarchy & Priority levels, category definitions, subcause lists, cause IDs (C01--C14), solution IDs (SOL\_C01), and string templates (\texttt{reason\_template}).\\
-kpi\_rules.json & Evaluation Logic \& Thresholds & Exact KPI JSON paths, comparison operators, numerical thresholds, evaluation modes (\texttt{MATCH\_ALL} vs. \texttt{MATCH\_ANY}), and gate conditions.\\
-solutions.json & Remediation Knowledge & Solution IDs, recommended engineering actions, investigation steps, 3GPP specification references, and vendor-documentation references.\\
+causes.json & Taxonomy \& Hierarchy & Priority levels, category definitions, subcause lists, cause IDs (C01--C15, excluding C07), reason templates, and computability notes. (\texttt{reason\_template}).\\
+kpi\_rules.json & Evaluation Logic \& Thresholds & gate conditions,
+supporting evidence, alternatives, and structured
+\texttt{\{field, op, value\}} condition trees.\\
+solutions.json & Remediation Knowledge & Entries keyed directly by cause ID, with recommended_actions and standards_and_vendor_references, URL fields are retained when supplied.\\
 \bottomrule
 \end{tabularx}
 \caption{Knowledge-base component summary.}
