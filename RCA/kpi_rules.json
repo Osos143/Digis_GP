@@ -81,9 +81,9 @@
           "value": true
         },
         {
-          "field": "rb_usage",
+          "field": "cell_prb_util",
           "op": ">=",
-          "value": 40
+          "value": 80
         },
         {
           "field": "underperform_80pct",
@@ -761,14 +761,8 @@
       "gate_logic": "ALL",
       "gate_conditions": [
         {
-          "field": "carrier_count",
-          "op": "==",
-          "value": 1
-        },
-        {
-          "field": "episode_max_carrier_count",
-          "op": ">=",
-          "value": 2
+          "not_computable": true,
+          "reason": "requires an within-episode SCell activation/deactivation timeline (e.g. episode_max_carrier_count showing CA was active earlier in the same episode then dropped) -- this per-incident aggregate only carries a single median carrier_count snapshot, the same limitation already documented for C12_a/C12_b/C12_c. This subcategory cannot currently fire; kept in the tree for when episode-level CA timeline data becomes available."
         }
       ],
       "supporting_evidence": [
@@ -820,6 +814,45 @@
           }
         }
       ]
+    },
+    {
+      "parent_id": "C01_f",
+      "priority": 7,
+      "gate_logic": "ALL",
+      "gate_conditions": [
+        {
+          "field": "demand_confirmed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "underperform_80pct",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "cqi",
+          "op": ">=",
+          "value": 7
+        },
+        {
+          "field": "mcs",
+          "op": ">=",
+          "value": 10
+        },
+        {
+          "field": "cell_prb_util",
+          "op": ">=",
+          "value": 50
+        },
+        {
+          "field": "rb_usage",
+          "op": ">=",
+          "value": 60
+        }
+      ],
+      "note": "Elevated Load last-resort tier. Declared as priority 7, same bracket as C14/C15, so it's evaluated by the same generic fallback loop -- no bespoke Python function needed. Positioned before C14 in the rules array (order below), so it's checked first among the priority-7 tier, but only after Function 1 (priority 1-4) and Function 2 (priority 5-6) have both found nothing -- meaning a specific, higher-confidence signature (e.g. MIMO Rank Fallback, Weak Secondary Cell) always wins over this generic probable-congestion label when both are present.",
+      "supporting_evidence": []
     },
     {
       "parent_id": "C14",

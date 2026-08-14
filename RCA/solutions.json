@@ -31,6 +31,10 @@
         {
           "action": "Low operational bandwidth is the bottleneck -- evaluate a bandwidth upgrade or refarming before any scheduler tuning.",
           "applies_if": "C01_e"
+        },
+        {
+          "action": "This is a lower-confidence signature -- cell load is elevated but below the confirmed-congestion threshold. Monitor this cell's PRB trend over time before committing to a capacity fix; if utilization keeps climbing toward 80%, treat it as an early-warning capacity case rather than a one-off.",
+          "applies_if": "C01_f"
         }
       ],
       "standards_and_vendor_references": [

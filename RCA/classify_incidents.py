@@ -4,9 +4,14 @@ this file; this script loads kpi_rules.json and evaluates its condition trees ag
 dict computed once per incident. Editing a threshold in kpi_rules.json changes classifier behavior
 directly, with no Python edit required.
 
-Two functions, as originally requested:
+Two functions, as originally requested, plus a generalized fallback pass:
 FUNCTION 1: Priorities 1-4 (Resource Limitation, Coverage & Radio Quality, Outage/eNodeB Fault, Mobility).
 FUNCTION 2: Priorities 5-6 (MIMO, Carrier Aggregation) -- only called if FUNCTION 1 found nothing.
+FALLBACK: any priority-7 rule except C15, walked in kpi_rules.json array order -- currently C01_f
+(Elevated Load, a lower-confidence Cell Congestion tier) then C14 (Radio-limited); C15 is the
+unconditional last resort. Only called if FUNCTION 1 and FUNCTION 2 both found nothing, so a specific,
+higher-confidence signature from either function always gets first claim on an incident. This tier is
+pure kpi_rules.json data -- reordering or adding a priority-7 rule needs no Python change.
 
 Output format: 'problem_name' is the subcategory name alone when the matched id IS that subcategory's
 designated parent_id (e.g. C03 -> "Weak Serving Cell"); when the matched id is a specific peer pattern
@@ -31,7 +36,10 @@ for cat in causes['priority_categories']:
 
 rules_by_id = {r['parent_id']: r for r in kpi_rules['rules']}
 
-CATEGORY_DISPLAY_OVERRIDE = {"C03": "Coverage", "C04": "Radio Link Failure (Interference)"}
+# Display-simplified category labels for these two subcategories, per explicit product decision --
+# documented in causes.json's output_display_rule so this isn't mistaken for a stale/undocumented
+# override again. Every other subcategory shows its full taxonomy category name unchanged.
+CATEGORY_DISPLAY_OVERRIDE = {"C03": "Coverage", "C04": "Interference"}
 
 def g(d, path, default=None):
     cur = d
@@ -165,10 +173,15 @@ def evaluate_priority_5_to_6(f):
     return (None, [])
 
 def evaluate_fallback(f):
+    # Walks every priority-7 rule EXCEPT C15, in kpi_rules.json array order -- first one whose gate fires
+    # wins. Currently that's C01_f (Elevated Load) then C14 (Radio-limited); C15 is the unconditional
+    # last resort. Nothing about this loop is specific to any one id -- reordering or adding priority-7
+    # tiers is a pure kpi_rules.json edit, no Python change required.
     for rule in kpi_rules['rules']:
-        if rule['priority'] == 7 and rule['parent_id'] == 'C14' and evaluate_gate(rule, f):
-            return 'C14'
-    return 'C15'
+        if rule['priority'] == 7 and rule['parent_id'] != 'C15' and evaluate_gate(rule, f):
+            ev = evaluate_supporting_evidence(rule, f)
+            return (rule['parent_id'], ev)
+    return ('C15', [])
 
 def build_reason(cid, f):
     tmpl = id_to_cause[cid]['reason_template']
@@ -198,9 +211,9 @@ def build_supporting_evidence(matched_ids, f):
         out.append({"id": eid, "name": cause['name'], "reason": build_reason(eid, f)})
     return out
 
-def build_solution(parent_id, matched_evidence):
-    sol = solutions.get(parent_id, {"recommended_actions": [], "standards_and_vendor_references": []})
-    matched = matched_evidence + [parent_id]
+def build_solution(solution_key, matched_id, matched_evidence):
+    sol = solutions.get(solution_key, {"recommended_actions": [], "standards_and_vendor_references": []})
+    matched = matched_evidence + [matched_id]
     actions = [a['action'] for a in sol.get('recommended_actions', []) if a.get('applies_if') is None or a.get('applies_if') in matched]
     refs = [{"source": r['source'], "note": r['note']} for r in sol.get('standards_and_vendor_references', [])]
     return actions, refs
@@ -215,7 +228,7 @@ def process(rec):
         if matched_id is None:
             matched_id, ev = evaluate_priority_5_to_6(f)
         if matched_id is None:
-            matched_id, ev = evaluate_fallback(f), []
+            matched_id, ev = evaluate_fallback(f)
 
     subcat_info = id_to_subcat[matched_id]
     category = CATEGORY_DISPLAY_OVERRIDE.get(matched_id, subcat_info['category'])
@@ -230,7 +243,7 @@ def process(rec):
         problem_name = f"{subcat_info['subcategory']} - {cause_entry['name']}"
 
     reason = build_reason(matched_id, f)
-    actions, refs = build_solution(matched_id, ev)
+    actions, refs = build_solution(subcat_info['parent_id'], matched_id, ev)
     supporting_evidence = build_supporting_evidence(ev, f)
 
     kpi_raw = {
