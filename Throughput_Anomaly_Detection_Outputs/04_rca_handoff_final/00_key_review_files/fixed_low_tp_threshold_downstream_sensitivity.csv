@@ -1,4 +1,0 @@
-﻿fixed_threshold_mbps,all_lte_dl_rows_below_threshold,all_lte_dl_pct_below_threshold,overlap_with_any_adaptive_low_tail_rows,final_handoff_rows_below_threshold,final_episodes_containing_below_threshold_row,operational_incidents_containing_below_threshold_row,interpretation
-8.0,4610,14.299894534400398,3224,2310,1124,1094,Diagnostic sensitivity only; production fusion is not auto-retuned.
-10.0,5549,17.212606241081954,3224,2554,1175,1145,Diagnostic sensitivity only; production fusion is not auto-retuned.
-12.0,6503,20.17184688876481,3224,2707,1216,1182,Diagnostic sensitivity only; production fusion is not auto-retuned.
