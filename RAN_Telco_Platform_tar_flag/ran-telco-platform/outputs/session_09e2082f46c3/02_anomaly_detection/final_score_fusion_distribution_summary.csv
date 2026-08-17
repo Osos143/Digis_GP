@@ -1,9 +1,0 @@
-﻿fusion_source,final_priority_severity,detection_confidence,rows,median_actual_tp,median_final_priority,median_raw_priority,median_impact,median_confidence
-not_handed_off,Normal,High,4,27.046554734022166,0.0,49.040000000000006,35.75,65.275
-not_handed_off,Normal,Low,351,36.380463856740604,0.0,2.84,0.0,6.32
-not_handed_off,Normal,Medium,36,18.151151378038627,0.0,31.165,20.465000000000003,49.99
-statistical_and_ml_consensus,High,Very High,2,6.127456158300275,87.21000000000001,87.21000000000001,76.74000000000001,100.0
-statistical_only_retained,High,High,6,0.5744556933988263,73.375,73.375,72.715,72.8
-statistical_only_retained,High,Very High,6,4.831188756857992,84.175,84.175,78.265,86.145
-statistical_only_retained,Medium,High,6,13.767003636656808,60.864999999999995,60.864999999999995,54.285,65.38
-statistical_only_retained,Medium,Medium,1,34.399831269508994,54.38,54.38,53.86,55.02

@@ -1,9 +1,0 @@
-﻿event_family,event_count
-other,33643
-rach_attempt,5549
-measurement_report_event,3405
-ca_activation_change,2862
-handover_execution,1299
-failure_other,820
-rach_failure,369
-handover_failure,121

@@ -1,4 +1,0 @@
-﻿rb_column,non_null_rows,non_null_pct,unique_values,min,p10,p25,median,p75,p90,max,reliable_for_anomaly_evidence
-lte_rb_count,412,100.0,412,-0.168,64.56,77.449,87.761,92.555,95.031,99.137,True
-lte_agg_rb_dl,412,100.0,412,-0.035,76.83,86.745,93.78,160.644,177.711,194.774,True
-scell1_rb_count,158,38.35,158,19.773,60.289,73.585,84.268,93.856,96.57,100.16,False
