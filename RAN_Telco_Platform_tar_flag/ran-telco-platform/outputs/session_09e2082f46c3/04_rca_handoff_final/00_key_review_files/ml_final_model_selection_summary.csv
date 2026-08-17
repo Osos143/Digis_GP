@@ -1,5 +1,0 @@
-﻿model,role,selection_reason,mean_r2_mbps,mean_mae_mbps
-HGB_strict_causal_temporal_Q50,KEEP_PRODUCTION,KEEP: pre-trained strict-causal forecasting model.,,
-HGB_resource_conditioned_Q50,KEEP_PRODUCTION,KEEP: pre-trained resource-conditioned central predictor.,,
-GradientBoosting_resource_conditioned_Q75_calibrated,KEEP_PRODUCTION,KEEP: pre-trained calibrated upper expected-throughput reference.,,
-IsolationForest_residual_space,CONTEXT_VALIDATION_ONLY,VALIDATION ONLY: unsupervised residual-space corroboration; not a throughput predictor and excluded from final cases/JSON.,,
