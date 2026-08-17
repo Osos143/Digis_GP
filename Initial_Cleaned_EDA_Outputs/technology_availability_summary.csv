@@ -1,0 +1,7 @@
+﻿flag,true_rows,true_pct,false_rows
+has_valid_location,64949,100.0,0
+has_lte_measurement,37588,57.873,27361
+has_wcdma_measurement,25469,39.214,39480
+has_nr5g_measurement,0,0.0,64949
+has_event,28041,43.174,36908
+has_lte_throughput,37517,57.764,27432

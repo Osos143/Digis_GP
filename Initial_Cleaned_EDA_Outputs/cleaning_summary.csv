@@ -1,0 +1,9 @@
+﻿metric,value
+raw_rows,64949.0
+raw_columns,1365.0
+clean_rows,64949.0
+clean_columns,182.0
+columns_removed_total,1183.0
+columns_kept_total,182.0
+protected_columns_total,24.0
+missing_threshold_pct,70.0

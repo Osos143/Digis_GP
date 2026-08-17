@@ -1,0 +1,18 @@
+﻿meaning,column
+LTE RSRP,LTE - PrimaryCell Radio - RSRP
+LTE RSRQ,LTE - PrimaryCell Radio - PCell_RSRQ
+LTE SINR,LTE - PrimaryCell Radio - PCell_SINR
+LTE PCI,LTE - Serving - PCI
+LTE EARFCN DL,LTE - Serving - EARFCN_DL
+LTE Band,LTE - Serving - Band
+LTE DL Throughput,LTE.LTE_Data_KPI.Agg_Throughput_DL
+LTE UL Throughput,LTE.LTE_Data_KPI.Agg_Throughput_UL
+WCDMA RSCP,WCDMA - DownlinkMeasurements - RSCP
+WCDMA EcNo,WCDMA - DownlinkMeasurements - EcNo
+WCDMA PSC,WCDMA - ServingCell - PSC
+WCDMA UARFCN,WCDMA - WCDMACellsTable(0) - UARFCN
+NR5G PCI,
+NR5G RSRP,
+NR5G RSRQ,
+NR5G SINR,
+NR5G ARFCN,
