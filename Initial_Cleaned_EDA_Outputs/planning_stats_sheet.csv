@@ -1,8 +1,0 @@
-﻿CLASH,Clash_Description,BEFORE,AFTER
- Total Clashes            ,                                          ,819.0,815.0
-(PCI  Collision)          ,Adjacent 1st Neigh PCI clash              ,0.0,0.0
-(PCI Confusion)           ,2nd Neigh PCI clash                       ,1.0,1.0
-                          ,                                          ,,
-(Mod4 Inter-site)         ,Adjacent 1st Neigh mod4 clash             ,794.0,790.0
-(Mod4 Intra-site)         ,Adjacent 1st Neigh co-site  mod4 clash    ,24.0,24.0
-(Mod4 non-adj Intra-site ),Non-Adjacent 1st Neigh co-site mod4 clash ,11.0,11.0

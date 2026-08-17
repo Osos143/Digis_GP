@@ -1,8 +1,0 @@
-﻿metric,value
-raw_rows,32474.0
-raw_columns,1365.0
-clean_rows,32474.0
-clean_columns,251.0
-columns_removed_total,1134.0
-columns_kept_total,231.0
-missing_threshold_pct,70.0

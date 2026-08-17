@@ -1,2 +1,0 @@
-﻿rows,sessions,valid_gap_rows,median_gap_seconds,p90_gap_seconds,p99_gap_seconds,pct_exactly_1_second,pct_within_1_5_seconds,pct_above_3_seconds,expected_sample_interval_seconds,validation_status
-32238,271,32084,1.0,1.0,1.0,100.0,100.0,0.0,1.0,PASS

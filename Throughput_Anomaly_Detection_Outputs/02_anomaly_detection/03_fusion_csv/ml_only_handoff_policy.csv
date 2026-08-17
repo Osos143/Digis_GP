@@ -1,2 +1,0 @@
-﻿policy,minimum_fused_confidence,minimum_raw_priority,severe_model_override_allowed,human_review_required,candidate_rows,retained_rows
-review_adjusted_balanced_supervised,55.0,50.0,True,True,4,4

@@ -1,9 +1,0 @@
-﻿missing_threshold_pct,columns_removed_if_not_protected,columns_kept_if_not_protected,removed_pct_of_all_columns
-50,1283,82,93.99
-60,1271,94,93.11
-70,1269,96,92.97
-75,1261,104,92.38
-80,1261,104,92.38
-90,1154,211,84.54
-95,1033,332,75.68
-99,919,446,67.33

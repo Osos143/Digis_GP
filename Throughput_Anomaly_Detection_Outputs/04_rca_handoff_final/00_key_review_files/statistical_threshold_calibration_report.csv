@@ -1,6 +1,0 @@
-﻿threshold_method,threshold_mbps,interpretation,distance_from_fixed_10mbps,flagged_rows,flagged_pct_analysis,fixed_10mbps_validation
-fixed_domain_reference,10.0,Domain reference; not the only detector.,0.0,,,EMPIRICALLY_POSITIONED_DOMAIN_REFERENCE
-global_p10,4.990454400000001,Data-driven bottom 10% threshold.,-5.009545599999999,3224.0,10.000620385880017,EMPIRICALLY_POSITIONED_DOMAIN_REFERENCE
-median_session_p10,7.00839677,Typical session-relative bottom 10% threshold.,-2.99160323,,,EMPIRICALLY_POSITIONED_DOMAIN_REFERENCE
-iqr_lower_fence,0.6690772260334485,Distribution-adaptive extreme lower fence in log-throughput.,-9.330922773966552,1279.0,3.967367702711086,EMPIRICALLY_POSITIONED_DOMAIN_REFERENCE
-robust_mad_modified_z_cutoff,0.5496024010994853,Robust distribution-adaptive extreme tail cutoff.,-9.450397598900516,1145.0,3.551709163099448,EMPIRICALLY_POSITIONED_DOMAIN_REFERENCE

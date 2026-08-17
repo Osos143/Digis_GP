@@ -1,6 +1,0 @@
-﻿model,role,selection_reason,mean_r2_mbps,mean_mae_mbps
-GradientBoosting_resource_conditioned_Q75_calibrated,KEEP_PRODUCTION,"KEEP: calibrated upper expected-throughput reference; coverage/pinball calibration is primary, R²/MAE are secondary.",0.810776998653799,13.34206178180103
-HGB_resource_conditioned_central,KEEP_PRODUCTION,KEEP: resource/radio-conditioned central predictor independent of current throughput history.,0.8928789998638065,9.840908578935254
-HGB_strict_causal_temporal_central,KEEP_PRODUCTION,KEEP: strict-causal forecasting benchmark using past-only session history and current legitimate context.,0.9168491297334691,8.477294289473535
-LSTM_Q50,CONTEXT_VALIDATION_ONLY,VALIDATION ONLY: sequence-model comparator; excluded from final JSON and final production confidence.,0.7709248423576355,14.18531551361084
-IsolationForest_residual_space,CONTEXT_VALIDATION_ONLY,"VALIDATION ONLY: unsupervised OOF corroboration; it does not predict throughput, so R²/MAE are not applicable.",,
