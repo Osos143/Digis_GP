@@ -9,24 +9,22 @@
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Representative high-priority fused episode. The shaded region marks the selected anomaly period; the upper panel emphasizes opportunity references and the lower panel shows central/temporal predictive context.}}{17}{figure.caption.16}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Worst-performing LTE serving cells ranked by the multi-KPI percentile badness score. Ranking reliability must be interpreted together with the score.}}{19}{figure.caption.17}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Incident-level RCA dataset overview showing final population metadata, severity distribution, dominant RCA classifications, and median KPI context.}}{23}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Core radio KPI distributions across the incident dataset: RSRP, RSRQ, SINR, CQI, MCS, and BLER.}}{25}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Engineering RCA cause taxonomy for LTE throughput degradation and the supporting KPI/evidence branches.}}{26}{figure.caption.23}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Three-JSON RCA knowledge-base architecture: \texttt {causes.json} defines what is evaluated and in which order, \texttt {kpi\_rules.json} defines how evidence is tested, and \texttt {solutions.json} defines what action follows a confirmed cause.}}{28}{figure.caption.24}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Severity composition per RCA classification in the deterministic results.}}{32}{figure.caption.27}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Core radio KPI distributions across the incident dataset: RSRP, RSRQ, SINR, CQI, MCS, and BLER.}}{24}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Engineering RCA cause taxonomy for LTE throughput degradation and the supporting KPI/evidence branches.}}{25}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Three-JSON RCA knowledge-base architecture: \texttt {causes.json} defines what is evaluated and in which order, \texttt {kpi\_rules.json} defines how evidence is tested, and \texttt {solutions.json} defines what action follows a confirmed cause.}}{28}{figure.caption.23}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces End-to-end planning pipeline. Geometry (Stage~3) is shared between the assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing both agree on what ``facing'' means.}}{40}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Cosine alignment model: alignment vs. angular offset from boresight. Key points: $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$.}}{43}{figure.caption.36}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Interference potential vs. distance for a fully-facing pair (both alignments $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and Tier-2 (14\,km) boundaries are marked for reference.}}{44}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Ring adjacency for a 4-sector site at $0^\circ /90^\circ /180^\circ /270^\circ $. Ring pairs (solid) must differ under the hard rule; the two non-adjacent diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole principle forces it.}}{45}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Measured site-size distribution, full dataset. $431+2=433$ sites fall under the 4--5-sector ring-adjacent-only rule.}}{45}{figure.caption.43}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Measured KPI results, full dataset, single full-reset run. Green bars are hard rules (all zero); amber bars are soft, structurally-expected counts.}}{53}{figure.caption.52}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces \texttt {bulk\_plan()} wall-clock time per region, measured on the full dataset.}}{54}{figure.caption.54}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces End-to-end planning pipeline. Geometry (Stage~3) is shared between the assignment engine (Stage~5) and the independent validator (Stage~6), guaranteeing both agree on what ``facing'' means.}}{39}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Cosine alignment model: alignment vs. angular offset from boresight. Key points: $0^\circ \rightarrow 1.0$, $60^\circ \rightarrow 0.5$, $90^\circ \rightarrow 0.0$.}}{42}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Interference potential vs. distance for a fully-facing pair (both alignments $=1.0$) and a one-sided pair (only one antenna facing). Tier-1 (7\,km) and Tier-2 (14\,km) boundaries are marked for reference.}}{43}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Ring adjacency for a 4-sector site at $0^\circ /90^\circ /180^\circ /270^\circ $. Ring pairs (solid) must differ under the hard rule; the two non-adjacent diagonal pairs (dashed) may reuse a Mod3/Mod4 value if the pigeonhole principle forces it.}}{44}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Measured site-size distribution, full dataset. $431+2=433$ sites fall under the 4--5-sector ring-adjacent-only rule.}}{44}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Measured KPI results, full dataset, single full-reset run. Green bars are hard rules (all zero); amber bars are soft, structurally-expected counts.}}{52}{figure.caption.50}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces \texttt {bulk\_plan()} wall-clock time per region, measured on the full dataset.}}{53}{figure.caption.52}%
 \addvspace {10pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Drive-Test Intelligence dashboard showing session-level KPIs, severity information, and direct inspection of backend-generated analytical figures}}{59}{figure.caption.58}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Dataset-ingestion view with execution progress, current session status, and recent analysis sessions}}{60}{figure.caption.59}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces RCA workspace: evidence is kept beside the explanation and recommended engineering follow-up}}{60}{figure.caption.60}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Interactive map linking drive-test trajectory observations to selectable anomaly incidents and their KPI context}}{62}{figure.caption.62}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces AI assistant views for explanation and engineer-oriented report generation}}{62}{figure.caption.63}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Session-history view used to revisit completed analyses and preserve an operational audit trail}}{64}{figure.caption.64}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Drive-Test Intelligence dashboard showing session-level KPIs, severity information, and direct inspection of backend-generated analytical figures}}{58}{figure.caption.56}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Dataset-ingestion view with execution progress, current session status, and recent analysis sessions}}{59}{figure.caption.57}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces RCA workspace: evidence is kept beside the explanation and recommended engineering follow-up}}{59}{figure.caption.58}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Interactive map linking drive-test trajectory observations to selectable anomaly incidents and their KPI context}}{61}{figure.caption.60}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces AI assistant views for explanation and engineer-oriented report generation}}{61}{figure.caption.61}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Session-history view used to revisit completed analyses and preserve an operational audit trail}}{63}{figure.caption.62}%
 \addvspace {10pt}
