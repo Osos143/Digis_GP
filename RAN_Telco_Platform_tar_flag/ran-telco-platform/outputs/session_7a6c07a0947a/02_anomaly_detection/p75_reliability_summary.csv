@@ -1,5 +1,0 @@
-﻿expected_tp_radio_source_level,expected_tp_confidence,rows,median_expected_p75,median_actual_tp,underperform_context_pct,strict_underperform_pct
-1.0,high,31254,62.203,39.391,20.0,4.0
-2.0,high,439,25.1,13.359,18.0,0.0
-3.0,high,469,40.812,26.868,16.400000000000002,2.3
-4.0,high,76,13.227,10.149,2.6,0.0
